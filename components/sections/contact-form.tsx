@@ -95,7 +95,7 @@ export function ContactForm() {
             <div className="container px-4 md:px-6 max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                        광고주 입점 문의
+                        광고주 문의
                     </h2>
                     <p className="text-lg text-muted-foreground">
                         OT MARKETING은 검증된 DB만을 제공합니다.<br />

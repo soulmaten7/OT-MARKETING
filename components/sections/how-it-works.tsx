@@ -12,7 +12,7 @@ const steps = [
     {
         icon: Filter,
         title: "2. 정밀 필터링 & 등급 분류",
-        desc: "단순 신청자가 아닙니다. 관심도에 따라 A/B/C 등급으로 리드를 정밀 분류합니다.",
+        desc: "단순 신청자가 아닙니다. 관심도에 따라 리드를 정밀 분류합니다.",
     },
     {
         icon: CheckCircle,
