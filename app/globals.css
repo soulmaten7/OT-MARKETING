@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  /* Apple-like Light Mode */
+  --background: #FFFFFF;
+  --foreground: #1D1D1F; /* San Francisco Black */
+
+  --card: #F5F5F7; /* Apple light gray surface */
+  --card-foreground: #1D1D1F;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #1D1D1F;
+
+  --primary: #000000;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #F5F5F7;
+  --secondary-foreground: #1D1D1F;
+
+  --muted: #F5F5F7;
+  --muted-foreground: #86868B; /* Apple gray text */
+
+  --accent: #0066CC; /* Apple Blue */
+  --accent-foreground: #FFFFFF;
+
+  --destructive: #FF3B30; /* Apple Red */
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E5E5EA; /* Apple separator */
+  --input: #E5E5EA;
+  --ring: #0066CC;
+  
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Apple-like Dark Mode */
+    --background: #000000;
+    --foreground: #F5F5F7;
+
+    --card: #1C1C1E; /* Apple dark surface */
+    --card-foreground: #F5F5F7;
+
+    --popover: #1C1C1E;
+    --popover-foreground: #F5F5F7;
+
+    --primary: #FFFFFF;
+    --primary-foreground: #000000;
+
+    --secondary: #1C1C1E;
+    --secondary-foreground: #F5F5F7;
+
+    --muted: #1C1C1E;
+    --muted-foreground: #86868B;
+
+    --accent: #0A84FF; /* Apple Dark Mode Blue */
+    --accent-foreground: #FFFFFF;
+
+    --destructive: #FF453A; /* Apple Dark Mode Red */
+    --destructive-foreground: #FFFFFF;
+
+    --border: #38383A;
+    --input: #38383A;
+    --ring: #0A84FF;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
