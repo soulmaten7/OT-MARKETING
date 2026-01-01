@@ -7,33 +7,33 @@ import Link from "next/link";
 const industries = [
     {
         icon: Wifi,
-        name: "인터넷/통신",
+        name: "인터넷/통신 DB",
         desc: "3사 개통, 알뜰폰, 결합상품 리드",
     },
     {
         icon: Droplets,
-        name: "정수기/렌탈",
+        name: "정수기/렌탈 DB",
         desc: "브랜드별 렌탈 신청 및 상담",
     },
     {
         icon: TrendingUp,
-        name: "주식/코인/투자",
+        name: "주식/코인/투자 DB",
         desc: "전문가 리딩방, 종목 추천 DB",
     },
     {
         icon: ShieldCheck,
-        name: "개인회생/채무",
+        name: "개인회생/채무 DB",
         desc: "신용회복, 파산 면책 상담",
     },
     {
         icon: Building2,
-        name: "부동산/분양",
+        name: "부동산/분양 DB",
         desc: "아파트, 오피스텔 분양 관심고객",
     },
     {
         icon: Stethoscope,
-        name: "병의원/전문직",
-        desc: "임플란트, 성형, 법률/세무 상담",
+        name: "병의원 DB",
+        desc: "임플란트, 성형, 다이어트 상담",
     },
 ];
 
@@ -48,8 +48,8 @@ export function Industries() {
                             <span className="text-accent">확장 가능한 엔진</span>
                         </h2>
                         <p className="text-lg text-muted-foreground">
-                            특정 카테고리에 국한되지 않습니다.<br />
-                            귀사의 비즈니스 모델에 맞춰 '전환 시나리오'를 설계해드립니다.
+                            단순 마케팅이 아닙니다.<br />
+                            귀사의 비즈니스에 맞는 최적의 DB를 추출합니다.
                         </p>
                     </div>
                     <Link href="#contact" className="hidden md:flex items-center text-primary font-semibold hover:text-accent transition-colors group">
@@ -65,16 +65,22 @@ export function Industries() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
-                            className="group p-6 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all hover:shadow-lg"
+                            className="group relative overflow-hidden p-6 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all hover:shadow-lg min-h-[200px] flex flex-col justify-between"
                         >
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="p-3 bg-background rounded-xl border border-border group-hover:border-accent/50 group-hover:text-accent transition-colors">
+                            {/* Placeholder for Industry Image - Overlay style */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/40 z-0" />
+
+                            <div className="relative z-10 flex justify-between items-start mb-4">
+                                <div className="p-3 bg-white/50 backdrop-blur-md rounded-xl border border-white/20 group-hover:bg-accent/10 group-hover:text-accent transition-colors">
                                     <item.icon className="w-6 h-6" />
                                 </div>
                                 <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors opacity-0 group-hover:opacity-100" />
                             </div>
-                            <h3 className="text-xl font-bold mb-2 text-card-foreground">{item.name}</h3>
-                            <p className="text-sm text-muted-foreground">{item.desc}</p>
+
+                            <div className="relative z-10">
+                                <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-accent transition-colors">{item.name}</h3>
+                                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                            </div>
                         </motion.div>
                     ))}
 
@@ -88,7 +94,7 @@ export function Industries() {
                         <div className="p-3 bg-secondary rounded-full mb-4">
                             <MoreHorizontal className="w-6 h-6 text-muted-foreground" />
                         </div>
-                        <h3 className="text-lg font-semibold text-muted-foreground">기타 서비스업</h3>
+                        <h3 className="text-lg font-semibold text-muted-foreground">기타 전문 서비스 DB</h3>
                         <p className="text-xs text-muted-foreground mt-1">상담이 필요한 모든 업종 가능</p>
                     </motion.div>
                 </div>

@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Premium CPA Network | 전환율 중심의 광고주 파트너",
-  description: "업종 제한 없는 프리미엄 리드 제너레이션. 성과로 증명하는 B2B 파트너십.",
+  title: "OT MARKETING | 업종을 가리지 않는 성과 중심 CPA 파트너",
+  description: "인터넷, 렌탈, 주식, 부동산 등 모든 업종 DB. 매출로 직결되는 고효율 리드 제너레이션.",
 };
 
 export default function RootLayout({

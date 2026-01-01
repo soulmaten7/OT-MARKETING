@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
-import { Loader2, CheckCircle } from "lucide-react";
+import { Loader2, CheckCircle, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const formSchema = z.object({
@@ -49,11 +49,23 @@ export function ContactForm() {
 
     async function onSubmit(data: FormValues) {
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        console.log(data);
-        setIsSubmitting(false);
-        setIsSubmitted(true);
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                alert("전송 중 오류가 발생했습니다. 다시 시도해주세요.");
+            }
+        } catch (e) {
+            alert("전송 중 오류가 발생했습니다.");
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     if (isSubmitted) {
@@ -68,8 +80,8 @@ export function ContactForm() {
                 </div>
                 <h2 className="text-3xl font-bold mb-4">문의가 접수되었습니다.</h2>
                 <p className="text-lg text-muted-foreground mb-8">
-                    담당자가 내용 확인 후 24시간 이내에<br />
-                    기재해주신 연락처로 안내 드리겠습니다.
+                    담당자가 내용 확인 후 기재해주신 연락처로<br />
+                    빠르게 안내 드리겠습니다.
                 </p>
                 <Button onClick={() => setIsSubmitted(false)} variant="outline">
                     추가 문의하기
@@ -86,64 +98,63 @@ export function ContactForm() {
                         광고주 입점 문의
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        더 이상 불투명한 광고에 예산을 낭비하지 마세요.<br />
-                        귀사의 비즈니스에 딱 맞는 성과형 모델을 제안해드립니다.
+                        OT MARKETING은 검증된 DB만을 제공합니다.<br />
+                        귀사의 비즈니스에 딱 맞는 성과형 모델을 제안 받아보세요.
                     </p>
                 </div>
 
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-card p-8 md:p-12 rounded-3xl border border-border shadow-sm">
                     {/* Company Info */}
                     <div className="space-y-4">
-                        <h3 className="text-xl font-semibold border-b pb-2 mb-6">기본 정보</h3>
+                        <h3 className="text-xl font-semibold border-b pb-2 mb-6 text-accent">기본 정보</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label htmlFor="companyName" className="text-sm font-medium">회사명 <span className="text-red-500">*</span></label>
-                                <Input id="companyName" placeholder="(주) 프리미엄마케팅" {...form.register("companyName")} />
-                                {form.formState.errors.companyName && <p className="text-sm text-red-500">{form.formState.errors.companyName.message}</p>}
+                                <label htmlFor="companyName" className="text-sm font-medium">회사명 <span className="text-destructive">*</span></label>
+                                <Input id="companyName" placeholder="OT MARKETING" {...form.register("companyName")} />
+                                {form.formState.errors.companyName && <p className="text-sm text-destructive">{form.formState.errors.companyName.message}</p>}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="contactPerson" className="text-sm font-medium">담당자명 <span className="text-red-500">*</span></label>
+                                <label htmlFor="contactPerson" className="text-sm font-medium">담당자명 <span className="text-destructive">*</span></label>
                                 <Input id="contactPerson" placeholder="홍길동 팀장" {...form.register("contactPerson")} />
-                                {form.formState.errors.contactPerson && <p className="text-sm text-red-500">{form.formState.errors.contactPerson.message}</p>}
+                                {form.formState.errors.contactPerson && <p className="text-sm text-destructive">{form.formState.errors.contactPerson.message}</p>}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="phone" className="text-sm font-medium">연락처 <span className="text-red-500">*</span></label>
+                                <label htmlFor="phone" className="text-sm font-medium">연락처 <span className="text-destructive">*</span></label>
                                 <Input id="phone" placeholder="010-1234-5678" {...form.register("phone")} />
-                                {form.formState.errors.phone && <p className="text-sm text-red-500">{form.formState.errors.phone.message}</p>}
+                                {form.formState.errors.phone && <p className="text-sm text-destructive">{form.formState.errors.phone.message}</p>}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium">이메일 <span className="text-red-500">*</span></label>
+                                <label htmlFor="email" className="text-sm font-medium">이메일 <span className="text-destructive">*</span></label>
                                 <Input id="email" type="email" placeholder="contact@company.com" {...form.register("email")} />
-                                {form.formState.errors.email && <p className="text-sm text-red-500">{form.formState.errors.email.message}</p>}
+                                {form.formState.errors.email && <p className="text-sm text-destructive">{form.formState.errors.email.message}</p>}
                             </div>
                         </div>
                     </div>
 
                     {/* Marketing Info */}
                     <div className="space-y-4 pt-6">
-                        <h3 className="text-xl font-semibold border-b pb-2 mb-6">마케팅 현황</h3>
+                        <h3 className="text-xl font-semibold border-b pb-2 mb-6 text-accent">마케팅 현황</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label htmlFor="industry" className="text-sm font-medium">업종 선택 <span className="text-red-500">*</span></label>
+                                <label htmlFor="industry" className="text-sm font-medium">업종 선택 <span className="text-destructive">*</span></label>
                                 <select
                                     id="industry"
                                     className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                     {...form.register("industry")}
                                 >
                                     <option value="">선택해주세요</option>
-                                    <option value="internet">인터넷/통신</option>
-                                    <option value="rental">정수기/생활렌탈</option>
-                                    <option value="finance">주식/코인/투자</option>
-                                    <option value="loan">개인회생/채무조정</option>
-                                    <option value="realestate">부동산/분양</option>
-                                    <option value="medical">병의원/전문직</option>
-                                    <option value="education">교육/자격증</option>
-                                    <option value="other">기타</option>
+                                    <option value="internet">인터넷/통신 DB</option>
+                                    <option value="rental">정수기/생활렌탈 DB</option>
+                                    <option value="finance">주식/코인/투자 DB</option>
+                                    <option value="loan">개인회생/채무조정 DB</option>
+                                    <option value="realestate">부동산/분양 DB</option>
+                                    <option value="medical">병의원 DB</option>
+                                    <option value="etc">기타 전문 서비스 DB</option>
                                 </select>
-                                {form.formState.errors.industry && <p className="text-sm text-red-500">{form.formState.errors.industry.message}</p>}
+                                {form.formState.errors.industry && <p className="text-sm text-destructive">{form.formState.errors.industry.message}</p>}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="budget" className="text-sm font-medium">월 예상 예산 <span className="text-red-500">*</span></label>
+                                <label htmlFor="budget" className="text-sm font-medium">월 예상 예산 <span className="text-destructive">*</span></label>
                                 <select
                                     id="budget"
                                     className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
@@ -155,7 +166,7 @@ export function ContactForm() {
                                     <option value="1000_3000">1,000만원 ~ 3,000만원</option>
                                     <option value="over_3000">3,000만원 이상</option>
                                 </select>
-                                {form.formState.errors.budget && <p className="text-sm text-red-500">{form.formState.errors.budget.message}</p>}
+                                {form.formState.errors.budget && <p className="text-sm text-destructive">{form.formState.errors.budget.message}</p>}
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="targetCpa" className="text-sm font-medium">희망 목표 CPA (선택)</label>
@@ -177,11 +188,11 @@ export function ContactForm() {
                         <div className="flex items-start space-x-3">
                             <input type="checkbox" id="privacyAgree" className="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" {...form.register("privacyAgree")} />
                             <label htmlFor="privacyAgree" className="text-sm text-muted-foreground leading-snug">
-                                <span className="text-red-500 font-bold">(필수)</span> 개인정보 수집 및 이용에 동의합니다. 귀하는 본 동의를 거부할 권리가 있으나, 거부 시 문의 접수가 불가능합니다.
+                                <span className="text-destructive font-bold">(필수)</span> 개인정보 수집 및 이용에 동의합니다. 귀하는 본 동의를 거부할 권리가 있으나, 거부 시 문의 접수가 불가능합니다.
                                 <br /><a href="/privacy" target="_blank" className="underline text-xs">약관 상세보기</a>
                             </label>
                         </div>
-                        {form.formState.errors.privacyAgree && <p className="text-sm text-red-500 ml-7">{form.formState.errors.privacyAgree.message}</p>}
+                        {form.formState.errors.privacyAgree && <p className="text-sm text-destructive ml-7">{form.formState.errors.privacyAgree.message}</p>}
 
                         <div className="flex items-start space-x-3">
                             <input type="checkbox" id="marketingAgree" className="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" {...form.register("marketingAgree")} />
@@ -191,16 +202,26 @@ export function ContactForm() {
                         </div>
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full text-lg h-14" disabled={isSubmitting}>
-                        {isSubmitting ? (
-                            <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                접수 중...
-                            </>
-                        ) : (
-                            "문의 접수하기"
-                        )}
-                    </Button>
+                    <div className="flex flex-col gap-4">
+                        <Button type="submit" size="lg" className="w-full text-lg h-14 bg-accent hover:bg-accent/90 text-white" disabled={isSubmitting}>
+                            {isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    접수 중...
+                                </>
+                            ) : (
+                                "문의 접수하기"
+                            )}
+                        </Button>
+
+                        {/* Kakao Button Placeholder */}
+                        <Button variant="outline" size="lg" className="w-full text-lg h-14 border-yellow-400 hover:bg-yellow-50 text-foreground" type="button" asChild>
+                            <a href="https://open.kakao.com/o/sw2Zxm9h" target="_blank" rel="noopener noreferrer">
+                                <MessageCircle className="mr-2 h-5 w-5 text-yellow-500 fill-current" />
+                                카카오톡 오픈채팅 문의
+                            </a>
+                        </Button>
+                    </div>
                 </form>
             </div>
         </section>

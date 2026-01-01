@@ -15,7 +15,7 @@ export function Navbar() {
                 <div className="container mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="text-xl font-semibold tracking-tight">
-                        Premium<span className="text-accent">CPA</span>
+                        OT <span className="text-accent">MARKETING</span>
                     </Link>
 
                     {/* Desktop Nav */}

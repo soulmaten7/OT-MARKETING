@@ -8,13 +8,16 @@ export function Footer() {
                     {/* Brand */}
                     <div className="md:col-span-2">
                         <Link href="/" className="text-xl font-semibold tracking-tight">
-                            Premium<span className="text-accent">CPA</span>
+                            OT <span className="text-accent">MARKETING</span>
                         </Link>
                         <p className="mt-4 text-sm text-muted-foreground max-w-sm">
-                            업종의 경계를 넘어, 오직 전환 성과로 증명하는 프리미엄 파트너십.
-                            <br />
-                            귀하의 비즈니스 성장을 위한 검증된 솔루션을 제공합니다.
+                            매출로 직결되는 고효율 DB. <br />
+                            업종의 경계를 넘어, 오직 전환 성과로 증명합니다.
                         </p>
+                        <div className="mt-6 flex flex-col gap-2 text-sm text-muted-foreground">
+                            <p>Email. soulmaten1007@gmail.com</p>
+                            <p>Tel. 070-4367-4013</p>
+                        </div>
                     </div>
 
                     {/* Links */}
@@ -58,10 +61,10 @@ export function Footer() {
                 </div>
 
                 <div className="mt-16 pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground gap-4">
-                    <p>© {new Date().getFullYear()} Premium CPA Network. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} OT MARKETING. All rights reserved.</p>
                     <div className="flex gap-4">
-                        <span>사업자등록번호: 준비중</span>
-                        <span>대표: 홍길동</span>
+                        <span>사업자등록번호: 141-39-01329</span>
+                        <span>대표: 장은태</span>
                     </div>
                 </div>
             </div>

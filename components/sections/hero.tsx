@@ -24,15 +24,15 @@ export function Hero() {
                     </div>
 
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
-                        광고비를 ‘리드’가 아닌
+                        매출로 직결되는 고효율 DB를
                         <br />
                         <span className="text-accent inline-block mt-2">‘전환’으로</span> 바꾸는 법
                     </h1>
 
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                        업종의 한계는 없습니다.
+                        업종을 가리지 않는 성과 중심 CPA 파트너
                         <br className="hidden md:block" />
-                        우리는 오직 성과로 증명하는 B2B 마케팅 파트너입니다.
+                        OT MARKETING이 증명하겠습니다.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">

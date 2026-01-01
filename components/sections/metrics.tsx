@@ -22,23 +22,23 @@ const metrics = [
 
 export function Metrics() {
     return (
-        <section id="metrics" className="py-24 bg-foreground text-background">
+        <section id="metrics" className="py-24 bg-background text-foreground border-y border-border/50">
             <div className="container px-4 md:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
                             숫자로 증명하는<br />
-                            압도적인 퍼포먼스
+                            <span className="text-accent">압도적인 퍼포먼스</span>
                         </h2>
-                        <p className="text-lg text-white/60 mb-8 max-w-md">
+                        <p className="text-lg text-muted-foreground mb-8 max-w-md">
                             말로만 하는 보장은 의미 없습니다. <br />
                             철저하게 데이터로 검증된 결과값만 제공합니다.
                         </p>
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                            <p className="text-sm font-medium text-white/80 mb-2">💡 Why?</p>
-                            <p className="text-sm text-white/60">
-                                “보장/확정” 같은 자극적인 단어는 사용하지 않습니다.
-                                하지만 저희와 함께한 파트너사의 <span className="text-white font-bold underline decoration-accent">재계약률은 92%</span>입니다.
+                        <div className="p-6 rounded-2xl bg-secondary border border-border backdrop-blur-sm">
+                            <p className="text-sm font-medium text-foreground mb-2">💡 Why?</p>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                                “보장/확정” 같은 자극적인 단어는 사용하지 않습니다. <br />
+                                하지만 저희와 함께한 파트너사의 <span className="text-accent font-bold underline decoration-accent/30 underline-offset-4">재계약률은 92%</span>입니다.
                                 이것이 우리가 가진 가장 강력한 증거입니다.
                             </p>
                         </div>
@@ -52,11 +52,11 @@ export function Metrics() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className={`p-8 rounded-3xl bg-white/5 border border-white/10 text-center ${index === 2 ? 'sm:col-span-2' : ''}`}
+                                className={`p-8 rounded-3xl bg-secondary/50 border border-border text-center hover:border-accent/50 transition-colors ${index === 2 ? 'sm:col-span-2' : ''}`}
                             >
-                                <div className="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-white">{metric.value}</div>
-                                <div className="text-lg font-semibold text-white/90 mb-1">{metric.label}</div>
-                                <div className="text-sm text-white/50">{metric.sub}</div>
+                                <div className="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-foreground">{metric.value}</div>
+                                <div className="text-lg font-semibold text-foreground/90 mb-1">{metric.label}</div>
+                                <div className="text-sm text-muted-foreground">{metric.sub}</div>
                             </motion.div>
                         ))}
                     </div>
