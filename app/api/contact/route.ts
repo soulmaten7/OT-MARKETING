@@ -33,9 +33,27 @@ export async function POST(request: Request) {
         // Google Sheets Integration
         if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
             try {
+                // Robust checking and sanitization of the key
+                let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+
+                // Remove surrounding quotes if they were accidentally pasted
+                if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+                    privateKey = privateKey.slice(1, -1);
+                }
+
+                // Handle literal escaped newlines (common in Vercel env vars)
+                privateKey = privateKey.replace(/\\n/g, "\n");
+
+                console.log("Key Debug:", {
+                    length: privateKey.length,
+                    startsWithBegin: privateKey.startsWith("-----BEGIN PRIVATE KEY-----"),
+                    endsWithEnd: privateKey.trim().endsWith("-----END PRIVATE KEY-----"),
+                    hasNewlines: privateKey.includes("\n")
+                });
+
                 const serviceAccountAuth = new JWT({
                     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-                    key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+                    key: privateKey,
                     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
                 });
 
