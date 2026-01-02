@@ -49,10 +49,18 @@ export async function POST(request: Request) {
 
                 // 3. Extract the Base64 body by stripping headers and whitespace
                 // This ensures we have a clean slate regardless of how it was pasted
-                const pureBase64 = privateKey
+                let pureBase64 = privateKey
                     .replace(/-----BEGIN PRIVATE KEY-----/g, '')
                     .replace(/-----END PRIVATE KEY-----/g, '')
                     .replace(/\s+/g, ''); // Remove all newlines and spaces
+
+                // Fix Base64 padding if broken (cleanLength must be multiple of 4)
+                const remainder = pureBase64.length % 4;
+                if (remainder !== 0) {
+                    const padding = 4 - remainder;
+                    pureBase64 += '='.repeat(padding);
+                    console.log(`Fixed Padding: Added ${padding} '=' signs`);
+                }
 
                 // 4. Re-construct a valid PEM string
                 // Note: We don't strictly need to chunk the body for recent Node versions,
