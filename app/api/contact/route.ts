@@ -85,8 +85,17 @@ export async function POST(request: Request) {
 
                 const sheet = doc.sheetsByIndex[0];
 
-                // Add headers if sheet is empty (optional, but good practice to ensure structure)
-                if (sheet.rowCount === 0 || (sheet.headerValues && sheet.headerValues.length === 0)) {
+                // Robust Header Loading Logic
+                let headersLoaded = false;
+                try {
+                    await sheet.loadHeaderRow();
+                    headersLoaded = true;
+                } catch (e) {
+                    console.log("Headers not loaded (likely empty sheet), initializing headers...");
+                }
+
+                // If headers weren't loaded or seem empty, set them up
+                if (!headersLoaded) {
                     await sheet.setHeaderRow([
                         '회사명', '담당자', '연락처', '이메일', '업종',
                         '월 예산', '목표 CPA', '현재 마케팅', '문의내용',
