@@ -33,27 +33,41 @@ export async function POST(request: Request) {
         // Google Sheets Integration
         if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
             try {
-                // Robust checking and sanitization of the key
-                let privateKey = process.env.GOOGLE_PRIVATE_KEY;
+                // Super Robust Key Normalization
+                let privateKey = process.env.GOOGLE_PRIVATE_KEY!;
 
-                // Remove surrounding quotes if they were accidentally pasted
+                // 1. Handle Vercel's double-escaped newlines if present
+                // (Some environments inject \\n instead of \n)
+                if (privateKey.includes('\\n')) {
+                    privateKey = privateKey.replace(/\\n/g, '\n');
+                }
+
+                // 2. Remove surrounding quotes if they were accidentally pasted
                 if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
                     privateKey = privateKey.slice(1, -1);
                 }
 
-                // Handle literal escaped newlines (common in Vercel env vars)
-                privateKey = privateKey.replace(/\\n/g, "\n");
+                // 3. Extract the Base64 body by stripping headers and whitespace
+                // This ensures we have a clean slate regardless of how it was pasted
+                const pureBase64 = privateKey
+                    .replace(/-----BEGIN PRIVATE KEY-----/g, '')
+                    .replace(/-----END PRIVATE KEY-----/g, '')
+                    .replace(/\s+/g, ''); // Remove all newlines and spaces
 
-                console.log("Key Debug:", {
-                    length: privateKey.length,
-                    startsWithBegin: privateKey.startsWith("-----BEGIN PRIVATE KEY-----"),
-                    endsWithEnd: privateKey.trim().endsWith("-----END PRIVATE KEY-----"),
-                    hasNewlines: privateKey.includes("\n")
+                // 4. Re-construct a valid PEM string
+                // Note: We don't strictly need to chunk the body for recent Node versions,
+                // but proper headers are critical.
+                const finalKey = `-----BEGIN PRIVATE KEY-----\n${pureBase64}\n-----END PRIVATE KEY-----\n`;
+
+                console.log("Key Check:", {
+                    originalLength: process.env.GOOGLE_PRIVATE_KEY!.length,
+                    cleanLength: pureBase64.length,
+                    reconstructedLength: finalKey.length
                 });
 
                 const serviceAccountAuth = new JWT({
                     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-                    key: privateKey,
+                    key: finalKey,
                     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
                 });
 
