@@ -62,10 +62,11 @@ export async function POST(request: Request) {
                     console.log(`Fixed Padding: Added ${padding} '=' signs`);
                 }
 
+                // Chunk the Base64 string into 64-character lines (Strict PEM requirement)
+                const chunkedBase64 = pureBase64.match(/.{1,64}/g)?.join('\n');
+
                 // 4. Re-construct a valid PEM string
-                // Note: We don't strictly need to chunk the body for recent Node versions,
-                // but proper headers are critical.
-                const finalKey = `-----BEGIN PRIVATE KEY-----\n${pureBase64}\n-----END PRIVATE KEY-----\n`;
+                const finalKey = `-----BEGIN PRIVATE KEY-----\n${chunkedBase64}\n-----END PRIVATE KEY-----\n`;
 
                 console.log("Key Check:", {
                     originalLength: process.env.GOOGLE_PRIVATE_KEY!.length,
