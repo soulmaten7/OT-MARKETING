@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
 
-// Schema sharing possible via lib/schema.ts ideally
 const formSchema = z.object({
     companyName: z.string(),
     contactPerson: z.string(),
@@ -23,24 +24,59 @@ export async function POST(request: Request) {
 
         if (!result.success) {
             return NextResponse.json(
-                { error: "Invalid data", details: (result.error as any).issues ?? (result.error as any).errors
- },
+                { error: "Invalid data", details: (result.error as any).issues ?? (result.error as any).errors },
                 { status: 400 }
             );
         }
 
-        // Placeholder: Google Sheets Logic
-        // In production:
-        // 1. Auth with Google Service Account (using env vars)
-        // 2. Load doc by ID
-        // 3. Append row
+        // Google Sheets Integration
+        if (process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY && process.env.GOOGLE_SHEET_ID) {
+            try {
+                const serviceAccountAuth = new JWT({
+                    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+                    key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+                    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+                });
 
-        // const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, jwt);
-        // await doc.loadInfo();
-        // const sheet = doc.sheetsByIndex[0];
-        // await sheet.addRow(result.data);
+                const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, serviceAccountAuth);
+                await doc.loadInfo();
 
-        console.log("Form Submitted:", result.data);
+                const sheet = doc.sheetsByIndex[0];
+
+                // Add headers if sheet is empty (optional, but good practice to ensure structure)
+                if (sheet.rowCount === 0 || (sheet.headerValues && sheet.headerValues.length === 0)) {
+                    await sheet.setHeaderRow([
+                        '회사명', '담당자', '연락처', '이메일', '업종',
+                        '월 예산', '목표 CPA', '현재 마케팅', '문의내용',
+                        '개인정보동의', '마케팅동의', '접수일시'
+                    ]);
+                }
+
+                await sheet.addRow({
+                    '회사명': result.data.companyName,
+                    '담당자': result.data.contactPerson,
+                    '연락처': result.data.phone,
+                    '이메일': result.data.email,
+                    '업종': result.data.industry,
+                    '월 예산': result.data.budget,
+                    '목표 CPA': result.data.targetCpa || '',
+                    '현재 마케팅': result.data.currentMethod || '',
+                    '문의내용': result.data.message || '',
+                    '개인정보동의': result.data.privacyAgree ? '동의' : '미동의',
+                    '마케팅동의': result.data.marketingAgree ? '동의' : '미동의',
+                    '접수일시': new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })
+                });
+
+                console.log("Successfully saved to Google Sheet");
+            } catch (sheetError) {
+                console.error("Google Sheets Error:", sheetError);
+                // Don't fail the request if sheets fails, but log it. 
+                // Or maybe we should? For now, we'll log and proceed as success to the user,
+                // but ideally we should have a fallback.
+            }
+        } else {
+            console.warn("Google Sheets credentials missing");
+        }
 
         return NextResponse.json({ success: true });
     } catch (error) {
