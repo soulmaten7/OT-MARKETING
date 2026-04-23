@@ -1,66 +1,38 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { FadeIn } from "@/components/animations/fade-in";
+import { StaggerContainer, StaggerItem } from "@/components/animations/stagger";
 
 const metrics = [
-    {
-        value: "97%",
-        label: "가짜 DB 필터링 비율",
-        sub: "중복/결번/허위 정보 자동 차단",
-    },
-    {
-        value: "3.5x",
-        label: "평균 ROI 상승",
-        sub: "기존 CPA 대비 효율 개선",
-    },
-    {
-        value: "0건",
-        label: "개인정보 이슈",
-        sub: "철저한 법적 가이드라인 준수",
-    },
+    { label: "월 평균 DB 추출", value: "50,000+", suffix: "건" },
+    { label: "광고주 재계약률", value: "92", suffix: "%" },
+    { label: "평균 ROAS 달성", value: "350", suffix: "%+" },
+    { label: "검증된 업종 수", value: "30", suffix: "+개" },
 ];
 
 export function Metrics() {
     return (
-        <section id="metrics" className="py-24 bg-background text-foreground border-y border-border/50">
-            <div className="container px-4 md:px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                            숫자로 증명하는<br />
-                            <span className="text-accent">압도적인 퍼포먼스</span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground mb-8 max-w-md">
-                            말로만 하는 보장은 의미 없습니다. <br />
-                            철저하게 데이터로 검증된 결과값만 제공합니다.
-                        </p>
-                        <div className="p-6 rounded-2xl bg-secondary border border-border backdrop-blur-sm">
-                            <p className="text-sm font-medium text-foreground mb-2">💡 Why?</p>
-                            <p className="text-sm text-muted-foreground leading-relaxed">
-                                “보장/확정” 같은 자극적인 단어는 사용하지 않습니다. <br />
-                                하지만 저희와 함께한 파트너사의 <span className="text-accent font-bold underline decoration-accent/30 underline-offset-4">재계약률은 92%</span>입니다.
-                                이것이 우리가 가진 가장 강력한 증거입니다.
-                            </p>
-                        </div>
-                    </div>
+        <section id="metrics" className="py-32 bg-background relative border-y border-black/5 dark:border-white/5">
+            <div className="container px-6 md:px-12">
+                <FadeIn className="mb-20">
+                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-center">
+                        숫자가 증명하는<br />
+                        <span className="text-accent">압도적인 퍼포먼스</span>
+                    </h2>
+                </FadeIn>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        {metrics.map((metric, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className={`p-8 rounded-3xl bg-secondary/50 border border-border text-center hover:border-accent/50 transition-colors ${index === 2 ? 'sm:col-span-2' : ''}`}
-                            >
-                                <div className="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-foreground">{metric.value}</div>
-                                <div className="text-lg font-semibold text-foreground/90 mb-1">{metric.label}</div>
-                                <div className="text-sm text-muted-foreground">{metric.sub}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
+                <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16">
+                    {metrics.map((metric, idx) => (
+                        <StaggerItem key={idx} className="text-center">
+                            <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground mb-4">
+                                {metric.value}<span className="text-3xl md:text-4xl text-muted-foreground/50 ml-1 align-top">{metric.suffix}</span>
+                            </div>
+                            <p className="text-lg md:text-xl font-medium text-muted-foreground">
+                                {metric.label}
+                            </p>
+                        </StaggerItem>
+                    ))}
+                </StaggerContainer>
             </div>
         </section>
     );

@@ -1,109 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowUpRight, Wifi, Droplets, TrendingUp, ShieldCheck, Building2, Stethoscope, MoreHorizontal } from "lucide-react";
-import Link from "next/link";
+import { StaggerContainer, StaggerItem } from "@/components/animations/stagger";
+import { FadeIn } from "@/components/animations/fade-in";
+import { Monitor, Smartphone, TrendingUp, ShieldCheck, Home, MoreHorizontal } from "lucide-react";
 
 const industries = [
-    {
-        icon: Wifi,
-        name: "인터넷/통신 DB",
-        desc: "3사 개통, 알뜰폰, 결합상품 리드",
-    },
-    {
-        icon: Droplets,
-        name: "정수기/렌탈 DB",
-        desc: "브랜드별 렌탈 신청 및 상담",
-    },
-    {
-        icon: TrendingUp,
-        name: "주식/코인/투자 DB",
-        desc: "전문가 리딩방, 종목 추천 DB",
-    },
-    {
-        icon: ShieldCheck,
-        name: "개인회생/채무 DB",
-        desc: "신용회복, 파산 면책 상담",
-    },
-    {
-        icon: Building2,
-        name: "부동산/분양 DB",
-        desc: "아파트, 오피스텔 분양 관심고객",
-    },
-    {
-        icon: Stethoscope,
-        name: "병의원 DB",
-        desc: "임플란트, 성형, 다이어트 상담",
-    },
+    { name: "인터넷/통신 DB", icon: Monitor, desc: "초고속 인터넷, IPTV 가입 유치" },
+    { name: "정수기/렌탈 DB", icon: Smartphone, desc: "브랜드 정수기, 생활가전 렌탈" },
+    { name: "주식/투자 DB", icon: TrendingUp, desc: "실시간 리딩방, 투자 자문" },
+    { name: "개인회생/파산 DB", icon: ShieldCheck, desc: "법률 상담, 신용 회복" },
+    { name: "부동산/분양 DB", icon: Home, desc: "아파트 분양, 상가 투자" },
+    { name: "기타 전문 DB", icon: MoreHorizontal, desc: "병의원, 교육, 법률 등 맞춤형" },
 ];
 
-export function Industries() {
+export function IndustryCards() {
     return (
-        <section id="industries" className="py-24">
-            <div className="container px-4 md:px-6">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                    <div className="max-w-2xl">
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-                            어떤 업종이든<br />
-                            <span className="text-accent">확장 가능한 엔진</span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground">
-                            단순 마케팅이 아닙니다.<br />
-                            귀사의 비즈니스에 맞는 최적의 DB를 추출합니다.
-                        </p>
-                    </div>
-                    <Link href="#contact" className="hidden md:flex items-center text-primary font-semibold hover:text-accent transition-colors group">
-                        내 업종 문의하기 <ArrowUpRight className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </Link>
-                </div>
+        <section id="industries" className="py-32 bg-secondary/30 relative overflow-hidden">
+            <div className="container px-6 md:px-12">
+                <FadeIn className="text-center mb-20 max-w-3xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6 text-foreground">
+                        어떤 비즈니스든<br />
+                        <span className="text-accent">확실한 타겟</span>을 찾아냅니다.
+                    </h2>
+                    <p className="text-xl text-muted-foreground font-light">
+                        단순 수집이 아닌, 구매 전환 가능성이 높은<br className="hidden md:block" />
+                        진성 고객 데이터만을 필터링하여 제공합니다.
+                    </p>
+                </FadeIn>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {industries.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.05 }}
-                            className="group relative overflow-hidden p-6 rounded-2xl bg-card border border-border hover:border-accent/30 transition-all hover:shadow-lg min-h-[200px] flex flex-col justify-between"
-                        >
-                            {/* Placeholder for Industry Image - Overlay style */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/40 z-0" />
-
-                            <div className="relative z-10 flex justify-between items-start mb-4">
-                                <div className="p-3 bg-white/50 backdrop-blur-md rounded-xl border border-white/20 group-hover:bg-accent/10 group-hover:text-accent transition-colors">
-                                    <item.icon className="w-6 h-6" />
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {industries.map((item, idx) => (
+                        <StaggerItem key={idx} className="group">
+                            <div className="h-full p-8 rounded-3xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                                    <item.icon className="w-7 h-7" />
                                 </div>
-                                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors opacity-0 group-hover:opacity-100" />
+                                <h3 className="text-2xl font-semibold mb-3 tracking-tight">{item.name}</h3>
+                                <p className="text-muted-foreground leading-relaxed">
+                                    {item.desc}
+                                </p>
                             </div>
-
-                            <div className="relative z-10">
-                                <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-accent transition-colors">{item.name}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
-                        </motion.div>
+                        </StaggerItem>
                     ))}
-
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-col justify-center items-center p-6 rounded-2xl border border-dashed border-border bg-transparent text-center"
-                    >
-                        <div className="p-3 bg-secondary rounded-full mb-4">
-                            <MoreHorizontal className="w-6 h-6 text-muted-foreground" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-muted-foreground">기타 전문 서비스 DB</h3>
-                        <p className="text-xs text-muted-foreground mt-1">상담이 필요한 모든 업종 가능</p>
-                    </motion.div>
-                </div>
-
-                <div className="mt-8 text-center md:hidden">
-                    <Link href="#contact" className="inline-flex items-center text-primary font-semibold hover:text-accent transition-colors group">
-                        내 업종 문의하기 <ArrowUpRight className="ml-2 w-4 h-4" />
-                    </Link>
-                </div>
+                </StaggerContainer>
             </div>
         </section>
     );
