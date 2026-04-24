@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "랜딩페이지 디자인 시안 6종 | OT Marketing",
-    description: "신뢰·액션·케어·미니멀·다크·비비드 — 6 가지 디자인 방향을 실시간으로 비교해 보세요.",
+    title: "랜딩페이지 디자인 시안 | OT Marketing",
+    description: "신뢰·액션·케어·미니멀·다크·비비드 — 업종별 디자인 방향을 실시간으로 비교해 보세요.",
 };
 
 export default function ShowcasePage() {
@@ -28,7 +28,7 @@ export default function ShowcasePage() {
                 <div className="ot-container py-12">
                     <div className="eyebrow mb-3">SHOWCASE</div>
                     <h1 className="font-serif text-3xl md:text-4xl text-[var(--navy)] mb-4">
-                        6 가지 디자인 시안을 비교해 보세요
+                        업종별 디자인 시안을 비교해 보세요
                     </h1>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-3xl">
                         업종별로 어울리는 시안이 다릅니다. 상단 탭에서 하나씩 전환하며 톤·색·구조를 확인하세요.
