@@ -9,25 +9,25 @@ export const metadata: Metadata = {
 
 export default function GuidePage() {
     return (
-        <div className="min-h-screen flex flex-col pt-20">
-            {/* Top bar with back link */}
-            <div className="border-b border-black/10 dark:border-white/10 bg-background/95 backdrop-blur-sm">
-                <div className="container px-6 md:px-12 py-4 flex items-center justify-between">
-                    <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <div className="min-h-screen flex flex-col pt-20 bg-white">
+            {/* Top bar */}
+            <div className="border-b border-gray-200 bg-white">
+                <div className="ot-container py-4 flex items-center justify-between">
+                    <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--navy)] hover:text-[var(--gold)] transition-colors">
                         <ArrowLeft className="w-4 h-4" />
                         홈으로
                     </Link>
-                    <div className="text-sm font-semibold">
+                    <div className="text-sm font-semibold text-[var(--navy)]">
                         광고주용 콘텐츠 가이드
                     </div>
-                    <Link href="/showcase" className="text-sm text-accent hover:underline">
+                    <Link href="/showcase" className="text-sm text-[var(--gold)] hover:underline font-semibold">
                         ← 시안 미리보기
                     </Link>
                 </div>
             </div>
 
             {/* Iframe */}
-            <div className="flex-1 border-t border-black/10 dark:border-white/10">
+            <div className="flex-1 border-t border-gray-200">
                 <iframe
                     src="/guide.html"
                     title="광고주용 콘텐츠 가이드"
@@ -37,15 +37,15 @@ export default function GuidePage() {
             </div>
 
             {/* Bottom CTA */}
-            <div className="border-t border-black/10 dark:border-white/10 bg-secondary/30">
-                <div className="container px-6 md:px-12 py-10 text-center">
-                    <h2 className="text-2xl font-bold mb-3">준비물이 정리되셨다면</h2>
-                    <p className="text-muted-foreground mb-6">
+            <div className="border-t border-gray-200 bg-[var(--cream)]">
+                <div className="ot-container py-12 text-center">
+                    <h2 className="font-serif text-2xl md:text-3xl text-[var(--navy)] mb-3">준비물이 정리되셨다면</h2>
+                    <p className="text-gray-600 mb-8">
                         가이드에 있는 체크리스트를 채워 보내주시면 시안에 맞춰 반영해 드립니다.
                     </p>
                     <Link
                         href="/#contact"
-                        className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-lg font-semibold hover:bg-foreground/90 transition-colors"
+                        className="inline-flex items-center gap-2 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] px-8 py-3 rounded font-bold transition-colors"
                     >
                         상담 신청하기
                     </Link>

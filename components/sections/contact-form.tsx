@@ -70,43 +70,48 @@ export function ContactForm() {
 
     if (isSubmitted) {
         return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-24 px-4 bg-muted/30 rounded-3xl border border-border"
-            >
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
-                    <CheckCircle className="w-10 h-10" />
+            <section id="contact" className="py-24 md:py-32 bg-[var(--navy)]">
+                <div className="ot-container max-w-2xl">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-center bg-white p-12 rounded-md border border-gray-200 shadow-lg"
+                    >
+                        <div className="w-20 h-20 bg-[var(--gold-10)] rounded-full flex items-center justify-center mx-auto mb-6 text-[var(--gold)]">
+                            <CheckCircle className="w-10 h-10" />
+                        </div>
+                        <h2 className="font-serif text-3xl font-bold text-[var(--navy)] mb-4">문의가 접수되었습니다.</h2>
+                        <p className="text-lg text-gray-600 mb-8">
+                            담당자가 내용 확인 후 기재해주신 연락처로<br />
+                            빠르게 안내 드리겠습니다.
+                        </p>
+                        <Button onClick={() => setIsSubmitted(false)} variant="outline" className="border-[var(--gold)] text-[var(--navy)] hover:bg-[var(--gold-10)]">
+                            추가 문의하기
+                        </Button>
+                    </motion.div>
                 </div>
-                <h2 className="text-3xl font-bold mb-4">문의가 접수되었습니다.</h2>
-                <p className="text-lg text-muted-foreground mb-8">
-                    담당자가 내용 확인 후 기재해주신 연락처로<br />
-                    빠르게 안내 드리겠습니다.
-                </p>
-                <Button onClick={() => setIsSubmitted(false)} variant="outline">
-                    추가 문의하기
-                </Button>
-            </motion.div>
+            </section>
         );
     }
 
     return (
-        <section id="contact" className="py-24 bg-background">
-            <div className="container px-4 md:px-6 max-w-4xl mx-auto">
+        <section id="contact" className="py-24 md:py-32 bg-[var(--navy)]">
+            <div className="ot-container max-w-4xl">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+                    <div className="eyebrow mb-4">CONTACT</div>
+                    <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
                         광고주 문의
                     </h2>
-                    <p className="text-lg text-muted-foreground">
-                        OT MARKETING은 검증된 DB만을 제공합니다.<br />
-                        귀사의 비즈니스에 딱 맞는 성과형 모델을 제안 받아보세요.
+                    <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                        시안 확정 · 계약 체결 · 매체 셋업까지 대표가 직접 안내드립니다.<br />
+                        회신은 영업일 기준 24시간 이내.
                     </p>
                 </div>
 
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-card p-8 md:p-12 rounded-3xl border border-border shadow-sm">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-white p-8 md:p-12 rounded-md border border-gray-200 shadow-lg">
                     {/* Company Info */}
                     <div className="space-y-4">
-                        <h3 className="text-xl font-semibold border-b pb-2 mb-6 text-accent">기본 정보</h3>
+                        <h3 className="font-serif text-xl font-bold border-b border-[var(--gold)] pb-2 mb-6 text-[var(--navy)]">기본 정보</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="companyName" className="text-sm font-medium">회사명 <span className="text-destructive">*</span></label>
@@ -133,7 +138,7 @@ export function ContactForm() {
 
                     {/* Marketing Info */}
                     <div className="space-y-4 pt-6">
-                        <h3 className="text-xl font-semibold border-b pb-2 mb-6 text-accent">마케팅 현황</h3>
+                        <h3 className="font-serif text-xl font-bold border-b border-[var(--gold)] pb-2 mb-6 text-[var(--navy)]">마케팅 현황</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="industry" className="text-sm font-medium">업종 선택 <span className="text-destructive">*</span></label>
@@ -203,7 +208,7 @@ export function ContactForm() {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <Button type="submit" size="lg" className="w-full text-lg h-14 bg-accent hover:bg-accent/90 text-white" disabled={isSubmitting}>
+                        <Button type="submit" size="lg" className="w-full text-lg h-14 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] font-bold" disabled={isSubmitting}>
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

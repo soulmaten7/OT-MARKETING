@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -21,49 +19,58 @@ export function Navbar() {
 
     return (
         <>
-            <motion.header
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
+            <header
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
                     isScrolled
-                        ? "bg-white/70 backdrop-blur-xl border-b border-black/5 dark:bg-black/70 dark:border-white/5 py-3"
+                        ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3"
                         : "bg-transparent py-5"
                 )}
             >
-                <div className="container mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+                <div className="ot-container flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="text-2xl font-semibold tracking-tighter text-foreground">
-                        OT <span className="text-accent">MARKETING</span>
+                    <Link
+                        href="/"
+                        className={cn(
+                            "font-serif text-2xl tracking-tight transition-colors",
+                            isScrolled ? "text-[var(--navy)]" : "text-white"
+                        )}
+                    >
+                        OT <span className="text-[var(--gold)]">MARKETING</span>
                     </Link>
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-8">
-                        <Link href="/#what-we-bring" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                            준비된 자산
-                        </Link>
-                        <Link href="/showcase" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                            시안 미리보기
-                        </Link>
-                        <Link href="/guide" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                            콘텐츠 가이드
-                        </Link>
-                        <Link href="/#how-it-works" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                            운영 방식
-                        </Link>
-                        <Link href="/#industries" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                            업종
-                        </Link>
+                        {[
+                            { label: "준비된 자산", href: "/#what-we-bring" },
+                            { label: "시안 미리보기", href: "/showcase" },
+                            { label: "콘텐츠 가이드", href: "/guide" },
+                            { label: "운영 절차", href: "/#how-it-works" },
+                            { label: "업종", href: "/#industries" },
+                        ].map((item) => (
+                            <Link
+                                key={item.label}
+                                href={item.href}
+                                className={cn(
+                                    "text-sm font-medium transition-colors hover:text-[var(--gold)]",
+                                    isScrolled ? "text-[var(--navy)]" : "text-white/90"
+                                )}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
                     </nav>
 
                     {/* CTA & Mobile Toggle */}
-                    <div className="flex items-center gap-4">
-                        <Button size="sm" className="hidden md:inline-flex rounded-full px-6 bg-foreground text-background hover:bg-foreground/80 font-medium" asChild>
-                            <Link href="#contact">광고주 문의</Link>
-                        </Button>
+                    <div className="flex items-center gap-3">
+                        <Link
+                            href="/#contact"
+                            className="hidden md:inline-flex bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] text-sm font-bold px-5 py-2.5 rounded transition-colors"
+                        >
+                            광고주 문의
+                        </Link>
                         <button
-                            className="md:hidden p-2 text-foreground"
+                            className={cn("md:hidden p-2", isScrolled ? "text-[var(--navy)]" : "text-white")}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                         >
@@ -71,62 +78,38 @@ export function Navbar() {
                         </button>
                     </div>
                 </div>
-            </motion.header>
+            </header>
 
             {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl pt-24 px-6 md:hidden"
-                    >
-                        <div className="flex flex-col space-y-5 text-center">
+            {isMenuOpen && (
+                <div className="fixed inset-0 z-40 bg-[var(--navy)] pt-24 px-6 md:hidden">
+                    <div className="flex flex-col space-y-2 text-center">
+                        {[
+                            { label: "준비된 자산", href: "/#what-we-bring" },
+                            { label: "시안 미리보기", href: "/showcase" },
+                            { label: "콘텐츠 가이드", href: "/guide" },
+                            { label: "운영 절차", href: "/#how-it-works" },
+                            { label: "업종", href: "/#industries" },
+                        ].map((item) => (
                             <Link
-                                href="/#what-we-bring"
-                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                key={item.label}
+                                href={item.href}
+                                className="font-serif text-2xl text-white py-3 border-b border-white/10 hover:text-[var(--gold)]"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                준비된 자산
+                                {item.label}
                             </Link>
-                            <Link
-                                href="/showcase"
-                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                시안 미리보기
-                            </Link>
-                            <Link
-                                href="/guide"
-                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                콘텐츠 가이드
-                            </Link>
-                            <Link
-                                href="/#how-it-works"
-                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                운영 방식
-                            </Link>
-                            <Link
-                                href="/#industries"
-                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                업종
-                            </Link>
-                            <Button className="w-full mt-6 rounded-full h-12 text-lg" size="lg" asChild>
-                                <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>
-                                    지금 문의하기
-                                </Link>
-                            </Button>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        ))}
+                        <Link
+                            href="/#contact"
+                            className="bg-[var(--gold)] text-[var(--navy)] font-bold py-4 mt-6 rounded text-lg"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            광고주 문의
+                        </Link>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

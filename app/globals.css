@@ -35,83 +35,65 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Pretendard Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, "Times New Roman", serif;
 }
+
+/* ============================================================ */
+/*  🅐 Trust / Legal Theme — Navy + Gold                         */
+/*  Light mode only (OS 다크모드 자동 적용 차단)                  */
+/* ============================================================ */
 
 :root {
-  /* Apple-like Light Mode */
-  --background: #FFFFFF;
-  --foreground: #1D1D1F;
-  /* San Francisco Black */
+  color-scheme: light only;
 
-  --card: #F5F5F7;
-  /* Apple light gray surface */
-  --card-foreground: #1D1D1F;
+  /* Brand: Trust / Legal */
+  --navy: #0F1E3D;         /* 메인 딥 네이비 */
+  --navy-80: #1C2E5A;      /* 네이비 밝은 쪽 */
+  --navy-10: #E8ECF4;      /* 네이비 배경 tint */
+  --gold: #C5A572;         /* 골드 포인트 */
+  --gold-dark: #A08653;    /* 골드 hover */
+  --gold-10: #F7F1E3;      /* 골드 배경 tint */
+  --cream: #FAFAF7;        /* 본문 섹션 대안 배경 */
+
+  /* Tailwind 시맨틱 매핑 */
+  --background: #FFFFFF;
+  --foreground: #0F1E3D;
+
+  --card: #FFFFFF;
+  --card-foreground: #0F1E3D;
 
   --popover: #FFFFFF;
-  --popover-foreground: #1D1D1F;
+  --popover-foreground: #0F1E3D;
 
-  --primary: #000000;
+  --primary: #0F1E3D;
   --primary-foreground: #FFFFFF;
 
-  --secondary: #F5F5F7;
-  --secondary-foreground: #1D1D1F;
+  --secondary: #FAFAF7;
+  --secondary-foreground: #0F1E3D;
 
-  --muted: #F5F5F7;
-  --muted-foreground: #86868B;
-  /* Apple gray text */
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
 
-  /* Tiffany Blue Brand Colors */
-  --accent: #0ABAB5;
-  --accent-foreground: #FFFFFF;
-  /* White text on Tiffany Blue */
+  --accent: #C5A572;
+  --accent-foreground: #0F1E3D;
 
-  --destructive: #FF3B30;
+  --destructive: #B91C1C;
   --destructive-foreground: #FFFFFF;
 
-  --border: #E5E5EA;
-  --input: #E5E5EA;
-  --ring: #0ABAB5;
-  /* Focus ring also Tiffany Blue */
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #C5A572;
 
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Apple-like Dark Mode */
-    --background: #000000;
-    --foreground: #F5F5F7;
+/* 🅐 테마는 라이트 모드만 — OS 다크모드여도 강제 라이트 */
+/* (dark mode media query 삭제)                             */
 
-    --card: #1C1C1E;
-    /* Apple dark surface */
-    --card-foreground: #F5F5F7;
-
-    --popover: #1C1C1E;
-    --popover-foreground: #F5F5F7;
-
-    --primary: #FFFFFF;
-    --primary-foreground: #000000;
-
-    --secondary: #1C1C1E;
-    --secondary-foreground: #F5F5F7;
-
-    --muted: #1C1C1E;
-    --muted-foreground: #86868B;
-
-    --accent: #4FD1C5;
-    /* Lighter Tiffany/Teal for Dark Mode */
-    --accent-foreground: #000000;
-    /* Black text for contrast */
-
-    --destructive: #FF453A;
-    /* Apple Dark Mode Red */
-    --destructive-foreground: #FFFFFF;
-
-    --border: #38383A;
-    --input: #38383A;
-    --ring: #4FD1C5;
-  }
+html {
+  background: var(--background);
+  color: var(--foreground);
 }
 
 body {
@@ -122,13 +104,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 세리프 전용 클래스 (Hero 제목·섹션 타이틀) */
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Container 통일 — navbar 와 section 모두 같은 max-width + padding */
+.ot-container {
+  width: 100%;
+  max-width: 72rem; /* 1152px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* 24px */
+  padding-right: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ot-container {
+    padding-left: 3rem; /* 48px */
+    padding-right: 3rem;
+  }
+}
+
+/* Eyebrow 라벨 공통 */
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 /* Animations */
 @keyframes fade-in-up {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
