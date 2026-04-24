@@ -13,7 +13,7 @@ const industries = [
     { name: "기타 전문 DB", icon: MoreHorizontal, desc: "병의원, 교육, 법률 등 맞춤형" },
 ];
 
-export function IndustryCards() {
+export function Industries() {
     return (
         <section id="industries" className="py-32 bg-secondary/30 relative overflow-hidden">
             <div className="container px-6 md:px-12">

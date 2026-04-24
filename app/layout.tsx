@@ -11,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "OT MARKETING | 업종을 가리지 않는 성과 중심 CPA 파트너",
-  description: "인터넷, 렌탈, 주식, 부동산 등 모든 업종 DB. 매출로 직결되는 고효율 리드 제너레이션.",
+  title: "OT MARKETING | 대표 직접 운영 부티크 CPA 에이전시",
+  description: "6 업종 랜딩 시안·상담 스크립트·표준계약서가 준비된 부티크 CPA 에이전시. 광고주 한 분씩, 대표가 직접 운영합니다.",
 };
 
 export default function RootLayout({

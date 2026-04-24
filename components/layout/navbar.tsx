@@ -39,15 +39,22 @@ export function Navbar() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-10">
-                        {["운영 방식", "가능 업종", "핵심 성과"].map((item, i) => {
-                            const href = item === "운영 방식" ? "#how-it-works" : item === "가능 업종" ? "#industries" : "#metrics";
-                            return (
-                                <Link key={i} href={href} className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
-                                    {item}
-                                </Link>
-                            )
-                        })}
+                    <nav className="hidden md:flex items-center gap-8">
+                        <Link href="/#what-we-bring" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
+                            준비된 자산
+                        </Link>
+                        <Link href="/showcase" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
+                            시안 미리보기
+                        </Link>
+                        <Link href="/guide" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
+                            콘텐츠 가이드
+                        </Link>
+                        <Link href="/#how-it-works" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
+                            운영 방식
+                        </Link>
+                        <Link href="/#industries" className="text-[15px] font-medium text-foreground/80 hover:text-accent transition-colors">
+                            업종
+                        </Link>
                     </nav>
 
                     {/* CTA & Mobile Toggle */}
@@ -75,30 +82,44 @@ export function Navbar() {
                         exit={{ opacity: 0 }}
                         className="fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl pt-24 px-6 md:hidden"
                     >
-                        <div className="flex flex-col space-y-6 text-center">
+                        <div className="flex flex-col space-y-5 text-center">
                             <Link
-                                href="#how-it-works"
-                                className="text-2xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                href="/#what-we-bring"
+                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                준비된 자산
+                            </Link>
+                            <Link
+                                href="/showcase"
+                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                시안 미리보기
+                            </Link>
+                            <Link
+                                href="/guide"
+                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                콘텐츠 가이드
+                            </Link>
+                            <Link
+                                href="/#how-it-works"
+                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 운영 방식
                             </Link>
                             <Link
-                                href="#industries"
-                                className="text-2xl font-semibold text-foreground/90 py-2 border-b border-border/50"
+                                href="/#industries"
+                                className="text-xl font-semibold text-foreground/90 py-2 border-b border-border/50"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                가능 업종
+                                업종
                             </Link>
-                            <Link
-                                href="#metrics"
-                                className="text-2xl font-semibold text-foreground/90 py-2 border-b border-border/50"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                핵심 성과
-                            </Link>
-                            <Button className="w-full mt-8 rounded-full h-12 text-lg" size="lg" asChild>
-                                <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
+                            <Button className="w-full mt-6 rounded-full h-12 text-lg" size="lg" asChild>
+                                <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>
                                     지금 문의하기
                                 </Link>
                             </Button>
