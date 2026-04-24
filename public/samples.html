@@ -994,8 +994,29 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    setTimeout(reportHeight, 50);
   });
 });
+
+// iframe 부모 페이지(/showcase)에 현재 active 시안 전체 높이를 송신
+// → 부모가 iframe height 를 동적으로 조절해서 내부 스크롤 없앰
+function reportHeight() {
+  try {
+    var tabnav = document.querySelector('.tabnav');
+    var active = document.querySelector('.variant.active');
+    if (!active || !tabnav) return;
+    var h = tabnav.getBoundingClientRect().height + active.getBoundingClientRect().height + 10;
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'showcase-resize', height: Math.ceil(h) }, '*');
+    }
+  } catch (e) { /* noop */ }
+}
+window.addEventListener('load', function() { setTimeout(reportHeight, 100); });
+// 이미지·폰트 로드로 높이 변화 대응
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(function() { setTimeout(reportHeight, 50); });
+}
+window.addEventListener('resize', function() { setTimeout(reportHeight, 100); });
 </script>
 </body>
 </html>

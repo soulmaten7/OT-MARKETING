@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ShowcaseIframe } from "./showcase-iframe";
 
 export const metadata: Metadata = {
     title: "랜딩페이지 디자인 시안 | OT Marketing",
-    description: "신뢰·액션·케어·미니멀·다크·비비드 — 업종별 디자인 방향을 실시간으로 비교해 보세요.",
+    description: "신뢰·액션·케어·미니멀·다크·비비드 — 업종 특성에 맞춰 디자인 방향을 비교해 보세요.",
 };
 
 export default function ShowcasePage() {
     return (
         <div className="min-h-screen flex flex-col pt-20 bg-white">
-            {/* Top bar — 홈으로 + 상담 신청 (navbar 와 중복 피함) */}
+            {/* Top bar */}
             <div className="border-b border-gray-200 bg-white">
                 <div className="ot-container py-4 flex items-center justify-between">
                     <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--navy)] hover:text-[var(--gold)] transition-colors">
@@ -23,10 +24,10 @@ export default function ShowcasePage() {
                 </div>
             </div>
 
-            {/* Intro + Iframe 모두 동일 max-width 안에 배치 */}
+            {/* Intro + Iframe */}
             <div className="flex-1 bg-white">
                 <div className="ot-container py-12">
-                    <div className="eyebrow mb-3">SHOWCASE</div>
+                    <div className="eyebrow mb-3">PORTFOLIO</div>
                     <h1 className="font-serif text-3xl md:text-4xl text-[var(--navy)] mb-4">
                         업종별 디자인 시안을 비교해 보세요
                     </h1>
@@ -36,14 +37,9 @@ export default function ShowcasePage() {
                     </p>
                 </div>
 
-                {/* Iframe — 전체 너비 */}
+                {/* Iframe — 자동 높이 조절 (postMessage) */}
                 <div className="border-t border-gray-200">
-                    <iframe
-                        src="/samples.html"
-                        title="랜딩페이지 디자인 시안 6종"
-                        className="w-full border-0 block"
-                        style={{ height: "calc(100vh - 60px)", minHeight: "800px" }}
-                    />
+                    <ShowcaseIframe />
                 </div>
             </div>
         </div>
