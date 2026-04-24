@@ -49,7 +49,6 @@ export function Navbar() {
                         {[
                             { label: "준비된 자산", href: "/#what-we-bring" },
                             { label: "시안 미리보기", href: "/showcase" },
-                            { label: "콘텐츠 가이드", href: "/guide" },
                             { label: "운영 절차", href: "/#how-it-works" },
                             { label: "업종", href: "/#industries" },
                         ].map((item) => (
@@ -92,7 +91,6 @@ export function Navbar() {
                         {[
                             { label: "준비된 자산", href: "/#what-we-bring" },
                             { label: "시안 미리보기", href: "/showcase" },
-                            { label: "콘텐츠 가이드", href: "/guide" },
                             { label: "운영 절차", href: "/#how-it-works" },
                             { label: "업종", href: "/#industries" },
                         ].map((item) => (

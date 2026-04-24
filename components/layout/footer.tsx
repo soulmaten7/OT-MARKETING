@@ -20,24 +20,33 @@ export function Footer() {
                         </div>
                     </div>
 
-                    {/* Links */}
+                    {/* Services */}
                     <div>
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
                         <ul className="space-y-3 text-sm text-white/70">
                             <li><Link href="/showcase" className="hover:text-[var(--gold)] transition-colors">시안 미리보기</Link></li>
-                            <li><Link href="/guide" className="hover:text-[var(--gold)] transition-colors">콘텐츠 가이드</Link></li>
                             <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">운영 절차</Link></li>
                             <li><Link href="/#industries" className="hover:text-[var(--gold)] transition-colors">업종</Link></li>
                             <li><Link href="/#contact" className="hover:text-[var(--gold)] transition-colors">상담 신청</Link></li>
                         </ul>
                     </div>
 
-                    {/* Legal */}
+                    {/* Legal + Admin */}
                     <div>
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">LEGAL</h4>
                         <ul className="space-y-3 text-sm text-white/70">
                             <li><Link href="/privacy" className="hover:text-[var(--gold)] transition-colors">개인정보처리방침</Link></li>
                             <li><Link href="/terms" className="hover:text-[var(--gold)] transition-colors">이용약관</Link></li>
+                        </ul>
+
+                        <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mt-8 mb-4">INTERNAL</h4>
+                        <ul className="space-y-3 text-sm text-white/70">
+                            <li>
+                                <Link href="/admin/guide" className="inline-flex items-center gap-1.5 hover:text-[var(--gold)] transition-colors">
+                                    <span>🔒</span>
+                                    <span>관리자 로그인</span>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +56,6 @@ export function Footer() {
                     <div className="flex flex-wrap gap-x-6 gap-y-1 justify-center md:justify-end items-center">
                         <span>사업자등록번호: 141-39-01329</span>
                         <span>대표: 장은태</span>
-                        <Link href="/admin/guide" className="text-white/30 hover:text-[var(--gold)] transition-colors">관리자</Link>
                     </div>
                 </div>
             </div>

@@ -10,18 +10,16 @@
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif; background: #f3f4f6; }
 img { max-width: 100%; }
 
-/* ===== Tab bar — responsive, no overflow ===== */
+/* ===== Tab bar — centered with max-width matching /showcase intro ===== */
 html, body { overflow-x: hidden; max-width: 100vw; }
-.tabnav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; padding: 10px 16px; z-index: 100; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100vw; box-sizing: border-box; }
-.tabnav-label { font-size: 12px; color: #6b7280; margin-right: 4px; font-weight: 600; white-space: nowrap; }
-.tab-btn { padding: 7px 12px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; }
-.tab-btn:hover { background: #f9fafb; }
-.tab-btn.active { background: #111827; color: #fff; border-color: #111827; }
-.tabnav-right { margin-left: auto; font-size: 11px; color: #9ca3af; white-space: nowrap; }
-@media (max-width: 1024px) {
-  .tabnav-right { display: none; }
-  .tabnav-label { display: none; }
+.tabnav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 100; box-sizing: border-box; }
+.tabnav-inner { max-width: 1152px; margin: 0 auto; padding: 12px 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+@media (min-width: 768px) {
+  .tabnav-inner { padding: 12px 48px; }
 }
+.tab-btn { padding: 7px 14px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; }
+.tab-btn:hover { background: #f9fafb; }
+.tab-btn.active { background: #0F1E3D; color: #fff; border-color: #0F1E3D; }
 .variant { display: none; }
 .variant.active { display: block; }
 
@@ -309,33 +307,16 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <body>
 
 <nav class="tabnav">
-  <button class="tab-btn active" data-tab="A">🅐 신뢰·법률</button>
-  <button class="tab-btn" data-tab="B">🅑 액션·전환</button>
-  <button class="tab-btn" data-tab="C">🅒 케어·친근</button>
-  <button class="tab-btn" data-tab="D">🅓 미니멀·에디토리얼</button>
-  <button class="tab-btn" data-tab="E">🅔 다크·테크</button>
-  <button class="tab-btn" data-tab="F">🅕 비비드·모바일</button>
-  <select id="industrySelect" class="tab-btn" style="margin-left:auto; background:#E8ECF4; color:#0F1E3D; border-color:#0F1E3D; cursor:pointer; padding: 7px 10px;">
-    <option value="empty">📋 업종 예시 선택</option>
-    <option value="debt">🏛 개인회생 예시</option>
-    <option value="rental" disabled>💧 정수기렌탈 (준비 중)</option>
-    <option value="broadband" disabled>📶 인터넷통신 (준비 중)</option>
-    <option value="stocks" disabled>📊 주식리딩 (준비 중)</option>
-    <option value="realestate" disabled>🏠 부동산분양 (준비 중)</option>
-    <option value="medical" disabled>🏥 병의원 (준비 중)</option>
-  </select>
-  <button id="guideToggle" class="tab-btn" style="background:#FEF3C7; color:#92400E; border-color:#F59E0B;">💡 가이드 OFF</button>
+  <div class="tabnav-inner">
+    <button class="tab-btn active" data-tab="A">🅐 신뢰·법률</button>
+    <button class="tab-btn" data-tab="B">🅑 액션·전환</button>
+    <button class="tab-btn" data-tab="C">🅒 케어·친근</button>
+    <button class="tab-btn" data-tab="D">🅓 미니멀·에디토리얼</button>
+    <button class="tab-btn" data-tab="E">🅔 다크·테크</button>
+    <button class="tab-btn" data-tab="F">🅕 비비드·모바일</button>
+  </div>
 </nav>
 
-<!-- ===== Guide mode banner (toggle shows/hides) ===== -->
-<div id="guide-banner" style="display:none; background:#FFFBEB; border-bottom:1px solid #F59E0B; padding:20px 24px;">
-  <div style="max-width:1120px; margin:0 auto; display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start;">
-    <div style="background:#F59E0B; color:#fff; padding:8px 14px; border-radius:8px; font-weight:700; font-size:13px; flex-shrink:0;">💡 가이드</div>
-    <div id="guide-content" style="font-size:14px; line-height:1.75; color:#78350F;">
-      <!-- Populated by JS based on active tab -->
-    </div>
-  </div>
-</div>
 
 <!-- ================================================================ -->
 <!-- 🅐 VARIANT A — 신뢰·법률형                                         -->
@@ -1006,42 +987,15 @@ function updateGuide(tab) {
 }
 
 document.querySelectorAll('.tab-btn').forEach(function(btn) {
-  if (btn.id === 'guideToggle') return;
   btn.addEventListener('click', function() {
     var tab = btn.dataset.tab;
     document.querySelectorAll('.variant').forEach(function(v) { v.classList.remove('active'); });
     document.querySelector('#var-' + tab).classList.add('active');
-    document.querySelectorAll('.tab-btn').forEach(function(b) { if (b.id !== 'guideToggle') b.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    updateGuide(tab);
     window.scrollTo({ top: 0, behavior: 'instant' });
   });
 });
-
-var guideOn = false;
-document.querySelector('#guideToggle').addEventListener('click', function() {
-  guideOn = !guideOn;
-  var banner = document.querySelector('#guide-banner');
-  banner.style.display = guideOn ? 'block' : 'none';
-  this.textContent = guideOn ? '💡 가이드 ON' : '💡 가이드 OFF';
-  this.style.background = guideOn ? '#F59E0B' : '#FEF3C7';
-  this.style.color = guideOn ? '#fff' : '#92400E';
-  if (guideOn) {
-    var active = document.querySelector('.tab-btn.active');
-    updateGuide(active ? active.dataset.tab : 'A');
-  }
-});
-
-// Initialize guide content for variant A
-updateGuide('A');
-
-// 업종 드롭다운 이벤트
-var industrySelect = document.querySelector('#industrySelect');
-if (industrySelect) {
-  industrySelect.addEventListener('change', function(e) {
-    applyIndustry(e.target.value);
-  });
-}
 </script>
 </body>
 </html>
