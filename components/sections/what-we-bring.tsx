@@ -37,14 +37,14 @@ export function WhatWeBring() {
         <section id="what-we-bring" className="py-24 md:py-32 bg-white">
             <div className="ot-container">
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <div className="eyebrow mb-4">WHY US</div>
+                    <div className="eyebrow mb-4">OUR ASSETS</div>
                     <h2 className="font-serif text-4xl md:text-5xl text-[var(--navy)] mb-6">
-                        숫자 대신 <span className="text-[var(--gold)]">자산</span>으로 증명합니다
+                        4 가지 <span className="text-[var(--gold)]">검증된 자산</span>이 준비되어 있습니다
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        이제 막 런칭한 부티크 에이전시입니다. 실적 숫자는 아직 쌓는 중이지만,
+                        업종별 전문성과 법적 컴플라이언스를 갖춘 OT MARKETING 의 운영 자산.
                         <br className="hidden md:block" />
-                        광고주님과 함께 시작할 도구·문서·디자인은 이미 전부 준비되어 있습니다.
+                        광고주사가 필요로 하는 도구 일체가 즉시 사용 가능한 상태로 제공됩니다.
                     </p>
                 </div>
 

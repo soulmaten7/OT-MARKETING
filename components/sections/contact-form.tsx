@@ -103,7 +103,7 @@ export function ContactForm() {
                         광고주 문의
                     </h2>
                     <p className="text-base md:text-lg text-white/70 leading-relaxed">
-                        시안 확정 · 계약 체결 · 매체 셋업까지 대표가 직접 안내드립니다.<br />
+                        업종 전문 컨설턴트가 귀사 상황에 맞춘 운영 전략을 제안드립니다.<br />
                         회신은 영업일 기준 24시간 이내.
                     </p>
                 </div>

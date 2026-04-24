@@ -31,7 +31,9 @@ export function HowItWorks() {
                         운영 절차
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        상담부터 정산까지 4 단계. 각 단계마다 대표가 직접 확인합니다.
+                        상담부터 정산까지 4 단계의 표준 프로세스.
+                        <br className="hidden md:block" />
+                        각 단계마다 투명한 커뮤니케이션과 리포트를 제공합니다.
                     </p>
                 </div>
 

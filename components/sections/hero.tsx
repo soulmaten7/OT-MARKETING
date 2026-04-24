@@ -14,18 +14,18 @@ export function Hero() {
             <div className="ot-container relative py-28 md:py-36 pt-36 md:pt-44">
                 <div className="max-w-3xl mx-auto text-center">
                     <div className="eyebrow mb-6">
-                        2026 NEW LAUNCH · BOUTIQUE AGENCY
+                        OT MARKETING · 6 업종 특화 CPA 에이전시
                     </div>
 
                     <h1 className="font-serif text-5xl md:text-7xl leading-[1.15] mb-8 text-white">
-                        광고주 한 분씩,<br />
-                        <span className="text-[var(--gold)]">대표가 직접</span> 운영합니다
+                        검증된 자산으로 시작하는<br />
+                        <span className="text-[var(--gold)]">성과 중심</span> CPA 캠페인
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-12">
-                        6 업종 랜딩·스크립트·계약서 자산을 이미 준비해 두었습니다.
+                        업종 전문가가 설계한 랜딩 자산·상담 스크립트·표준계약서.
                         <br className="hidden md:block" />
-                        광고주님은 광고에만 집중하세요.
+                        기획 단계를 건너뛰고 실행 단계에서 바로 시작하세요.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -45,9 +45,9 @@ export function Hero() {
                     </div>
 
                     <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/60">
-                        <span>✓ 6 디자인 시안 제공</span>
-                        <span>✓ 업종별 상담 스크립트</span>
-                        <span>✓ 을(광고주) 보호 표준계약서</span>
+                        <span>✓ 6 업종 특화 랜딩 자산</span>
+                        <span>✓ 법적 컴플라이언스 검증</span>
+                        <span>✓ 투명한 정산 구조</span>
                     </div>
                 </div>
             </div>

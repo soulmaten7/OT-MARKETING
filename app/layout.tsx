@@ -18,8 +18,8 @@ const notoSerifKr = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
-  title: "OT MARKETING | 대표 직접 운영 부티크 CPA 에이전시",
-  description: "6 업종 랜딩 시안·상담 스크립트·표준계약서가 준비된 부티크 CPA 에이전시. 광고주 한 분씩, 대표가 직접 운영합니다.",
+  title: "OT MARKETING | 업종 전문 CPA 마케팅 에이전시",
+  description: "6 업종 특화 랜딩 자산·상담 스크립트·표준계약서를 갖춘 CPA 마케팅 파트너. 업종 전문가가 설계한 성과 중심 운영.",
 };
 
 export default function RootLayout({

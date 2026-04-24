@@ -3,11 +3,16 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const pathname = usePathname();
+    // 홈(/)에서만 네이비 히어로 위에 투명 상태 시작. 다른 페이지는 처음부터 흰 배경 상태.
+    const isHome = pathname === "/";
+    const navOnLight = !isHome || isScrolled;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,7 +27,7 @@ export function Navbar() {
             <header
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
-                    isScrolled
+                    navOnLight
                         ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3"
                         : "bg-transparent py-5"
                 )}
@@ -33,7 +38,7 @@ export function Navbar() {
                         href="/"
                         className={cn(
                             "font-serif text-2xl tracking-tight transition-colors",
-                            isScrolled ? "text-[var(--navy)]" : "text-white"
+                            navOnLight ? "text-[var(--navy)]" : "text-white"
                         )}
                     >
                         OT <span className="text-[var(--gold)]">MARKETING</span>
@@ -53,7 +58,7 @@ export function Navbar() {
                                 href={item.href}
                                 className={cn(
                                     "text-sm font-medium transition-colors hover:text-[var(--gold)]",
-                                    isScrolled ? "text-[var(--navy)]" : "text-white/90"
+                                    navOnLight ? "text-[var(--navy)]" : "text-white/90"
                                 )}
                             >
                                 {item.label}
@@ -70,7 +75,7 @@ export function Navbar() {
                             광고주 문의
                         </Link>
                         <button
-                            className={cn("md:hidden p-2", isScrolled ? "text-[var(--navy)]" : "text-white")}
+                            className={cn("md:hidden p-2", navOnLight ? "text-[var(--navy)]" : "text-white")}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                         >
