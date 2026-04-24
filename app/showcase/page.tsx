@@ -46,22 +46,6 @@ export default function ShowcasePage() {
                     />
                 </div>
             </div>
-
-            {/* Bottom CTA */}
-            <div className="border-t border-gray-200 bg-[var(--cream)]">
-                <div className="ot-container py-12 text-center">
-                    <h2 className="font-serif text-2xl md:text-3xl text-[var(--navy)] mb-3">마음에 드는 시안이 있으셨나요?</h2>
-                    <p className="text-gray-600 mb-8">
-                        업종 특성에 맞는 시안을 함께 추천해 드립니다.
-                    </p>
-                    <Link
-                        href="/#contact"
-                        className="inline-flex items-center gap-2 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] px-8 py-3 rounded font-bold transition-colors"
-                    >
-                        상담 신청하기
-                    </Link>
-                </div>
-            </div>
         </div>
     );
 }

@@ -1,23 +1,23 @@
 const steps = [
     {
         num: "Step 1",
-        title: "상담 신청·초기 진단",
-        desc: "업종·타겟·예산·운영 목표를 함께 정리합니다. 무료.",
+        title: "상담 · 단가 합의",
+        desc: "업종·타겟·예산 검토 후 CPA 단가와 유효 리드 기준을 사전 합의합니다.",
     },
     {
         num: "Step 2",
-        title: "시안·스크립트 배정",
-        desc: "업종에 맞는 시안을 추천하고, 업종 스크립트를 광고주 브랜드로 치환합니다.",
+        title: "랜딩 · 광고 셋업",
+        desc: "업종 맞춤 랜딩페이지를 제작하고, 메타·구글·당근 광고 계정을 연결합니다.",
     },
     {
         num: "Step 3",
-        title: "계약·매체 셋업",
-        desc: "CPA 표준계약서 체결. 메타·구글·당근 광고 계정을 연결하고 초도 예산을 분배합니다.",
+        title: "DB 수집 · 검증 · 전달",
+        desc: "광고 집행으로 수집된 리드를 중복·무효 필터링한 후 실시간으로 전달합니다.",
     },
     {
         num: "Step 4",
-        title: "운영·정산·리포트",
-        desc: "DB 수집·1차콜 연결·월 정산. 매주 성과 리포트 공유 후 소재·타겟을 최적화합니다.",
+        title: "주간 리포트 · 정산",
+        desc: "매주 성과 리포트 공유, 월 단위 CPA 정산. 소재·타겟은 지속적으로 최적화합니다.",
     },
 ];
 
@@ -27,13 +27,16 @@ export function HowItWorks() {
             <div className="ot-container">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">PROCESS</div>
-                    <h2 className="font-serif text-4xl md:text-5xl text-[var(--navy)] mb-6">
-                        운영 절차
+                    <h2
+                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.3]"
+                        style={{ textWrap: "balance" }}
+                    >
+                        운영 프로세스
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        상담부터 정산까지 4 단계의 표준 프로세스.
+                        상담 · 단가 합의부터 주간 리포트 · 정산까지 4 단계.
                         <br className="hidden md:block" />
-                        각 단계마다 투명한 커뮤니케이션과 리포트를 제공합니다.
+                        각 단계는 투명한 커뮤니케이션과 리포트로 공유됩니다.
                     </p>
                 </div>
 

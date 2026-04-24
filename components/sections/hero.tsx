@@ -13,10 +13,6 @@ export function Hero() {
 
             <div className="ot-container relative py-28 md:py-36 pt-36 md:pt-44">
                 <div className="max-w-3xl mx-auto text-center">
-                    <div className="eyebrow mb-6">
-                        OT MARKETING · 업종 특화 CPA 솔루션
-                    </div>
-
                     <h1
                         className="font-serif text-4xl md:text-6xl leading-[1.3] mb-8 text-white"
                         style={{ textWrap: "balance" }}

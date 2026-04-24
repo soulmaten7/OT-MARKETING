@@ -12,7 +12,7 @@ export function Footer() {
                         </Link>
                         <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
                             업종 전문 CPA 마케팅 에이전시.<br />
-                            업종별 맞춤 랜딩 자산 · 상담 스크립트 · 표준계약서 완비.
+                            업종별 맞춤 랜딩 제작 · 광고 매체 운영 · 투명한 CPA 정산.
                         </p>
                         <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">
                             <p>Email · soulmaten1007@gmail.com</p>
@@ -24,10 +24,11 @@ export function Footer() {
                     <div>
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
                         <ul className="space-y-3 text-sm text-white/70">
-                            <li><Link href="/showcase" className="hover:text-[var(--gold)] transition-colors">시안 미리보기</Link></li>
-                            <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">운영 절차</Link></li>
-                            <li><Link href="/#industries" className="hover:text-[var(--gold)] transition-colors">업종</Link></li>
-                            <li><Link href="/#contact" className="hover:text-[var(--gold)] transition-colors">상담 신청</Link></li>
+                            <li><Link href="/#what-we-bring" className="hover:text-[var(--gold)] transition-colors">서비스</Link></li>
+                            <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">운영 프로세스</Link></li>
+                            <li><Link href="/#industries" className="hover:text-[var(--gold)] transition-colors">전문 업종</Link></li>
+                            <li><Link href="/showcase" className="hover:text-[var(--gold)] transition-colors">포트폴리오</Link></li>
+                            <li><Link href="/#contact" className="hover:text-[var(--gold)] transition-colors">광고주 문의</Link></li>
                         </ul>
                     </div>
 
@@ -42,7 +43,12 @@ export function Footer() {
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mt-8 mb-4">INTERNAL</h4>
                         <ul className="space-y-3 text-sm text-white/70">
                             <li>
-                                <Link href="/admin/guide" className="inline-flex items-center gap-1.5 hover:text-[var(--gold)] transition-colors">
+                                {/* prefetch=false → Next.js Link 자동 prefetch 방지 (Basic Auth 팝업 자동 노출 버그 수정) */}
+                                <Link
+                                    href="/admin/guide"
+                                    prefetch={false}
+                                    className="inline-flex items-center gap-1.5 hover:text-[var(--gold)] transition-colors"
+                                >
                                     <span>🔒</span>
                                     <span>관리자 로그인</span>
                                 </Link>

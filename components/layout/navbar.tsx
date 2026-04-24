@@ -47,10 +47,10 @@ export function Navbar() {
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-8">
                         {[
-                            { label: "준비된 자산", href: "/#what-we-bring" },
-                            { label: "시안 미리보기", href: "/showcase" },
-                            { label: "운영 절차", href: "/#how-it-works" },
-                            { label: "업종", href: "/#industries" },
+                            { label: "서비스", href: "/#what-we-bring" },
+                            { label: "운영 프로세스", href: "/#how-it-works" },
+                            { label: "전문 업종", href: "/#industries" },
+                            { label: "포트폴리오", href: "/showcase" },
                         ].map((item) => (
                             <Link
                                 key={item.label}
@@ -89,10 +89,10 @@ export function Navbar() {
                 <div className="fixed inset-0 z-40 bg-[var(--navy)] pt-24 px-6 md:hidden">
                     <div className="flex flex-col space-y-2 text-center">
                         {[
-                            { label: "준비된 자산", href: "/#what-we-bring" },
-                            { label: "시안 미리보기", href: "/showcase" },
-                            { label: "운영 절차", href: "/#how-it-works" },
-                            { label: "업종", href: "/#industries" },
+                            { label: "서비스", href: "/#what-we-bring" },
+                            { label: "운영 프로세스", href: "/#how-it-works" },
+                            { label: "전문 업종", href: "/#industries" },
+                            { label: "포트폴리오", href: "/showcase" },
                         ].map((item) => (
                             <Link
                                 key={item.label}
