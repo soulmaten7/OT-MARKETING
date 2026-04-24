@@ -16,8 +16,8 @@ const steps = [
     },
     {
         num: "Step 4",
-        title: "주간 리포트 · 정산",
-        desc: "매주 성과 리포트 공유, 월 단위 CPA 정산. 소재·타겟은 지속적으로 최적화합니다.",
+        title: "주간 리포트 · 최적화",
+        desc: "성과는 Google Sheets 로 실시간 공유, 매주 요약 리포트를 발송합니다. 소재·타겟은 지속적으로 최적화합니다.",
     },
 ];
 
@@ -34,7 +34,7 @@ export function HowItWorks() {
                         운영 프로세스
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        상담 · 단가 합의부터 주간 리포트 · 정산까지 4 단계.
+                        상담 · 단가 합의부터 DB 전달 · 주간 리포트까지 4 단계.
                         <br className="hidden md:block" />
                         각 단계는 투명한 커뮤니케이션과 리포트로 공유됩니다.
                     </p>

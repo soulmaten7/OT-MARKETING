@@ -25,8 +25,8 @@ const services = [
     },
     {
         num: "04",
-        title: "투명한 CPA 정산",
-        desc: "단가·정산 주기·유효 리드 기준을 사전 합의. 매주 성과 리포트와 함께 정산 내역을 투명하게 공유합니다.",
+        title: "투명한 성과 리포트",
+        desc: "Google Sheets 로 광고비·전환·CPA 를 실시간 공유하고, 매주 요약 리포트를 발송합니다. 단가·정산 조건은 상담 시 합의.",
         linkHref: "/#contact",
         linkText: "단가 문의",
     },

@@ -1,11 +1,12 @@
-import { Monitor, Smartphone, TrendingUp, ShieldCheck, Home, Stethoscope } from "lucide-react";
+import Link from "next/link";
+import { Monitor, Smartphone, TrendingUp, ShieldCheck, Home, Stethoscope, ArrowRight } from "lucide-react";
 
 const industries = [
     { name: "개인회생·법률", icon: ShieldCheck, desc: "채무 조정 · 법원 회생 · 신용 회복" },
     { name: "주식·투자", icon: TrendingUp, desc: "리딩 서비스 · 투자자문 · 핀테크" },
     { name: "부동산·분양", icon: Home, desc: "아파트 분양 · 청약 상담 · 상가 투자" },
     { name: "정수기·렌탈", icon: Smartphone, desc: "렌탈 가전 · 생활 소비재" },
-    { name: "인터넷·통신", icon: Monitor, desc: "초고속 인터넷 · IPTV · 결합 상품" },
+    { name: "인터넷·통신", icon: Monitor, desc: "초고속 인터넷 · IPTV · 휴대폰 · 결합 상품" },
     { name: "병의원", icon: Stethoscope, desc: "피부·성형·한의원 · 의료광고법 대응" },
 ];
 
@@ -16,7 +17,7 @@ export function Industries() {
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">INDUSTRIES</div>
                     <h2
-                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.25]"
+                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.3]"
                         style={{ textWrap: "balance" }}
                     >
                         <span className="text-[var(--gold)]">검증된 방식</span>으로 운영합니다
@@ -45,6 +46,24 @@ export function Industries() {
                             </p>
                         </div>
                     ))}
+                </div>
+
+                {/* 기타 업종 안내 — 배너 */}
+                <div className="mt-10 max-w-5xl mx-auto">
+                    <div className="bg-[var(--gold-10)] border border-[var(--gold)]/40 rounded-md px-6 py-6 md:py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                        <p className="text-sm md:text-base text-[var(--navy)] leading-relaxed">
+                            이 외에도 <strong className="text-[var(--gold-dark)]">다양한 업종</strong> DB 수집 가능합니다.
+                            <br className="md:hidden" />
+                            <span className="text-gray-600 md:ml-2">업종별 단가는 상담 시 협의.</span>
+                        </p>
+                        <Link
+                            href="/#contact"
+                            className="inline-flex items-center gap-2 bg-[var(--navy)] hover:bg-[var(--navy-80)] text-white px-5 py-2.5 rounded text-sm font-bold transition-colors whitespace-nowrap"
+                        >
+                            업종 문의
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>
