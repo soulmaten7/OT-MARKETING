@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OT Marketing · 운영자 매뉴얼 (내부용)</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", sans-serif; background: #FAFAF9; color: #1f2937; line-height: 1.7; }
+.topnav { position: sticky; top: 0; background: #0F1E3D; color: #fff; border-bottom: 2px solid #C5A572; padding: 14px 20px; z-index: 100; display: flex; gap: 12px; align-items: center; }
+.topnav-brand { font-weight: 700; font-size: 15px; margin-right: auto; }
+.topnav-brand span { color: #C5A572; }
+.topnav-badge { background: #C5A572; color: #0F1E3D; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: .05em; }
+
+.layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; max-width: 1200px; margin: 0 auto; }
+.sidebar { position: sticky; top: 60px; align-self: start; height: calc(100vh - 60px); overflow-y: auto; padding: 28px 16px 28px 24px; border-right: 1px solid #e5e7eb; background: #fff; }
+.sidebar h4 { font-size: 11px; letter-spacing: .15em; color: #6b7280; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+.sidebar ul { list-style: none; }
+.sidebar li { margin-bottom: 2px; }
+.sidebar a { display: block; padding: 6px 10px; font-size: 13px; color: #4b5563; text-decoration: none; border-radius: 6px; }
+.sidebar a:hover { background: #f3f4f6; color: #0F1E3D; }
+.sidebar a.indent { padding-left: 24px; font-size: 12px; color: #6b7280; }
+
+.content { padding: 40px 48px 80px; background: #fff; max-width: 100%; overflow: hidden; }
+.content h1 { font-size: 32px; font-weight: 800; color: #0F1E3D; margin-bottom: 6px; }
+.content .subtitle { color: #6b7280; font-size: 14px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #C5A572; }
+.content h2 { font-size: 22px; font-weight: 700; color: #0F1E3D; margin: 40px 0 16px; padding-top: 12px; border-top: 2px solid #C5A572; }
+.content h2:first-of-type { margin-top: 0; border-top: 0; padding-top: 0; }
+.content h3 { font-size: 17px; font-weight: 700; color: #0F1E3D; margin: 28px 0 10px; }
+.content h4 { font-size: 14px; font-weight: 700; color: #374151; margin: 18px 0 6px; }
+.content p { margin-bottom: 12px; color: #374151; font-size: 14px; }
+.content ul, .content ol { padding-left: 20px; margin-bottom: 14px; }
+.content li { margin-bottom: 4px; color: #374151; font-size: 14px; }
+.content code { background: #F3F4F6; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #C5A572; font-family: "SF Mono", Menlo, monospace; }
+.content pre { background: #0F1E3D; color: #E5E7EB; padding: 14px 18px; border-radius: 8px; overflow-x: auto; margin: 12px 0; font-size: 12.5px; font-family: "SF Mono", Menlo, monospace; line-height: 1.6; }
+.content pre code { background: transparent; color: #E5E7EB; padding: 0; }
+.content blockquote { background: #FEF3C7; border-left: 4px solid #C5A572; padding: 12px 16px; margin: 14px 0; border-radius: 4px; color: #78350F; font-size: 13px; }
+.content strong { color: #0F1E3D; font-weight: 700; }
+.content table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+.content th { background: #0F1E3D; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; font-size: 12px; }
+.content td { padding: 10px 12px; border: 1px solid #e5e7eb; color: #374151; vertical-align: top; }
+.content tr:nth-child(even) td { background: #FAFAF9; }
+.content hr { border: 0; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+
+.alert { background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 14px 18px; margin: 20px 0; border-radius: 4px; }
+.alert-title { font-weight: 700; color: #92400E; margin-bottom: 4px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .content { padding: 24px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-brand">OT <span>MARKETING</span> · 운영자 매뉴얼</div>
+  <span class="topnav-badge">🔒 INTERNAL</span>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h4>목차</h4>
+    <ul>
+      <li><a href="#sec1">1. 플레이스홀더 매핑표</a></li>
+      <li><a href="#sec2">2. 시안별 상세 스펙</a></li>
+      <li><a href="#sec3">3. 법적 고지 raw 템플릿</a></li>
+      <li><a href="#sec4">4. 제작자 체크리스트</a></li>
+      <li><a href="#sec5">5. 업종 확장 방법</a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+    <h1>OT Marketing 운영자 매뉴얼 <span style="font-size:16px; color:#C5A572;">(내부 전용)</span></h1>
+    <p class="subtitle">이 페이지는 OT Marketing 운영자·직원만 사용하는 내부 매뉴얼입니다. Basic Auth 로 보호됩니다. 광고주에게 직접 공유하지 마세요.</p>
+
+    <div class="alert">
+      <div class="alert-title">⚠ 광고주 노출 금지</div>
+      이 매뉴얼의 플레이스홀더 · 스펙 · 예시 카피는 광고주 제작 시 참고용입니다. 광고주에게는 업종별 PDF 가이드 (<code>docs/industry-kits/</code>) 를 이메일로 보내주세요.
+    </div>
+
+    <h2 id="sec1">1. 플레이스홀더 매핑표</h2>
+    <table>
+      <thead><tr><th>플레이스홀더</th><th>의미</th><th>예시</th><th>글자 수</th></tr></thead>
+      <tbody>
+        <tr><td><code>{회사명}</code></td><td>대표 노출 회사명</td><td>새시작법률</td><td>2~15</td></tr>
+        <tr><td><code>{대표자}</code></td><td>대표자 성함</td><td>홍길동</td><td>2~5</td></tr>
+        <tr><td><code>{사업자번호}</code></td><td>사업자등록번호</td><td>123-45-67890</td><td>고정</td></tr>
+        <tr><td><code>{주소}</code></td><td>사업장 주소</td><td>서울 서초구…</td><td>20~50</td></tr>
+        <tr><td><code>{전화번호}</code></td><td>대표번호</td><td>02-1234-5678</td><td>고정</td></tr>
+        <tr><td><code>{이메일}</code></td><td>대표 이메일</td><td>info@company.kr</td><td>고정</td></tr>
+        <tr><td><code>{심의번호}</code></td><td>광고 심의번호</td><td>2026-광고-001</td><td>고정</td></tr>
+        <tr><td><code>{업종}</code></td><td>업종 카테고리</td><td>개인회생</td><td>2~6</td></tr>
+        <tr><td><code>{연차}</code></td><td>사업 연차</td><td>15</td><td>숫자</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="sec2">2. 시안별 상세 스펙 (제작자용)</h2>
+    <p>각 시안의 플레이스홀더 위치·글자 수 제한·톤 가이드 원문은 <code>landings/_templates/CONTENT_GUIDE.md</code> 파일 참조. 이 파일은 샘플 치환 작업 시 보면서 진행.</p>
+
+    <h3>🅐 신뢰·법률 (Navy + Gold)</h3>
+    <ul>
+      <li><strong>Hero 헤드라인</strong>: 15~25자 · 존대형 · 숫자/경력 근거</li>
+      <li><strong>강조 어구</strong>: 8~15자 · 골드 색상 적용</li>
+      <li><strong>혜택 3카드</strong>: 제목 10~18자, 설명 60~100자</li>
+      <li><strong>어울리는 업종</strong>: 개인회생, 주식리딩, 부동산, 법률·세무</li>
+    </ul>
+
+    <h3>🅑 액션·전환 (Orange + Yellow)</h3>
+    <ul>
+      <li><strong>Hero 헤드라인</strong>: 15~25자 · 혜택/할인 직접 표기</li>
+      <li><strong>노란 형광펜</strong>: 10~20자 · 가격 또는 즉시 혜택</li>
+      <li><strong>Stats 4숫자</strong>: 반드시 4개 필수</li>
+      <li><strong>어울리는 업종</strong>: 정수기렌탈, 인터넷통신</li>
+    </ul>
+
+    <h3>🅒 케어·친근 (Mint + Cream)</h3>
+    <ul>
+      <li><strong>톤</strong>: ~해요 친근 존대 · 재촉·단정 금지</li>
+      <li><strong>심리적 안전 단어</strong>: 편하게, 부담 없이, 함께</li>
+      <li><strong>어울리는 업종</strong>: 병의원, 개인회생 감성판</li>
+    </ul>
+
+    <h3>🅓 미니멀·에디토리얼 (Black/White + Red)</h3>
+    <ul>
+      <li><strong>톤</strong>: 매거진 · 사실 중심 서술 · 감탄 최소</li>
+      <li><strong>어울리는 업종</strong>: 부동산분양, B2B 컨설팅, 프리미엄 서비스</li>
+    </ul>
+
+    <h3>🅔 다크·테크 (Dark + Cyan)</h3>
+    <ul>
+      <li><strong>필수 고지</strong>: "수익률은 과거 실적, 미래 보장 X" 금융권 고지 필수</li>
+      <li><strong>어울리는 업종</strong>: 주식리딩, 핀테크, IT SaaS</li>
+    </ul>
+
+    <h3>🅕 비비드·모바일 (Purple + Coral + Lime)</h3>
+    <ul>
+      <li><strong>톤</strong>: 젊고 경쾌 · SNS 광고 느낌 · 이모지 활용</li>
+      <li><strong>어울리는 업종</strong>: 정수기렌탈, 인터넷통신, 소비재 모바일</li>
+    </ul>
+
+    <h2 id="sec3">3. 업종별 법적 고지 raw 템플릿</h2>
+
+    <h3>공통 (모든 업종 적용)</h3>
+    <pre><code>본 사이트는 상담 안내를 목적으로 합니다.
+제공 내용은 상담 후 개인 상황에 맞게 안내됩니다.
+개인정보보호법·표시광고법 준수.</code></pre>
+
+    <h3>개인회생·법률</h3>
+    <pre><code>구체 법률 판단은 제휴 변호사의 상담을 통해 제공됩니다.
+변호사법 준수. 상담이 법률대리를 보장하지는 않습니다.</code></pre>
+
+    <h3>의료</h3>
+    <pre><code>본 광고는 의료광고 사전심의를 받았습니다 (심의번호 {번호}).
+의료상담은 면허 보유 의료인이 담당합니다.
+시술 효과·부작용은 개인차가 있을 수 있습니다.</code></pre>
+
+    <h3>금융·투자</h3>
+    <pre><code>본 사이트는 특정 상품 가입을 권유하지 않습니다.
+수익률은 과거 실적이며 미래를 보장하지 않습니다.
+투자 원금 손실 가능성이 있습니다.</code></pre>
+
+    <h3>통신·렌탈</h3>
+    <pre><code>제공 혜택은 가입 조건에 따라 변경될 수 있으며,
+최종 제공 여부는 상담 후 확정됩니다.
+약정 기간·위약금 조건은 계약서 기준.</code></pre>
+
+    <h3>부동산</h3>
+    <pre><code>본 사이트는 부동산 중개가 아닌 상담 안내 목적입니다.
+분양 조건·가격·시점은 분양사 공식 발표 기준.
+청약 가점 산정은 본인 확인 필요.</code></pre>
+
+    <h2 id="sec4">4. 제작자 체크리스트 (광고주 시안 치환 시)</h2>
+    <ul>
+      <li><input type="checkbox"> 광고주로부터 회사 기본 정보 수령 (회사명·대표자·사업자번호·주소·전화·이메일)</li>
+      <li><input type="checkbox"> 광고주 차별화 포인트 3가지 수령 (제목+설명)</li>
+      <li><input type="checkbox"> 절차 4단계 수령</li>
+      <li><input type="checkbox"> 업종별 법적 고지 확인 (위 섹션 3 참조)</li>
+      <li><input type="checkbox"> 과장 표현 체크 (무조건, 100%, 반드시 등 금지)</li>
+      <li><input type="checkbox"> 근거 없는 수치 체크 (실측 자료 확보)</li>
+      <li><input type="checkbox"> 이미지 저작권 확인 (상업용 라이선스 여부)</li>
+      <li><input type="checkbox"> 시안 확정 후 Next.js 랜딩으로 변환 · Vercel 배포</li>
+      <li><input type="checkbox"> 폼 제출 → 광고주 수신 경로 테스트 (구글 시트·이메일)</li>
+    </ul>
+
+    <h2 id="sec5">5. 업종 확장 방법</h2>
+    <p>신규 업종 (예: "탈모", "보험", "학원") 추가 시:</p>
+    <ol>
+      <li><code>docs/industry-kits/0X-new-industry/</code> 폴더 생성</li>
+      <li><code>광고주_가이드.md</code>, <code>랜딩_카피.md</code>, <code>광고_이미지_스펙.md</code>, <code>법적_고지.md</code> 4개 파일 작성 (템플릿은 <code>docs/industry-kits/01-debt-relief/</code> 참조)</li>
+      <li><code>public/samples.html</code> 의 <code>industryData</code> 객체에 신규 업종 키 추가</li>
+      <li><code>industrySelect</code> 드롭다운에 <code>&lt;option value="new"&gt;</code> 추가 (disabled 해제)</li>
+      <li>PDF 변환: <code>pandoc 광고주_가이드.md -o 광고주_가이드.pdf</code></li>
+    </ol>
+    <p>상세 매뉴얼: <code>docs/industry-kits/HOW_TO_ADD_INDUSTRY.md</code></p>
+
+    <hr>
+    <p style="color:#9ca3af; font-size:12px; margin-top:24px;">OT Marketing 운영자 매뉴얼 · 2026-04-24 · Last update: Session #2</p>
+  </main>
+</div>
+
+</body>
+</html>

@@ -44,9 +44,10 @@ export function Footer() {
 
                 <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/50 gap-4">
                     <p>© {new Date().getFullYear()} OT MARKETING. All rights reserved.</p>
-                    <div className="flex flex-wrap gap-x-6 gap-y-1 justify-center md:justify-end">
+                    <div className="flex flex-wrap gap-x-6 gap-y-1 justify-center md:justify-end items-center">
                         <span>사업자등록번호: 141-39-01329</span>
                         <span>대표: 장은태</span>
+                        <Link href="/admin/guide" className="text-white/30 hover:text-[var(--gold)] transition-colors">관리자</Link>
                     </div>
                 </div>
             </div>
