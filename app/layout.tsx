@@ -19,7 +19,7 @@ const notoSerifKr = Noto_Serif_KR({
 
 export const metadata: Metadata = {
   title: "OT MARKETING | 업종 전문 CPA 마케팅 에이전시",
-  description: "업종별 맞춤 랜딩 자산·상담 스크립트·표준계약서를 갖춘 CPA 마케팅 파트너. 대표가 직접 설계한 성과 중심 운영.",
+  description: "랜딩 제작·광고 운영·DB 전달·CPA 정산까지 직접 운영하는 부티크 CPA 에이전시. 대표가 광고주 한 분씩 담당합니다.",
 };
 
 export default function RootLayout({

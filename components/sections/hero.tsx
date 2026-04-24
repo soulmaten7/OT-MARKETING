@@ -23,7 +23,7 @@ export function Hero() {
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-12">
-                        업종 전문가가 설계한 랜딩 자산 · 상담 스크립트 · 표준계약서.
+                        랜딩 제작부터 광고 운영 · DB 전달 · CPA 정산까지.
                         <br className="hidden md:block" />
                         기획 단계를 건너뛰고 실행 단계에서 바로 시작하세요.
                     </p>
