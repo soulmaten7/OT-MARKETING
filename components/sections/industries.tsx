@@ -15,11 +15,14 @@ export function Industries() {
             <div className="ot-container">
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">INDUSTRIES</div>
-                    <h2 className="font-serif text-4xl md:text-5xl text-[var(--navy)] mb-6">
-                        6 업종 전문 운영
+                    <h2
+                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.25]"
+                        style={{ textWrap: "balance" }}
+                    >
+                        <span className="text-[var(--gold)]">검증된 방식</span>으로 운영합니다
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        각 업종 특성·법적 규제·고객 심리에 맞춰
+                        업종 특성·법적 규제·고객 심리에 맞춰
                         <br className="hidden md:block" />
                         시안·스크립트·고지 문구까지 업종별로 준비되어 있습니다.
                     </p>

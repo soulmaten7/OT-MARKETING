@@ -14,16 +14,20 @@ export function Hero() {
             <div className="ot-container relative py-28 md:py-36 pt-36 md:pt-44">
                 <div className="max-w-3xl mx-auto text-center">
                     <div className="eyebrow mb-6">
-                        OT MARKETING · 6 업종 특화 CPA 에이전시
+                        OT MARKETING · 업종 특화 CPA 솔루션
                     </div>
 
-                    <h1 className="font-serif text-5xl md:text-7xl leading-[1.15] mb-8 text-white">
-                        검증된 자산으로 시작하는<br />
-                        <span className="text-[var(--gold)]">성과 중심</span> CPA 캠페인
+                    <h1
+                        className="font-serif text-4xl md:text-6xl leading-[1.25] mb-8 text-white tracking-tight"
+                        style={{ textWrap: "balance" }}
+                    >
+                        검증된 방식으로{" "}
+                        <span className="text-[var(--gold)]">운영하는</span>{" "}
+                        CPA 캠페인
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-12">
-                        업종 전문가가 설계한 랜딩 자산·상담 스크립트·표준계약서.
+                        업종 전문가가 설계한 랜딩 자산 · 상담 스크립트 · 표준계약서.
                         <br className="hidden md:block" />
                         기획 단계를 건너뛰고 실행 단계에서 바로 시작하세요.
                     </p>
@@ -45,7 +49,7 @@ export function Hero() {
                     </div>
 
                     <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/60">
-                        <span>✓ 6 업종 특화 랜딩 자산</span>
+                        <span>✓ 업종별 맞춤 랜딩 자산</span>
                         <span>✓ 법적 컴플라이언스 검증</span>
                         <span>✓ 투명한 정산 구조</span>
                     </div>

@@ -10,16 +10,13 @@ export const metadata: Metadata = {
 export default function ShowcasePage() {
     return (
         <div className="min-h-screen flex flex-col pt-20 bg-white">
-            {/* Top bar */}
+            {/* Top bar — 홈으로 + 상담 신청 (navbar 와 중복 피함) */}
             <div className="border-b border-gray-200 bg-white">
                 <div className="ot-container py-4 flex items-center justify-between">
                     <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--navy)] hover:text-[var(--gold)] transition-colors">
                         <ArrowLeft className="w-4 h-4" />
                         홈으로
                     </Link>
-                    <div className="text-sm font-semibold text-[var(--navy)] hidden sm:block">
-                        랜딩페이지 디자인 시안 6종
-                    </div>
                     <Link href="/#contact" className="text-sm text-[var(--gold)] hover:underline font-semibold">
                         상담 신청 →
                     </Link>

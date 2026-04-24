@@ -12,7 +12,7 @@ export function Footer() {
                         </Link>
                         <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
                             업종 전문 CPA 마케팅 에이전시.<br />
-                            6 업종 특화 랜딩 자산 · 상담 스크립트 · 표준계약서 완비.
+                            업종별 맞춤 랜딩 자산 · 상담 스크립트 · 표준계약서 완비.
                         </p>
                         <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">
                             <p>Email · soulmaten1007@gmail.com</p>

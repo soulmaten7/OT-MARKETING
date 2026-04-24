@@ -4,31 +4,31 @@ import { ArrowRight } from "lucide-react";
 const assets = [
     {
         num: "01",
-        title: "6 업종 랜딩페이지 시안",
-        desc: "신뢰·액션·케어·미니멀·다크·비비드. 업종 톤에 맞춰 6 가지 디자인을 즉시 적용 가능합니다.",
+        title: "업종별 랜딩페이지 시안",
+        desc: "신뢰·액션·케어·미니멀·다크·비비드. 업종 톤에 맞춰 즉시 적용 가능한 디자인 시스템.",
         linkHref: "/showcase",
         linkText: "시안 바로 보기",
     },
     {
         num: "02",
         title: "업종별 1차콜 상담 스크립트",
-        desc: "개인회생·정수기·통신·주식·부동산·병의원. 풀매뉴얼 13섹션, A4 6p 구조. 광고주 브랜드에 맞춰 치환.",
-        linkHref: "/guide",
-        linkText: "가이드에서 확인",
+        desc: "개인회생·정수기·통신·주식·부동산·병의원. 풀매뉴얼 구조로 광고주 브랜드에 맞춰 치환.",
+        linkHref: "/#contact",
+        linkText: "상담 후 제공",
     },
     {
         num: "03",
         title: "CPA 표준계약서",
-        desc: "중복 DB 판정 · 무효율 관리 · 정산 주기 · 해지 조건까지 13조 명문화. 광고주(을) 보호 조항 중심.",
+        desc: "중복 DB 판정 · 무효율 관리 · 정산 주기 · 해지 조건까지 명문화. 광고주(을) 보호 조항 중심.",
         linkHref: "/#contact",
         linkText: "계약서 요청",
     },
     {
         num: "04",
-        title: "광고주용 콘텐츠 가이드",
-        desc: '헤드라인·이미지·법적 고지까지 "무엇을·어디에·얼마나" 정리. 처음 랜딩 진행하셔도 막막하지 않습니다.',
-        linkHref: "/guide",
-        linkText: "가이드 읽기",
+        title: "업종별 광고 패키지",
+        desc: "광고 이미지 규격 · 법적 고지 문구 · 콘텐츠 가이드를 업종별 PDF로 상담 후 발송해 드립니다.",
+        linkHref: "/#contact",
+        linkText: "상담 후 발송",
     },
 ];
 
@@ -38,8 +38,11 @@ export function WhatWeBring() {
             <div className="ot-container">
                 <div className="text-center max-w-3xl mx-auto mb-20">
                     <div className="eyebrow mb-4">OUR ASSETS</div>
-                    <h2 className="font-serif text-4xl md:text-5xl text-[var(--navy)] mb-6">
-                        4 가지 <span className="text-[var(--gold)]">검증된 자산</span>이 준비되어 있습니다
+                    <h2
+                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.25]"
+                        style={{ textWrap: "balance" }}
+                    >
+                        <span className="text-[var(--gold)]">검증된 운영 자산</span>이 준비되어 있습니다
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                         업종별 전문성과 법적 컴플라이언스를 갖춘 OT MARKETING 의 운영 자산.
