@@ -18,7 +18,7 @@ export function Hero() {
                     </div>
 
                     <h1
-                        className="font-serif text-4xl md:text-6xl leading-[1.25] mb-8 text-white tracking-tight"
+                        className="font-serif text-4xl md:text-6xl leading-[1.3] mb-8 text-white"
                         style={{ textWrap: "balance" }}
                     >
                         검증된 방식으로{" "}

@@ -107,11 +107,21 @@ body {
   min-width: 0;
 }
 
-/* 세리프 전용 클래스 (Hero 제목·섹션 타이틀) */
+/* 세리프 전용 클래스 (Hero 제목·섹션 타이틀)                   */
+/* 한글 가독성: word-break keep-all → 어절 단위 줄바꿈          */
+/* text-wrap balance → 2줄일 때 균형있게                        */
 .font-serif {
   font-family: var(--font-serif);
   font-weight: 700;
   letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* h1, h2 는 무조건 한글 어절 유지 */
+h1, h2 {
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Container 통일 — navbar 와 section 모두 같은 max-width + padding */
