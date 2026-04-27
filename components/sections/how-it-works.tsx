@@ -1,23 +1,33 @@
 const steps = [
     {
         num: "Step 1",
-        title: "상담 · 단가 합의",
-        desc: "업종·타겟·예산 검토 후 CPA 단가와 유효 리드 기준을 사전 합의합니다.",
+        title: "상담 · CPA 모델 합의",
+        desc: "업종·사무소 규모·예상 물량 검토 후 모델 A (1차콜 미포함) / 모델 B (1차콜 포함) 선택. 단가·정산 주기·결제 조건 협의.",
     },
     {
         num: "Step 2",
-        title: "랜딩 · 광고 셋업",
-        desc: "업종 맞춤 랜딩페이지를 제작하고, 메타·구글·당근 광고 계정을 연결합니다.",
+        title: "광고주 정보 6 항목 받음",
+        desc: "회사명·법인명·사업자번호·광고책임 변호사·전화·푸터 안내문 — 5분 내 광고주 명의로 자동 변경 (광고주가 추가로 할 일 없음).",
     },
     {
         num: "Step 3",
-        title: "DB 수집 · 검증 · 전달",
-        desc: "광고 집행으로 수집된 리드를 중복·무효 필터링한 후 실시간으로 전달합니다.",
+        title: "다매체 광고 송출",
+        desc: "Meta · Google · 당근 · Naver · 카카오 모먼트 — 광고주 업종·예산에 맞춰 적합 매체 운영. 매체별 카피·이미지·CTA 별도 제작.",
     },
     {
         num: "Step 4",
-        title: "주간 리포트 · 최적화",
-        desc: "성과는 Google Sheets 로 실시간 공유, 매주 요약 리포트를 발송합니다. 소재·타겟은 지속적으로 최적화합니다.",
+        title: "9문항 자가진단 → A/B/C 등급 분기",
+        desc: "랜딩 클릭 후 신청자 9문항 답변 → 점수 자동 계산 → 등급 분류. A (즉시 콜) / B (검토 후) / C (다른 절차 안내) 자동 처리.",
+    },
+    {
+        num: "Step 5",
+        title: "시트 + 텔레그램 동시 알림",
+        desc: "17 컬럼 구글 시트 자동 기록 + 광고주·OT 폰에 텔레그램 동시 발송 (병렬). 골든타임 (5분 이내) 콜 가능.",
+    },
+    {
+        num: "Step 6",
+        title: "1차콜 (옵션) · 변호사 전달 · 정산",
+        desc: "모델 A 면 광고주 콜팀이 직접, 모델 B 면 OT 측이 1차콜 응대 후 미팅 확정 건만 변호사에게 전달. 합의된 주기로 정산.",
     },
 ];
 
@@ -31,16 +41,16 @@ export function HowItWorks() {
                         className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.3]"
                         style={{ textWrap: "balance" }}
                     >
-                        운영 프로세스
+                        광고 → 변호사까지의 <span className="text-[var(--gold)]">6단계 자동화</span>
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        상담 · 단가 합의부터 DB 전달 · 주간 리포트까지 4 단계.
+                        광고주가 신경 쓸 일은 Step 1·Step 2 두 단계.
                         <br className="hidden md:block" />
-                        각 단계는 투명한 커뮤니케이션과 리포트로 공유됩니다.
+                        나머지 Step 3 ~ 6 은 OT 시스템이 자동으로 처리합니다.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {steps.map((step, i) => (
                         <div
                             key={i}

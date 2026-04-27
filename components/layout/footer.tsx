@@ -11,12 +11,17 @@ export function Footer() {
                             OT <span className="text-[var(--gold)]">MARKETING</span>
                         </Link>
                         <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
-                            업종 전문 CPA 마케팅 에이전시.<br />
-                            업종별 맞춤 랜딩 제작 · 광고 매체 운영 · 투명한 CPA 정산.
+                            광고가 끝나는 자리까지 책임지는 CPA 인프라.<br />
+                            변호사법 가드레일 · A·B·C 등급 분기 · 광고주 명의 분리.
                         </p>
                         <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">
                             <p>Email · soulmaten1007@gmail.com</p>
                             <p>Tel · 070-4367-4013</p>
+                            <p>
+                                <a href="https://open.kakao.com/o/sw2Zxm9h" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)] transition-colors">
+                                    💬 카카오톡 오픈채팅
+                                </a>
+                            </p>
                         </div>
                     </div>
 
@@ -24,10 +29,12 @@ export function Footer() {
                     <div>
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
                         <ul className="space-y-3 text-sm text-white/70">
-                            <li><Link href="/#what-we-bring" className="hover:text-[var(--gold)] transition-colors">서비스</Link></li>
-                            <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">운영 프로세스</Link></li>
+                            <li><Link href="/#what-we-bring" className="hover:text-[var(--gold)] transition-colors">서비스 차별점</Link></li>
+                            <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">6단계 프로세스</Link></li>
+                            <li><Link href="/#guardrail" className="hover:text-[var(--gold)] transition-colors">법규 가드레일</Link></li>
+                            <li><Link href="/#cpa-model" className="hover:text-[var(--gold)] transition-colors">CPA 모델</Link></li>
                             <li><Link href="/#industries" className="hover:text-[var(--gold)] transition-colors">전문 업종</Link></li>
-                            <li><Link href="/showcase" className="hover:text-[var(--gold)] transition-colors">포트폴리오</Link></li>
+                            <li><Link href="/showcase" className="hover:text-[var(--gold)] transition-colors">시안 미리보기</Link></li>
                             <li><Link href="/#contact" className="hover:text-[var(--gold)] transition-colors">광고주 문의</Link></li>
                         </ul>
                     </div>
@@ -43,7 +50,6 @@ export function Footer() {
                         <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mt-8 mb-4">INTERNAL</h4>
                         <ul className="space-y-3 text-sm text-white/70">
                             <li>
-                                {/* prefetch=false → Next.js Link 자동 prefetch 방지 (Basic Auth 팝업 자동 노출 버그 수정) */}
                                 <Link
                                     href="/admin/guide"
                                     prefetch={false}

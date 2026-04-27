@@ -10,6 +10,8 @@ const formSchema = z.object({
     phone: z.string(),
     email: z.string().email(),
     industry: z.string(),
+    firmSize: z.string(),
+    callIncluded: z.string(),
     budget: z.string(),
     targetCpa: z.string().optional(),
     currentMethod: z.string().optional(),
@@ -97,8 +99,9 @@ export async function POST(request: Request) {
                 // If headers weren't loaded or seem empty, set them up
                 if (!headersLoaded) {
                     await sheet.setHeaderRow([
-                        '회사명', '담당자', '연락처', '이메일', '업종',
-                        '월 예산', '목표 CPA', '현재 마케팅', '문의내용',
+                        '회사명', '담당자', '연락처', '이메일',
+                        '업종', '사무소 규모', '1차콜 포함', '월 예산',
+                        '목표 CPA', '현재 마케팅', '문의내용',
                         '개인정보동의', '마케팅동의', '접수일시'
                     ]);
                 }
@@ -109,6 +112,8 @@ export async function POST(request: Request) {
                     '연락처': result.data.phone,
                     '이메일': result.data.email,
                     '업종': result.data.industry,
+                    '사무소 규모': result.data.firmSize,
+                    '1차콜 포함': result.data.callIncluded,
                     '월 예산': result.data.budget,
                     '목표 CPA': result.data.targetCpa || '',
                     '현재 마케팅': result.data.currentMethod || '',

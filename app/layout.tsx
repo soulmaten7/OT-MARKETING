@@ -18,8 +18,16 @@ const notoSerifKr = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
-  title: "OT MARKETING | 업종 전문 CPA 마케팅 에이전시",
-  description: "랜딩 제작·광고 운영·DB 전달·CPA 정산까지 직접 운영하는 부티크 CPA 에이전시. 대표가 광고주 한 분씩 담당합니다.",
+  title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA 인프라",
+  description: "DB 단순 전달이 아닌 9문항 등급 분기 + 1차콜까지. 변호사법 가드레일 · A·B·C 등급 자동 분기 · 광고주 명의 100% 분리 운영. Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.",
+  keywords: "CPA 광고대행, 개인회생 CPA, 변호사 광고 대행, 법무법인 마케팅, 인터넷 통신 CPA, 정수기 렌탈 CPA, 자가진단 등급 분기, 변호사법 가드레일",
+  openGraph: {
+    title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA",
+    description: "9문항 등급 분기 + 1차콜까지 풀 처리. 변호사법 가드레일 · 광고주 명의 분리.",
+    type: "website",
+    locale: "ko_KR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

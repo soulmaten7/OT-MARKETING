@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Layers, Lock, Database } from "lucide-react";
 
 export function Hero() {
     return (
@@ -17,23 +17,43 @@ export function Hero() {
                         className="font-serif text-4xl md:text-6xl leading-[1.3] mb-8 text-white"
                         style={{ textWrap: "balance" }}
                     >
-                        검증된 방식으로{" "}
-                        <span className="text-[var(--gold)]">운영하는</span>{" "}
-                        CPA 캠페인
+                        광고가 끝나는 자리까지{" "}
+                        <span className="text-[var(--gold)]">책임지는</span>{" "}
+                        CPA 인프라
                     </h1>
 
-                    <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-12">
-                        랜딩 제작부터 광고 운영 · DB 전달 · CPA 정산까지.
+                    <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-10">
+                        DB 단순 전달이 아닌 9문항 등급 분기 + 1차콜까지.
                         <br className="hidden md:block" />
-                        기획 단계를 건너뛰고 실행 단계에서 바로 시작하세요.
+                        Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.
                     </p>
+
+                    {/* 차별점 4 pills */}
+                    <div className="flex flex-wrap justify-center gap-2 mb-12">
+                        <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
+                            <ShieldCheck className="w-3.5 h-3.5 text-[var(--gold)]" />
+                            변호사법 가드레일 내장
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
+                            <Layers className="w-3.5 h-3.5 text-[var(--gold)]" />
+                            A · B · C 등급 자동 분기
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
+                            <Lock className="w-3.5 h-3.5 text-[var(--gold)]" />
+                            광고주 명의 100% 분리
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
+                            <Database className="w-3.5 h-3.5 text-[var(--gold)]" />
+                            17 컬럼 풀 데이터
+                        </span>
+                    </div>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                         <Link
                             href="/#contact"
                             className="w-full sm:w-auto bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] font-bold px-8 py-4 rounded text-base transition-colors"
                         >
-                            상담 신청하기
+                            광고주 상담 신청
                         </Link>
                         <Link
                             href="/showcase"
@@ -45,9 +65,9 @@ export function Hero() {
                     </div>
 
                     <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/60">
-                        <span>✓ 업종별 맞춤 랜딩 자산</span>
-                        <span>✓ 법적 컴플라이언스 검증</span>
-                        <span>✓ 투명한 정산 구조</span>
+                        <span>✓ 6 업종 운영 가능</span>
+                        <span>✓ 광고주 명의 분리 자동</span>
+                        <span>✓ 카톡 오픈채팅 즉시 상담</span>
                     </div>
                 </div>
             </div>

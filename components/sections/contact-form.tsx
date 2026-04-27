@@ -16,6 +16,8 @@ const formSchema = z.object({
     phone: z.string().min(9, "유효한 연락처를 입력해주세요."),
     email: z.string().email("유효한 이메일을 입력해주세요."),
     industry: z.string().min(1, "업종을 선택해주세요."),
+    firmSize: z.string().min(1, "사무소 규모를 선택해주세요."),
+    callIncluded: z.string().min(1, "1차콜 포함 여부를 선택해주세요."),
     budget: z.string().min(1, "예상 월 예산을 선택해주세요."),
     targetCpa: z.string().optional(),
     currentMethod: z.string().optional(),
@@ -38,6 +40,8 @@ export function ContactForm() {
             phone: "",
             email: "",
             industry: "",
+            firmSize: "",
+            callIncluded: "",
             budget: "",
             targetCpa: "",
             currentMethod: "",
@@ -157,6 +161,36 @@ export function ContactForm() {
                                     <option value="etc">기타 전문 서비스 DB</option>
                                 </select>
                                 {form.formState.errors.industry && <p className="text-sm text-destructive">{form.formState.errors.industry.message}</p>}
+                            </div>
+                            <div className="space-y-2">
+                                <label htmlFor="firmSize" className="text-sm font-medium">사무소 규모 <span className="text-destructive">*</span></label>
+                                <select
+                                    id="firmSize"
+                                    className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    {...form.register("firmSize")}
+                                >
+                                    <option value="">선택해주세요</option>
+                                    <option value="solo">1인 사무소</option>
+                                    <option value="small">소형 (변호사 2~5명)</option>
+                                    <option value="medium">중형 (변호사 6~20명)</option>
+                                    <option value="large">대형 (변호사 20명 이상)</option>
+                                    <option value="non_law">법무법인 외 (렌탈·통신·리딩 등)</option>
+                                </select>
+                                {form.formState.errors.firmSize && <p className="text-sm text-destructive">{form.formState.errors.firmSize.message}</p>}
+                            </div>
+                            <div className="space-y-2">
+                                <label htmlFor="callIncluded" className="text-sm font-medium">1차콜 포함 여부 <span className="text-destructive">*</span></label>
+                                <select
+                                    id="callIncluded"
+                                    className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    {...form.register("callIncluded")}
+                                >
+                                    <option value="">선택해주세요</option>
+                                    <option value="included">모델 B (1차콜 포함 — OT 측에서 응대)</option>
+                                    <option value="excluded">모델 A (1차콜 미포함 — 자체 콜팀 운영)</option>
+                                    <option value="undecided">미정 (상담 후 결정)</option>
+                                </select>
+                                {form.formState.errors.callIncluded && <p className="text-sm text-destructive">{form.formState.errors.callIncluded.message}</p>}
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="budget" className="text-sm font-medium">월 예상 예산 <span className="text-destructive">*</span></label>
