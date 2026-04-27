@@ -10,6 +10,23 @@ import { useState } from "react";
 import { Loader2, CheckCircle, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
+function formatPhone(raw: string): string {
+    let digits = raw.replace(/\D/g, "");
+    if (digits.length === 10 && digits.startsWith("1")) digits = "0" + digits;
+    digits = digits.slice(0, 11);
+    if (digits.startsWith("02")) {
+        if (digits.length <= 2) return digits;
+        if (digits.length <= 5) return `${digits.slice(0, 2)}-${digits.slice(2)}`;
+        if (digits.length <= 9) return `${digits.slice(0, 2)}-${digits.slice(2, 5)}-${digits.slice(5)}`;
+        return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6, 10)}`;
+    }
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    if (digits.startsWith("010")) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+    if (digits.length <= 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+}
+
 const formSchema = z.object({
     companyName: z.string().min(1, "회사명을 입력해주세요."),
     contactPerson: z.string().min(1, "담당자 성함을 입력해주세요."),
@@ -129,7 +146,12 @@ export function ContactForm() {
                             </div>
                             <div className="space-y-2">
                                 <label htmlFor="phone" className="text-sm font-medium">연락처 <span className="text-destructive">*</span></label>
-                                <Input id="phone" placeholder="010-1234-5678" {...form.register("phone")} />
+                                <Input
+                                    id="phone"
+                                    placeholder="010-1234-5678"
+                                    {...form.register("phone")}
+                                    onChange={(e) => form.setValue("phone", formatPhone(e.target.value), { shouldValidate: true })}
+                                />
                                 {form.formState.errors.phone && <p className="text-sm text-destructive">{form.formState.errors.phone.message}</p>}
                             </div>
                             <div className="space-y-2">

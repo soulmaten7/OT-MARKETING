@@ -72,6 +72,23 @@ async function generateNextAdvertiserId(sheet: any): Promise<string> {
     return `AD${String(maxNum + 1).padStart(3, '0')}`;
 }
 
+function formatPhone(raw: string): string {
+    let digits = raw.replace(/\D/g, "");
+    if (digits.length === 10 && digits.startsWith("1")) digits = "0" + digits;
+    digits = digits.slice(0, 11);
+    if (digits.startsWith("02")) {
+        if (digits.length <= 2) return digits;
+        if (digits.length <= 5) return `${digits.slice(0, 2)}-${digits.slice(2)}`;
+        if (digits.length <= 9) return `${digits.slice(0, 2)}-${digits.slice(2, 5)}-${digits.slice(5)}`;
+        return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6, 10)}`;
+    }
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    if (digits.startsWith("010")) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+    if (digits.length <= 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+    return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+}
+
 function buildMemoText(data: z.infer<typeof formSchema>): string {
     const lines: string[] = [];
     lines.push(`[자동입수: ot-marketing.kr 폼]`);
@@ -160,7 +177,7 @@ export async function POST(request: Request) {
                     '법인 정식명': '',
                     '사업자번호': '',
                     '책임 변호사': '',
-                    '연락 (전화)': result.data.phone,
+                    '연락 (전화)': formatPhone(result.data.phone),
                     '연락 (이메일·카톡)': result.data.email,
                     '업종': industryLabel,
                     'USP (광고 반영 강점)': '',
