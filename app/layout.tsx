@@ -19,11 +19,11 @@ const notoSerifKr = Noto_Serif_KR({
 
 export const metadata: Metadata = {
   title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA 인프라",
-  description: "DB 단순 전달이 아닌 9문항 등급 분기 + 1차콜까지. 변호사법 가드레일 · A·B·C 등급 자동 분기 · 광고주 명의 100% 분리 운영. Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.",
-  keywords: "CPA 광고대행, 개인회생 CPA, 변호사 광고 대행, 법무법인 마케팅, 인터넷 통신 CPA, 정수기 렌탈 CPA, 자가진단 등급 분기, 변호사법 가드레일",
+  description: "DB 단순 전달이 아닌 업종별 자가진단 + 등급·유형 분기 + 1차콜까지. 6 업종 법규 가드레일 · 광고주 명의 100% 분리 운영. Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.",
+  keywords: "CPA 광고대행, 다업종 CPA, 개인회생 CPA, 핸드폰 CPA, 인터넷 통신 CPA, 정수기 렌탈 CPA, 부동산 분양 CPA, 병의원 CPA, 자가진단 분기, 6 업종 가드레일, 다매체 운영",
   openGraph: {
     title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA",
-    description: "9문항 등급 분기 + 1차콜까지 풀 처리. 변호사법 가드레일 · 광고주 명의 분리.",
+    description: "업종별 자가진단 + 등급·유형 분기 + 1차콜까지 풀 처리. 6 업종 법규 가드레일 · 광고주 명의 분리.",
     type: "website",
     locale: "ko_KR",
   },

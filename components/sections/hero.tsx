@@ -23,7 +23,7 @@ export function Hero() {
                     </h1>
 
                     <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-2xl mx-auto mb-10">
-                        DB 단순 전달이 아닌 9문항 등급 분기 + 1차콜까지.
+                        DB 단순 전달이 아닌 업종별 자가진단 + 등급·유형 분기 + 1차콜까지.
                         <br className="hidden md:block" />
                         Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.
                     </p>
@@ -44,7 +44,7 @@ export function Hero() {
                         </span>
                         <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
                             <Database className="w-3.5 h-3.5 text-[var(--gold)]" />
-                            17 컬럼 풀 데이터
+                            업종별 풀 데이터 시트
                         </span>
                     </div>
 

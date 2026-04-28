@@ -33,7 +33,7 @@ const formSchema = z.object({
     phone: z.string().min(9, "유효한 연락처를 입력해주세요."),
     email: z.string().email("유효한 이메일을 입력해주세요."),
     industry: z.string().min(1, "업종을 선택해주세요."),
-    firmSize: z.string().min(1, "사무소 규모를 선택해주세요."),
+    firmSize: z.string().min(1, "사업장 규모를 선택해주세요."),
     callIncluded: z.string().min(1, "1차콜 포함 여부를 선택해주세요."),
     budget: z.string().min(1, "예상 월 예산을 선택해주세요."),
     targetCpa: z.string().optional(),
@@ -185,18 +185,18 @@ export function ContactForm() {
                                 {form.formState.errors.industry && <p className="text-sm text-destructive">{form.formState.errors.industry.message}</p>}
                             </div>
                             <div className="space-y-2">
-                                <label htmlFor="firmSize" className="text-sm font-medium">사무소 규모 <span className="text-destructive">*</span></label>
+                                <label htmlFor="firmSize" className="text-sm font-medium">사업장 규모 <span className="text-destructive">*</span></label>
                                 <select
                                     id="firmSize"
                                     className="flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                     {...form.register("firmSize")}
                                 >
                                     <option value="">선택해주세요</option>
-                                    <option value="solo">1인 사무소</option>
-                                    <option value="small">소형 (변호사 2~5명)</option>
-                                    <option value="medium">중형 (변호사 6~20명)</option>
-                                    <option value="large">대형 (변호사 20명 이상)</option>
-                                    <option value="non_law">법무법인 외 (렌탈·통신·리딩 등)</option>
+                                    <option value="solo">1인 사업자</option>
+                                    <option value="small">소형 (직원 2~5명)</option>
+                                    <option value="medium">중형 (직원 6~20명)</option>
+                                    <option value="large">대형 (직원 20명 이상)</option>
+                                    <option value="agency">1차 대행사·실행사 (재하청 협력)</option>
                                 </select>
                                 {form.formState.errors.firmSize && <p className="text-sm text-destructive">{form.formState.errors.firmSize.message}</p>}
                             </div>

@@ -42,11 +42,12 @@ const CALL_INCLUDED_MAP: Record<string, string> = {
 };
 
 const FIRM_SIZE_LABEL: Record<string, string> = {
-    'solo': '1인 사무소',
-    'small': '소형 (변호사 2~5명)',
-    'medium': '중형 (변호사 6~20명)',
-    'large': '대형 (변호사 20명 이상)',
-    'non_law': '법무법인 외',
+    'solo': '1인 사업자',
+    'small': '소형 (직원 2~5명)',
+    'medium': '중형 (직원 6~20명)',
+    'large': '대형 (직원 20명 이상)',
+    'agency': '1차 대행사·실행사 (재하청 협력)',
+    'non_law': '법무법인 외', // backward compat
 };
 
 const BUDGET_LABEL: Record<string, string> = {
@@ -95,7 +96,7 @@ function buildMemoText(data: z.infer<typeof formSchema>): string {
     if (data.contactPerson) lines.push(`담당자: ${data.contactPerson}`);
     if (data.firmSize) {
         const label = FIRM_SIZE_LABEL[data.firmSize] || data.firmSize;
-        lines.push(`사무소 규모: ${label}`);
+        lines.push(`사업장 규모: ${label}`);
     }
     if (data.budget) {
         const label = BUDGET_LABEL[data.budget] || data.budget;

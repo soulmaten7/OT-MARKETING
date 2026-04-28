@@ -35,7 +35,7 @@ export function CpaModel() {
                         <ul className="space-y-2 mb-6 pt-4 border-t border-gray-100">
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
-                                9문항 자가진단 + 등급 + 연락처 풀 데이터
+                                업종별 자가진단 + 등급·유형 + 연락처 풀 데이터
                             </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
@@ -47,7 +47,7 @@ export function CpaModel() {
                             </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
-                                콜팀 운영 가능한 중·대형 법인 적합
+                                콜팀 운영 가능한 중·대형 사업장 적합
                             </li>
                         </ul>
                     </div>
@@ -76,7 +76,7 @@ export function CpaModel() {
                             </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
-                                확정된 미팅만 변호사에게 전달
+                                확정된 검증 건만 광고주에게 전달
                             </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>

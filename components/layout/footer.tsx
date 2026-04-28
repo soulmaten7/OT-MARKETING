@@ -12,7 +12,7 @@ export function Footer() {
                         </Link>
                         <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
                             광고가 끝나는 자리까지 책임지는 CPA 인프라.<br />
-                            변호사법 가드레일 · A·B·C 등급 분기 · 광고주 명의 분리.
+                            6 업종 법규 가드레일 · 등급·유형 자동 분기 · 광고주 명의 분리.
                         </p>
                         <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">
                             <p>Email · soulmaten1007@gmail.com</p>
