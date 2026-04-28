@@ -58,14 +58,18 @@ export function CpaModel() {
                             추천
                         </div>
                         <h3 className="font-serif text-2xl text-[var(--navy)] font-bold mb-1">
-                            모델 B — 1차콜 포함
+                            모델 B — 자체 CRM 콜센터 운영 (1차콜 포함)
                         </h3>
-                        <p className="text-sm text-gray-500 mb-5">유효 상담 1건 = 고객 미팅 · 상담 약속까지</p>
+                        <p className="text-sm text-gray-500 mb-5">OT 자체 콜센터 직접 운영 · 외주 X · 유효 상담 1건 = 고객 미팅·상담 약속까지</p>
                         <div className="font-serif text-xl text-[var(--gold-dark)] font-bold mb-1">
                             단가 ↑↑ <span className="text-sm font-normal text-gray-500">(모델 A 대비 상위)</span>
                         </div>
                         <p className="text-xs text-gray-500 mb-6">/ 미팅 확정 1건</p>
                         <ul className="space-y-2 mb-6 pt-4 border-t border-gray-100">
+                            <li className="text-sm text-gray-700 pl-5 relative">
+                                <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
+                                <strong>OT 자체 CRM 콜센터에서 직접 1차콜 운영</strong> (외주 실행사 X)
+                            </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
                                 광고주가 콜 스크립트 제공 또는 핵심 응대 내용 전달
