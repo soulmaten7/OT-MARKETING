@@ -60,7 +60,7 @@ export function CpaModel() {
                         <h3 className="font-serif text-2xl text-[var(--navy)] font-bold mb-1">
                             모델 B — 1차콜 포함
                         </h3>
-                        <p className="text-sm text-gray-500 mb-5">유효 상담 1건 = 변호사 미팅 약속까지</p>
+                        <p className="text-sm text-gray-500 mb-5">유효 상담 1건 = 고객 미팅 · 상담 약속까지</p>
                         <div className="font-serif text-xl text-[var(--gold-dark)] font-bold mb-1">
                             단가 ↑↑ <span className="text-sm font-normal text-gray-500">(모델 A 대비 상위)</span>
                         </div>
@@ -80,7 +80,7 @@ export function CpaModel() {
                             </li>
                             <li className="text-sm text-gray-700 pl-5 relative">
                                 <span className="absolute left-0 text-[var(--gold)] font-bold">✓</span>
-                                1인·소형 사무소 적합 (변호사 시간 절약)
+                                1인·소형 사업자 적합
                             </li>
                         </ul>
                     </div>

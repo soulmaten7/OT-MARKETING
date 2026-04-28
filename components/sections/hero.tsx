@@ -32,7 +32,7 @@ export function Hero() {
                     <div className="flex flex-wrap justify-center gap-2 mb-12">
                         <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
                             <ShieldCheck className="w-3.5 h-3.5 text-[var(--gold)]" />
-                            변호사법 가드레일 내장
+                            6 업종 법규 가드레일 내장
                         </span>
                         <span className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 text-white/85 text-xs px-3 py-1.5 rounded">
                             <Layers className="w-3.5 h-3.5 text-[var(--gold)]" />

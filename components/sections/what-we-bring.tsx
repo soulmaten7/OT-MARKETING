@@ -5,8 +5,8 @@ const services = [
     {
         num: "01",
         icon: ShieldCheck,
-        title: "변호사법·표시광고법 가드레일 시스템",
-        desc: "업종별 사용 가능/금지 표현을 시트에 박아두고 광고 카피 자동 검증. 광고주의 협회 등록 전문분야 매칭하여 \"전문\" 표현 사용 가능 여부 카피 단계에서 자동 제어.",
+        title: "업종별 법규 가드레일 시스템",
+        desc: "업종별 사용 가능/금지 표현을 시트에 박아두고 광고 카피 자동 검증. 광고주의 업종별 인허가·등록 자격 매칭하여 \"전문\"·\"보장\" 등 민감 표현 사용 가능 여부 카피 단계에서 자동 제어.",
         kicker: "위반 카피 1건도 안 나옴 → 광고주 형사 책임 차단",
         linkHref: "/#guardrail",
         linkText: "가드레일 자세히",
@@ -53,7 +53,7 @@ export function WhatWeBring() {
                         다른 CPA 대행과의 <span className="text-[var(--gold)]">4가지 차이</span>
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        OT MARKETING 의 운영 시스템은 광고주가 안심하고 사건 수임에만 집중할 수 있도록
+                        OT MARKETING 의 운영 시스템은 광고주가 안심하고 본업에만 집중할 수 있도록
                         <br className="hidden md:block" />
                         법규·등급 분기·명의 분리·데이터 추적까지 자동화되어 있습니다.
                     </p>
