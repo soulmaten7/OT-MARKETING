@@ -129,7 +129,7 @@ export const realestateConfig: IndustryConfig = {
         ],
     },
     contact: {
-        sheetId: null,
+        sheetId: "13fN4R_UkwEfFuJ5Rse-74uzYJdOTZ3luvVv3TDhvCT8", // OT-leads-realestate-2026
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

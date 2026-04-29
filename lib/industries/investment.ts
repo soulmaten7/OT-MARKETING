@@ -117,7 +117,7 @@ export const investmentConfig: IndustryConfig = {
         ],
     },
     contact: {
-        sheetId: null,
+        sheetId: "1iupb2uifYMBHZ-LrUYFcEdmm5k4Kors3PTze6CR8AUk", // OT-leads-investment-2026
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

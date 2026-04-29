@@ -129,7 +129,7 @@ export const mobileConfig: IndustryConfig = {
         ],
     },
     contact: {
-        sheetId: null,
+        sheetId: "1iAXREiGGnao1d3hV9RkrTyWlH5UF0LAW2e1ueNHengg", // OT-leads-mobile-2026
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

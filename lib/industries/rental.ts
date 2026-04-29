@@ -113,7 +113,7 @@ export const rentalConfig: IndustryConfig = {
         ],
     },
     contact: {
-        sheetId: null, // TURN 2 에서 신규 시트 생성
+        sheetId: "15u0tt28Jfo5NP3Cwa25Qt0fuS70R76lmhP0HlGxhxmU", // OT-leads-rental-2026
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

@@ -118,7 +118,7 @@ export const medicalConfig: IndustryConfig = {
         ],
     },
     contact: {
-        sheetId: null,
+        sheetId: "1ReMclYwRrxSvfZFTds2POkwLcmCq8-ne09kuau-92HE", // OT-leads-medical-2026
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },
