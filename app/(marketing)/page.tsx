@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { Stats } from "@/components/sections/stats";
 import { WhatWeBring } from "@/components/sections/what-we-bring";
 import { Industries } from "@/components/sections/industries";
 import { HowItWorks } from "@/components/sections/how-it-works";
@@ -10,6 +11,7 @@ export default function Home() {
     return (
         <div className="flex flex-col gap-0">
             <Hero />
+            <Stats />
             <WhatWeBring />
             <Industries />
             <HowItWorks />
