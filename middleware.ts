@@ -60,7 +60,7 @@ export function middleware(req: NextRequest) {
 export const config = {
   matcher: [
     "/",              // otpage1.com root rewrite
-    "/select:path*",  // ot-marketing.kr select* → root redirect
+    "/select(.*)",    // ot-marketing.kr select* → root redirect
     "/admin/:path*",  // admin Basic Auth
   ],
 };
