@@ -15,8 +15,7 @@ export function Footer() {
                             6 업종 법규 가드레일 · 등급·유형 자동 분기 · 광고주 명의 분리.
                         </p>
                         <div className="mt-6 flex flex-col gap-2 text-sm text-white/70">
-                            <p>Email · soulmaten1007@gmail.com</p>
-                            <p>Tel · 070-4367-4013</p>
+                            <p>Email · soulmaten7@gmail.com</p>
                             <p>
                                 <a
                                     href="https://open.kakao.com/o/sw2Zxm9h"

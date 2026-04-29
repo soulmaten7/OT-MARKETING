@@ -1,9 +1,8 @@
 import { Hero } from "@/components/sections/hero";
 import { WhatWeBring } from "@/components/sections/what-we-bring";
-import { Industries } from "@/components/sections/industries";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { CpaModel } from "@/components/sections/cpa-model";
-import { Guardrail } from "@/components/sections/guardrail";
+import { Industries } from "@/components/sections/industries";
 import { ContactForm } from "@/components/sections/contact-form";
 
 export default function Home() {
@@ -11,10 +10,9 @@ export default function Home() {
         <div className="flex flex-col gap-0">
             <Hero />
             <WhatWeBring />
-            <Industries />
             <HowItWorks />
             <CpaModel />
-            <Guardrail />
+            <Industries />
             <ContactForm />
         </div>
     );

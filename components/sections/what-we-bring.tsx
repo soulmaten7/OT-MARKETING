@@ -67,7 +67,7 @@ export function WhatWeBring() {
                 >
                     {services.map((item) => (
                         <StaggerItem key={item.num}>
-                            <div className="group relative bg-white rounded-xl border border-[var(--slate-200)] shadow-sm p-7 md:p-8 lg:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[var(--coral-400)]">
+                            <div className="group relative bg-white rounded-xl border border-[var(--slate-200)] shadow-sm p-7 md:p-8 lg:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[var(--coral-400)] h-full flex flex-col">
                                 {/* 좌측 강조 라인 (hover 시 등장) */}
                                 <div className="absolute left-0 top-6 bottom-6 w-1 bg-[var(--coral-500)] rounded-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -94,7 +94,7 @@ export function WhatWeBring() {
 
                                 <Link
                                     href={item.linkHref}
-                                    className="inline-flex items-center gap-2 text-[var(--navy)] hover:text-[var(--coral-500)] font-bold text-sm group/link transition-colors"
+                                    className="inline-flex items-center gap-2 text-[var(--navy)] hover:text-[var(--coral-500)] font-bold text-sm group/link transition-colors mt-auto"
                                 >
                                     {item.linkText}
                                     <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
