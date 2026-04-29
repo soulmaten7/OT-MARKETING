@@ -14,9 +14,11 @@ export function Hero({ title, industryName }: HeroProps) {
                 }}
             />
             <div className="ot-container relative pt-10 sm:pt-14 pb-3 sm:pb-4 text-center">
-                <p className="text-xs sm:text-sm font-medium tracking-wider text-[var(--gold)] mb-2">
-                    {industryName}
-                </p>
+                <div className="mb-3">
+                    <span className="inline-flex items-center px-5 py-2 rounded-full bg-[var(--gold)] text-[var(--navy)] text-base sm:text-lg font-bold tracking-wider">
+                        {industryName}
+                    </span>
+                </div>
                 <h1
                     className="font-serif text-2xl sm:text-3xl leading-[1.35] text-white"
                     style={{ textWrap: "balance" }}
