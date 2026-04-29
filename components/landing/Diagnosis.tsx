@@ -82,14 +82,18 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                                                 type="button"
                                                 onClick={() => setAnswer(q.id, o.value)}
                                                 aria-pressed={selected}
-                                                className={`w-full text-left px-4 py-3 rounded-lg bg-white text-[var(--navy)] border-2 transition-all ${
+                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
                                                     selected
-                                                        ? "border-[var(--gold)] font-bold"
-                                                        : "border-slate-200 hover:border-slate-400"
+                                                        ? "bg-[var(--navy)] text-white border-[var(--gold)] font-semibold shadow-lg"
+                                                        : "bg-white text-[var(--navy)] border-slate-200 hover:border-slate-400"
                                                 }`}
                                             >
-                                                <span className="text-base">
-                                                    {selected && <span className="text-[var(--gold)] mr-1">✓</span>}
+                                                <span className="flex items-center gap-2 text-base">
+                                                    {selected && (
+                                                        <svg className="w-5 h-5 text-[var(--gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    )}
                                                     {o.label}
                                                 </span>
                                             </button>
@@ -108,14 +112,18 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                                                 type="button"
                                                 onClick={() => toggleMulti(q.id, o.value)}
                                                 aria-pressed={checked}
-                                                className={`w-full text-left px-4 py-3 rounded-lg bg-white text-[var(--navy)] border-2 transition-all ${
+                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
                                                     checked
-                                                        ? "border-[var(--gold)] font-bold"
-                                                        : "border-slate-200 hover:border-slate-400"
+                                                        ? "bg-[var(--navy)] text-white border-[var(--gold)] font-semibold shadow-lg"
+                                                        : "bg-white text-[var(--navy)] border-slate-200 hover:border-slate-400"
                                                 }`}
                                             >
-                                                <span className="text-sm">
-                                                    {checked && <span className="text-[var(--gold)] mr-1">✓</span>}
+                                                <span className="flex items-center gap-2 text-sm">
+                                                    {checked && (
+                                                        <svg className="w-5 h-5 text-[var(--gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    )}
                                                     {o.label}
                                                 </span>
                                             </button>
