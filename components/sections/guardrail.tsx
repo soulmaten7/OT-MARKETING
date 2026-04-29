@@ -51,7 +51,7 @@ const penalties = [
 
 export function Guardrail() {
     return (
-        <section id="guardrail" className="py-24 md:py-32 bg-[var(--slate-50)] lg:min-h-[60vh] lg:flex lg:items-center">
+        <section id="guardrail" className="py-24 md:py-32 bg-[var(--slate-50)] lg:min-h-[70vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
                     <div className="eyebrow mb-4">LEGAL GUARDRAIL</div>

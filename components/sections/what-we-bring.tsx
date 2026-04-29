@@ -43,7 +43,7 @@ const services = [
 
 export function WhatWeBring() {
     return (
-        <section id="what-we-bring" className="py-24 md:py-32 bg-white lg:min-h-[80vh] lg:flex lg:items-center">
+        <section id="what-we-bring" className="py-24 md:py-32 bg-white lg:min-h-[85vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
                     <div className="eyebrow mb-4">SERVICES</div>
@@ -63,11 +63,11 @@ export function WhatWeBring() {
                 <StaggerContainer
                     stagger={0.1}
                     delayChildren={0.1}
-                    className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+                    className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto"
                 >
                     {services.map((item) => (
                         <StaggerItem key={item.num}>
-                            <div className="group relative bg-white rounded-xl border border-[var(--slate-200)] shadow-sm p-7 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[var(--coral-400)]">
+                            <div className="group relative bg-white rounded-xl border border-[var(--slate-200)] shadow-sm p-7 md:p-8 lg:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[var(--coral-400)]">
                                 {/* 좌측 강조 라인 (hover 시 등장) */}
                                 <div className="absolute left-0 top-6 bottom-6 w-1 bg-[var(--coral-500)] rounded-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -80,11 +80,11 @@ export function WhatWeBring() {
                                     </div>
                                 </div>
 
-                                <h3 className="text-xl md:text-2xl font-bold text-[var(--navy)] mb-3 leading-snug">
+                                <h3 className="text-xl md:text-2xl lg:text-lg font-bold text-[var(--navy)] mb-3 leading-snug">
                                     {item.title}
                                 </h3>
 
-                                <p className="text-[var(--slate-600)] leading-relaxed mb-5">
+                                <p className="text-sm text-[var(--slate-600)] leading-relaxed mb-5">
                                     {item.desc}
                                 </p>
 

@@ -35,7 +35,7 @@ const steps = [
 
 export function HowItWorks() {
     return (
-        <section id="how-it-works" className="py-24 md:py-32 bg-[var(--slate-50)] lg:min-h-[70vh] lg:flex lg:items-center">
+        <section id="how-it-works" className="py-24 md:py-32 bg-[var(--slate-50)] lg:min-h-[80vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">PROCESS</div>
@@ -55,21 +55,21 @@ export function HowItWorks() {
                 <StaggerContainer
                     stagger={0.08}
                     delayChildren={0.1}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 max-w-7xl mx-auto"
                 >
                     {steps.map((step, i) => (
                         <StaggerItem key={i}>
-                            <div className="group relative bg-white border border-[var(--slate-200)] rounded-xl p-7 h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--coral-400)]">
+                            <div className="group relative bg-white border border-[var(--slate-200)] rounded-xl p-7 lg:p-5 h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--coral-400)]">
                                 {/* connector — 카드 사이 가로 라인 (lg 데스크탑 6 카드 일렬일 때만 의미. md 2열 / lg 3열 기본 → 시각 connector 는 카드 안 좌측에 짧게) */}
                                 <div className="absolute left-0 top-7 w-1 h-12 bg-gradient-to-b from-[var(--coral-500)] to-transparent rounded-r opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                                <div className="font-display text-5xl md:text-6xl font-semibold text-gradient-coral leading-none mb-3">
+                                <div className="font-display text-5xl md:text-6xl lg:text-4xl font-semibold text-gradient-coral leading-none mb-3">
                                     {step.num}
                                 </div>
-                                <h3 className="text-lg md:text-xl text-[var(--navy)] font-bold mb-3 leading-snug">
+                                <h3 className="text-lg md:text-xl lg:text-base text-[var(--navy)] font-bold mb-3 leading-snug">
                                     {step.title}
                                 </h3>
-                                <p className="text-sm text-[var(--slate-600)] leading-relaxed">
+                                <p className="text-sm lg:text-xs text-[var(--slate-600)] leading-relaxed">
                                     {step.desc}
                                 </p>
                             </div>
