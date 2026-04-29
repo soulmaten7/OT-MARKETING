@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,11 +38,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${notoSerifKr.variable} font-sans antialiased bg-background text-foreground`}
       >
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
