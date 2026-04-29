@@ -42,7 +42,7 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
         <main className="min-h-screen flex flex-col bg-[var(--navy)]">
             {!answers && (
                 <>
-                    <Hero title={config.hero.title} />
+                    <Hero title={config.hero.title} industryName={config.industryName} />
                     <Diagnosis
                         questions={config.diagnosis.questions}
                         progressSteps={config.diagnosis.progressSteps}
