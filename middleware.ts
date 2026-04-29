@@ -12,6 +12,14 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(new URL("/select1", req.url));
   }
 
+  // ot-marketing.kr 에서 /select* 진입 → 회사 메인으로 silent redirect (흔적 제거)
+  if (
+    (host === "ot-marketing.kr" || host === "www.ot-marketing.kr") &&
+    /^\/select\d+$/.test(pathname)
+  ) {
+    return NextResponse.redirect(new URL("/", req.url), 301);
+  }
+
   // /admin 경로만 Basic Auth 검사
   if (!pathname.startsWith("/admin")) {
     return NextResponse.next();
@@ -51,7 +59,8 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/",             // otpage1.com root rewrite
-    "/admin/:path*", // admin Basic Auth
+    "/",              // otpage1.com root rewrite
+    "/select:path*",  // ot-marketing.kr select* → root redirect
+    "/admin/:path*",  // admin Basic Auth
   ],
 };
