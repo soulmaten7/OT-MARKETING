@@ -56,10 +56,10 @@ export function Hero() {
                             광고주 상담 신청
                         </Link>
                         <Link
-                            href="/#industries"
+                            href="/samples"
                             className="w-full sm:w-auto border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)]/10 font-bold px-8 py-4 rounded text-base transition-colors inline-flex items-center justify-center gap-2 group"
                         >
-                            6 업종 실제 페이지 보기
+                            디자인 시안 6종 보기
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>

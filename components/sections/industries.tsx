@@ -82,15 +82,15 @@ export function Industries() {
                     </p>
                 </div>
 
-                {/* 강조 안내 박스 — 시각 증거 직접 안내 */}
+                {/* 강조 안내 박스 — 실제 작동 페이지 (디자인 시안과 분리) */}
                 <div className="max-w-3xl mx-auto mb-10">
                     <div className="bg-[var(--gold-10)] border border-[var(--gold)]/40 rounded-lg px-5 py-4 flex items-start gap-3">
                         <div className="text-2xl leading-none mt-0.5">📺</div>
                         <div className="text-sm md:text-base text-[var(--navy)] leading-relaxed">
-                            <strong className="text-[var(--gold-dark)]">실제 작동 페이지</strong>를 직접 클릭해서 체험해보세요.
-                            광고주가 의뢰 시 OT 가 만드는 6 업종 샘플 랜딩페이지의 라이브 시스템입니다.
-                            <span className="block mt-1 text-xs md:text-sm text-gray-600">
-                                카드 클릭 = 새 창에서 실제 페이지 열림.
+                            <strong className="text-[var(--gold-dark)]">실제 작동 페이지</strong> — 디자인 시안 선택 후 OT 가 만들어주는 라이브 시스템 체험.
+                            카드 클릭 = otpage1.com 새 창에서 자가진단 → 등급 분기 → 1:1 상담 직접 작동 확인.
+                            <span className="block mt-1.5 text-xs md:text-sm text-gray-600">
+                                💡 디자인 시안 6종은 <Link href="/samples" className="underline text-[var(--gold-dark)] font-semibold">/samples</Link> 에서 별도 갤러리로 확인.
                             </span>
                         </div>
                     </div>
