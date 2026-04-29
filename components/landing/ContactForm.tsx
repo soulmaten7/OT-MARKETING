@@ -3,6 +3,13 @@
 import { useState } from "react";
 import type { AnswerMap } from "@/lib/industries";
 
+const TIME_OPTIONS = [
+    { value: "morning",   label: "오전 (9~12시)" },
+    { value: "afternoon", label: "오후 (13~18시)" },
+    { value: "evening",   label: "저녁 (18~21시)" },
+    { value: "anytime",   label: "언제든" },
+];
+
 interface ContactFormProps {
     additionalFields: { key: string; label: string; required: boolean }[];
     sheetId: string | null;
@@ -21,6 +28,7 @@ export function ContactForm({
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [timeValue, setTimeValue] = useState<string>("");
 
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -30,13 +38,22 @@ export function ContactForm({
         const fd = new FormData(e.currentTarget);
         const personal: Record<string, string> = {};
         for (const field of additionalFields) {
-            personal[field.key] = (fd.get(field.key) as string) || "";
+            personal[field.key] = field.key === "time"
+                ? timeValue
+                : ((fd.get(field.key) as string) || "");
         }
         const privacyOk = fd.get("privacy") === "on";
         const memo = (fd.get("memo") as string) || "";
 
         if (!privacyOk) {
             setError("개인정보 수집·이용 동의가 필요합니다.");
+            setSubmitting(false);
+            return;
+        }
+
+        const timeField = additionalFields.find((f) => f.key === "time");
+        if (timeField?.required && !timeValue) {
+            setError("통화 가능 시간대를 선택해 주세요.");
             setSubmitting(false);
             return;
         }
@@ -105,20 +122,33 @@ export function ContactForm({
                                 {field.required && <span className="text-red-600 ml-1">*</span>}
                             </label>
                             {field.key === "time" ? (
-                                <select
-                                    name={field.key}
-                                    required={field.required}
-                                    defaultValue=""
-                                    className="w-full px-4 py-3 border border-gray-300 rounded text-base bg-white"
-                                >
-                                    <option value="" disabled>
-                                        선택해 주세요
-                                    </option>
-                                    <option value="morning">오전 (9~12시)</option>
-                                    <option value="afternoon">오후 (13~18시)</option>
-                                    <option value="evening">저녁 (18~21시)</option>
-                                    <option value="anytime">언제든</option>
-                                </select>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {TIME_OPTIONS.map((opt) => {
+                                        const selected = timeValue === opt.value;
+                                        return (
+                                            <button
+                                                key={opt.value}
+                                                type="button"
+                                                onClick={() => setTimeValue(opt.value)}
+                                                aria-pressed={selected}
+                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
+                                                    selected
+                                                        ? "bg-[var(--navy)] text-white border-[var(--gold)] font-semibold shadow-lg"
+                                                        : "bg-white text-[var(--navy)] border-slate-200 hover:border-slate-400"
+                                                }`}
+                                            >
+                                                <span className="flex items-center gap-2 text-sm">
+                                                    {selected && (
+                                                        <svg className="w-5 h-5 text-[var(--gold)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    )}
+                                                    {opt.label}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
                             ) : (
                                 <input
                                     name={field.key}
