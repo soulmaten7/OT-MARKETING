@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export function Footer() {
     return (
-        <footer className="bg-[var(--navy)] text-white/80 py-16">
+        <footer className="bg-[var(--navy-900)] text-white/80 py-16">
             <div className="ot-container">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <Link href="/" className="font-serif text-2xl tracking-tight text-white">
-                            OT <span className="text-[var(--gold)]">MARKETING</span>
+                        <Link href="/" className="font-display text-2xl tracking-tight text-white">
+                            OT <span className="text-gradient-coral font-semibold">MARKETING</span>
                         </Link>
                         <p className="mt-4 text-sm text-white/60 max-w-sm leading-relaxed">
                             광고가 끝나는 자리까지 책임지는 CPA 인프라.<br />
@@ -18,7 +18,12 @@ export function Footer() {
                             <p>Email · soulmaten1007@gmail.com</p>
                             <p>Tel · 070-4367-4013</p>
                             <p>
-                                <a href="https://open.kakao.com/o/sw2Zxm9h" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)] transition-colors">
+                                <a
+                                    href="https://open.kakao.com/o/sw2Zxm9h"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-[var(--coral-400)] transition-colors"
+                                >
                                     💬 카카오톡 오픈채팅
                                 </a>
                             </p>
@@ -27,33 +32,33 @@ export function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
+                        <h4 className="text-[var(--coral-500)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
                         <ul className="space-y-3 text-sm text-white/70">
-                            <li><Link href="/#what-we-bring" className="hover:text-[var(--gold)] transition-colors">서비스 차별점</Link></li>
-                            <li><Link href="/#how-it-works" className="hover:text-[var(--gold)] transition-colors">6단계 프로세스</Link></li>
-                            <li><Link href="/#guardrail" className="hover:text-[var(--gold)] transition-colors">법규 가드레일</Link></li>
-                            <li><Link href="/#cpa-model" className="hover:text-[var(--gold)] transition-colors">CPA 모델</Link></li>
-                            <li><Link href="/#industries" className="hover:text-[var(--gold)] transition-colors">전문 업종</Link></li>
-                            <li><Link href="/samples" className="hover:text-[var(--gold)] transition-colors">디자인 시안 6종</Link></li>
-                            <li><Link href="/#contact" className="hover:text-[var(--gold)] transition-colors">광고주 문의</Link></li>
+                            <li><Link href="/#what-we-bring" className="hover:text-[var(--coral-400)] transition-colors">서비스 차별점</Link></li>
+                            <li><Link href="/#how-it-works" className="hover:text-[var(--coral-400)] transition-colors">6단계 프로세스</Link></li>
+                            <li><Link href="/#guardrail" className="hover:text-[var(--coral-400)] transition-colors">법규 가드레일</Link></li>
+                            <li><Link href="/#cpa-model" className="hover:text-[var(--coral-400)] transition-colors">CPA 모델</Link></li>
+                            <li><Link href="/#industries" className="hover:text-[var(--coral-400)] transition-colors">전문 업종</Link></li>
+                            <li><Link href="/samples" className="hover:text-[var(--coral-400)] transition-colors">디자인 시안 6종</Link></li>
+                            <li><Link href="/#contact" className="hover:text-[var(--coral-400)] transition-colors">광고주 문의</Link></li>
                         </ul>
                     </div>
 
                     {/* Legal + Admin */}
                     <div>
-                        <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mb-4">LEGAL</h4>
+                        <h4 className="text-[var(--coral-500)] text-xs tracking-widest font-bold mb-4">LEGAL</h4>
                         <ul className="space-y-3 text-sm text-white/70">
-                            <li><Link href="/privacy" className="hover:text-[var(--gold)] transition-colors">개인정보처리방침</Link></li>
-                            <li><Link href="/terms" className="hover:text-[var(--gold)] transition-colors">이용약관</Link></li>
+                            <li><Link href="/privacy" className="hover:text-[var(--coral-400)] transition-colors">개인정보처리방침</Link></li>
+                            <li><Link href="/terms" className="hover:text-[var(--coral-400)] transition-colors">이용약관</Link></li>
                         </ul>
 
-                        <h4 className="text-[var(--gold)] text-xs tracking-widest font-bold mt-8 mb-4">INTERNAL</h4>
+                        <h4 className="text-[var(--coral-500)] text-xs tracking-widest font-bold mt-8 mb-4">INTERNAL</h4>
                         <ul className="space-y-3 text-sm text-white/70">
                             <li>
                                 <Link
                                     href="/admin/guide"
                                     prefetch={false}
-                                    className="inline-flex items-center gap-1.5 hover:text-[var(--gold)] transition-colors"
+                                    className="inline-flex items-center gap-1.5 hover:text-[var(--coral-400)] transition-colors"
                                 >
                                     <span>🔒</span>
                                     <span>관리자 로그인</span>

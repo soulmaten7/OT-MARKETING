@@ -1,4 +1,5 @@
 import { ShieldCheck, AlertTriangle } from "lucide-react";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 const industryGuardrails = [
     {
@@ -50,69 +51,72 @@ const penalties = [
 
 export function Guardrail() {
     return (
-        <section id="guardrail" className="py-24 md:py-32 bg-[var(--secondary)]">
+        <section id="guardrail" className="py-24 md:py-32 bg-[var(--slate-50)]">
             <div className="ot-container">
-                <div className="text-center max-w-3xl mx-auto mb-12">
+                <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
                     <div className="eyebrow mb-4">LEGAL GUARDRAIL</div>
                     <h2
-                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.3]"
+                        className="font-display text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.25]"
                         style={{ textWrap: "balance" }}
                     >
-                        광고주 <span className="text-[var(--gold)]">법적 리스크 차단</span> 시스템
+                        광고주 <span className="text-gradient-coral font-semibold">법적 리스크 차단</span> 시스템
                     </h2>
-                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                    <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
                         6 업종별 인허가·표시광고법·매체 정책을 시트에 박아두고 광고 카피 자동 검증.
                         <br className="hidden md:block" />
                         위반 표현은 카피 단계에서 자동 차단되어 광고주에게 전달되지 않습니다.
                     </p>
-                </div>
+                </FadeInUp>
 
                 {/* 시스템 작동 방식 */}
-                <div className="max-w-5xl mx-auto bg-white rounded-md border border-gray-200 p-6 md:p-8 mb-10">
+                <FadeInUp delay={0.15} className="max-w-5xl mx-auto bg-white rounded-xl border border-[var(--slate-200)] p-6 md:p-8 mb-10 shadow-sm">
                     <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-md bg-[var(--gold-10)] flex items-center justify-center text-[var(--gold)] flex-shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-[var(--coral-50)] flex items-center justify-center text-[var(--coral-500)] flex-shrink-0">
                             <ShieldCheck className="w-6 h-6" />
                         </div>
                         <div>
-                            <h3 className="font-serif text-xl text-[var(--navy)] font-bold mb-2">
+                            <h3 className="text-xl text-[var(--navy)] font-bold mb-2">
                                 3단계 자동 검증 시스템
                             </h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">
+                            <p className="text-sm text-[var(--slate-600)] leading-relaxed">
                                 ① 업종별 법규 가이드 시트 → ② 광고주 등록 자격·전문분야 매칭 → ③ 카피 자동 검증
                             </p>
                         </div>
                     </div>
-                </div>
+                </FadeInUp>
 
                 {/* 6 업종 가드레일 그리드 */}
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-                    {industryGuardrails.map((item, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-white rounded-md border border-gray-200 p-6 flex flex-col"
-                        >
-                            <h4 className="font-serif text-lg text-[var(--navy)] font-bold mb-2">
-                                {item.name}
-                            </h4>
-                            <div className="text-xs text-[var(--gold-dark)] font-semibold mb-4 pb-3 border-b border-gray-100">
-                                ⚖ {item.law}
-                            </div>
-                            <div className="space-y-3 text-sm">
-                                <div>
-                                    <div className="text-xs font-bold text-red-700 mb-1">✗ 금지 표현</div>
-                                    <p className="text-gray-700 leading-relaxed">{item.forbidden}</p>
+                <StaggerContainer
+                    stagger={0.06}
+                    delayChildren={0.2}
+                    className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10"
+                >
+                    {industryGuardrails.map((item) => (
+                        <StaggerItem key={item.name}>
+                            <div className="bg-white rounded-xl border border-[var(--slate-200)] shadow-sm p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--coral-400)]">
+                                <h4 className="text-lg text-[var(--navy)] font-bold mb-2">
+                                    {item.name}
+                                </h4>
+                                <div className="text-xs text-[var(--coral-600)] font-semibold mb-4 pb-3 border-b border-[var(--slate-100)]">
+                                    ⚖ {item.law}
                                 </div>
-                                <div>
-                                    <div className="text-xs font-bold text-emerald-700 mb-1">✓ 사용 가능</div>
-                                    <p className="text-gray-700 leading-relaxed">{item.allowed}</p>
+                                <div className="space-y-3 text-sm">
+                                    <div>
+                                        <div className="text-xs font-bold text-red-700 mb-1">✗ 금지 표현</div>
+                                        <p className="text-[var(--slate-700)] leading-relaxed">{item.forbidden}</p>
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-bold text-emerald-700 mb-1">✓ 사용 가능</div>
+                                        <p className="text-[var(--slate-700)] leading-relaxed">{item.allowed}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </StaggerItem>
                     ))}
-                </div>
+                </StaggerContainer>
 
-                {/* 처벌 수준 — 보편 (6 업종 합산) */}
-                <div className="max-w-6xl mx-auto bg-amber-50 border-l-4 border-amber-500 rounded-md p-6">
+                {/* 처벌 수준 */}
+                <FadeInUp delay={0.3} className="max-w-6xl mx-auto bg-amber-50 border-l-4 border-amber-500 rounded-xl p-6">
                     <div className="flex items-start gap-3">
                         <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-amber-900 leading-relaxed">
@@ -128,7 +132,7 @@ export function Guardrail() {
                             <strong className="block mt-2">→ 카피 1건이라도 위반 시 광고주 본인 책임. OT 시스템이 사전 차단해 광고주를 보호합니다.</strong>
                         </div>
                     </div>
-                </div>
+                </FadeInUp>
             </div>
         </section>
     );

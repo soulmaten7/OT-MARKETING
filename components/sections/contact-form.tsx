@@ -96,17 +96,17 @@ export function ContactForm() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="text-center bg-white p-12 rounded-md border border-gray-200 shadow-lg"
+                        className="text-center bg-white p-12 rounded-xl border border-[var(--slate-200)] shadow-xl"
                     >
-                        <div className="w-20 h-20 bg-[var(--gold-10)] rounded-full flex items-center justify-center mx-auto mb-6 text-[var(--gold)]">
+                        <div className="w-20 h-20 bg-[var(--coral-50)] rounded-full flex items-center justify-center mx-auto mb-6 text-[var(--coral-500)]">
                             <CheckCircle className="w-10 h-10" />
                         </div>
-                        <h2 className="font-serif text-3xl font-bold text-[var(--navy)] mb-4">문의가 접수되었습니다.</h2>
-                        <p className="text-lg text-gray-600 mb-8">
+                        <h2 className="text-3xl font-bold text-[var(--navy)] mb-4">문의가 접수되었습니다.</h2>
+                        <p className="text-lg text-[var(--slate-600)] mb-8">
                             담당자가 내용 확인 후 기재해주신 연락처로<br />
                             빠르게 안내 드리겠습니다.
                         </p>
-                        <Button onClick={() => setIsSubmitted(false)} variant="outline" className="border-[var(--gold)] text-[var(--navy)] hover:bg-[var(--gold-10)]">
+                        <Button onClick={() => setIsSubmitted(false)} variant="outline" className="border-[var(--coral-500)] text-[var(--navy)] hover:bg-[var(--coral-50)]">
                             추가 문의하기
                         </Button>
                     </motion.div>
@@ -120,19 +120,19 @@ export function ContactForm() {
             <div className="ot-container max-w-4xl">
                 <div className="text-center mb-12">
                     <div className="eyebrow mb-4">CONTACT</div>
-                    <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
-                        광고주 문의
+                    <h2 className="font-display text-4xl md:text-5xl text-white mb-6 leading-[1.2]">
+                        광고주 <span className="text-gradient-coral font-semibold">문의</span>
                     </h2>
-                    <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                    <p className="text-base md:text-lg text-white/75 leading-relaxed">
                         업종 전문 컨설턴트가 귀사 상황에 맞춘 운영 전략을 제안드립니다.<br />
                         회신은 영업일 기준 24시간 이내.
                     </p>
                 </div>
 
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-white p-8 md:p-12 rounded-md border border-gray-200 shadow-lg">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-white p-8 md:p-12 rounded-xl border border-[var(--slate-200)] shadow-2xl">
                     {/* Company Info */}
                     <div className="space-y-4">
-                        <h3 className="font-serif text-xl font-bold border-b border-[var(--gold)] pb-2 mb-6 text-[var(--navy)]">기본 정보</h3>
+                        <h3 className="text-xl font-bold border-b-2 border-[var(--coral-500)] pb-2 mb-6 text-[var(--navy)] inline-block">기본 정보</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="companyName" className="text-sm font-medium">회사명 <span className="text-destructive">*</span></label>
@@ -164,7 +164,7 @@ export function ContactForm() {
 
                     {/* Marketing Info */}
                     <div className="space-y-4 pt-6">
-                        <h3 className="font-serif text-xl font-bold border-b border-[var(--gold)] pb-2 mb-6 text-[var(--navy)]">마케팅 현황</h3>
+                        <h3 className="text-xl font-bold border-b-2 border-[var(--coral-500)] pb-2 mb-6 text-[var(--navy)] inline-block">마케팅 현황</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label htmlFor="industry" className="text-sm font-medium">업종 선택 <span className="text-destructive">*</span></label>
@@ -264,7 +264,7 @@ export function ContactForm() {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                        <Button type="submit" size="lg" className="w-full text-lg h-14 bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] font-bold" disabled={isSubmitting}>
+                        <Button type="submit" size="lg" className="w-full text-lg h-14 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white font-bold transition-all duration-200 hover:scale-[1.02] hover:shadow-lg" disabled={isSubmitting}>
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -275,7 +275,7 @@ export function ContactForm() {
                             )}
                         </Button>
 
-                        {/* Kakao Button Placeholder */}
+                        {/* Kakao Button */}
                         <Button variant="outline" size="lg" className="w-full text-lg h-14 border-yellow-400 hover:bg-yellow-50 text-foreground" type="button" asChild>
                             <a href="https://open.kakao.com/o/sw2Zxm9h" target="_blank" rel="noopener noreferrer">
                                 <MessageCircle className="mr-2 h-5 w-5 text-yellow-500 fill-current" />
