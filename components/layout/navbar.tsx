@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
@@ -84,12 +85,20 @@ export function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/"
+                        aria-label="OT MARKETING"
                         className={cn(
-                            "font-serif text-2xl tracking-tight transition-colors",
-                            navOnLight ? "text-[var(--navy)]" : "text-white"
+                            "flex items-center transition-all duration-200",
+                            !navOnLight && "bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1"
                         )}
                     >
-                        OT <span className="text-[var(--gold)]">MARKETING</span>
+                        <Image
+                            src="/logo-ot-marketing.png"
+                            alt="OT MARKETING — CPA 마케팅 인프라"
+                            width={200}
+                            height={48}
+                            priority
+                            className="h-8 sm:h-9 lg:h-10 w-auto"
+                        />
                     </Link>
 
                     {/* Desktop Nav — center */}
