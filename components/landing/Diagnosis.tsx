@@ -82,13 +82,16 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                                                 type="button"
                                                 onClick={() => setAnswer(q.id, o.value)}
                                                 aria-pressed={selected}
-                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${
+                                                className={`w-full text-left px-4 py-3 rounded-lg bg-white text-[var(--navy)] border-2 transition-all ${
                                                     selected
-                                                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-white"
-                                                        : "border-white/15 bg-white/5 hover:border-white/40 text-white/90"
+                                                        ? "border-[var(--gold)] font-bold"
+                                                        : "border-slate-200 hover:border-slate-400"
                                                 }`}
                                             >
-                                                <span className="text-base font-medium">{o.label}</span>
+                                                <span className="text-base">
+                                                    {selected && <span className="text-[var(--gold)] mr-1">✓</span>}
+                                                    {o.label}
+                                                </span>
                                             </button>
                                         );
                                     })}
@@ -105,14 +108,14 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                                                 type="button"
                                                 onClick={() => toggleMulti(q.id, o.value)}
                                                 aria-pressed={checked}
-                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${
+                                                className={`w-full text-left px-4 py-3 rounded-lg bg-white text-[var(--navy)] border-2 transition-all ${
                                                     checked
-                                                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-white"
-                                                        : "border-white/15 bg-white/5 hover:border-white/40 text-white/90"
+                                                        ? "border-[var(--gold)] font-bold"
+                                                        : "border-slate-200 hover:border-slate-400"
                                                 }`}
                                             >
-                                                <span className="text-sm font-medium">
-                                                    {checked ? "✓ " : ""}
+                                                <span className="text-sm">
+                                                    {checked && <span className="text-[var(--gold)] mr-1">✓</span>}
                                                     {o.label}
                                                 </span>
                                             </button>
@@ -128,7 +131,7 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                             <button
                                 type="button"
                                 onClick={() => setStep(step - 1)}
-                                className="px-6 py-3 border border-gray-300 rounded font-bold"
+                                className="px-6 py-3 border border-white/30 hover:border-white/60 text-white/80 hover:text-white rounded font-bold transition-colors"
                             >
                                 이전
                             </button>
@@ -137,9 +140,9 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                             type="button"
                             onClick={handleNext}
                             disabled={!canNext()}
-                            className="flex-1 bg-[var(--gold)] hover:bg-[var(--gold-dark)] disabled:bg-gray-300 text-[var(--navy)] font-bold py-3 rounded transition-colors"
+                            className="flex-1 bg-[var(--gold)] hover:bg-[var(--gold-dark)] disabled:bg-white/20 disabled:text-white/40 text-[var(--navy)] font-bold py-3 rounded transition-colors"
                         >
-                            {step < progressSteps - 1 ? "다음" : "결과 보기"}
+                            {step < progressSteps - 1 ? "다음" : "신청하기"}
                         </button>
                     </div>
                 </div>

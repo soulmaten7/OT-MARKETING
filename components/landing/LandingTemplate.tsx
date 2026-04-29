@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { Hero } from "./Hero";
 import { Diagnosis } from "./Diagnosis";
-import { ResultBranching } from "./ResultBranching";
 import { ContactForm } from "./ContactForm";
 import { BrandFooter } from "./BrandFooter";
-import { getIndustryConfig, type AnswerMap, type BrandInfo, type ResultBranch } from "@/lib/industries";
+import { getIndustryConfig, type AnswerMap, type BrandInfo } from "@/lib/industries";
 
 interface LandingTemplateProps {
     slug: string;
@@ -25,11 +24,8 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
         );
     }
 
-    let resultBranch: ResultBranch | null = null;
-    if (answers) {
-        const grade = config.result.logic(answers);
-        resultBranch = config.result.branches.find((b) => b.grade === grade) ?? config.result.branches[0];
-    }
+    // 자가진단 완료 시 등급 계산 (시트 기록용 — 사용자에겐 노출 X)
+    const grade = answers ? config.result.logic(answers) : "";
 
     // R&D 단계: brand prop 미전달 → BrandFooter 의 회사 정보 영역 자동 비표시
     // 광고주 매칭 시: brand 의 BrandInfo 를 advertiser 형태로 변환 전달
@@ -56,17 +52,14 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
                 </>
             )}
 
-            {answers && resultBranch && (
-                <>
-                    <ResultBranching branch={resultBranch} />
-                    <ContactForm
-                        additionalFields={config.contact.additionalFields}
-                        sheetId={config.contact.sheetId}
-                        industryId={config.industryId}
-                        answers={answers}
-                        grade={resultBranch.grade}
-                    />
-                </>
+            {answers && (
+                <ContactForm
+                    additionalFields={config.contact.additionalFields}
+                    sheetId={config.contact.sheetId}
+                    industryId={config.industryId}
+                    answers={answers}
+                    grade={grade}
+                />
             )}
 
             <BrandFooter lawNote={config.guardrail.law} advertiser={advertiserInfo} />

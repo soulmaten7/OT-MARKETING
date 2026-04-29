@@ -91,10 +91,10 @@ export function ContactForm({
             <div className="ot-container max-w-2xl">
                 <div className="text-center mb-8">
                     <h2 className="font-serif text-2xl md:text-4xl text-white font-bold mb-3">
-                        결과 기반 1:1 상담 신청
+                        1:1 상담 신청
                     </h2>
-                    <p className="text-sm text-white/70">
-                        아래 정보를 남겨주시면 전담 컨설턴트가 안내드립니다.
+                    <p className="text-sm text-white/70 leading-relaxed">
+                        자가진단 결과는 전담 컨설턴트 1:1 상담에서 안내드립니다.
                     </p>
                 </div>
                 <form onSubmit={onSubmit} className="bg-white p-6 md:p-10 rounded-md text-gray-900 space-y-5">
