@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-/**
- * Basic Auth middleware — /admin/* 경로 보호
- *
- * 환경변수 설정 (Vercel Dashboard → Settings → Environment Variables):
- *   ADMIN_USER   — 기본값: "ot"
- *   ADMIN_PASS   — 반드시 설정 (기본값 비어 있음 = 접근 불가)
- *
- * 로컬 개발 시 .env.local 파일에 동일 변수 설정.
- */
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const host = req.headers.get("host") || "";
 
-  // /admin 경로만 검사
+  // otpage1.com root → /select1 (개인회생 랜딩, URL 변경 X)
+  if (
+    (host === "otpage1.com" || host === "www.otpage1.com") &&
+    pathname === "/"
+  ) {
+    return NextResponse.rewrite(new URL("/select1", req.url));
+  }
+
+  // /admin 경로만 Basic Auth 검사
   if (!pathname.startsWith("/admin")) {
     return NextResponse.next();
   }
@@ -20,7 +20,6 @@ export function middleware(req: NextRequest) {
   const expectedUser = process.env.ADMIN_USER || "ot";
   const expectedPass = process.env.ADMIN_PASS || "";
 
-  // ADMIN_PASS 미설정 시 접근 차단 (보안)
   if (!expectedPass) {
     return new NextResponse("Admin area not configured. Set ADMIN_PASS env var.", {
       status: 503,
@@ -42,7 +41,6 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // 인증 실패 → 브라우저 기본 로그인 창 띄우기
   return new NextResponse("Authentication required.", {
     status: 401,
     headers: {
@@ -52,5 +50,8 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: [
+    "/",             // otpage1.com root rewrite
+    "/admin/:path*", // admin Basic Auth
+  ],
 };
