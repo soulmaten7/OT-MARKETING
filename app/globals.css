@@ -3,164 +3,272 @@
 @plugin "tailwindcss-animate";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
 
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
 
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
 
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
 
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
 
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
 
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
 
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
 
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+    --color-navy: var(--navy-900);
+    --color-coral: var(--coral-500);
+    --color-slate: var(--slate-900);
 
-  --font-sans: var(--font-inter), "Pretendard Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, "Times New Roman", serif;
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+
+    --font-sans: "Pretendard Variable", var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-cormorant), "Cormorant Garamond", "Noto Serif KR", Georgia, serif;
+    --font-serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, "Times New Roman", serif;
 }
 
 /* ============================================================ */
-/*  🅐 Trust / Legal Theme — Navy + Gold                         */
-/*  Light mode only (OS 다크모드 자동 적용 차단)                  */
+/*  OT MARKETING — Modern CPA Brand System                       */
+/*  Navy + Coral (메인 액센트) + Slate (텍스트) + Gold (차분 영역) */
 /* ============================================================ */
-
 :root {
-  color-scheme: light only;
+    color-scheme: light only;
 
-  /* Brand: Trust / Legal */
-  --navy: #0F1E3D;         /* 메인 딥 네이비 */
-  --navy-80: #1C2E5A;      /* 네이비 밝은 쪽 */
-  --navy-10: #E8ECF4;      /* 네이비 배경 tint */
-  --gold: #C5A572;         /* 골드 포인트 */
-  --gold-dark: #A08653;    /* 골드 hover */
-  --gold-10: #F7F1E3;      /* 골드 배경 tint */
-  --cream: #FAFAF7;        /* 본문 섹션 대안 배경 */
+    /* === Brand Navy === */
+    --navy-900: #0F1E3D;
+    --navy-800: #1C2E5A;
+    --navy-50:  #E8ECF4;
 
-  /* Tailwind 시맨틱 매핑 */
-  --background: #FFFFFF;
-  --foreground: #0F1E3D;
+    /* === Coral (메인 액센트 — CTA, 결과, 활기) === */
+    --coral-500: #F97316;
+    --coral-600: #EA580C;
+    --coral-400: #FB923C;
+    --coral-50:  #FFF7ED;
 
-  --card: #FFFFFF;
-  --card-foreground: #0F1E3D;
+    /* === Gold (차분 영역 한정 — BrandFooter 변호사법 등) === */
+    --gold-500: #C5A572;
+    --gold-600: #A08653;
+    --gold-50:  #F7F1E3;
 
-  --popover: #FFFFFF;
-  --popover-foreground: #0F1E3D;
+    /* === Slate (텍스트 시스템) === */
+    --slate-900: #0F172A;
+    --slate-700: #334155;
+    --slate-500: #64748B;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-100: #F1F5F9;
+    --slate-50:  #F8FAFC;
 
-  --primary: #0F1E3D;
-  --primary-foreground: #FFFFFF;
+    /* === Semantic === */
+    --success: #10B981;
+    --info:    #3B82F6;
+    --warn:    #EAB308;
+    --danger:  #EF4444;
 
-  --secondary: #FAFAF7;
-  --secondary-foreground: #0F1E3D;
+    /* === 호환 alias (기존 컴포넌트 var(--navy), var(--gold) 등 보존) === */
+    --navy:      var(--navy-900);
+    --navy-80:   var(--navy-800);
+    --navy-10:   var(--navy-50);
+    --gold:      var(--gold-500);
+    --gold-dark: var(--gold-600);
+    --gold-10:   var(--gold-50);
+    --cream:     #FAFAF7;
 
-  --muted: #F3F4F6;
-  --muted-foreground: #6B7280;
+    /* === Background === */
+    --background: #FFFFFF;
+    --foreground: var(--slate-900);
 
-  --accent: #C5A572;
-  --accent-foreground: #0F1E3D;
+    /* === Tailwind 시맨틱 매핑 === */
+    --card: #FFFFFF;
+    --card-foreground: var(--slate-900);
+    --popover: #FFFFFF;
+    --popover-foreground: var(--slate-900);
+    --primary: var(--navy-900);
+    --primary-foreground: #FFFFFF;
+    --secondary: var(--slate-50);
+    --secondary-foreground: var(--slate-900);
+    --muted: var(--slate-100);
+    --muted-foreground: var(--slate-500);
+    --accent: var(--coral-500);
+    --accent-foreground: #FFFFFF;
+    --destructive: var(--danger);
+    --destructive-foreground: #FFFFFF;
+    --border: var(--slate-200);
+    --input: var(--slate-200);
+    --ring: var(--coral-500);
 
-  --destructive: #B91C1C;
-  --destructive-foreground: #FFFFFF;
+    /* === Radius (통일) === */
+    --radius-sm: 0.375rem;
+    --radius:    0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
 
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #C5A572;
+    /* === Shadow (통일) === */
+    --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.1), 0 2px 4px -2px rgb(15 23 42 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.1), 0 4px 6px -4px rgb(15 23 42 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 8px 10px -6px rgb(15 23 42 / 0.1);
 
-  --radius: 0.5rem;
+    /* === Gradient (시그니처) === */
+    --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1E3A8A 50%, var(--coral-600) 100%);
+    --gradient-text: linear-gradient(90deg, var(--navy-900) 0%, var(--coral-500) 100%);
+    --gradient-card: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
 }
-
-/* 🅐 테마는 라이트 모드만 — OS 다크모드여도 강제 라이트 */
-/* (dark mode media query 삭제)                             */
 
 html {
-  background: var(--background);
-  color: var(--foreground);
-  overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  min-width: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-width: 0;
 }
 
-/* 세리프 전용 클래스 (Hero 제목·섹션 타이틀)                   */
-/* 한글 가독성: word-break keep-all → 어절 단위 줄바꿈          */
-/* text-wrap balance → 2줄일 때 균형있게                        */
+/* === 타이포그래피 시스템 === */
 .font-serif {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  word-break: keep-all;
-  overflow-wrap: break-word;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
-/* h1, h2 는 무조건 한글 어절 유지 */
+.font-display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
 h1, h2 {
-  word-break: keep-all;
-  overflow-wrap: break-word;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
-/* Container 통일 — navbar 와 section 모두 같은 max-width + padding */
+.text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.text-gradient-coral {
+    background: linear-gradient(135deg, var(--coral-500), var(--coral-600));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* === Container 통일 === */
 .ot-container {
-  width: 100%;
-  max-width: 72rem; /* 1152px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem; /* 24px */
-  padding-right: 1.5rem;
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 @media (min-width: 768px) {
-  .ot-container {
-    padding-left: 3rem; /* 48px */
-    padding-right: 3rem;
-  }
+    .ot-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
-/* Eyebrow 라벨 공통 */
+/* === Eyebrow 라벨 (Coral 으로 변경, 차분 영역만 Gold 유지) === */
 .eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  color: var(--gold);
-  font-weight: 700;
-  text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--coral-500);
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-/* Animations */
+/* 기존 컴포넌트가 .eyebrow 가 Gold 톤을 기대하던 경우 — Gold 유지 변형 */
+.eyebrow-gold {
+    color: var(--gold-500);
+}
+
+/* === Hero Gradient Background === */
+.hero-gradient-bg {
+    background: var(--gradient-hero);
+    background-size: 200% 200%;
+    animation: gradient-shift 12s ease infinite;
+}
+
+/* === Dot Pattern Overlay === */
+.dot-pattern {
+    background-image: radial-gradient(circle, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* === Animations === */
 @keyframes fade-in-up {
-  from {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+@keyframes pulse-coral {
+    0%, 100% { box-shadow: 0 0 0 0 rgb(249 115 22 / 0.4); }
+    50%      { box-shadow: 0 0 0 12px rgb(249 115 22 / 0); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+@keyframes bounce-down {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50%      { transform: translateY(8px); opacity: 1; }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+.animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+.animate-pulse-coral { animation: pulse-coral 2s infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-bounce-down { animation: bounce-down 1.6s ease-in-out infinite; }
+
+/* === Scroll Reveal Helper (CSS-only fallback) === */
+.reveal-on-scroll {
     opacity: 0;
     transform: translateY(20px);
-  }
-  to {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.reveal-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out forwards;
 }
