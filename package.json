@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && rm -rf .vercel/output/static/lp && cp -r public/lp .vercel/output/static/ 2>/dev/null || true",
     "start": "next start",
     "lint": "eslint"
   },
