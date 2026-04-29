@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowDown, CornerDownLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, ArrowDown } from "lucide-react";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 const steps = [
@@ -34,6 +34,18 @@ const steps = [
     },
 ];
 
+// Boustrophedon (S-shaped) lg layout
+//   Row 1 (좌→우): 01 · 02 · 03
+//   Row 2 (시각: 04 오른 · 05 가운데 · 06 왼 — 흐름은 04→05→06 ←)
+const lgGridPosition = [
+    "lg:col-start-1 lg:row-start-1", // 01
+    "lg:col-start-2 lg:row-start-1", // 02
+    "lg:col-start-3 lg:row-start-1", // 03
+    "lg:col-start-3 lg:row-start-2", // 04 (오른쪽 끝)
+    "lg:col-start-2 lg:row-start-2", // 05 (가운데)
+    "lg:col-start-1 lg:row-start-2", // 06 (왼쪽 끝)
+];
+
 export function HowItWorks() {
     return (
         <section
@@ -59,20 +71,22 @@ export function HowItWorks() {
                 <StaggerContainer
                     stagger={0.1}
                     delayChildren={0.1}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto relative"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-12 max-w-7xl mx-auto relative"
                 >
                     {steps.map((step, i) => {
-                        const isLastInRowLg = (i + 1) % 3 === 0; // lg: 3rd & 6th
-                        const isThirdLg = i === 2; // wrap connector (3 → 4)
                         const isLastOverall = i === steps.length - 1;
+                        // lg arrow logic
+                        const lgArrowRight = i === 0 || i === 1; // 01→02, 02→03
+                        const lgArrowDown = i === 2;             // 03 ↓ 04 (column 3)
+                        const lgArrowLeft = i === 3 || i === 4;  // 04←05, 05←06 visually
 
                         return (
-                            <StaggerItem key={i}>
+                            <StaggerItem key={i} className={lgGridPosition[i]}>
                                 <div className="group relative bg-white border border-[var(--slate-200)] rounded-xl p-7 md:p-8 lg:p-8 h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[var(--coral-400)]">
-                                    {/* connector — 좌측 Coral gradient 라인 (카드 안 시각 강조) */}
+                                    {/* connector — 좌측 Coral gradient 라인 */}
                                     <div className="absolute left-0 top-7 w-1 h-14 bg-gradient-to-b from-[var(--coral-500)] to-transparent rounded-r opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                                    <div className="font-display text-5xl md:text-6xl lg:text-6xl font-semibold text-gradient-coral leading-none mb-4">
+                                    <div className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold text-gradient-coral leading-none mb-4">
                                         {step.num}
                                     </div>
                                     <h3 className="text-lg md:text-xl lg:text-lg text-[var(--navy)] font-bold mb-3 leading-snug">
@@ -82,21 +96,28 @@ export function HowItWorks() {
                                         {step.desc}
                                     </p>
 
-                                    {/* 가로 화살표 connector (lg 데스크탑, 한 줄 안 카드 사이) */}
-                                    {!isLastInRowLg && !isLastOverall && (
-                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-5 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
+                                    {/* lg: Row 1 가로 → (01→02, 02→03) */}
+                                    {lgArrowRight && (
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-7 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
                                             <ArrowRight className="w-6 h-6" strokeWidth={2.5} />
                                         </div>
                                     )}
 
-                                    {/* 줄 끝 → 다음 줄 첫 카드 wrap connector (3번째 카드 우측 하단 ↩) */}
-                                    {isThirdLg && (
-                                        <div className="hidden lg:flex absolute -bottom-7 right-1/2 translate-x-1/2 text-[var(--coral-400)]">
-                                            <CornerDownLeft className="w-6 h-6 rotate-90" strokeWidth={2.5} />
+                                    {/* lg: Row 1 → Row 2 세로 ↓ (03 ↓ 04, 같은 컬럼) */}
+                                    {lgArrowDown && (
+                                        <div className="hidden lg:flex absolute -bottom-7 left-1/2 -translate-x-1/2 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
+                                            <ArrowDown className="w-6 h-6" strokeWidth={2.5} />
                                         </div>
                                     )}
 
-                                    {/* 모바일·md: 세로 화살표 (마지막 제외) */}
+                                    {/* lg: Row 2 가로 ← (04←05, 05←06 시각적으로 좌측 흐름) */}
+                                    {lgArrowLeft && (
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -left-7 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
+                                            <ArrowLeft className="w-6 h-6" strokeWidth={2.5} />
+                                        </div>
+                                    )}
+
+                                    {/* 모바일·md: 세로 ↓ (마지막 06 제외, 자연 순서 01→06) */}
                                     {!isLastOverall && (
                                         <div className="lg:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 text-[var(--coral-400)]">
                                             <ArrowDown className="w-5 h-5" strokeWidth={2.5} />
