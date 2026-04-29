@@ -52,7 +52,7 @@ export default async function OperationSlugPage({ params }: PageProps) {
     if (isSampleSlug(slug)) {
         const config = getIndustryConfig(slug);
         if (!config) notFound();
-        return <LandingTemplate slug={slug} mode="operation" />;
+        return <LandingTemplate slug={slug} />;
     }
 
     // 광고주별 슬러그 (select{N}{n})
@@ -68,7 +68,6 @@ export default async function OperationSlugPage({ params }: PageProps) {
     return (
         <LandingTemplate
             slug={sampleSlug}
-            mode="operation"
             brand={{
                 companyName: advertiser.companyName,
                 businessNumber: advertiser.businessNumber,

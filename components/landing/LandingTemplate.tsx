@@ -11,11 +11,10 @@ import { getIndustryConfig, type AnswerMap, type BrandInfo, type ResultBranch } 
 
 interface LandingTemplateProps {
     slug: string;
-    mode: "showcase" | "operation";
     brand?: BrandInfo;
 }
 
-export function LandingTemplate({ slug, mode, brand }: LandingTemplateProps) {
+export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
     const config = getIndustryConfig(slug);
     const [answers, setAnswers] = useState<AnswerMap | null>(null);
 
@@ -59,7 +58,6 @@ export function LandingTemplate({ slug, mode, brand }: LandingTemplateProps) {
                 <>
                     <ResultBranching branch={resultBranch} />
                     <ContactForm
-                        mode={mode}
                         additionalFields={config.contact.additionalFields}
                         sheetId={config.contact.sheetId}
                         industryId={config.industryId}
@@ -75,7 +73,7 @@ export function LandingTemplate({ slug, mode, brand }: LandingTemplateProps) {
                 allowed={config.guardrail.allowed}
                 warning={config.guardrail.warning}
             />
-            <BrandFooter brand={effectiveBrand} mode={mode} />
+            <BrandFooter brand={effectiveBrand} />
         </main>
     );
 }

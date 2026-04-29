@@ -217,7 +217,7 @@ export const debtReliefConfig: IndustryConfig = {
         warning: "위반 시 변호사법 §117: 1억원 이하 과태료 / 협회 징계 / 반복·중대 시 형사 송치",
     },
     defaultBrand: {
-        companyName: "OT MARKETING (시안)",
+        companyName: "OT MARKETING",
         businessNumber: "141-39-01329",
         contactPerson: "장은태",
         phone: "070-4367-4013",

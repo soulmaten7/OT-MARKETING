@@ -142,7 +142,7 @@ export const medicalConfig: IndustryConfig = {
         warning: "위반 시 의료법 §56·§89: 1년 이하 징역 또는 1천만원 이하 벌금",
     },
     defaultBrand: {
-        companyName: "OT MARKETING (시안)",
+        companyName: "OT MARKETING",
         businessNumber: "141-39-01329",
         contactPerson: "장은태",
         phone: "070-4367-4013",

@@ -2,10 +2,9 @@ import type { BrandInfo } from "@/lib/industries";
 
 interface BrandFooterProps {
     brand: BrandInfo;
-    mode: "showcase" | "operation";
 }
 
-export function BrandFooter({ brand, mode }: BrandFooterProps) {
+export function BrandFooter({ brand }: BrandFooterProps) {
     return (
         <footer className="bg-[var(--navy)] text-white/70 py-10">
             <div className="ot-container max-w-5xl">
@@ -27,9 +26,7 @@ export function BrandFooter({ brand, mode }: BrandFooterProps) {
                             </p>
                         )}
                         <p className="mt-3 text-white/40">
-                            {mode === "showcase"
-                                ? "※ 본 페이지는 시안입니다. 실제 운영 시 광고주 정보로 자동 치환됩니다."
-                                : "※ 본 페이지의 모든 표현은 업종 법규에 따라 검증되었습니다."}
+                            ※ 본 페이지의 모든 표현은 업종 법규에 따라 검증되었습니다.
                         </p>
                     </div>
                 </div>

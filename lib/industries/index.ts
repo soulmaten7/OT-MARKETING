@@ -1,6 +1,6 @@
 /**
  * 6 업종 config 라우터 + 타입 정의
- * STEP_25 — 시안·운영 랜딩 페이지 props 기반 시스템 (미래 SaaS 호환)
+ * STEP_25 — 업종별 랜딩 페이지 props 기반 시스템 (미래 SaaS 호환)
  */
 
 import { debtReliefConfig } from "./debt-relief";

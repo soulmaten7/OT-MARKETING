@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { AnswerMap } from "@/lib/industries";
 
 interface ContactFormProps {
-    mode: "showcase" | "operation";
     additionalFields: { key: string; label: string; required: boolean }[];
     sheetId: string | null;
     industryId: string;
@@ -13,7 +12,6 @@ interface ContactFormProps {
 }
 
 export function ContactForm({
-    mode,
     additionalFields,
     sheetId,
     industryId,
@@ -43,22 +41,6 @@ export function ContactForm({
             return;
         }
 
-        if (mode === "showcase") {
-            // 시안 모드 — 폼 제출 더미 (학습용)
-            console.log("[showcase mode] form data captured (no sheet write)", {
-                industryId,
-                grade,
-                answers,
-                personal,
-                memo,
-            });
-            await new Promise((r) => setTimeout(r, 600));
-            setSubmitted(true);
-            setSubmitting(false);
-            return;
-        }
-
-        // 운영 모드 — Apps Script 또는 API 라우트
         try {
             const res = await fetch("/api/landing-submit", {
                 method: "POST",
@@ -96,9 +78,7 @@ export function ContactForm({
                             상담 신청이 접수되었습니다
                         </h2>
                         <p className="text-base text-gray-600 leading-relaxed">
-                            {mode === "showcase"
-                                ? "(시안 모드 — 실제 데이터는 저장되지 않았습니다)"
-                                : "전담 컨설턴트가 영업일 기준 24시간 이내 연락드립니다."}
+                            전담 컨설턴트가 영업일 기준 24시간 이내 연락드립니다.
                         </p>
                     </div>
                 </div>
@@ -184,11 +164,7 @@ export function ContactForm({
                         {submitting ? "접수 중..." : "상담 신청하기"}
                     </button>
 
-                    {mode === "showcase" && (
-                        <p className="text-xs text-gray-500 text-center">
-                            ⓘ 시안 모드 — 시연용 페이지입니다. 실제 데이터는 저장되지 않습니다.
-                        </p>
-                    )}
+
                 </form>
             </div>
         </section>

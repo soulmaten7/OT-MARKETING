@@ -55,7 +55,7 @@ export function Industries() {
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                         업종 특성·법적 규제·고객 심리에 맞춰
                         <br className="hidden md:block" />
-                        시안·스크립트·고지 문구·금지 표현까지 업종별로 시트화·자동 검증됩니다.
+                        랜딩·스크립트·고지 문구·금지 표현까지 업종별로 시트화·자동 검증됩니다.
                     </p>
                 </div>
 

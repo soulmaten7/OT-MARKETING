@@ -52,7 +52,6 @@ export function Navbar() {
                             { label: "법규 가드레일", href: "/#guardrail" },
                             { label: "CPA 모델", href: "/#cpa-model" },
                             { label: "업종", href: "/#industries" },
-                            { label: "시안", href: "/showcase" },
                         ].map((item) => (
                             <Link
                                 key={item.label}
@@ -96,7 +95,6 @@ export function Navbar() {
                             { label: "법규 가드레일", href: "/#guardrail" },
                             { label: "CPA 모델", href: "/#cpa-model" },
                             { label: "업종", href: "/#industries" },
-                            { label: "시안", href: "/showcase" },
                         ].map((item) => (
                             <Link
                                 key={item.label}

@@ -153,7 +153,7 @@ export const realestateConfig: IndustryConfig = {
         warning: "위반 시 공인중개사법: 자격 취소 / 1년 이하 징역",
     },
     defaultBrand: {
-        companyName: "OT MARKETING (시안)",
+        companyName: "OT MARKETING",
         businessNumber: "141-39-01329",
         contactPerson: "장은태",
         phone: "070-4367-4013",

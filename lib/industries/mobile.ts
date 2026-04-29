@@ -152,7 +152,7 @@ export const mobileConfig: IndustryConfig = {
         warning: "위반 시 전기통신사업법: 시정명령 + 과태료 (반복 시 영업정지)",
     },
     defaultBrand: {
-        companyName: "OT MARKETING (시안)",
+        companyName: "OT MARKETING",
         businessNumber: "141-39-01329",
         contactPerson: "장은태",
         phone: "070-4367-4013",

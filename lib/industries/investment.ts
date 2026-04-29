@@ -140,7 +140,7 @@ export const investmentConfig: IndustryConfig = {
         warning: "위반 시 자본시장법·유사수신: 무인가 영업 5년 이하 / 유사수신 5년 이하 징역",
     },
     defaultBrand: {
-        companyName: "OT MARKETING (시안)",
+        companyName: "OT MARKETING",
         businessNumber: "141-39-01329",
         contactPerson: "장은태",
         phone: "070-4367-4013",
