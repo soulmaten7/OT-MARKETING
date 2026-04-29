@@ -32,7 +32,7 @@ export function Footer() {
                     {/* Services */}
                     <div>
                         <h4 className="text-[var(--coral-500)] text-xs tracking-widest font-bold mb-4">SERVICES</h4>
-                        <ul className="space-y-3 text-sm text-white/70">
+                        <ul className="text-sm text-white/70 grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3">
                             <li><Link href="/#what-we-bring" className="hover:text-[var(--coral-400)] transition-colors">서비스 차별점</Link></li>
                             <li><Link href="/#how-it-works" className="hover:text-[var(--coral-400)] transition-colors">6단계 프로세스</Link></li>
                             <li><Link href="/#guardrail" className="hover:text-[var(--coral-400)] transition-colors">법규 가드레일</Link></li>

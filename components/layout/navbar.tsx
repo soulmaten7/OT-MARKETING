@@ -77,8 +77,8 @@ export function Navbar() {
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
                     navOnLight
-                        ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-3"
-                        : "bg-transparent py-5"
+                        ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-1.5"
+                        : "bg-transparent py-2.5"
                 )}
             >
                 <div className="ot-container flex items-center justify-between">
@@ -90,7 +90,7 @@ export function Navbar() {
                             width={200}
                             height={48}
                             priority
-                            className="h-8 sm:h-9 lg:h-10 w-auto transition-all duration-200"
+                            className="h-14 sm:h-16 lg:h-20 w-auto transition-all duration-200"
                         />
                     </Link>
 
