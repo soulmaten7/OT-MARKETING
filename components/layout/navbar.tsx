@@ -77,25 +77,29 @@ export function Navbar() {
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
                     navOnLight
-                        ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-1.5"
+                        ? "bg-white/95 backdrop-blur-sm border-b border-gray-200 py-2"
                         : "bg-transparent py-2.5"
                 )}
             >
-                <div className="ot-container flex items-center justify-between">
-                    {/* Logo — dark/white 조건부 src (래퍼 없음) */}
-                    <Link href="/" aria-label="OT MARKETING" className="flex items-center">
+                <div className="ot-container flex items-center justify-between lg:grid lg:grid-cols-3">
+                    {/* Logo — lg: 좌측 (grid-col 1) / md·mobile: flex start */}
+                    <Link
+                        href="/"
+                        aria-label="OT MARKETING"
+                        className="flex items-center lg:justify-self-start"
+                    >
                         <Image
                             src={navOnLight ? "/logo-ot-marketing-dark.png" : "/logo-ot-marketing-white.png"}
                             alt="OT MARKETING — CPA 마케팅 인프라"
                             width={200}
                             height={48}
                             priority
-                            className="h-14 sm:h-16 lg:h-20 w-auto transition-all duration-200"
+                            className="h-12 sm:h-14 lg:h-16 w-auto transition-all duration-200"
                         />
                     </Link>
 
-                    {/* Desktop Nav — center */}
-                    <nav className="hidden md:flex items-center gap-1">
+                    {/* Desktop Nav — lg: 정중앙 (grid-col 2) / md: flex 자연 */}
+                    <nav className="hidden md:flex items-center gap-1 lg:justify-self-center">
                         {navStructure.map((group) => (
                             <div
                                 key={group.label}
@@ -122,8 +126,8 @@ export function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Right — empty placeholder */}
-                    <div className="hidden md:block w-[120px]">
+                    {/* Right — empty placeholder (lg: grid-col 3, 미래 로그인 자리) */}
+                    <div className="hidden md:block w-[120px] lg:justify-self-end">
                         {/* TODO: Phase 2 SaaS 출시 시 로그인·회원가입 버튼 위치 */}
                     </div>
 
