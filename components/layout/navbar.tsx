@@ -82,22 +82,15 @@ export function Navbar() {
                 )}
             >
                 <div className="ot-container flex items-center justify-between">
-                    {/* Logo */}
-                    <Link
-                        href="/"
-                        aria-label="OT MARKETING"
-                        className={cn(
-                            "flex items-center transition-all duration-200",
-                            !navOnLight && "bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1"
-                        )}
-                    >
+                    {/* Logo — dark/white 조건부 src (래퍼 없음) */}
+                    <Link href="/" aria-label="OT MARKETING" className="flex items-center">
                         <Image
-                            src="/logo-ot-marketing.png"
+                            src={navOnLight ? "/logo-ot-marketing-dark.png" : "/logo-ot-marketing-white.png"}
                             alt="OT MARKETING — CPA 마케팅 인프라"
                             width={200}
                             height={48}
                             priority
-                            className="h-8 sm:h-9 lg:h-10 w-auto"
+                            className="h-8 sm:h-9 lg:h-10 w-auto transition-all duration-200"
                         />
                     </Link>
 
