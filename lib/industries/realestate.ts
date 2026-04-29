@@ -16,7 +16,7 @@ export const realestateConfig: IndustryConfig = {
     industryName: "부동산·분양",
     hero: {
         eyebrow: "FREE PROPERTY CHECK",
-        title: "1분 무료",
+        title: "1분 자가진단 · 부동산 매물 추천",
         titleHighlight: "분양 진단",
         subtitle: "청약 자격·예산별 분양 정보 안내",
         ctaText: "지금 진단 시작",

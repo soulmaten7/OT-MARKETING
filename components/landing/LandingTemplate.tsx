@@ -25,24 +25,28 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
         );
     }
 
-    const effectiveBrand = brand ?? config.defaultBrand;
-
     let resultBranch: ResultBranch | null = null;
     if (answers) {
         const grade = config.result.logic(answers);
         resultBranch = config.result.branches.find((b) => b.grade === grade) ?? config.result.branches[0];
     }
 
+    // R&D 단계: brand prop 미전달 → BrandFooter 의 회사 정보 영역 자동 비표시
+    // 광고주 매칭 시: brand 의 BrandInfo 를 advertiser 형태로 변환 전달
+    const advertiserInfo = brand
+        ? {
+              advertiserName: brand.companyName,
+              lawyerName: brand.contactPerson,
+              phone: brand.phone,
+              businessNumber: brand.businessNumber,
+          }
+        : undefined;
+
     return (
-        <main className="min-h-screen flex flex-col">
+        <main className="min-h-screen flex flex-col bg-[var(--navy)]">
             {!answers && (
                 <>
-                    <Hero
-                        eyebrow={config.hero.eyebrow}
-                        title={config.hero.title}
-                        titleHighlight={config.hero.titleHighlight}
-                        subtitle={config.hero.subtitle}
-                    />
+                    <Hero title={config.hero.title} />
                     <Diagnosis
                         questions={config.diagnosis.questions}
                         progressSteps={config.diagnosis.progressSteps}
@@ -65,7 +69,7 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
                 </>
             )}
 
-            <BrandFooter brand={effectiveBrand} lawNote={config.guardrail.law} />
+            <BrandFooter lawNote={config.guardrail.law} advertiser={advertiserInfo} />
         </main>
     );
 }

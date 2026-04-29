@@ -15,7 +15,7 @@ export const mobileConfig: IndustryConfig = {
     industryName: "인터넷·통신·휴대폰",
     hero: {
         eyebrow: "FREE PLAN CHECK",
-        title: "1분 무료",
+        title: "1분 자가진단 · 통신비 절감",
         titleHighlight: "요금제 진단",
         subtitle: "결합·MNP 조건별 최적 요금제 안내",
         ctaText: "지금 진단 시작",

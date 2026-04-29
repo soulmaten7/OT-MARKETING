@@ -16,7 +16,7 @@ export const rentalConfig: IndustryConfig = {
     industryName: "정수기·렌탈",
     hero: {
         eyebrow: "FREE QUOTE CHECK",
-        title: "1분 무료",
+        title: "1분 자가진단 · 정수기 추천",
         titleHighlight: "견적 진단",
         subtitle: "가족 사용 패턴 맞춤 견적",
         ctaText: "지금 견적 받기",

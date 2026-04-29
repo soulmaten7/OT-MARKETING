@@ -16,7 +16,7 @@ export const medicalConfig: IndustryConfig = {
     industryName: "병의원",
     hero: {
         eyebrow: "FREE PRE-CONSULT CHECK",
-        title: "1분 무료",
+        title: "1분 자가진단 · 진료 추천",
         titleHighlight: "사전 상담 진단",
         subtitle: "진료 의향·일정별 사전 상담 안내",
         ctaText: "지금 진단 시작",

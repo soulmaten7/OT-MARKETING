@@ -16,7 +16,7 @@ export const investmentConfig: IndustryConfig = {
     industryName: "주식·투자",
     hero: {
         eyebrow: "FREE INVESTMENT CHECK",
-        title: "1분 무료",
+        title: "1분 자가진단 · 투자 성향 분석",
         titleHighlight: "투자 성향 진단",
         subtitle: "투자 성향별 정보 자료 안내",
         ctaText: "지금 진단 시작",

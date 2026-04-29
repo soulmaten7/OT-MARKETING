@@ -37,7 +37,7 @@ export const debtReliefConfig: IndustryConfig = {
     industryName: "개인회생·법률",
     hero: {
         eyebrow: "FREE SELF-CHECK",
-        title: "1분 무료",
+        title: "1분 무료 자가진단 · 9문항",
         titleHighlight: "자가진단",
         subtitle: "전담 변호사 1:1 검토",
         ctaText: "지금 진단 시작",

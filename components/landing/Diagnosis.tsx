@@ -51,9 +51,9 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
     }
 
     return (
-        <section className="py-12 md:py-20 bg-[var(--navy)]">
+        <section className="pt-2 pb-10 md:pt-3 md:pb-16 bg-[var(--navy)]">
             <div className="ot-container max-w-2xl">
-                <div className="flex gap-2 mb-4">
+                <div className="flex gap-2 mb-3">
                     {Array.from({ length: progressSteps }, (_, i) => i + 1).map((s) => (
                         <div
                             key={s}
@@ -63,51 +63,35 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                         />
                     ))}
                 </div>
-                <div className="text-center text-xs text-white/60 mb-6">{stepLabels[step - 1]}</div>
+                <div className="text-center text-xs text-white/60 mb-4">{stepLabels[step - 1]}</div>
 
-                <div className="bg-white p-6 md:p-10 rounded-md text-gray-900 space-y-6">
+                <div className="space-y-6">
                     {stepQuestions.map((q) => (
                         <div key={q.id}>
-                            <label className="block text-sm font-bold mb-2 text-[var(--navy)]">
+                            <label className="block text-sm font-bold mb-3 text-white">
                                 {q.label}
-                                {q.required && <span className="text-red-600 ml-1">*</span>}
+                                {q.required && <span className="text-[var(--gold)] ml-1">*</span>}
                             </label>
-                            {q.type === "select" && (
-                                <select
-                                    value={(answers[q.id] as string) || ""}
-                                    onChange={(e) => setAnswer(q.id, e.target.value)}
-                                    required={q.required}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded text-base bg-white"
-                                >
-                                    <option value="" disabled>
-                                        선택해 주세요
-                                    </option>
-                                    {q.options.map((o) => (
-                                        <option key={o.value} value={o.value}>
-                                            {o.label}
-                                        </option>
-                                    ))}
-                                </select>
-                            )}
-                            {q.type === "radio" && (
-                                <div className="space-y-2">
-                                    {q.options.map((o) => (
-                                        <label
-                                            key={o.value}
-                                            className="flex items-center gap-2 cursor-pointer p-2 border border-gray-200 rounded hover:border-[var(--gold)]"
-                                        >
-                                            <input
-                                                type="radio"
-                                                name={q.id}
-                                                value={o.value}
-                                                checked={(answers[q.id] as string) === o.value}
-                                                onChange={() => setAnswer(q.id, o.value)}
-                                                required={q.required}
-                                                className="w-4 h-4"
-                                            />
-                                            <span>{o.label}</span>
-                                        </label>
-                                    ))}
+                            {(q.type === "select" || q.type === "radio") && (
+                                <div className="grid gap-2">
+                                    {q.options.map((o) => {
+                                        const selected = (answers[q.id] as string) === o.value;
+                                        return (
+                                            <button
+                                                key={o.value}
+                                                type="button"
+                                                onClick={() => setAnswer(q.id, o.value)}
+                                                aria-pressed={selected}
+                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${
+                                                    selected
+                                                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-white"
+                                                        : "border-white/15 bg-white/5 hover:border-white/40 text-white/90"
+                                                }`}
+                                            >
+                                                <span className="text-base font-medium">{o.label}</span>
+                                            </button>
+                                        );
+                                    })}
                                 </div>
                             )}
                             {q.type === "multi" && (
@@ -116,22 +100,22 @@ export function Diagnosis({ questions, progressSteps, stepLabels, onComplete }: 
                                         const cur = (answers[q.id] as string[]) || [];
                                         const checked = cur.includes(o.value);
                                         return (
-                                            <label
+                                            <button
                                                 key={o.value}
-                                                className={`flex items-center gap-2 cursor-pointer p-2 border rounded ${
+                                                type="button"
+                                                onClick={() => toggleMulti(q.id, o.value)}
+                                                aria-pressed={checked}
+                                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${
                                                     checked
-                                                        ? "border-[var(--gold)] bg-[var(--gold)]/10"
-                                                        : "border-gray-200 hover:border-[var(--gold)]"
+                                                        ? "border-[var(--gold)] bg-[var(--gold)]/15 text-white"
+                                                        : "border-white/15 bg-white/5 hover:border-white/40 text-white/90"
                                                 }`}
                                             >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={checked}
-                                                    onChange={() => toggleMulti(q.id, o.value)}
-                                                    className="w-4 h-4"
-                                                />
-                                                <span className="text-sm">{o.label}</span>
-                                            </label>
+                                                <span className="text-sm font-medium">
+                                                    {checked ? "✓ " : ""}
+                                                    {o.label}
+                                                </span>
+                                            </button>
                                         );
                                     })}
                                 </div>

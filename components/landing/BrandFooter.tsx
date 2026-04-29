@@ -1,38 +1,38 @@
-import type { BrandInfo } from "@/lib/industries";
-
-interface BrandFooterProps {
-    brand: BrandInfo;
-    lawNote?: string;
+interface AdvertiserInfo {
+    advertiserName?: string;
+    lawyerName?: string;
+    address?: string;
+    phone?: string;
+    businessNumber?: string;
 }
 
-export function BrandFooter({ brand, lawNote }: BrandFooterProps) {
+interface BrandFooterProps {
+    lawNote?: string;
+    advertiser?: AdvertiserInfo;
+}
+
+export function BrandFooter({ lawNote, advertiser }: BrandFooterProps) {
     return (
-        <footer className="bg-[var(--navy)] text-white/70 py-10">
-            <div className="ot-container max-w-5xl">
-                <div className="grid md:grid-cols-2 gap-6 text-xs">
-                    <div>
-                        <div className="font-serif text-lg text-white mb-2">{brand.companyName}</div>
-                        {brand.businessNumber && (
-                            <p className="leading-relaxed">사업자등록번호 · {brand.businessNumber}</p>
+        <footer className="bg-[var(--navy)] text-white/70 pt-8 pb-6">
+            <div className="ot-container max-w-5xl text-center">
+                {lawNote && (
+                    <p className="text-xs text-white/50 leading-relaxed">
+                        ※ 본 광고는 {lawNote} 에 따라 검증되었습니다.
+                    </p>
+                )}
+                {advertiser?.advertiserName && (
+                    <div className="mt-4 text-xs text-white/60 leading-relaxed">
+                        <p className="font-bold">{advertiser.advertiserName}</p>
+                        {advertiser.lawyerName && (
+                            <p>광고책임 변호사 · {advertiser.lawyerName}</p>
                         )}
-                        {brand.contactPerson && (
-                            <p className="leading-relaxed">담당 · {brand.contactPerson}</p>
-                        )}
-                        {brand.phone && <p className="leading-relaxed">Tel · {brand.phone}</p>}
-                    </div>
-                    <div>
-                        {brand.mandatoryNote && (
-                            <p className="leading-relaxed text-white/60">
-                                ⚖ {brand.mandatoryNote}
-                            </p>
-                        )}
-                        {lawNote && (
-                            <p className="mt-3 text-[11px] text-white/55 leading-relaxed">
-                                ※ 본 광고는 {lawNote} 에 따라 검증되었습니다.
-                            </p>
+                        {advertiser.address && <p>{advertiser.address}</p>}
+                        {advertiser.phone && <p>{advertiser.phone}</p>}
+                        {advertiser.businessNumber && (
+                            <p>사업자등록번호 · {advertiser.businessNumber}</p>
                         )}
                     </div>
-                </div>
+                )}
             </div>
         </footer>
     );
