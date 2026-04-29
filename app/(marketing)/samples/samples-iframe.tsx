@@ -7,10 +7,13 @@ export function SamplesIframe() {
     const [height, setHeight] = useState(2400);
 
     useEffect(() => {
+        let lastIncoming = 0;
         const handler = (e: MessageEvent) => {
             const data = e.data;
             if (!data || data.type !== "samples-resize") return;
             const incoming = typeof data.height === "number" ? data.height : 0;
+            if (Math.abs(incoming - lastIncoming) < 5) return;
+            lastIncoming = incoming;
             setHeight(Math.max(2400, incoming));
         };
         window.addEventListener("message", handler);

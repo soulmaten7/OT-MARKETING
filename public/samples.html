@@ -5,40 +5,60 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>OT Marketing · CPA 랜딩페이지 디자인 템플릿 10종</title>
 <style>
-:root { color-scheme: light; }
+:root { color-scheme: light; --coral-50:#FFF7ED; --coral-400:#FB923C; --coral-500:#F97316; --coral-600:#EA580C; --coral-700:#C2410C; --navy:#0F1E3D; --slate-200:#E5E7EB; --slate-300:#D1D5DB; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif; background: #f3f4f6; }
 img { max-width: 100%; }
 
 /* ===== Tab bar ===== */
 html, body { overflow-x: hidden; max-width: 100vw; }
-.tabnav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 100; box-sizing: border-box; }
+.tabnav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid var(--slate-200); z-index: 100; box-sizing: border-box; }
 .tabnav-inner { max-width: 1152px; margin: 0 auto; padding: 0 24px; display: flex; gap: 0; align-items: stretch; }
 @media (min-width: 768px) { .tabnav-inner { padding: 0 48px; } }
 
+/* Tab scroll wrapper — contains < arrow + scroll area + > arrow */
+.tab-scroll-wrap { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; }
+
 /* Tab scroll area */
-.tab-scroll { display: flex; gap: 8px; align-items: center; padding: 12px 0; overflow-x: auto; flex: 1; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.tab-scroll { display: flex; gap: 8px; align-items: center; padding: 14px 40px; overflow-x: auto; flex: 1; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
 .tab-scroll::-webkit-scrollbar { display: none; }
 
-.tab-btn { padding: 7px 14px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
+.tab-btn { padding: 7px 14px; border: 1px solid var(--slate-200); background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
 .tab-btn:hover { background: #f9fafb; }
-.tab-btn.active { background: #0F1E3D; color: #fff; border-color: #0F1E3D; }
+.tab-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
 .tab-btn.tab-locked { opacity: 0.45; cursor: default; }
 .tab-btn.tab-locked:hover { background: #fff; }
 
-/* Viewport control */
-.vc-sep { width: 1px; background: #e5e7eb; margin: 10px 12px; flex-shrink: 0; }
-.vc-group { display: flex; gap: 4px; align-items: center; padding: 12px 0; flex-shrink: 0; }
-.vc-btn { padding: 6px 12px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 11.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; }
-.vc-btn:hover { background: #f9fafb; }
-.vc-btn.vc-active { background: #0F1E3D; color: #fff; border-color: #0F1E3D; }
+/* Tab scroll arrows (양 끝 << / >>) */
+.tab-scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; width: 32px; height: 32px; border-radius: 9999px; background: #fff; border: 1px solid var(--slate-200); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; color: var(--navy); box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: opacity 200ms, background 150ms, transform 150ms; padding: 0; font-family: inherit; }
+.tab-scroll-btn:hover { background: #f9fafb; }
+.tab-scroll-left { left: 0; }
+.tab-scroll-right { right: 0; }
+.tab-scroll-btn[disabled] { opacity: 0; pointer-events: none; }
+
+/* Fade gradients (탭 잘림 시각 신호) */
+.tab-fade { position: absolute; top: 0; bottom: 0; width: 32px; z-index: 4; pointer-events: none; transition: opacity 200ms; }
+.tab-fade-left { left: 32px; background: linear-gradient(90deg, #fff, rgba(255,255,255,0)); }
+.tab-fade-right { right: 32px; background: linear-gradient(-90deg, #fff, rgba(255,255,255,0)); }
+.tab-fade.is-hidden { opacity: 0; }
+
+/* Tab scroll progress bar — Coral, full width at bottom of tabnav */
+.tab-scroll-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--slate-200); }
+.tab-scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--coral-500), var(--coral-400)); transition: width 80ms linear; }
+
+/* PC/Mobile Segmented Coral toggle (V1~V10 Navy 와 명확 구분) */
+.vt-toggle { position: relative; display: inline-flex; align-items: center; background: var(--coral-50); border: 1px solid var(--coral-500); border-radius: 9999px; padding: 4px; gap: 0; flex-shrink: 0; align-self: center; margin-left: 12px; }
+.vt-btn { position: relative; z-index: 1; padding: 7px 14px; border: 0; background: transparent; color: var(--coral-700); font-weight: 700; font-size: 11.5px; cursor: pointer; border-radius: 9999px; transition: color 200ms; font-family: inherit; white-space: nowrap; }
+.vt-btn.vt-active { color: #fff; }
+.vt-slider { position: absolute; top: 4px; left: 4px; width: calc(50% - 4px); height: calc(100% - 8px); background: var(--coral-500); border-radius: 9999px; transition: transform 250ms ease; pointer-events: none; box-shadow: 0 1px 3px rgba(249,115,22,0.4); }
+.vt-toggle[data-active="mobile"] .vt-slider { transform: translateX(100%); }
 
 /* Variants */
 .variant { display: none; }
 .variant.active { display: block; }
 
-/* Mobile phone frame */
-.variant-frame-wrap { transition: max-width .3s, margin .3s; }
+/* Mobile phone frame — transition 제거 (진동 방지) */
+.variant-frame-wrap { /* no transition: 즉시 적용 → 1회 reflow */ }
 .variant.mobile-view .variant-frame-wrap { max-width: 390px; margin: 24px auto; border: 8px solid #1f2937; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
 
 /* iframe */
@@ -48,41 +68,48 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 /* Placeholder (V7~V10) */
 .placeholder-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 480px; padding: 60px 24px; background: #f8f9fa; text-align: center; gap: 16px; }
 .placeholder-lock { font-size: 48px; margin-bottom: 8px; }
-.placeholder-title { font-size: 22px; font-weight: 800; color: #0F1E3D; }
+.placeholder-title { font-size: 22px; font-weight: 800; color: var(--navy); }
 .placeholder-desc { font-size: 15px; color: #6b7280; line-height: 1.7; max-width: 420px; }
 .placeholder-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
 .chip { padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
-.placeholder-cta { margin-top: 16px; display: inline-block; background: #0F1E3D; color: #fff; padding: 13px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; }
+.placeholder-cta { margin-top: 16px; display: inline-block; background: var(--navy); color: #fff; padding: 13px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; }
 
 /* Variant meta bar */
-.variant-meta { background: #f8fafc; border-bottom: 1px solid #e5e7eb; padding: 12px 24px; }
+.variant-meta { background: #f8fafc; border-bottom: 1px solid var(--slate-200); padding: 12px 24px; }
 .variant-meta-inner { max-width: 1040px; margin: 0 auto; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
 .meta-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #4b5563; font-weight: 600; }
-.meta-tag span { color: #0F1E3D; }
+.meta-tag span { color: var(--navy); }
 </style>
 </head>
 <body>
 
 <nav class="tabnav">
   <div class="tabnav-inner">
-    <div class="tab-scroll">
-      <button class="tab-btn active" data-tab="V1">V1 신뢰·법률</button>
-      <button class="tab-btn" data-tab="V2">V2 액션·전환</button>
-      <button class="tab-btn" data-tab="V3">V3 케어·친근</button>
-      <button class="tab-btn" data-tab="V4">V4 미니멀·에디토리얼</button>
-      <button class="tab-btn" data-tab="V5">V5 다크·테크</button>
-      <button class="tab-btn" data-tab="V6">V6 비비드·MZ</button>
-      <button class="tab-btn" data-tab="V7">V7 프리미엄·고급</button>
-      <button class="tab-btn" data-tab="V8">V8 데이터·분석</button>
-      <button class="tab-btn" data-tab="V9">V9 청량·자연</button>
-      <button class="tab-btn" data-tab="V10">V10 컬러풀·MZ</button>
+    <div class="tab-scroll-wrap">
+      <button class="tab-scroll-btn tab-scroll-left" aria-label="이전 탭" type="button">‹</button>
+      <span class="tab-fade tab-fade-left" aria-hidden="true"></span>
+      <div class="tab-scroll" id="tabScroll">
+        <button class="tab-btn active" data-tab="V1">V1 신뢰·법률</button>
+        <button class="tab-btn" data-tab="V2">V2 액션·전환</button>
+        <button class="tab-btn" data-tab="V3">V3 케어·친근</button>
+        <button class="tab-btn" data-tab="V4">V4 미니멀·에디토리얼</button>
+        <button class="tab-btn" data-tab="V5">V5 다크·테크</button>
+        <button class="tab-btn" data-tab="V6">V6 비비드·MZ</button>
+        <button class="tab-btn" data-tab="V7">V7 프리미엄·고급</button>
+        <button class="tab-btn" data-tab="V8">V8 데이터·분석</button>
+        <button class="tab-btn" data-tab="V9">V9 청량·자연</button>
+        <button class="tab-btn" data-tab="V10">V10 컬러풀·MZ</button>
+      </div>
+      <span class="tab-fade tab-fade-right" aria-hidden="true"></span>
+      <button class="tab-scroll-btn tab-scroll-right" aria-label="다음 탭" type="button">›</button>
     </div>
-    <div class="vc-sep"></div>
-    <div class="vc-group">
-      <button class="vc-btn vc-active" data-mode="desktop">💻 PC</button>
-      <button class="vc-btn" data-mode="mobile">📱 모바일</button>
+    <div class="vt-toggle" data-active="desktop" role="group" aria-label="미리보기 모드">
+      <button class="vt-btn vt-active" data-mode="desktop" type="button">💻 PC</button>
+      <button class="vt-btn" data-mode="mobile" type="button">📱 모바일</button>
+      <span class="vt-slider" aria-hidden="true"></span>
     </div>
   </div>
+  <div class="tab-scroll-progress" aria-hidden="true"><div class="tab-scroll-progress-bar"></div></div>
 </nav>
 
 <!-- ================================================================ -->
@@ -246,65 +273,7 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 </div>
 
 <script>
-var guideTexts = {
-  V1: '<strong>V1 신뢰·법률형</strong> · 개인회생 · 법률 · 세무 같은 전문 서비스용.<br>'+
-      '✅ 추천 업종: 개인회생 / 부동산 분양 / 주식 자산관리<br>'+
-      '⚡ 적합 매체: Google 검색 / Naver / 카카오 모먼트<br>'+
-      '📊 타겟: 30~55세 · 신뢰 우선 · 장기 검토형<br>'+
-      '<strong>포인트</strong>: Navy+Gold · 자가진단 5단계 · 금 배지 선택 애니메이션',
-  V2: '<strong>V2 액션·전환형</strong> · 통신·렌탈 같은 즉시 결정 소비재용.<br>'+
-      '✅ 추천 업종: 통신·휴대폰 / 정수기렌탈 / 보험<br>'+
-      '⚡ 적합 매체: Meta (Facebook·Instagram) / 카카오 모먼트 / 당근<br>'+
-      '📊 타겟: 25~50대 · 즉시 결정 · 혜택 민감<br>'+
-      '<strong>포인트</strong>: Orange+Yellow 네오브루탈 · 진행바 두꺼운 오렌지선 · 4px 그림자 CTA',
-  V3: '<strong>V3 케어·친근형</strong> · 병의원 · 감성 서비스용.<br>'+
-      '✅ 추천 업종: 피부·성형 병의원 / 한의원 / 심리상담<br>'+
-      '⚡ 적합 매체: Instagram / Meta / 당근마켓<br>'+
-      '📊 타겟: 20~45세 여성 · 감성 공감형 · 부드러운 결정<br>'+
-      '<strong>포인트</strong>: Mint+Cream · 도트 진행 표시 ●○○○ · 둥글고 부드러운 카드',
-  V4: '<strong>V4 미니멀·에디토리얼</strong> · 부동산 · 프리미엄 · B2B 컨설팅용.<br>'+
-      '✅ 추천 업종: 아파트 분양 / 상가 투자 / B2B 서비스<br>'+
-      '⚡ 적합 매체: Google 검색 / Naver 블로그 DA / 카카오<br>'+
-      '📊 타겟: 35~60대 · 데이터 중시 · 신중 검토형<br>'+
-      '<strong>포인트</strong>: White+Black 1px 테두리 · Cormorant Garamond 세리프 · 절제된 여백',
-  V5: '<strong>V5 다크·테크형</strong> · 주식리딩 · 핀테크 · IT SaaS용.<br>'+
-      '✅ 추천 업종: 주식·코인 리딩 / 핀테크 / IT SaaS<br>'+
-      '⚡ 적합 매체: Google 검색 / YouTube / Meta<br>'+
-      '📊 타겟: 25~45세 남성 · 데이터 지향 · 수치 신뢰형<br>'+
-      '<strong>포인트</strong>: Charcoal+Cyan · 모노스페이스 강조 · 글로우 진행바',
-  V6: '<strong>V6 비비드·MZ형</strong> · 정수기·통신 SNS 광고용.<br>'+
-      '✅ 추천 업종: 정수기렌탈 / 인터넷·통신 / 앱 서비스<br>'+
-      '⚡ 적합 매체: Meta 릴스 / Instagram / 카카오 모먼트<br>'+
-      '📊 타겟: 20~40대 · SNS 활성 · 즉시 반응형<br>'+
-      '<strong>포인트</strong>: Pink+Yellow 그라데이션 · 이모지 진행 🌱🌿🌳🎯 · 둥근 bubble 카드',
-  V7: '<strong>V7 프리미엄·고급</strong> · 강남 부동산 · 럭셔리 의료 · VIP 서비스용.<br>'+
-      '✅ 추천 업종: 강남 부동산 (분양·매매) / 럭셔리 의료 / 프리미엄 자동차<br>'+
-      '⚡ 적합 매체: Naver / 카카오 모먼트 / 프리미엄 매체<br>'+
-      '📊 타겟: 40~60세 · 자산가 · 라이프스타일 중시<br>'+
-      '<strong>포인트</strong>: Black+Champagne #D4AF37 · Cormorant Garamond · ultra-thin 1px 테두리 · VIP 1:1 상담 강조',
-  V8: '<strong>V8 데이터·분석</strong> · 주식리딩 · 핀테크 · IT SaaS용.<br>'+
-      '✅ 추천 업종: 주식·투자 리딩 / 핀테크 / IT SaaS / 세무·보험<br>'+
-      '⚡ 적합 매체: Google 검색 / Naver / 전문 매체<br>'+
-      '📊 타겟: 30~50세 · 데이터 합리 · 분석 선호<br>'+
-      '<strong>포인트</strong>: Dark Blue #0F172A + Cyan #06B6D4 · IBM Plex Mono · % 진행 표시 · Cyan glow',
-  V9: '<strong>V9 청량·자연</strong> · 정수기·렌탈 · 친환경 가전용.<br>'+
-      '✅ 추천 업종: 정수기·생활 가전 / 캠핑·아웃도어 / 친환경·유기농<br>'+
-      '⚡ 적합 매체: 당근 / Naver / 카카오 모먼트<br>'+
-      '📊 타겟: 30~55세 · 가족 중심 · 청량·건강 가치<br>'+
-      '<strong>포인트</strong>: Sky Blue #0EA5E9 + Green #10B981 · water flow 그라데이션 진행바 · 둥근 카드',
-  V10: '<strong>V10 컬러풀·MZ</strong> · 뷰티·다이어트 · SNS 광고용.<br>'+
-      '✅ 추천 업종: 뷰티·다이어트 / 교육·자기계발 / 앱 서비스<br>'+
-      '⚡ 적합 매체: Meta (인스타·페북) / TikTok / YouTube<br>'+
-      '📊 타겟: 18~35세 · 트렌디 · SNS 친화<br>'+
-      '<strong>포인트</strong>: Pink #EC4899 + Yellow #FACC15 gradient · 이모지 진행 🌱🌿🌳🎯 · pill 모양 rounded-full 카드'
-};
-
 var currentMode = window.innerWidth < 768 ? 'mobile' : 'desktop';
-
-function updateGuide(tab) {
-  var el = document.querySelector('#guide-content');
-  if (el && guideTexts[tab]) el.innerHTML = guideTexts[tab];
-}
 
 function setViewportMode(mode) {
   currentMode = mode;
@@ -313,9 +282,11 @@ function setViewportMode(mode) {
     if (mode === 'mobile') { active.classList.add('mobile-view'); }
     else { active.classList.remove('mobile-view'); }
   }
-  document.querySelectorAll('.vc-btn').forEach(function(b) {
-    b.classList.toggle('vc-active', b.dataset.mode === mode);
+  document.querySelectorAll('.vt-btn').forEach(function(b) {
+    b.classList.toggle('vt-active', b.dataset.mode === mode);
   });
+  var toggle = document.querySelector('.vt-toggle');
+  if (toggle) toggle.dataset.active = mode;
   setTimeout(reportHeight, 100);
 }
 
@@ -343,43 +314,86 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
     if (currentMode === 'mobile') target.classList.add('mobile-view');
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    updateGuide(tab);
     window.scrollTo({ top: 0, behavior: 'instant' });
     setTimeout(reportHeight, 50);
   });
 });
 
-document.querySelectorAll('.vc-btn').forEach(function(btn) {
+document.querySelectorAll('.vt-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     setViewportMode(btn.dataset.mode);
   });
 });
 
-// Relay height messages from inner iframes → update iframe height + report up
+// ===== Tab scroll arrows + progress bar =====
+var tabScroll = document.getElementById('tabScroll');
+var btnLeft = document.querySelector('.tab-scroll-left');
+var btnRight = document.querySelector('.tab-scroll-right');
+var progressBar = document.querySelector('.tab-scroll-progress-bar');
+var fadeLeft = document.querySelector('.tab-fade-left');
+var fadeRight = document.querySelector('.tab-fade-right');
+
+function updateScrollIndicators() {
+  if (!tabScroll) return;
+  var max = tabScroll.scrollWidth - tabScroll.clientWidth;
+  var ratio = max > 0 ? tabScroll.scrollLeft / max : 0;
+  if (progressBar) progressBar.style.width = (ratio * 100) + '%';
+  var atStart = tabScroll.scrollLeft <= 2;
+  var atEnd = max <= 0 || tabScroll.scrollLeft >= max - 2;
+  if (btnLeft) btnLeft.disabled = atStart;
+  if (btnRight) btnRight.disabled = atEnd;
+  if (fadeLeft) fadeLeft.classList.toggle('is-hidden', atStart);
+  if (fadeRight) fadeRight.classList.toggle('is-hidden', atEnd);
+}
+if (btnLeft) btnLeft.addEventListener('click', function() { tabScroll.scrollBy({ left: -240, behavior: 'smooth' }); });
+if (btnRight) btnRight.addEventListener('click', function() { tabScroll.scrollBy({ left: 240, behavior: 'smooth' }); });
+if (tabScroll) tabScroll.addEventListener('scroll', updateScrollIndicators, { passive: true });
+window.addEventListener('resize', updateScrollIndicators);
+window.addEventListener('load', updateScrollIndicators);
+updateScrollIndicators();
+
+// ===== Height messaging — debounced + per-iframe 5px threshold =====
+var __ifrLastH = new WeakMap();
+var __reportT = null;
+function debouncedReport() {
+  if (__reportT) clearTimeout(__reportT);
+  __reportT = setTimeout(reportHeight, 150);
+}
+
 window.addEventListener('message', function(e) {
   if (!e.data || e.data.type !== 'samples-resize') return;
   var h = typeof e.data.height === 'number' ? e.data.height : 0;
   if (!h) return;
+  var found = false;
   document.querySelectorAll('.variant-frame').forEach(function(fr) {
+    if (found) return;
     try {
       if (fr.contentWindow === e.source) {
-        fr.style.height = h + 'px';
-        fr.style.minHeight = h + 'px';
+        var prev = __ifrLastH.get(fr) || 0;
+        if (Math.abs(h - prev) >= 5) {
+          __ifrLastH.set(fr, h);
+          fr.style.height = h + 'px';
+          fr.style.minHeight = h + 'px';
+          debouncedReport();
+        }
+        found = true;
       }
     } catch(ex) {}
   });
-  setTimeout(reportHeight, 30);
 });
 
-// Report total page height to outer parent (samples-iframe.tsx)
+// Report total page height to outer parent (samples-iframe.tsx) — also threshold-checked
+var __lastReportedTotal = 0;
 function reportHeight() {
   try {
     var tabnav = document.querySelector('.tabnav');
     var active = document.querySelector('.variant.active');
     if (!active || !tabnav) return;
-    var h = tabnav.getBoundingClientRect().height + active.getBoundingClientRect().height + 10;
+    var h = Math.ceil(tabnav.getBoundingClientRect().height + active.getBoundingClientRect().height + 10);
+    if (Math.abs(h - __lastReportedTotal) < 5) return;
+    __lastReportedTotal = h;
     if (window.parent && window.parent !== window) {
-      window.parent.postMessage({ type: 'samples-resize', height: Math.ceil(h) }, '*');
+      window.parent.postMessage({ type: 'samples-resize', height: h }, '*');
     }
   } catch (e) { /* noop */ }
 }
