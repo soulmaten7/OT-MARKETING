@@ -39,7 +39,7 @@ export const debtReliefConfig: IndustryConfig = {
         eyebrow: "FREE SELF-CHECK",
         title: "1분 무료",
         titleHighlight: "자가진단",
-        subtitle: "9 문항만 답하시면 전담 변호사가 검토 결과를 안내드립니다.",
+        subtitle: "전담 변호사 1:1 검토",
         ctaText: "지금 진단 시작",
     },
     diagnosis: {

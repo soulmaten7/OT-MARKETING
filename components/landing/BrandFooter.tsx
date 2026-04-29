@@ -2,9 +2,10 @@ import type { BrandInfo } from "@/lib/industries";
 
 interface BrandFooterProps {
     brand: BrandInfo;
+    lawNote?: string;
 }
 
-export function BrandFooter({ brand }: BrandFooterProps) {
+export function BrandFooter({ brand, lawNote }: BrandFooterProps) {
     return (
         <footer className="bg-[var(--navy)] text-white/70 py-10">
             <div className="ot-container max-w-5xl">
@@ -25,9 +26,11 @@ export function BrandFooter({ brand }: BrandFooterProps) {
                                 ⚖ {brand.mandatoryNote}
                             </p>
                         )}
-                        <p className="mt-3 text-white/40">
-                            ※ 본 페이지의 모든 표현은 업종 법규에 따라 검증되었습니다.
-                        </p>
+                        {lawNote && (
+                            <p className="mt-3 text-[11px] text-white/55 leading-relaxed">
+                                ※ 본 광고는 {lawNote} 에 따라 검증되었습니다.
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

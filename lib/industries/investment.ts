@@ -18,7 +18,7 @@ export const investmentConfig: IndustryConfig = {
         eyebrow: "FREE INVESTMENT CHECK",
         title: "1분 무료",
         titleHighlight: "투자 성향 진단",
-        subtitle: "5문항 답변 시 투자 성향에 맞춘 정보 자료를 안내드립니다.",
+        subtitle: "투자 성향별 정보 자료 안내",
         ctaText: "지금 진단 시작",
     },
     diagnosis: {

@@ -18,7 +18,7 @@ export const realestateConfig: IndustryConfig = {
         eyebrow: "FREE PROPERTY CHECK",
         title: "1분 무료",
         titleHighlight: "분양 진단",
-        subtitle: "6문항 답변 시 청약 자격·예산 조건에 맞춘 분양 정보를 안내드립니다.",
+        subtitle: "청약 자격·예산별 분양 정보 안내",
         ctaText: "지금 진단 시작",
     },
     diagnosis: {

@@ -17,7 +17,7 @@ export const mobileConfig: IndustryConfig = {
         eyebrow: "FREE PLAN CHECK",
         title: "1분 무료",
         titleHighlight: "요금제 진단",
-        subtitle: "6문항 답변 시 결합·MNP 조건에 맞춘 최적 요금제를 안내드립니다.",
+        subtitle: "결합·MNP 조건별 최적 요금제 안내",
         ctaText: "지금 진단 시작",
     },
     diagnosis: {

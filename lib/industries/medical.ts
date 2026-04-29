@@ -18,7 +18,7 @@ export const medicalConfig: IndustryConfig = {
         eyebrow: "FREE PRE-CONSULT CHECK",
         title: "1분 무료",
         titleHighlight: "사전 상담 진단",
-        subtitle: "5문항 답변 시 진료 의향·일정에 맞춘 사전 상담 안내드립니다.",
+        subtitle: "진료 의향·일정별 사전 상담 안내",
         ctaText: "지금 진단 시작",
     },
     diagnosis: {

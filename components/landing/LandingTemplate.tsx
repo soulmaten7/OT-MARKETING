@@ -5,7 +5,6 @@ import { Hero } from "./Hero";
 import { Diagnosis } from "./Diagnosis";
 import { ResultBranching } from "./ResultBranching";
 import { ContactForm } from "./ContactForm";
-import { GuardrailFooter } from "./GuardrailFooter";
 import { BrandFooter } from "./BrandFooter";
 import { getIndustryConfig, type AnswerMap, type BrandInfo, type ResultBranch } from "@/lib/industries";
 
@@ -43,7 +42,6 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
                         title={config.hero.title}
                         titleHighlight={config.hero.titleHighlight}
                         subtitle={config.hero.subtitle}
-                        industryName={config.industryName}
                     />
                     <Diagnosis
                         questions={config.diagnosis.questions}
@@ -67,13 +65,7 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
                 </>
             )}
 
-            <GuardrailFooter
-                law={config.guardrail.law}
-                forbidden={config.guardrail.forbidden}
-                allowed={config.guardrail.allowed}
-                warning={config.guardrail.warning}
-            />
-            <BrandFooter brand={effectiveBrand} />
+            <BrandFooter brand={effectiveBrand} lawNote={config.guardrail.law} />
         </main>
     );
 }
