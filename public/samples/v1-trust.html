@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V1 신뢰·법률형</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0F1E3D;--gold:#C5A572;--gold-lt:#f9f4ec;--slate:#6b7280}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Malgun Gothic',sans-serif;background:#fff;color:#1f2937;min-height:100vh}
+
+/* HERO */
+.hero{background:var(--navy);color:#fff;padding:44px 24px 36px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:var(--navy);font-size:11.5px;font-weight:800;letter-spacing:.05em;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:26px;font-weight:800;line-height:1.35;margin-bottom:12px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:13.5px;color:rgba(255,255,255,.72);line-height:1.75}
+.trust-row{display:flex;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+.trust-item{font-size:11.5px;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:5px}
+.trust-dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
+
+/* PROGRESS */
+.prog-wrap{padding:22px 24px 0}
+.prog-label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--slate);margin-bottom:8px;font-weight:700}
+.prog-track{height:3px;background:#e5e7eb;border-radius:999px}
+.prog-fill{height:100%;border-radius:999px;background:var(--gold);width:25%;transition:width .4s}
+
+/* QUESTION */
+.q-wrap{padding:24px 24px 0}
+.q-num{font-size:11px;font-weight:800;color:var(--gold);letter-spacing:.12em;margin-bottom:8px}
+.q-text{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:20px;line-height:1.4}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1.5px solid #e5e7eb;background:#fff;border-radius:8px;cursor:pointer;text-align:left;width:100%;font-family:inherit;font-size:14px;font-weight:600;color:#374151;transition:all .15s}
+.opt:hover{border-color:var(--navy);background:#f8f9fb}
+.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff}
+.opt-chk{width:20px;height:20px;border-radius:50%;border:2px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .15s}
+.opt.sel .opt-chk{border-color:var(--gold);background:var(--gold);color:var(--navy)}
+
+/* NEXT */
+.next-wrap{padding:20px 24px 0}
+.next-btn{width:100%;padding:15px;background:var(--gold);color:var(--navy);border:0;border-radius:8px;font-family:inherit;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.02em}
+.next-btn:disabled{opacity:.35;cursor:not-allowed}
+.next-btn:not(:disabled):hover{background:#b8955f}
+
+/* FORM PREVIEW */
+.form-sec{margin:28px 24px 0;padding:22px;background:var(--gold-lt);border:1.5px solid #e8d9c0;border-radius:12px;opacity:.7}
+.form-eyebrow{font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--gold);margin-bottom:12px}
+.form-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:16px}
+.form-field{background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px 14px;font-size:13.5px;color:#aaa;margin-bottom:10px;width:100%}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.time-chip{background:#fff;border:1px solid #ddd;border-radius:6px;padding:10px 4px;font-size:11.5px;color:#aaa;text-align:center;line-height:1.4}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--slate);margin-bottom:14px;line-height:1.6}
+.form-submit{width:100%;background:var(--navy);color:#fff;border:0;border-radius:8px;padding:14px;font-size:15px;font-weight:700;cursor:not-allowed;font-family:inherit;opacity:.7}
+
+/* FOOTER */
+.brand-footer{margin:20px 24px 24px;padding-top:16px;border-top:1px solid #f0ebe2;font-size:10.5px;color:#b0a090;line-height:1.8;text-align:center}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:48px;padding-right:48px}
+  .brand-footer{margin-left:48px;margin-right:48px}
+  .hero h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">⚖ 개인회생·법률 CPA</div>
+  <h1>채무 독촉에서 벗어나는<br><em>첫걸음을 시작하세요</em></h1>
+  <p class="hero-sub">3분 자가진단으로 개인회생 가능 여부를 먼저 확인하세요.<br>전담 변호사가 1:1 무료 상담으로 안내드립니다.</p>
+  <div class="trust-row">
+    <span class="trust-item"><span class="trust-dot"></span>변호사법 §24의2 검증</span>
+    <span class="trust-item"><span class="trust-dot"></span>1:1 전담 변호사</span>
+    <span class="trust-item"><span class="trust-dot"></span>상담 완전 무료</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label"><span>단계 1 / 4</span><span>채무 현황</span></div>
+  <div class="prog-track"><div class="prog-fill"></div></div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q 01</div>
+  <div class="q-text">현재 총 채무 금액이<br>어느 정도인가요?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1천만 원 미만</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1천 ~ 3천만 원</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>3천만 원 ~ 1억</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1억 ~ 5억</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>5억 이상</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">다음 단계로 →</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">STEP 4 — 연락처 입력 (미리보기)</div>
+  <div class="form-title">자가진단 완료 후 연락처를 남겨주세요</div>
+  <div class="form-field">이름</div>
+  <div class="form-field">연락처 (010-XXXX-XXXX)</div>
+  <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:10px">통화 가능 시간</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12시</div>
+    <div class="time-chip">점심<br>12~14시</div>
+    <div class="time-chip">오후<br>14~18시</div>
+    <div class="time-chip">저녁<br>18~21시</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">무료 상담 신청하기</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 변호사법 §24의2 · 광고규정 §3·§4 · 표시광고법 §3에 따라 검증되었습니다.<br>
+  {회사명} · 대표변호사 {대표자} · 사업자등록번호 {사업자번호} · {주소}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>

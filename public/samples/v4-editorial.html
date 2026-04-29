@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V4 미니멀·에디토리얼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--gray:#6b7280;--gray-lt:#f5f5f5;--border:#d1d5db}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Malgun Gothic',sans-serif;background:#fff;color:var(--black);min-height:100vh;font-weight:300}
+
+/* HERO */
+.hero{background:#fff;padding:48px 28px 40px;border-bottom:1px solid var(--black)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--black);font-size:10.5px;font-weight:600;letter-spacing:.12em;padding:5px 12px;border:1px solid var(--black);margin-bottom:24px;text-transform:uppercase}
+.hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:300;line-height:1.2;letter-spacing:-.01em;margin-bottom:14px;color:var(--black)}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero-sub{font-size:13px;color:var(--gray);line-height:1.8;font-weight:400}
+.trust-row{display:flex;gap:20px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap}
+.trust-item{font-size:11px;color:var(--gray);display:flex;align-items:center;gap:6px;letter-spacing:.04em}
+.trust-dash{width:16px;height:1px;background:var(--black)}
+
+/* PROGRESS */
+.prog-wrap{padding:28px 28px 0}
+.prog-label{display:flex;justify-content:space-between;font-size:10.5px;color:var(--gray);margin-bottom:10px;letter-spacing:.06em;text-transform:uppercase}
+.prog-track{height:1px;background:var(--border)}
+.prog-fill{height:100%;background:var(--black);width:25%;transition:width .4s}
+
+/* QUESTION */
+.q-wrap{padding:28px 28px 0}
+.q-num{font-size:10.5px;font-weight:600;color:var(--gray);letter-spacing:.14em;margin-bottom:10px;text-transform:uppercase}
+.q-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:400;color:var(--black);margin-bottom:22px;line-height:1.35;letter-spacing:-.01em}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1px solid var(--border);background:#fff;border-radius:0;cursor:pointer;text-align:left;width:100%;font-family:inherit;font-size:13.5px;font-weight:400;color:var(--black);transition:all .15s;letter-spacing:.01em}
+.opt:hover{border-color:var(--black);background:var(--gray-lt)}
+.opt.sel{border-color:var(--black);background:var(--black);color:#fff}
+.opt-chk{width:18px;height:18px;border:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;background:#fff;transition:all .15s}
+.opt.sel .opt-chk{border-color:#fff;background:#fff;color:var(--black)}
+
+/* NEXT */
+.next-wrap{padding:22px 28px 0}
+.next-btn{width:100%;padding:14px;background:var(--black);color:#fff;border:0;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:all .15s;letter-spacing:.06em;text-transform:uppercase}
+.next-btn:disabled{opacity:.25;cursor:not-allowed}
+.next-btn:not(:disabled):hover{background:#1a1a1a}
+
+/* FORM PREVIEW */
+.form-sec{margin:28px 28px 0;padding:24px;background:var(--gray-lt);border:1px solid var(--border);opacity:.6}
+.form-eyebrow{font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--gray);margin-bottom:14px;text-transform:uppercase}
+.form-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:400;color:var(--black);margin-bottom:18px;letter-spacing:-.01em}
+.form-field{background:#fff;border:1px solid var(--border);border-radius:0;padding:12px 14px;font-size:13px;color:#aaa;margin-bottom:10px;width:100%;font-weight:400;letter-spacing:.02em}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.time-chip{background:#fff;border:1px solid var(--border);padding:10px 4px;font-size:11px;color:#aaa;text-align:center;line-height:1.4;letter-spacing:.02em}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:var(--gray);margin-bottom:14px;line-height:1.7;letter-spacing:.02em}
+.form-submit{width:100%;background:var(--black);color:#fff;border:0;padding:13px;font-size:13.5px;font-weight:500;cursor:not-allowed;font-family:inherit;opacity:.65;letter-spacing:.06em;text-transform:uppercase}
+
+/* FOOTER */
+.brand-footer{margin:20px 28px 28px;padding-top:16px;border-top:1px solid var(--border);font-size:10.5px;color:#b0b0b0;line-height:1.8;text-align:center;letter-spacing:.02em}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:52px;padding-right:52px}
+  .brand-footer{margin-left:52px;margin-right:52px}
+  .hero h1{font-size:48px}
+  .q-text{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">🏢 부동산·분양 CPA</div>
+  <h1>내 조건에 맞는<br><em>분양 정보를</em><br>찾아드립니다</h1>
+  <p class="hero-sub">3가지 항목으로 최적 단지를 먼저 파악하세요.<br>전담 컨설턴트가 1:1로 안내드립니다.</p>
+  <div class="trust-row">
+    <span class="trust-item"><span class="trust-dash"></span>공인중개사 자격 보유</span>
+    <span class="trust-item"><span class="trust-dash"></span>무료 맞춤 상담</span>
+    <span class="trust-item"><span class="trust-dash"></span>계약 강요 없음</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label"><span>Step 1 / 4</span><span>투자 조건</span></div>
+  <div class="prog-track"><div class="prog-fill"></div></div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q 01</div>
+  <div class="q-text">현재 관심 있는<br>분양 유형은?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>아파트 (신축 분양)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>오피스텔 (수익형)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>상가·업무시설</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>재건축·재개발 입주권</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>아직 결정 못 했어요</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">다음 단계로 →</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">Step 4 — 연락처 입력 (미리보기)</div>
+  <div class="form-title">상담 신청 — 담당자가 직접 연락드립니다</div>
+  <div class="form-field">성함</div>
+  <div class="form-field">연락처 (010-XXXX-XXXX)</div>
+  <div style="font-size:11px;font-weight:500;color:#555;margin-bottom:10px;letter-spacing:.04em;text-transform:uppercase">통화 가능 시간</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12시</div>
+    <div class="time-chip">점심<br>12~14시</div>
+    <div class="time-chip">오후<br>14~18시</div>
+    <div class="time-chip">저녁<br>18~21시</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">상담 신청하기</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 공인중개사법 · 표시광고법 §3에 따라 검증되었습니다.<br>
+  {회사명} · 대표 {대표자} · 사업자등록번호 {사업자번호}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>

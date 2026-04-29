@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V6 비비드·MZ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#FF6B9D;--yellow:#FFD93D;--purple:#9B59B6;--bg:#FFF8FC;--text:#1a1a2e;--slate:#6b6b8a}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#FFE8F4 0%,#FFF3D4 50%,#F0E8FF 100%);padding:44px 24px 36px;border-bottom:none;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,107,157,.2) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-40px;left:-30px;width:160px;height:160px;background:radial-gradient(circle,rgba(255,217,61,.25) 0%,transparent 70%);border-radius:50%}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-size:11.5px;font-weight:800;padding:7px 18px;border-radius:999px;margin-bottom:18px;box-shadow:0 4px 14px rgba(255,107,157,.35);position:relative;z-index:1}
+.hero-tag{font-size:15px;margin-bottom:8px;position:relative;z-index:1}
+.hero h1{font-size:28px;font-weight:900;line-height:1.3;margin-bottom:12px;color:var(--text);position:relative;z-index:1}
+.hero h1 .grad{background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:13.5px;color:var(--slate);line-height:1.8;position:relative;z-index:1}
+.trust-row{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1}
+.trust-chip{background:#fff;color:var(--text);font-size:11.5px;font-weight:700;padding:6px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap}
+
+/* PROGRESS — emoji */
+.prog-wrap{padding:24px 24px 0}
+.prog-label{font-size:12.5px;color:var(--slate);margin-bottom:14px;font-weight:600;text-align:center}
+.prog-emoji{display:flex;justify-content:center;align-items:center;gap:6px;font-size:22px}
+.prog-emoji .step{opacity:.3;transition:opacity .3s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.prog-emoji .step.done,.prog-emoji .step.cur{opacity:1}
+.prog-emoji .step-label{font-size:9px;color:var(--slate);font-weight:600;white-space:nowrap}
+.prog-emoji .step.cur .step-label{color:var(--pink);font-weight:800}
+.prog-arrow{font-size:14px;color:#ddd;margin:0 2px;margin-bottom:16px}
+
+/* QUESTION */
+.q-wrap{padding:22px 24px 0}
+.q-num{font-size:11.5px;font-weight:800;background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.08em;margin-bottom:10px;text-align:center}
+.q-text{font-size:20px;font-weight:900;color:var(--text);margin-bottom:20px;line-height:1.4;text-align:center}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:15px 20px;border:2px solid rgba(255,107,157,.2);background:#fff;border-radius:24px;cursor:pointer;text-align:left;width:100%;font-family:inherit;font-size:14px;font-weight:700;color:var(--text);transition:all .2s;box-shadow:0 2px 10px rgba(255,107,157,.08)}
+.opt:hover{border-color:rgba(255,107,157,.5);background:#FFF0F7;box-shadow:0 6px 20px rgba(255,107,157,.18)}
+.opt.sel{border-color:var(--pink);background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;box-shadow:0 6px 22px rgba(255,107,157,.4)}
+.opt-chk{width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,107,157,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;background:#fff;transition:all .2s;font-weight:900}
+.opt.sel .opt-chk{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.25);color:#fff}
+
+/* NEXT */
+.next-wrap{padding:20px 24px 0}
+.next-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:0;border-radius:24px;font-family:inherit;font-size:16px;font-weight:900;cursor:pointer;transition:all .2s;box-shadow:0 6px 20px rgba(255,107,157,.4)}
+.next-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.next-btn:not(:disabled):hover{box-shadow:0 8px 28px rgba(255,107,157,.55);transform:translateY(-2px)}
+
+/* FORM PREVIEW */
+.form-sec{margin:24px 24px 0;padding:22px;background:#fff;border:2px solid rgba(255,107,157,.2);border-radius:28px;opacity:.6;box-shadow:0 4px 20px rgba(255,107,157,.1)}
+.form-eyebrow{font-size:11px;font-weight:800;background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.form-title{font-size:15px;font-weight:900;color:var(--text);margin-bottom:16px}
+.form-field{background:#FFF8FC;border:1.5px solid rgba(255,107,157,.2);border-radius:16px;padding:13px 16px;font-size:13.5px;color:#aaa;margin-bottom:10px;width:100%}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.time-chip{background:#FFF8FC;border:1.5px solid rgba(255,107,157,.2);border-radius:14px;padding:10px 4px;font-size:11.5px;color:#aaa;text-align:center;line-height:1.4}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--slate);margin-bottom:14px;line-height:1.7}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;border:0;border-radius:18px;padding:14px;font-size:15px;font-weight:900;cursor:not-allowed;font-family:inherit;opacity:.65;box-shadow:0 4px 16px rgba(255,107,157,.3)}
+
+/* FOOTER */
+.brand-footer{margin:20px 24px 28px;padding-top:14px;border-top:1px solid rgba(255,107,157,.15);font-size:10.5px;color:#c4b0c0;line-height:1.8;text-align:center}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:48px;padding-right:48px}
+  .brand-footer{margin-left:48px;margin-right:48px}
+  .hero h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">💧 정수기·렌탈 CPA</div>
+  <div class="hero-tag">✨ 지금 딱 맞는 렌탈 찾아드릴게요!</div>
+  <h1>렌탈 비교하고<br><span class="grad">월 최대 50%</span><br>아끼세요 🎉</h1>
+  <p class="hero-sub">3가지 질문으로 우리 집에 딱 맞는<br>정수기·렌탈을 골라드려요!</p>
+  <div class="trust-row">
+    <span class="trust-chip">🏆 브랜드 10개+ 비교</span>
+    <span class="trust-chip">💯 무료 비교 견적</span>
+    <span class="trust-chip">🎁 사은품 증정</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label">지금 첫 번째 질문이에요!</div>
+  <div class="prog-emoji">
+    <div class="step cur">🌱<div class="step-label">시작</div></div>
+    <div class="prog-arrow">→</div>
+    <div class="step">🌿<div class="step-label">생활 패턴</div></div>
+    <div class="prog-arrow">→</div>
+    <div class="step">🌳<div class="step-label">예산</div></div>
+    <div class="prog-arrow">→</div>
+    <div class="step">🎯<div class="step-label">신청 완료</div></div>
+  </div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q 01 ✨</div>
+  <div class="q-text">가장 관심 있는<br>렌탈 상품이 뭔가요?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>정수기 (직수형·냉온정)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>공기청정기</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>비데·안마의자</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>건조기·세탁기</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>아직 비교 중이에요</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">다음으로 → 🌿</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">🎯 마지막 단계 — 연락처 (미리보기)</div>
+  <div class="form-title">연락처 남기면 맞춤 견적 바로 드려요! 🎉</div>
+  <div class="form-field">이름 (닉네임도 OK!)</div>
+  <div class="form-field">연락처 (010-XXXX-XXXX)</div>
+  <div style="font-size:12px;font-weight:800;color:#555;margin-bottom:10px">편한 통화 시간 선택 📞</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12시</div>
+    <div class="time-chip">점심<br>12~14시</div>
+    <div class="time-chip">오후<br>14~18시</div>
+    <div class="time-chip">저녁<br>18~21시</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">무료 비교 견적 받기 🎁</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 전자상거래법 · 방문판매법 · 표시광고법 §3에 따라 검증되었습니다.<br>
+  {회사명} · 대표 {대표자} · 사업자등록번호 {사업자번호}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>

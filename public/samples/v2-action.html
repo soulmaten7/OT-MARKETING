@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V2 액션·전환형</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--orange:#FF5722;--yellow:#FFE100;--black:#111;--slate:#4b5563}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR','Malgun Gothic',sans-serif;background:#fff;color:var(--black);min-height:100vh}
+
+/* HERO */
+.hero{background:#fff;padding:40px 24px 32px;border-bottom:3px solid var(--black)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--yellow);color:var(--black);font-size:11.5px;font-weight:900;letter-spacing:.04em;padding:6px 14px;border-radius:4px;border:2px solid var(--black);margin-bottom:18px;box-shadow:2px 2px 0 var(--black)}
+.hero h1{font-size:32px;font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+.hero h1 mark{background:linear-gradient(180deg,transparent 55%,var(--yellow) 55%);padding:0 2px;color:var(--black)}
+.hero-sub{font-size:13.5px;color:var(--slate);line-height:1.75;font-weight:600}
+.trust-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.trust-chip{background:var(--black);color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:4px}
+
+/* PROGRESS */
+.prog-wrap{padding:20px 24px 0}
+.prog-label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--slate);margin-bottom:8px;font-weight:700}
+.prog-track{height:8px;background:#f3f4f6;border-radius:4px;border:2px solid var(--black)}
+.prog-fill{height:100%;border-radius:2px;background:var(--orange);width:25%;transition:width .4s}
+
+/* QUESTION */
+.q-wrap{padding:24px 24px 0}
+.q-num{font-size:11px;font-weight:900;color:var(--orange);letter-spacing:.12em;margin-bottom:8px}
+.q-text{font-size:20px;font-weight:900;color:var(--black);margin-bottom:20px;line-height:1.35;letter-spacing:-.01em}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:14px 18px;border:2.5px solid var(--black);background:#fff;border-radius:4px;cursor:pointer;text-align:left;width:100%;font-family:inherit;font-size:14px;font-weight:700;color:var(--black);transition:all .1s;box-shadow:3px 3px 0 var(--black)}
+.opt:hover{background:#fff9f0;transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--black)}
+.opt.sel{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:3px 3px 0 #c13b10}
+.opt-chk{width:20px;height:20px;border-radius:4px;border:2px solid var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:#fff;transition:all .1s}
+.opt.sel .opt-chk{border-color:#fff;background:#fff;color:var(--orange)}
+
+/* NEXT */
+.next-wrap{padding:20px 24px 0}
+.next-btn{width:100%;padding:16px;background:var(--orange);color:#fff;border:3px solid var(--black);border-radius:4px;font-family:inherit;font-size:17px;font-weight:900;cursor:pointer;transition:all .1s;box-shadow:4px 4px 0 var(--black);letter-spacing:.02em}
+.next-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.next-btn:not(:disabled):hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--black)}
+.next-btn:not(:disabled):active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black)}
+
+/* FORM PREVIEW */
+.form-sec{margin:28px 24px 0;padding:22px;background:#fffbea;border:2.5px solid var(--black);border-radius:4px;opacity:.65;box-shadow:4px 4px 0 var(--black)}
+.form-eyebrow{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--orange);margin-bottom:12px}
+.form-title{font-size:15px;font-weight:900;color:var(--black);margin-bottom:16px}
+.form-field{background:#fff;border:2px solid var(--black);border-radius:4px;padding:12px 14px;font-size:13.5px;color:#aaa;margin-bottom:10px;width:100%;font-weight:600}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.time-chip{background:#fff;border:2px solid var(--black);border-radius:4px;padding:9px 4px;font-size:11.5px;color:#999;text-align:center;line-height:1.4;font-weight:700}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--slate);margin-bottom:14px;line-height:1.6;font-weight:600}
+.form-submit{width:100%;background:var(--orange);color:#fff;border:2px solid var(--black);border-radius:4px;padding:14px;font-size:15px;font-weight:900;cursor:not-allowed;font-family:inherit;opacity:.7;box-shadow:3px 3px 0 var(--black)}
+
+/* FOOTER */
+.brand-footer{margin:20px 24px 24px;padding-top:14px;border-top:2px solid var(--black);font-size:10.5px;color:var(--slate);line-height:1.8;text-align:center;font-weight:600}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:48px;padding-right:48px}
+  .brand-footer{margin-left:48px;margin-right:48px}
+  .hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">📱 통신·휴대폰 CPA</div>
+  <h1>지금 통신비<br><mark>절반으로 줄이세요!</mark></h1>
+  <p class="hero-sub">1분 자가진단으로 최적 요금제·기기를 찾아드립니다.<br>당일 상담 → 즉시 처리 → 절약 시작!</p>
+  <div class="trust-row">
+    <span class="trust-chip">평균 30% 절감</span>
+    <span class="trust-chip">1분 안에 견적</span>
+    <span class="trust-chip">당일 개통 가능</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label"><span>STEP 1 / 4</span><span>통신 현황</span></div>
+  <div class="prog-track"><div class="prog-fill"></div></div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q 01</div>
+  <div class="q-text">현재 사용 중인<br>통신사는 어디인가요?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>SKT</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>KT</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>LG U+</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>알뜰폰 (MVNO)</span></button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>아직 없음 / 신규 가입</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">다음 단계로 → 최적 요금제 확인</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">STEP 4 — 연락처 입력 (미리보기)</div>
+  <div class="form-title">상담 신청 — 30초면 끝나요!</div>
+  <div class="form-field">이름</div>
+  <div class="form-field">연락처 (010-XXXX-XXXX)</div>
+  <div style="font-size:12px;font-weight:900;color:#111;margin-bottom:10px">통화 가능 시간</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12</div>
+    <div class="time-chip">점심<br>12~14</div>
+    <div class="time-chip">오후<br>14~18</div>
+    <div class="time-chip">저녁<br>18~21</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">지금 바로 신청하기 🎁</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 전기통신사업법 · 표시광고법 §3에 따라 검증되었습니다.<br>
+  {회사명} · 대표 {대표자} · 사업자등록번호 {사업자번호}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>
