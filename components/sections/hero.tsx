@@ -95,15 +95,17 @@ export function Hero() {
                     </FadeIn>
                 </div>
 
-                {/* Scroll down arrow */}
-                <motion.div
+                {/* Scroll down — clickable, smooth scroll to next section */}
+                <motion.a
+                    href="#what-we-bring"
+                    aria-label="다음 섹션으로 이동"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.6 }}
+                    animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 1.8 }}
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block"
+                    className="group absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 text-white/90 hover:bg-white/20 hover:border-[var(--coral-400)] hover:text-[var(--coral-400)] hover:scale-110 transition-all duration-300"
                 >
-                    <ChevronDown className="w-6 h-6 text-white/60 animate-bounce-down" />
-                </motion.div>
+                    <ChevronDown className="w-7 h-7 animate-bounce-down" strokeWidth={2.5} />
+                </motion.a>
             </div>
         </section>
     );

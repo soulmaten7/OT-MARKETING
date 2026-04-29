@@ -71,7 +71,7 @@ export function HowItWorks() {
                 <StaggerContainer
                     stagger={0.1}
                     delayChildren={0.1}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-12 max-w-7xl mx-auto relative"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-x-16 lg:gap-y-20 max-w-7xl mx-auto relative"
                 >
                     {steps.map((step, i) => {
                         const isLastOverall = i === steps.length - 1;
@@ -96,31 +96,31 @@ export function HowItWorks() {
                                         {step.desc}
                                     </p>
 
-                                    {/* lg: Row 1 가로 → (01→02, 02→03) */}
+                                    {/* lg: Row 1 가로 → (01→02, 02→03) — 카드 사이 정중앙 */}
                                     {lgArrowRight && (
-                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-7 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
-                                            <ArrowRight className="w-6 h-6" strokeWidth={2.5} />
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-16 w-16 h-16 items-center justify-center text-[var(--coral-500)] z-10">
+                                            <ArrowRight className="w-10 h-10" strokeWidth={2.5} />
                                         </div>
                                     )}
 
                                     {/* lg: Row 1 → Row 2 세로 ↓ (03 ↓ 04, 같은 컬럼) */}
                                     {lgArrowDown && (
-                                        <div className="hidden lg:flex absolute -bottom-7 left-1/2 -translate-x-1/2 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
-                                            <ArrowDown className="w-6 h-6" strokeWidth={2.5} />
+                                        <div className="hidden lg:flex absolute -bottom-20 left-1/2 -translate-x-1/2 w-16 h-20 items-center justify-center text-[var(--coral-500)] z-10">
+                                            <ArrowDown className="w-10 h-10" strokeWidth={2.5} />
                                         </div>
                                     )}
 
                                     {/* lg: Row 2 가로 ← (04←05, 05←06 시각적으로 좌측 흐름) */}
                                     {lgArrowLeft && (
-                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -left-7 w-10 h-10 items-center justify-center text-[var(--coral-400)] z-10">
-                                            <ArrowLeft className="w-6 h-6" strokeWidth={2.5} />
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -left-16 w-16 h-16 items-center justify-center text-[var(--coral-500)] z-10">
+                                            <ArrowLeft className="w-10 h-10" strokeWidth={2.5} />
                                         </div>
                                     )}
 
                                     {/* 모바일·md: 세로 ↓ (마지막 06 제외, 자연 순서 01→06) */}
                                     {!isLastOverall && (
-                                        <div className="lg:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 text-[var(--coral-400)]">
-                                            <ArrowDown className="w-5 h-5" strokeWidth={2.5} />
+                                        <div className="lg:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 w-10 h-10 flex items-center justify-center text-[var(--coral-500)]">
+                                            <ArrowDown className="w-7 h-7" strokeWidth={2.5} />
                                         </div>
                                     )}
                                 </div>
