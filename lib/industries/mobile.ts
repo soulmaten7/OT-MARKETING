@@ -28,7 +28,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "current_carrier",
                 step: 1,
                 type: "select",
-                label: "Q1. 현재 통신사",
+                label: "현재 통신사",
                 required: true,
                 options: [
                     { value: "skt", label: "SK Telecom" },
@@ -42,7 +42,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "monthly_fee",
                 step: 1,
                 type: "select",
-                label: "Q2. 월 통신비 (휴대폰 + 인터넷 합산)",
+                label: "월 통신비 (휴대폰 + 인터넷 합산)",
                 required: true,
                 options: [
                     { value: "under_5", label: "5만원 미만" },
@@ -55,7 +55,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "join_type",
                 step: 2,
                 type: "select",
-                label: "Q3. 가입 유형",
+                label: "가입 유형",
                 required: true,
                 options: [
                     { value: "mnp", label: "번호이동 (MNP)" },
@@ -69,7 +69,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "device",
                 step: 2,
                 type: "select",
-                label: "Q4. 단말 요청 사항",
+                label: "단말 요청 사항",
                 required: true,
                 options: [
                     { value: "newest", label: "최신 단말 (할부 가능)" },
@@ -82,7 +82,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "family_combo",
                 step: 2,
                 type: "radio",
-                label: "Q5. 가족 결합 가입 의향",
+                label: "가족 결합 가입 의향",
                 required: true,
                 options: [
                     { value: "yes", label: "가족 결합 가입 (2~5명)" },
@@ -94,7 +94,7 @@ export const mobileConfig: IndustryConfig = {
                 id: "call_time",
                 step: 2,
                 type: "select",
-                label: "Q6. 통화 가능 시간대",
+                label: "통화 가능 시간대",
                 required: true,
                 options: [
                     { value: "morning", label: "오전 (9~12시)" },
@@ -130,6 +130,8 @@ export const mobileConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "1iAXREiGGnao1d3hV9RkrTyWlH5UF0LAW2e1ueNHengg", // OT-leads-mobile-2026
+        telegramBotTokenEnv: null,
+        telegramChatIdEnv: null,
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

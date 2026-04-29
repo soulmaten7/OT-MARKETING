@@ -55,7 +55,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "debt",
                 step: 1,
                 type: "select",
-                label: "Q1. 현재 채무 총액",
+                label: "현재 채무 총액",
                 required: true,
                 options: [
                     { value: "under_1000", label: "1천만원 미만" },
@@ -69,7 +69,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "debt_types",
                 step: 1,
                 type: "multi",
-                label: "Q2. 채무 종류 (복수 선택)",
+                label: "채무 종류 (복수 선택)",
                 required: true,
                 options: [
                     { value: "card", label: "신용카드" },
@@ -83,7 +83,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "overdue",
                 step: 1,
                 type: "select",
-                label: "Q3. 가장 오래된 채무의 연체 기간",
+                label: "가장 오래된 채무의 연체 기간",
                 required: true,
                 options: [
                     { value: "none", label: "연체 없음" },
@@ -96,7 +96,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "income",
                 step: 2,
                 type: "select",
-                label: "Q4. 월 소득 형태",
+                label: "월 소득 형태",
                 required: true,
                 options: [
                     { value: "regular", label: "정기 (직장·연금 등)" },
@@ -108,7 +108,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "job",
                 step: 2,
                 type: "select",
-                label: "Q5. 직업 형태",
+                label: "직업 형태",
                 required: true,
                 options: [
                     { value: "employed", label: "정규직" },
@@ -121,7 +121,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "family",
                 step: 2,
                 type: "select",
-                label: "Q6. 부양 가족 수 (본인 제외)",
+                label: "부양 가족 수 (본인 제외)",
                 required: true,
                 options: [
                     { value: "0", label: "없음" },
@@ -133,7 +133,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "collection",
                 step: 3,
                 type: "select",
-                label: "Q7. 추심 진행 상황",
+                label: "추심 진행 상황",
                 required: true,
                 options: [
                     { value: "none", label: "추심 없음" },
@@ -145,7 +145,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "assets",
                 step: 3,
                 type: "multi",
-                label: "Q8. 보유 자산 (복수 선택)",
+                label: "보유 자산 (복수 선택)",
                 required: true,
                 options: [
                     { value: "none", label: "보유 자산 없음" },
@@ -159,7 +159,7 @@ export const debtReliefConfig: IndustryConfig = {
                 id: "history",
                 step: 3,
                 type: "select",
-                label: "Q9. 회생·파산 신청 이력",
+                label: "회생·파산 신청 이력",
                 required: true,
                 options: [
                     { value: "none", label: "이력 없음" },
@@ -194,6 +194,8 @@ export const debtReliefConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "1THuTtpdZiRB0yI7jxWal5RU-SOHifDUYIGOXbP-g2AY",
+        telegramBotTokenEnv: "TELEGRAM_BOT_TOKEN_DEBT_RELIEF",
+        telegramChatIdEnv: "TELEGRAM_CHAT_ID_DEBT_RELIEF",
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

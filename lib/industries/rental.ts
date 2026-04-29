@@ -29,7 +29,7 @@ export const rentalConfig: IndustryConfig = {
                 id: "family",
                 step: 1,
                 type: "select",
-                label: "Q1. 가족 구성원 수 (본인 포함)",
+                label: "가족 구성원 수 (본인 포함)",
                 required: true,
                 options: [
                     { value: "1", label: "1인 가구" },
@@ -42,7 +42,7 @@ export const rentalConfig: IndustryConfig = {
                 id: "usage",
                 step: 1,
                 type: "select",
-                label: "Q2. 주 사용 장소",
+                label: "주 사용 장소",
                 required: true,
                 options: [
                     { value: "home", label: "가정" },
@@ -54,7 +54,7 @@ export const rentalConfig: IndustryConfig = {
                 id: "budget",
                 step: 2,
                 type: "select",
-                label: "Q3. 월 예상 렌탈료",
+                label: "월 예상 렌탈료",
                 required: true,
                 options: [
                     { value: "under_30", label: "월 3만원 미만" },
@@ -67,7 +67,7 @@ export const rentalConfig: IndustryConfig = {
                 id: "contract",
                 step: 2,
                 type: "radio",
-                label: "Q4. 약정 가능 여부 (3년 또는 5년)",
+                label: "약정 가능 여부 (3년 또는 5년)",
                 required: true,
                 options: [
                     { value: "yes", label: "약정 가능" },
@@ -79,7 +79,7 @@ export const rentalConfig: IndustryConfig = {
                 id: "intent",
                 step: 2,
                 type: "select",
-                label: "Q5. 검토 단계",
+                label: "검토 단계",
                 required: true,
                 options: [
                     { value: "asap", label: "즉시 설치 희망" },
@@ -114,6 +114,8 @@ export const rentalConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "15u0tt28Jfo5NP3Cwa25Qt0fuS70R76lmhP0HlGxhxmU", // OT-leads-rental-2026
+        telegramBotTokenEnv: null,
+        telegramChatIdEnv: null,
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

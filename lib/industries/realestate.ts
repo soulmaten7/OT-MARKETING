@@ -29,7 +29,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "region",
                 step: 1,
                 type: "select",
-                label: "Q1. 희망 지역",
+                label: "희망 지역",
                 required: true,
                 options: [
                     { value: "seoul", label: "서울" },
@@ -43,7 +43,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "size",
                 step: 1,
                 type: "select",
-                label: "Q2. 희망 평수",
+                label: "희망 평수",
                 required: true,
                 options: [
                     { value: "under_25", label: "전용 25평 미만" },
@@ -56,7 +56,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "type",
                 step: 1,
                 type: "select",
-                label: "Q3. 희망 거래 유형",
+                label: "희망 거래 유형",
                 required: true,
                 options: [
                     { value: "subscription", label: "신규 분양 (청약)" },
@@ -69,7 +69,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "budget",
                 step: 2,
                 type: "select",
-                label: "Q4. 자금 조달 가능 범위 (계약금 + 중도금 자체 조달)",
+                label: "자금 조달 가능 범위 (계약금 + 중도금 자체 조달)",
                 required: true,
                 options: [
                     { value: "under_2", label: "2억 미만" },
@@ -82,7 +82,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "subscription",
                 step: 2,
                 type: "select",
-                label: "Q5. 청약 가점 또는 자격",
+                label: "청약 가점 또는 자격",
                 required: true,
                 options: [
                     { value: "high", label: "가점 60점 이상 또는 무주택 1순위" },
@@ -95,7 +95,7 @@ export const realestateConfig: IndustryConfig = {
                 id: "intent",
                 step: 2,
                 type: "select",
-                label: "Q6. 검토 단계",
+                label: "검토 단계",
                 required: true,
                 options: [
                     { value: "ready", label: "즉시 청약·매매 검토" },
@@ -130,6 +130,8 @@ export const realestateConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "13fN4R_UkwEfFuJ5Rse-74uzYJdOTZ3luvVv3TDhvCT8", // OT-leads-realestate-2026
+        telegramBotTokenEnv: null,
+        telegramChatIdEnv: null,
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

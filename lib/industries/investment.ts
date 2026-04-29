@@ -29,7 +29,7 @@ export const investmentConfig: IndustryConfig = {
                 id: "experience",
                 step: 1,
                 type: "select",
-                label: "Q1. 투자 경험",
+                label: "투자 경험",
                 required: true,
                 options: [
                     { value: "none", label: "투자 경험 없음" },
@@ -42,7 +42,7 @@ export const investmentConfig: IndustryConfig = {
                 id: "monthly",
                 step: 1,
                 type: "select",
-                label: "Q2. 월 투자 가능 금액",
+                label: "월 투자 가능 금액",
                 required: true,
                 options: [
                     { value: "under_50", label: "월 50만원 미만" },
@@ -55,7 +55,7 @@ export const investmentConfig: IndustryConfig = {
                 id: "interest",
                 step: 2,
                 type: "multi",
-                label: "Q3. 관심 분야 (복수 선택)",
+                label: "관심 분야 (복수 선택)",
                 required: true,
                 options: [
                     { value: "kr_stock", label: "국내 주식" },
@@ -70,7 +70,7 @@ export const investmentConfig: IndustryConfig = {
                 id: "risk",
                 step: 2,
                 type: "radio",
-                label: "Q4. 위험 선호도",
+                label: "위험 선호도",
                 required: true,
                 options: [
                     { value: "low", label: "안정 (원금 손실 최소)" },
@@ -82,7 +82,7 @@ export const investmentConfig: IndustryConfig = {
                 id: "call_time",
                 step: 2,
                 type: "select",
-                label: "Q5. 통화 가능 시간대",
+                label: "통화 가능 시간대",
                 required: true,
                 options: [
                     { value: "morning", label: "오전 (9~12시)" },
@@ -118,6 +118,8 @@ export const investmentConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "1iupb2uifYMBHZ-LrUYFcEdmm5k4Kors3PTze6CR8AUk", // OT-leads-investment-2026
+        telegramBotTokenEnv: null,
+        telegramChatIdEnv: null,
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },

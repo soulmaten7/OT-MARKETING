@@ -29,7 +29,7 @@ export const medicalConfig: IndustryConfig = {
                 id: "department",
                 step: 1,
                 type: "select",
-                label: "Q1. 희망 진료 과목",
+                label: "희망 진료 과목",
                 required: true,
                 options: [
                     { value: "skin", label: "피부과" },
@@ -44,7 +44,7 @@ export const medicalConfig: IndustryConfig = {
                 id: "symptom",
                 step: 1,
                 type: "select",
-                label: "Q2. 증상·관심 사항 진행 정도",
+                label: "증상·관심 사항 진행 정도",
                 required: true,
                 options: [
                     { value: "ongoing", label: "현재 증상 있음" },
@@ -56,7 +56,7 @@ export const medicalConfig: IndustryConfig = {
                 id: "intent",
                 step: 2,
                 type: "select",
-                label: "Q3. 검토 단계",
+                label: "검토 단계",
                 required: true,
                 options: [
                     { value: "asap", label: "즉시 사전 상담 희망" },
@@ -68,7 +68,7 @@ export const medicalConfig: IndustryConfig = {
                 id: "budget",
                 step: 2,
                 type: "select",
-                label: "Q4. 비용 범위",
+                label: "비용 범위",
                 required: true,
                 options: [
                     { value: "under_50", label: "50만원 미만" },
@@ -82,7 +82,7 @@ export const medicalConfig: IndustryConfig = {
                 id: "location",
                 step: 2,
                 type: "select",
-                label: "Q5. 희망 위치",
+                label: "희망 위치",
                 required: true,
                 options: [
                     { value: "seoul_north", label: "서울 강북" },
@@ -119,6 +119,8 @@ export const medicalConfig: IndustryConfig = {
     },
     contact: {
         sheetId: "1ReMclYwRrxSvfZFTds2POkwLcmCq8-ne09kuau-92HE", // OT-leads-medical-2026
+        telegramBotTokenEnv: null,
+        telegramChatIdEnv: null,
         additionalFields: [
             { key: "name", label: "성함", required: true },
             { key: "phone", label: "연락처", required: true },
