@@ -1,30 +1,78 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+const navStructure = [
+    {
+        label: "CPA 광고",
+        items: [
+            { label: "차별점", href: "/#features" },
+            { label: "프로세스", href: "/#process" },
+            { label: "법규 가드레일", href: "/#guardrail" },
+            { label: "CPA 모델", href: "/#cpa-model" },
+            { label: "업종", href: "/#industries" },
+            { label: "디자인 시안", href: "/samples" },
+        ],
+    },
+    // 미래: { label: "랜딩 구독", items: [...] },
+    // 미래: { label: "통합 마케팅", items: [...] },
+];
+
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [openMega, setOpenMega] = useState<string | null>(null);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
-    // 홈(/)에서만 네이비 히어로 위에 투명 상태 시작. 다른 페이지는 처음부터 흰 배경 상태.
     const isHome = pathname === "/";
     const navOnLight = !isHome || isScrolled;
+    const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const headerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setOpenMega(null);
+        };
+        const handleClickOutside = (e: MouseEvent) => {
+            if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+                setOpenMega(null);
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const handleMouseEnter = (label: string) => {
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        hoverTimeout.current = setTimeout(() => setOpenMega(label), 100);
+    };
+
+    const handleMouseLeave = () => {
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        hoverTimeout.current = setTimeout(() => setOpenMega(null), 200);
+    };
+
+    const handleToggle = (label: string) => {
+        setOpenMega((prev) => (prev === label ? null : label));
+    };
+
     return (
         <>
             <header
+                ref={headerRef}
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
                     navOnLight
@@ -44,76 +92,101 @@ export function Navbar() {
                         OT <span className="text-[var(--gold)]">MARKETING</span>
                     </Link>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-6">
-                        {[
-                            { label: "차별점", href: "/#what-we-bring" },
-                            { label: "프로세스", href: "/#how-it-works" },
-                            { label: "법규 가드레일", href: "/#guardrail" },
-                            { label: "CPA 모델", href: "/#cpa-model" },
-                            { label: "업종", href: "/#industries" },
-                            { label: "디자인 시안", href: "/samples" },
-                        ].map((item) => (
-                            <Link
-                                key={item.label}
-                                href={item.href}
-                                className={cn(
-                                    "text-sm font-medium transition-colors hover:text-[var(--gold)]",
-                                    navOnLight ? "text-[var(--navy)]" : "text-white/90"
-                                )}
+                    {/* Desktop Nav — center */}
+                    <nav className="hidden md:flex items-center gap-1">
+                        {navStructure.map((group) => (
+                            <div
+                                key={group.label}
+                                className="relative"
+                                onMouseEnter={() => handleMouseEnter(group.label)}
+                                onMouseLeave={handleMouseLeave}
                             >
-                                {item.label}
-                            </Link>
+                                <button
+                                    onClick={() => handleToggle(group.label)}
+                                    className={cn(
+                                        "flex items-center gap-1 px-4 py-2 rounded text-sm font-semibold transition-colors hover:text-[var(--gold)]",
+                                        navOnLight ? "text-[var(--navy)]" : "text-white/90"
+                                    )}
+                                >
+                                    {group.label}
+                                    <ChevronDown
+                                        className={cn(
+                                            "w-4 h-4 transition-transform duration-200",
+                                            openMega === group.label ? "rotate-180" : ""
+                                        )}
+                                    />
+                                </button>
+                            </div>
                         ))}
                     </nav>
 
-                    {/* CTA & Mobile Toggle */}
-                    <div className="flex items-center gap-3">
-                        <Link
-                            href="/#contact"
-                            className="hidden md:inline-flex bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-[var(--navy)] text-sm font-bold px-5 py-2.5 rounded transition-colors"
-                        >
-                            광고주 문의
-                        </Link>
-                        <button
-                            className={cn("md:hidden p-2", navOnLight ? "text-[var(--navy)]" : "text-white")}
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-label="Toggle menu"
-                        >
-                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                        </button>
+                    {/* Right — empty placeholder */}
+                    <div className="hidden md:block w-[120px]">
+                        {/* TODO: Phase 2 SaaS 출시 시 로그인·회원가입 버튼 위치 */}
                     </div>
+
+                    {/* Mobile Toggle */}
+                    <button
+                        className={cn("md:hidden p-2", navOnLight ? "text-[var(--navy)]" : "text-white")}
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
                 </div>
+
+                {/* Desktop Mega Menu — full-width drop, inside header for click-outside */}
+                {navStructure.map((group) => (
+                    <div
+                        key={group.label}
+                        className={cn(
+                            "absolute left-0 right-0 top-full bg-white shadow-xl border-t border-gray-100 transition-all duration-200",
+                            openMega === group.label
+                                ? "opacity-100 translate-y-0 pointer-events-auto"
+                                : "opacity-0 -translate-y-1 pointer-events-none"
+                        )}
+                        onMouseEnter={() => handleMouseEnter(group.label)}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <div className="max-w-7xl mx-auto px-6 py-6 hidden md:block">
+                            <div className="grid grid-cols-6 gap-0">
+                                {group.items.map((item) => (
+                                    <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={() => setOpenMega(null)}
+                                        className="block px-4 py-4 text-base font-semibold text-[var(--navy)] text-center rounded hover:bg-gray-50 hover:text-[var(--gold)] transition-colors duration-150"
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </header>
 
             {/* Mobile Menu Overlay */}
             {isMenuOpen && (
-                <div className="fixed inset-0 z-40 bg-[var(--navy)] pt-24 px-6 md:hidden">
-                    <div className="flex flex-col space-y-2 text-center">
-                        {[
-                            { label: "차별점", href: "/#what-we-bring" },
-                            { label: "프로세스", href: "/#how-it-works" },
-                            { label: "법규 가드레일", href: "/#guardrail" },
-                            { label: "CPA 모델", href: "/#cpa-model" },
-                            { label: "업종", href: "/#industries" },
-                            { label: "디자인 시안", href: "/samples" },
-                        ].map((item) => (
-                            <Link
-                                key={item.label}
-                                href={item.href}
-                                className="font-serif text-2xl text-white py-3 border-b border-white/10 hover:text-[var(--gold)]"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
+                <div className="fixed inset-0 z-40 bg-[var(--navy)] pt-20 px-6 md:hidden overflow-y-auto">
+                    <div className="flex flex-col">
+                        {navStructure.map((group) => (
+                            <div key={group.label} className="mb-6">
+                                <p className="font-bold text-xl text-white mb-3">{group.label}</p>
+                                <div className="flex flex-col pl-4 space-y-1">
+                                    {group.items.map((item) => (
+                                        <Link
+                                            key={item.label}
+                                            href={item.href}
+                                            className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--gold)]"
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {item.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
                         ))}
-                        <Link
-                            href="/#contact"
-                            className="bg-[var(--gold)] text-[var(--navy)] font-bold py-4 mt-6 rounded text-lg"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            광고주 문의
-                        </Link>
                     </div>
                 </div>
             )}
