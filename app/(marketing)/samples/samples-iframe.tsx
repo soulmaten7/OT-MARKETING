@@ -22,7 +22,7 @@ export function SamplesIframe() {
             ref={ref}
             src="/samples.html"
             style={{ width: "100%", height: `${height}px`, border: 0 }}
-            title="랜딩페이지 디자인 시안 6종"
+            title="CPA 랜딩페이지 디자인 템플릿 10종"
         />
     );
 }

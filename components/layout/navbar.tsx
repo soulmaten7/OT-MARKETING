@@ -146,7 +146,7 @@ export function Navbar() {
                     <div
                         key={group.label}
                         className={cn(
-                            "absolute left-0 right-0 top-full bg-[var(--navy-900)]/30 backdrop-blur-xl shadow-2xl border-t border-white/10 transition-all duration-200",
+                            "absolute left-0 right-0 top-full bg-[var(--navy-900)]/90 backdrop-blur-xl shadow-2xl border-t border-white/15 transition-all duration-200",
                             openMega === group.label
                                 ? "opacity-100 translate-y-0 pointer-events-auto"
                                 : "opacity-0 -translate-y-1 pointer-events-none"

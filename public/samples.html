@@ -3,25 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OT Marketing · 랜딩페이지 디자인 시안 3종</title>
+<title>OT Marketing · CPA 랜딩페이지 디자인 템플릿 10종</title>
 <style>
 :root { color-scheme: light; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif; background: #f3f4f6; }
 img { max-width: 100%; }
 
-/* ===== Tab bar — centered with max-width matching /showcase intro ===== */
+/* ===== Tab bar ===== */
 html, body { overflow-x: hidden; max-width: 100vw; }
 .tabnav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 100; box-sizing: border-box; }
-.tabnav-inner { max-width: 1152px; margin: 0 auto; padding: 12px 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-@media (min-width: 768px) {
-  .tabnav-inner { padding: 12px 48px; }
-}
-.tab-btn { padding: 7px 14px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; }
+.tabnav-inner { max-width: 1152px; margin: 0 auto; padding: 0 24px; display: flex; gap: 0; align-items: stretch; }
+@media (min-width: 768px) { .tabnav-inner { padding: 0 48px; } }
+
+/* Tab scroll area */
+.tab-scroll { display: flex; gap: 8px; align-items: center; padding: 12px 0; overflow-x: auto; flex: 1; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.tab-scroll::-webkit-scrollbar { display: none; }
+
+.tab-btn { padding: 7px 14px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; flex-shrink: 0; }
 .tab-btn:hover { background: #f9fafb; }
 .tab-btn.active { background: #0F1E3D; color: #fff; border-color: #0F1E3D; }
+.tab-btn.tab-locked { opacity: 0.45; cursor: default; }
+.tab-btn.tab-locked:hover { background: #fff; }
+
+/* Viewport control */
+.vc-sep { width: 1px; background: #e5e7eb; margin: 10px 12px; flex-shrink: 0; }
+.vc-group { display: flex; gap: 4px; align-items: center; padding: 12px 0; flex-shrink: 0; }
+.vc-btn { padding: 6px 12px; border: 1px solid #e5e7eb; background: #fff; border-radius: 999px; font-size: 11.5px; font-weight: 600; cursor: pointer; color: #374151; font-family: inherit; white-space: nowrap; }
+.vc-btn:hover { background: #f9fafb; }
+.vc-btn.vc-active { background: #0F1E3D; color: #fff; border-color: #0F1E3D; }
+
+/* Variants */
 .variant { display: none; }
 .variant.active { display: block; }
+.variant.mobile-view { max-width: 390px; margin: 24px auto; border: 8px solid #1f2937; border-radius: 40px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+
+/* Placeholder (V7~V10) */
+.placeholder-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 480px; padding: 60px 24px; background: #f8f9fa; text-align: center; gap: 16px; }
+.placeholder-lock { font-size: 48px; margin-bottom: 8px; }
+.placeholder-title { font-size: 22px; font-weight: 800; color: #0F1E3D; }
+.placeholder-desc { font-size: 15px; color: #6b7280; line-height: 1.7; max-width: 420px; }
+.placeholder-chips { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.chip { padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; color: #fff; }
+.placeholder-cta { margin-top: 16px; display: inline-block; background: #0F1E3D; color: #fff; padding: 13px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; text-decoration: none; }
+
+/* Variant meta bar (업종·매체·타겟) */
+.variant-meta { background: #f8fafc; border-bottom: 1px solid #e5e7eb; padding: 12px 24px; }
+.variant-meta-inner { max-width: 1040px; margin: 0 auto; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.meta-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #4b5563; font-weight: 600; }
+.meta-tag span { color: #0F1E3D; }
 
 /* ============================================================ */
 /* VARIANT A — 🅐 신뢰·법률형 (Trust / Legal)                    */
@@ -308,12 +338,23 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 
 <nav class="tabnav">
   <div class="tabnav-inner">
-    <button class="tab-btn active" data-tab="A">🅐 신뢰·법률</button>
-    <button class="tab-btn" data-tab="B">🅑 액션·전환</button>
-    <button class="tab-btn" data-tab="C">🅒 케어·친근</button>
-    <button class="tab-btn" data-tab="D">🅓 미니멀·에디토리얼</button>
-    <button class="tab-btn" data-tab="E">🅔 다크·테크</button>
-    <button class="tab-btn" data-tab="F">🅕 비비드·모바일</button>
+    <div class="tab-scroll">
+      <button class="tab-btn active" data-tab="V1">V1 신뢰·법률</button>
+      <button class="tab-btn" data-tab="V2">V2 액션·전환</button>
+      <button class="tab-btn" data-tab="V3">V3 케어·친근</button>
+      <button class="tab-btn" data-tab="V4">V4 미니멀·에디토리얼</button>
+      <button class="tab-btn" data-tab="V5">V5 다크·테크</button>
+      <button class="tab-btn" data-tab="V6">V6 비비드·모바일</button>
+      <button class="tab-btn tab-locked" data-tab="V7">🔒 V7 프리미엄·고급</button>
+      <button class="tab-btn tab-locked" data-tab="V8">🔒 V8 데이터·분석</button>
+      <button class="tab-btn tab-locked" data-tab="V9">🔒 V9 청량·자연</button>
+      <button class="tab-btn tab-locked" data-tab="V10">🔒 V10 컬러풀·MZ</button>
+    </div>
+    <div class="vc-sep"></div>
+    <div class="vc-group">
+      <button class="vc-btn vc-active" data-mode="desktop">💻 PC</button>
+      <button class="vc-btn" data-mode="mobile">📱 모바일</button>
+    </div>
   </div>
 </nav>
 
@@ -321,8 +362,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅐 VARIANT A — 신뢰·법률형                                         -->
 <!-- ================================================================ -->
-<div class="variant active va" id="var-A">
-
+<div class="variant active va" id="var-V1">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>개인회생 · 부동산 분양 · 법률 · 세무</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Google 검색 · Naver · 카카오 모먼트</span></span>
+      <span class="meta-tag">📊 타겟: <span>30~55세 · 신뢰 우선 · 장기 검토형</span></span>
+    </div>
+  </div>
   <section class="va-hero">
     <div class="va-wrap">
       <div class="va-eyebrow">{업종} EXPERT · 상담 {연차}년</div>
@@ -409,8 +456,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅑 VARIANT B — 액션·전환형                                         -->
 <!-- ================================================================ -->
-<div class="variant vb" id="var-B">
-
+<div class="variant vb" id="var-V2">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>정수기렌탈 · 인터넷·통신 · 핸드폰</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Meta (FB·IG) · 카카오 모먼트 · 당근</span></span>
+      <span class="meta-tag">📊 타겟: <span>25~50대 · 즉시 결정 · 혜택 민감형</span></span>
+    </div>
+  </div>
   <section class="vb-hero">
     <div class="vb-hero-inner">
       <div>
@@ -501,8 +554,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅒 VARIANT C — 케어·친근형                                         -->
 <!-- ================================================================ -->
-<div class="variant vc" id="var-C">
-
+<div class="variant vc" id="var-V3">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>피부·성형 병의원 · 한의원 · 심리상담</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Instagram · Meta · 당근마켓</span></span>
+      <span class="meta-tag">📊 타겟: <span>20~45세 여성 · 감성 공감형 · 부드러운 결정</span></span>
+    </div>
+  </div>
   <section class="vc-hero">
     <div class="vc-wrap vc-hero-inner">
       <span class="vc-badge">🌱 {공감 태그라인}</span>
@@ -584,7 +643,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅓 VARIANT D — 미니멀·에디토리얼                                    -->
 <!-- ================================================================ -->
-<div class="variant vd" id="var-D">
+<div class="variant vd" id="var-V4">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>아파트 분양 · 상가 투자 · B2B 컨설팅</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Google 검색 · Naver DA · 카카오</span></span>
+      <span class="meta-tag">📊 타겟: <span>35~60대 · 데이터 중시 · 신중 검토형</span></span>
+    </div>
+  </div>
   <section class="vd-hero">
     <div class="vd-wrap">
       <div class="vd-rule">{업종} · Issue No. {연차}</div>
@@ -652,7 +718,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅔 VARIANT E — 다크·테크형                                         -->
 <!-- ================================================================ -->
-<div class="variant ve" id="var-E">
+<div class="variant ve" id="var-V5">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>주식·코인 리딩 · 핀테크 · IT SaaS</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Google 검색 · YouTube · Meta</span></span>
+      <span class="meta-tag">📊 타겟: <span>25~45세 남성 · 데이터 지향 · 수치 신뢰형</span></span>
+    </div>
+  </div>
   <section class="ve-hero">
     <div class="ve-wrap">
       <span class="ve-label">// {업종}.MARKET — live</span>
@@ -715,7 +788,14 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 <!-- ================================================================ -->
 <!-- 🅕 VARIANT F — 비비드·모바일형                                     -->
 <!-- ================================================================ -->
-<div class="variant vf" id="var-F">
+<div class="variant vf" id="var-V6">
+  <div class="variant-meta">
+    <div class="variant-meta-inner">
+      <span class="meta-tag">✅ 추천 업종: <span>인터넷·통신 · 정수기 · 앱 서비스</span></span>
+      <span class="meta-tag">⚡ 적합 매체: <span>Meta 릴스 · Instagram · 카카오 모먼트</span></span>
+      <span class="meta-tag">📊 타겟: <span>20~40대 · SNS 활성 · 즉시 반응형</span></span>
+    </div>
+  </div>
   <section class="vf-hero">
     <div class="vf-wrap">
       <span class="vf-tag">✨ {강조 태그 — 신규·한정 등}</span>
@@ -790,6 +870,78 @@ html, body { overflow-x: hidden; max-width: 100vw; }
     사업자등록 {사업자번호} · {이메일} · {주소}<br>
     광고 심의번호 {심의번호} · 관련 법령 준수
   </footer>
+</div>
+
+<!-- ================================================================ -->
+<!-- 🔒 VARIANT V7 — 프리미엄·고급 (Black + Champagne + Serif)         -->
+<!-- ================================================================ -->
+<div class="variant" id="var-V7">
+  <div class="placeholder-wrap">
+    <div class="placeholder-lock">🔒</div>
+    <div class="placeholder-title">V7 프리미엄·고급</div>
+    <div class="placeholder-chips">
+      <span class="chip" style="background:#1a1a1a">Black</span>
+      <span class="chip" style="background:#C5A572">Champagne</span>
+      <span class="chip" style="background:#4a3728">Serif</span>
+    </div>
+    <p class="placeholder-desc">강남 부동산 · 럭셔리 의료 · 프리미엄 금융 · 고급 컨설팅<br>타겟: 40~60대 고자산 · 신뢰+품격 우선</p>
+    <p class="placeholder-desc" style="font-size:13px;color:#9ca3af">준비 중 — OT 와 컨택 시 우선 공개</p>
+    <a href="https://ot-marketing.kr/#contact" class="placeholder-cta" target="_parent">OT 와 컨택하기</a>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 🔒 VARIANT V8 — 데이터·분석 (Dark Blue + Cyan + Mono)             -->
+<!-- ================================================================ -->
+<div class="variant" id="var-V8">
+  <div class="placeholder-wrap">
+    <div class="placeholder-lock">🔒</div>
+    <div class="placeholder-title">V8 데이터·분석</div>
+    <div class="placeholder-chips">
+      <span class="chip" style="background:#0d1b2a">Dark Blue</span>
+      <span class="chip" style="background:#00b4d8">Cyan</span>
+      <span class="chip" style="background:#374151">Mono</span>
+    </div>
+    <p class="placeholder-desc">주식·핀테크·SaaS·B2B 데이터 분석 서비스<br>타겟: 25~45세 데이터 지향 · 수치 신뢰형</p>
+    <p class="placeholder-desc" style="font-size:13px;color:#9ca3af">준비 중 — OT 와 컨택 시 우선 공개</p>
+    <a href="https://ot-marketing.kr/#contact" class="placeholder-cta" target="_parent">OT 와 컨택하기</a>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 🔒 VARIANT V9 — 청량·자연 (Sky Blue + White + Soft)               -->
+<!-- ================================================================ -->
+<div class="variant" id="var-V9">
+  <div class="placeholder-wrap">
+    <div class="placeholder-lock">🔒</div>
+    <div class="placeholder-title">V9 청량·자연</div>
+    <div class="placeholder-chips">
+      <span class="chip" style="background:#0ea5e9">Sky Blue</span>
+      <span class="chip" style="background:#6ee7b7;color:#065f46">Mint</span>
+      <span class="chip" style="background:#f0f9ff;color:#0369a1">Soft</span>
+    </div>
+    <p class="placeholder-desc">병의원 · 헬스케어 · 피부·성형 · 자연식품<br>타겟: 25~45세 여성 · 건강·자연 추구형</p>
+    <p class="placeholder-desc" style="font-size:13px;color:#9ca3af">준비 중 — OT 와 컨택 시 우선 공개</p>
+    <a href="https://ot-marketing.kr/#contact" class="placeholder-cta" target="_parent">OT 와 컨택하기</a>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- 🔒 VARIANT V10 — 컬러풀·MZ (Pop + Bold gradient)                 -->
+<!-- ================================================================ -->
+<div class="variant" id="var-V10">
+  <div class="placeholder-wrap">
+    <div class="placeholder-lock">🔒</div>
+    <div class="placeholder-title">V10 컬러풀·MZ</div>
+    <div class="placeholder-chips">
+      <span class="chip" style="background:linear-gradient(135deg,#f97316,#ec4899);background:#f97316">Pop</span>
+      <span class="chip" style="background:#8b5cf6">Bold</span>
+      <span class="chip" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6);background:#06b6d4">Gradient</span>
+    </div>
+    <p class="placeholder-desc">통신 · 앱 서비스 · 이커머스 · SNS 바이럴<br>타겟: 18~35세 MZ · 감성·즉시 반응형</p>
+    <p class="placeholder-desc" style="font-size:13px;color:#9ca3af">준비 중 — OT 와 컨택 시 우선 공개</p>
+    <a href="https://ot-marketing.kr/#contact" class="placeholder-cta" target="_parent">OT 와 컨택하기</a>
+  </div>
 </div>
 
 <script>
@@ -943,58 +1095,97 @@ function applyIndustry(industryKey) {
 }
 
 var guideTexts = {
-  A: '<strong>🅐 신뢰·법률형</strong> · 개인회생 · 법률 · 세무 같은 전문 서비스용.<br>'+
-     '<strong>Hero 헤드라인</strong>: 권위 있게 "~드립니다" · 15~25자 예) "독촉전화에 지친 분들께"<br>'+
-     '<strong>강조 어구 (골드)</strong>: 8~15자 예) "법적 해결의 시작"<br>'+
-     '<strong>혜택 3카드</strong>: 숫자·경력 기반 (예: "15년 경력", "누적 1,200건")<br>'+
-     '<strong>절차 4단계</strong>: 상담 → 서류 → 신청 → 진행. 각 15~25자<br>'+
-     '<strong>이미지</strong>: 없어도 완성. 굳이 넣는다면 사무실 전경 (배경 투명도 낮게)',
-  B: '<strong>🅑 액션·전환형</strong> · 정수기렌탈 · 통신 같은 즉시 결정 소비재용.<br>'+
-     '<strong>헤드라인</strong>: 혜택·할인 직접 표기 예) "정수기 렌탈 월 19,900원"<br>'+
-     '<strong>노란 형광펜</strong>: 10~20자 예) "첫 달 무료 + 상품권 5만원"<br>'+
-     '<strong>숫자 밴드 4개</strong>: 반드시 4개 필수 (예: 가격 · A/S · 속도 · 만족도)<br>'+
-     '<strong>차별점 3카드</strong>: 경쟁사 대비 우위. 구체 숫자로<br>'+
-     '<strong>이미지</strong>: 제품 사진 권장 (1:1 · 16:9 비율)',
-  C: '<strong>🅒 케어·친근형</strong> · 병의원 · 감성 서비스용.<br>'+
-     '<strong>태그라인</strong>: 공감 문구 예) "🌱 혼자 고민하지 마세요"<br>'+
-     '<strong>헤드라인</strong>: 부드러운 존대 "~해봐요" · 재촉 금지<br>'+
-     '<strong>케어 포인트 3카드</strong>: 심리적 안전 단어 (편하게 · 부담 없이 · 함께)<br>'+
-     '<strong>폼</strong>: "억지 권유 없이" 문구 유지 · 스트레스 최소화<br>'+
-     '<strong>이미지</strong>: 일러스트 · 웃는 인물 (원형 크롭)',
-  D: '<strong>🅓 미니멀·에디토리얼</strong> · 부동산 · 프리미엄 · B2B 컨설팅용.<br>'+
-     '<strong>상단 라벨</strong>: "업종 · Issue No.N" 매거진 느낌<br>'+
-     '<strong>헤드라인</strong>: 한 문장 · 팩트 중심 예) "분양가 흥정은 감이 아니라 데이터입니다"<br>'+
-     '<strong>혜택 3카드</strong>: 세로 구분선 · 설명은 2~3줄 간결<br>'+
-     '<strong>절차</strong>: I·II·III·IV (로마 숫자)<br>'+
-     '<strong>이미지</strong>: 최소화 · 추상 도형 · 또는 단 1장의 전문 사진',
-  E: '<strong>🅔 다크·테크형</strong> · 주식리딩 · 핀테크 · IT SaaS용.<br>'+
-     '<strong>상단 라벨</strong>: "// 업종.MARKET — live" 터미널 형식<br>'+
-     '<strong>헤드라인</strong>: 데이터 기반 예) "지난 52주, 시장을 예측한" + "시그널 엔진" (시안색)<br>'+
-     '<strong>숫자 밴드 4개</strong>: 모노스페이스 · 영문 라벨 (ACCURACY · SIGNALS)<br>'+
-     '<strong>Features</strong>: "feature_01" 형식 코드 주석 느낌<br>'+
-     '<strong>⚠️ 금융권 필수</strong>: "수익률은 과거 실적, 미래 보장 X" 고지 필수',
-  F: '<strong>🅕 비비드·모바일형</strong> · 통신 · 정수기 SNS 광고용.<br>'+
-     '<strong>헤드라인</strong>: 3줄 스택 · "~하고 / ~받기" 구조 (주황 · 초록 강조)<br>'+
-     '<strong>태그라인</strong>: "✨ 4월 런칭 EVENT" · 이모지 사용<br>'+
-     '<strong>혜택 3카드</strong>: 컬러 순환 (1=퍼플 / 2=코랄 / 3=라임) · 2줄 이내<br>'+
-     '<strong>CTA 버튼</strong>: "지금 신청하고 받기 🎁" 고정 권장<br>'+
-     '<strong>이미지</strong>: 제품 사진 · 포장 이미지 (4:5 · 1:1 · 세로 중심)'
+  V1: '<strong>V1 신뢰·법률형</strong> · 개인회생 · 법률 · 세무 같은 전문 서비스용.<br>'+
+      '✅ 추천 업종: 개인회생 / 부동산 분양 / 주식 자산관리<br>'+
+      '⚡ 적합 매체: Google 검색 / Naver / 카카오 모먼트<br>'+
+      '📊 타겟: 30~55세 · 신뢰 우선 · 장기 검토형<br>'+
+      '<strong>Hero 헤드라인</strong>: 권위 있게 "~드립니다" · 15~25자<br>'+
+      '<strong>강조 어구 (골드)</strong>: 8~15자 예) "법적 해결의 시작"<br>'+
+      '<strong>혜택 3카드</strong>: 숫자·경력 기반 (예: "15년 경력", "누적 1,200건")',
+  V2: '<strong>V2 액션·전환형</strong> · 정수기렌탈 · 통신 같은 즉시 결정 소비재용.<br>'+
+      '✅ 추천 업종: 정수기렌탈 / 인터넷·통신 / 핸드폰<br>'+
+      '⚡ 적합 매체: Meta (Facebook·Instagram) / 카카오 모먼트 / 당근<br>'+
+      '📊 타겟: 25~50대 · 즉시 결정 · 혜택 민감<br>'+
+      '<strong>헤드라인</strong>: 혜택·할인 직접 표기 예) "정수기 렌탈 월 19,900원"<br>'+
+      '<strong>노란 형광펜</strong>: 10~20자 예) "첫 달 무료 + 상품권 5만원"<br>'+
+      '<strong>숫자 밴드 4개</strong>: 가격 · A/S · 속도 · 만족도',
+  V3: '<strong>V3 케어·친근형</strong> · 병의원 · 감성 서비스용.<br>'+
+      '✅ 추천 업종: 피부·성형 병의원 / 한의원 / 심리상담<br>'+
+      '⚡ 적합 매체: Instagram / Meta / 당근마켓<br>'+
+      '📊 타겟: 20~45세 여성 · 감성 공감형 · 부드러운 결정<br>'+
+      '<strong>태그라인</strong>: 공감 문구 예) "🌱 혼자 고민하지 마세요"<br>'+
+      '<strong>헤드라인</strong>: 부드러운 존대 "~해봐요" · 재촉 금지<br>'+
+      '<strong>케어 포인트 3카드</strong>: 심리적 안전 단어',
+  V4: '<strong>V4 미니멀·에디토리얼</strong> · 부동산 · 프리미엄 · B2B 컨설팅용.<br>'+
+      '✅ 추천 업종: 아파트 분양 / 상가 투자 / B2B 서비스<br>'+
+      '⚡ 적합 매체: Google 검색 / Naver 블로그 DA / 카카오<br>'+
+      '📊 타겟: 35~60대 · 데이터 중시 · 신중 검토형<br>'+
+      '<strong>상단 라벨</strong>: "업종 · Issue No.N" 매거진 느낌<br>'+
+      '<strong>헤드라인</strong>: 한 문장 · 팩트 중심<br>'+
+      '<strong>절차</strong>: I·II·III·IV (로마 숫자)',
+  V5: '<strong>V5 다크·테크형</strong> · 주식리딩 · 핀테크 · IT SaaS용.<br>'+
+      '✅ 추천 업종: 주식·코인 리딩 / 핀테크 / IT SaaS<br>'+
+      '⚡ 적합 매체: Google 검색 / YouTube / Meta<br>'+
+      '📊 타겟: 25~45세 남성 · 데이터 지향 · 수치 신뢰형<br>'+
+      '<strong>상단 라벨</strong>: "// 업종.MARKET — live" 터미널 형식<br>'+
+      '<strong>숫자 밴드 4개</strong>: 모노스페이스 · 영문 라벨<br>'+
+      '<strong>⚠️ 금융권 필수</strong>: "수익률은 과거 실적, 미래 보장 X" 고지 필수',
+  V6: '<strong>V6 비비드·모바일형</strong> · 통신 · 정수기 SNS 광고용.<br>'+
+      '✅ 추천 업종: 인터넷·통신 / 정수기 / 앱 서비스<br>'+
+      '⚡ 적합 매체: Meta 릴스 / Instagram / 카카오 모먼트<br>'+
+      '📊 타겟: 20~40대 · SNS 활성 · 즉시 반응형<br>'+
+      '<strong>헤드라인</strong>: 3줄 스택 · "~하고 / ~받기" 구조<br>'+
+      '<strong>태그라인</strong>: 이모지 사용 · 이벤트 기간 명시<br>'+
+      '<strong>이미지</strong>: 제품 사진 · 포장 이미지 (4:5 · 세로 중심)',
+  V7: '<strong>V7 프리미엄·고급</strong> (준비 중)<br>✅ 추천 업종: 럭셔리 의료 / 강남 부동산 / 프리미엄 금융<br>준비 중 — OT 와 컨택 시 우선 공개',
+  V8: '<strong>V8 데이터·분석</strong> (준비 중)<br>✅ 추천 업종: 주식·핀테크 / SaaS / B2B 데이터<br>준비 중 — OT 와 컨택 시 우선 공개',
+  V9: '<strong>V9 청량·자연</strong> (준비 중)<br>✅ 추천 업종: 헬스케어 / 피부·성형 / 자연식품<br>준비 중 — OT 와 컨택 시 우선 공개',
+  V10: '<strong>V10 컬러풀·MZ</strong> (준비 중)<br>✅ 추천 업종: 통신 / 앱 서비스 / SNS 바이럴<br>준비 중 — OT 와 컨택 시 우선 공개'
 };
+
+var currentMode = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
 function updateGuide(tab) {
   var el = document.querySelector('#guide-content');
   if (el && guideTexts[tab]) el.innerHTML = guideTexts[tab];
 }
 
+function setViewportMode(mode) {
+  currentMode = mode;
+  var active = document.querySelector('.variant.active');
+  if (active) {
+    if (mode === 'mobile') { active.classList.add('mobile-view'); }
+    else { active.classList.remove('mobile-view'); }
+  }
+  document.querySelectorAll('.vc-btn').forEach(function(b) {
+    b.classList.toggle('vc-active', b.dataset.mode === mode);
+  });
+  setTimeout(reportHeight, 100);
+}
+
+// Init viewport mode
+setViewportMode(currentMode);
+
 document.querySelectorAll('.tab-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
+    if (btn.classList.contains('tab-locked')) return;
     var tab = btn.dataset.tab;
-    document.querySelectorAll('.variant').forEach(function(v) { v.classList.remove('active'); });
-    document.querySelector('#var-' + tab).classList.add('active');
+    document.querySelectorAll('.variant').forEach(function(v) { v.classList.remove('active'); v.classList.remove('mobile-view'); });
+    var target = document.querySelector('#var-' + tab);
+    if (!target) return;
+    target.classList.add('active');
+    if (currentMode === 'mobile') target.classList.add('mobile-view');
     document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
+    updateGuide(tab);
     window.scrollTo({ top: 0, behavior: 'instant' });
     setTimeout(reportHeight, 50);
+  });
+});
+
+document.querySelectorAll('.vc-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setViewportMode(btn.dataset.mode);
   });
 });
 
