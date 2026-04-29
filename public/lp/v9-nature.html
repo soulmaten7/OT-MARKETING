@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V9 청량·자연</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#0EA5E9;--green:#10B981;--sky-lt:#f0f9ff;--green-lt:#ecfdf5;--bg:#f8fffe;--text:#0F4C6E;--slate:#64748B}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-weight:400}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#e0f2fe 0%,#ecfdf5 60%,var(--bg) 100%);padding:48px 24px 40px;border-bottom:1px solid rgba(14,165,233,.15)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--sky),var(--green));color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;padding:7px 18px;border-radius:999px;margin-bottom:20px;box-shadow:0 4px 14px rgba(14,165,233,.3)}
+.hero-tag{font-size:13.5px;color:var(--sky);font-weight:500;margin-bottom:10px}
+.hero h1{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;font-size:28px;font-weight:800;line-height:1.35;margin-bottom:12px;color:var(--text)}
+.hero h1 .hl{color:var(--sky)}
+.hero-sub{font-size:13.5px;color:var(--slate);line-height:1.8}
+.trust-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.trust-chip{background:#fff;color:var(--slate);font-size:11.5px;font-weight:600;padding:5px 14px;border-radius:999px;box-shadow:0 2px 8px rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.15)}
+
+/* PROGRESS — water flow gradient */
+.prog-wrap{padding:24px 24px 0}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--slate);margin-bottom:10px;font-weight:600}
+.prog-track{height:5px;background:#e0f2fe;border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--green));width:25%;transition:width .4s;box-shadow:0 2px 6px rgba(14,165,233,.3)}
+
+/* QUESTION */
+.q-wrap{padding:24px 24px 0}
+.q-num{font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.12em;margin-bottom:10px}
+.q-text{font-size:20px;font-weight:800;color:var(--text);margin-bottom:20px;line-height:1.4}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;padding:15px 18px;border:1.5px solid rgba(14,165,233,.2);background:#fff;border-radius:16px;cursor:pointer;text-align:left;width:100%;font-family:inherit;font-size:14px;font-weight:500;color:var(--text);transition:all .18s;box-shadow:0 2px 10px rgba(14,165,233,.06)}
+.opt:hover{border-color:rgba(14,165,233,.5);background:var(--sky-lt);box-shadow:0 4px 16px rgba(14,165,233,.15)}
+.opt.sel{border-color:var(--sky);background:linear-gradient(135deg,var(--sky),var(--green));color:#fff;box-shadow:0 6px 20px rgba(14,165,233,.35)}
+.opt-chk{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(14,165,233,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;background:#fff;transition:all .18s}
+.opt.sel .opt-chk{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.25);color:#fff;font-weight:900}
+
+/* NEXT */
+.next-wrap{padding:20px 24px 0}
+.next-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--sky),var(--green));color:#fff;border:0;border-radius:16px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;transition:all .18s;box-shadow:0 4px 18px rgba(14,165,233,.35)}
+.next-btn:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.next-btn:not(:disabled):hover{box-shadow:0 6px 24px rgba(14,165,233,.5);transform:translateY(-1px)}
+
+/* FORM PREVIEW */
+.form-sec{margin:24px 24px 0;padding:22px;background:#fff;border:1.5px solid rgba(14,165,233,.2);border-radius:20px;opacity:.6;box-shadow:0 4px 16px rgba(14,165,233,.08)}
+.form-eyebrow{font-size:10.5px;font-weight:700;color:var(--sky);margin-bottom:12px;letter-spacing:.08em}
+.form-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:16px}
+.form-field{background:var(--sky-lt);border:1.5px solid rgba(14,165,233,.15);border-radius:12px;padding:12px 14px;font-size:13px;color:#aaa;margin-bottom:8px;width:100%}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.time-chip{background:var(--sky-lt);border:1.5px solid rgba(14,165,233,.15);border-radius:10px;padding:10px 4px;font-size:11px;color:#aaa;text-align:center;line-height:1.4}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11.5px;color:var(--slate);margin-bottom:14px;line-height:1.7}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--sky),var(--green));color:#fff;border:0;border-radius:14px;padding:14px;font-size:14.5px;font-weight:800;cursor:not-allowed;font-family:inherit;opacity:.65;box-shadow:0 4px 14px rgba(14,165,233,.3)}
+
+/* FOOTER */
+.brand-footer{margin:20px 24px 28px;padding-top:14px;border-top:1px solid rgba(14,165,233,.15);font-size:10.5px;color:#a0bec8;line-height:1.8;text-align:center}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:48px;padding-right:48px}
+  .brand-footer{margin-left:48px;margin-right:48px}
+  .hero h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">💧 정수기·렌탈 CPA</div>
+  <div class="hero-tag">🌊 깨끗한 물, 건강한 가족</div>
+  <h1>월 <span class="hl">19,900원</span>으로<br>온 가족이 마시는<br>깨끗한 물</h1>
+  <p class="hero-sub">3가지 조건으로 우리 집에 딱 맞는 정수기를 찾아드려요.<br>무료 비교 견적, 부담 없이 확인하세요.</p>
+  <div class="trust-row">
+    <span class="trust-chip">🌿 친환경 인증</span>
+    <span class="trust-chip">💯 무료 비교 견적</span>
+    <span class="trust-chip">🏅 청정 인증 제품</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label"><span>단계 1 / 4</span><span>가족 구성</span></div>
+  <div class="prog-track"><div class="prog-fill"></div></div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q 01</div>
+  <div class="q-text">가족이 몇 명인가요?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1~2인 (혼자 또는 둘이서)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>3~4인 (자녀 있는 가정)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>5인 이상 (대가족)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>사무실·가게 (업무용)</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>아직 미정 (비교만 해볼게요)</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">다음 → 사용 장소 확인</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">🎯 마지막 단계 — 연락처 (미리보기)</div>
+  <div class="form-title">무료 견적 신청 — 담당자가 바로 연락드립니다</div>
+  <div class="form-field">이름</div>
+  <div class="form-field">연락처 (010-XXXX-XXXX)</div>
+  <div style="font-size:12px;font-weight:700;color:var(--slate);margin-bottom:8px">편한 통화 시간 📞</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12시</div>
+    <div class="time-chip">점심<br>12~14시</div>
+    <div class="time-chip">오후<br>14~18시</div>
+    <div class="time-chip">저녁<br>18~21시</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">무료 견적 신청하기 💧</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 표시광고법 §3 · 할부거래법에 따라 검증되었습니다.<br>
+  {회사명} · 대표 {대표자} · 사업자등록번호 {사업자번호}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>

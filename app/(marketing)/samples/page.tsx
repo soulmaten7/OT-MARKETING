@@ -24,7 +24,7 @@ export default function SamplesPage() {
                         <br className="hidden md:block" />
                         아래 10종 중 광고주 업종·고객층에 맞는 디자인을 선택해주세요.
                         <br className="hidden md:block" />
-                        각 템플릿은 PC·모바일 양쪽 디자인을 미리 확인할 수 있습니다. 선택 후 OT 가 자가진단 로직 + 명의 + 카피 + 데이터 추적까지 통합 제작합니다.
+                        10종 모두 활성 — 광고주 업종에 맞는 디자인 + OT 의 자가진단 로직 + 명의 분리 + 카피 + 데이터 추적까지 통합 제작합니다.
                     </p>
                 </div>
                 <SamplesIframe />

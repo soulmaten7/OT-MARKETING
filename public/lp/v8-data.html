@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V8 데이터·분석</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#0F172A;--cyan:#06B6D4;--cyan-lt:rgba(6,182,212,.15);--slate:#94A3B8;--border:rgba(6,182,212,.2)}
+body{font-family:'IBM Plex Mono',Consolas,monospace,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--dark);color:#CBD5E1;min-height:100vh}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,#0b1120 0%,var(--dark) 100%);padding:44px 24px 36px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'DATA // ANALYSIS';position:absolute;top:20px;right:24px;font-size:10px;color:rgba(6,182,212,.08);letter-spacing:.2em;font-weight:700;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--cyan-lt);color:var(--cyan);font-size:10.5px;font-weight:700;letter-spacing:.1em;padding:6px 14px;border:1px solid var(--border);margin-bottom:20px}
+.badge::before{content:'>';color:var(--cyan);margin-right:2px}
+.hero-tag{font-size:11px;color:var(--slate);letter-spacing:.08em;margin-bottom:10px}
+.hero h1{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;font-size:26px;font-weight:800;line-height:1.35;margin-bottom:14px;color:#F1F5F9}
+.hero h1 span{color:var(--cyan)}
+.hero-sub{font-size:12.5px;color:var(--slate);line-height:1.8;font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif}
+.trust-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.trust-chip{background:rgba(255,255,255,.05);color:var(--slate);font-size:10.5px;font-weight:600;padding:5px 10px;border:1px solid rgba(6,182,212,.2);letter-spacing:.04em}
+.trust-chip em{color:var(--cyan);font-style:normal}
+
+/* PROGRESS — % 숫자 표시 */
+.prog-wrap{padding:24px 24px 0}
+.prog-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.prog-step{font-size:10px;color:var(--slate);letter-spacing:.08em}
+.prog-pct{font-size:14px;font-weight:700;color:var(--cyan)}
+.prog-track{height:2px;background:rgba(255,255,255,.08);position:relative}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),#22D3EE);width:25%;transition:width .4s;box-shadow:0 0 8px rgba(6,182,212,.6)}
+
+/* QUESTION */
+.q-wrap{padding:24px 24px 0}
+.q-num{font-size:10px;font-weight:700;color:var(--cyan);letter-spacing:.14em;margin-bottom:10px}
+.q-text{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;font-size:19px;font-weight:800;color:#F1F5F9;margin-bottom:20px;line-height:1.4}
+.opts{display:grid;gap:6px}
+.opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);cursor:pointer;text-align:left;width:100%;font-family:'IBM Plex Mono',Consolas,monospace;font-size:13px;font-weight:400;color:#94A3B8;transition:all .15s;letter-spacing:.02em}
+.opt:hover{border-color:rgba(6,182,212,.45);background:rgba(6,182,212,.07);color:#CBD5E1}
+.opt.sel{border-color:var(--cyan);background:var(--cyan-lt);color:var(--cyan);box-shadow:0 0 12px rgba(6,182,212,.2)}
+.opt-chk{width:20px;height:20px;border:1px solid rgba(255,255,255,.15);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;background:transparent;transition:all .15s}
+.opt.sel .opt-chk{border-color:var(--cyan);background:var(--cyan);color:var(--dark);font-weight:900}
+
+/* NEXT */
+.next-wrap{padding:20px 24px 0}
+.next-btn{width:100%;padding:14px;background:var(--cyan);color:var(--dark);border:0;font-family:'IBM Plex Mono',Consolas,monospace;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.06em;box-shadow:0 4px 20px rgba(6,182,212,.3)}
+.next-btn:disabled{opacity:.2;cursor:not-allowed;box-shadow:none}
+.next-btn:not(:disabled):hover{background:#22D3EE;box-shadow:0 6px 24px rgba(6,182,212,.5)}
+
+/* FORM PREVIEW */
+.form-sec{margin:24px 24px 0;padding:20px;background:rgba(255,255,255,.03);border:1px solid rgba(6,182,212,.15);opacity:.55}
+.form-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--cyan);margin-bottom:12px}
+.form-title{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;color:#F1F5F9;margin-bottom:16px}
+.form-field{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:11px 14px;font-size:12.5px;color:#4B5563;margin-bottom:8px;width:100%;font-family:'IBM Plex Mono',monospace}
+.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
+.time-chip{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:9px 4px;font-size:11px;color:#4B5563;text-align:center;line-height:1.4}
+.agree-row{display:flex;gap:8px;align-items:flex-start;font-size:11px;color:#4B5563;margin-bottom:12px;line-height:1.7;font-family:-apple-system,sans-serif}
+.form-submit{width:100%;background:var(--cyan);color:var(--dark);border:0;padding:13px;font-size:13.5px;font-weight:700;cursor:not-allowed;font-family:'IBM Plex Mono',monospace;opacity:.6;letter-spacing:.06em}
+
+/* FOOTER */
+.brand-footer{margin:20px 24px 28px;padding-top:14px;border-top:1px solid rgba(6,182,212,.12);font-size:10.5px;color:#2A3A4A;line-height:1.8;text-align:center;font-family:-apple-system,sans-serif}
+
+@media(min-width:640px){
+  .hero,.prog-wrap,.q-wrap,.next-wrap,.form-sec{padding-left:48px;padding-right:48px}
+  .brand-footer{margin-left:48px;margin-right:48px}
+  .hero h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">주식·투자 CPA</div>
+  <div class="hero-tag">// 포트폴리오 진단 시스템 v2.4</div>
+  <h1>내 투자 성향을<br><span>데이터로 분석</span>하고<br>최적 서비스를 찾아드립니다</h1>
+  <p class="hero-sub">4가지 투자 조건을 입력하면<br>AI 알고리즘이 맞춤 리딩 서비스를 추천합니다.</p>
+  <div class="trust-row">
+    <span class="trust-chip"><em>AI</em> 추천 알고리즘</span>
+    <span class="trust-chip"><em>실시간</em> 시뮬레이션</span>
+    <span class="trust-chip"><em>데이터</em> 기반 분석</span>
+  </div>
+</div>
+
+<div class="prog-wrap">
+  <div class="prog-label">
+    <span class="prog-step">// STEP_01 / 04 — 투자 경험</span>
+    <span class="prog-pct">25%</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill"></div></div>
+</div>
+
+<div class="q-wrap">
+  <div class="q-num">Q_01</div>
+  <div class="q-text">주식 투자 경험이<br>어느 정도인가요?</div>
+  <div class="opts">
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>init() // 처음 시작</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1년 미만 — 기초 이해 있음</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>1~3년 — 직접 종목 분석 경험</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>3년 이상 — 차트·재무 분석 가능</button>
+    <button class="opt" onclick="sel(this)"><span class="opt-chk">✓</span>전업 투자자 수준</button>
+  </div>
+</div>
+
+<div class="next-wrap">
+  <button class="next-btn" id="nb" disabled onclick="nxt()">NEXT() → 투자 규모 분석</button>
+</div>
+
+<div class="form-sec">
+  <div class="form-eyebrow">// STEP_04 — 연락처 입력 (미리보기)</div>
+  <div class="form-title">분석 완료 — 전담 매니저 배정</div>
+  <div class="form-field">name: ""</div>
+  <div class="form-field">phone: "010-XXXX-XXXX"</div>
+  <div style="font-size:10.5px;font-weight:600;color:#4B5563;margin-bottom:8px;letter-spacing:.06em">// 통화 가능 시간대 선택</div>
+  <div class="time-grid">
+    <div class="time-chip">오전<br>10~12</div>
+    <div class="time-chip">점심<br>12~14</div>
+    <div class="time-chip">오후<br>14~18</div>
+    <div class="time-chip">저녁<br>18~21</div>
+  </div>
+  <div class="agree-row"><input type="checkbox" disabled> 개인정보 수집·이용에 동의합니다 (필수)</div>
+  <button class="form-submit">SUBMIT() → 무료 체험 신청</button>
+</div>
+
+<div class="brand-footer">
+  본 광고는 자본시장법 §57 · 유사수신행위 규제법에 따라 검증되었습니다.<br>
+  {회사명} · 대표 {대표자} · 투자자문업 등록번호 {등록번호}
+</div>
+
+<script>
+function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
+function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
+function rh(){if(window.parent!==window)window.parent.postMessage({type:'samples-resize',height:document.body.scrollHeight+40},'*')}
+window.addEventListener('load',function(){setTimeout(rh,150)})
+window.addEventListener('resize',function(){setTimeout(rh,100)})
+</script>
+</body>
+</html>
