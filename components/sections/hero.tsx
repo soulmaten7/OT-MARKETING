@@ -88,7 +88,7 @@ export function Hero() {
                                 href="/samples"
                                 className="w-full sm:w-auto border border-white/40 hover:border-white text-white hover:bg-white/10 font-bold px-8 py-4 rounded-md text-base transition-colors inline-flex items-center justify-center gap-2 group"
                             >
-                                디자인 시안 6종 보기
+                                CPA 디자인 템플릿 6종 보기
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
