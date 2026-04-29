@@ -104,14 +104,14 @@ export function Navbar() {
                                 <button
                                     onClick={() => handleToggle(group.label)}
                                     className={cn(
-                                        "flex items-center gap-1 px-4 py-2 rounded text-sm font-semibold transition-colors hover:text-[var(--coral-400)]",
+                                        "flex items-center gap-1 px-5 py-2.5 rounded text-base lg:text-lg font-semibold tracking-wide transition-colors hover:text-[var(--coral-400)]",
                                         navOnLight ? "text-[var(--navy)]" : "text-white/90"
                                     )}
                                 >
                                     {group.label}
                                     <ChevronDown
                                         className={cn(
-                                            "w-4 h-4 transition-transform duration-200",
+                                            "w-5 h-5 transition-transform duration-200",
                                             openMega === group.label ? "rotate-180" : ""
                                         )}
                                     />
@@ -140,7 +140,7 @@ export function Navbar() {
                     <div
                         key={group.label}
                         className={cn(
-                            "absolute left-0 right-0 top-full bg-[var(--navy-900)] shadow-2xl border-t border-white/10 transition-all duration-200",
+                            "absolute left-0 right-0 top-full bg-[var(--navy-900)]/30 backdrop-blur-xl shadow-2xl border-t border-white/10 transition-all duration-200",
                             openMega === group.label
                                 ? "opacity-100 translate-y-0 pointer-events-auto"
                                 : "opacity-0 -translate-y-1 pointer-events-none"
@@ -155,7 +155,7 @@ export function Navbar() {
                                         key={item.label}
                                         href={item.href}
                                         onClick={() => setOpenMega(null)}
-                                        className="block px-4 py-4 text-base font-semibold text-white/90 text-center rounded hover:bg-white/5 hover:text-[var(--coral-400)] transition-colors duration-150"
+                                        className="block px-4 py-4 text-base font-semibold text-white/90 text-center rounded hover:bg-white/10 hover:text-[var(--coral-400)] transition-colors duration-150"
                                     >
                                         {item.label}
                                     </Link>

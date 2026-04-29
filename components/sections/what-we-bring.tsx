@@ -43,7 +43,7 @@ const services = [
 
 export function WhatWeBring() {
     return (
-        <section id="what-we-bring" className="py-24 md:py-32 bg-white">
+        <section id="what-we-bring" className="py-24 md:py-32 bg-white lg:min-h-[80vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
                     <div className="eyebrow mb-4">SERVICES</div>

@@ -30,7 +30,7 @@ const models = [
 
 export function CpaModel() {
     return (
-        <section id="cpa-model" className="py-24 md:py-32 bg-white">
+        <section id="cpa-model" className="py-24 md:py-32 bg-white lg:min-h-[70vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
                     <div className="eyebrow mb-4">CPA SETTLEMENT</div>

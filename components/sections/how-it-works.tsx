@@ -35,7 +35,7 @@ const steps = [
 
 export function HowItWorks() {
     return (
-        <section id="how-it-works" className="py-24 md:py-32 bg-[var(--slate-50)]">
+        <section id="how-it-works" className="py-24 md:py-32 bg-[var(--slate-50)] lg:min-h-[70vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">PROCESS</div>

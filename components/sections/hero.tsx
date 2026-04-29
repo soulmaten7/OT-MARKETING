@@ -14,7 +14,7 @@ const pills = [
 
 export function Hero() {
     return (
-        <section className="relative hero-gradient-bg text-white overflow-hidden">
+        <section className="relative hero-gradient-bg text-white overflow-hidden lg:min-h-screen lg:flex lg:items-center">
             {/* Dot pattern overlay */}
             <div className="absolute inset-0 dot-pattern opacity-60 pointer-events-none" />
 

@@ -51,7 +51,7 @@ const industries = [
 
 export function Industries() {
     return (
-        <section id="industries" className="py-24 md:py-32 bg-white border-t border-[var(--slate-100)]">
+        <section id="industries" className="py-24 md:py-32 bg-white border-t border-[var(--slate-100)] lg:min-h-[80vh] lg:flex lg:items-center">
             <div className="ot-container">
                 <FadeInUp className="text-center max-w-3xl mx-auto mb-16">
                     <div className="eyebrow mb-4">INDUSTRIES</div>
