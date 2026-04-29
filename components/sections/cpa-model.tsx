@@ -2,33 +2,31 @@ import Link from "next/link";
 import { ArrowRight, Receipt, Coins, Check } from "lucide-react";
 import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
-const modelA = {
-    title: "모델 A — 1차콜 미포함",
-    subtitle: "DB 만 전달 · 광고주 인하우스 콜팀 운영",
-    price: "단가 합리적",
-    priceUnit: "/ 유효 DB 1건",
-    bullets: [
-        "업종별 자가진단 + 등급·유형 + 연락처 풀 데이터",
-        "구글시트 + 텔레그램 동시 전달",
-        "광고주 콜팀이 직접 1차 응대",
-        "콜팀 운영 가능한 중·대형 사업장 적합",
-    ],
-};
-
-const modelB = {
-    title: "모델 B — 자체 CRM 콜센터 (1차콜 포함)",
-    subtitle: "OT 자체 콜센터 직접 운영 · 외주 X · 유효 상담 1건 = 미팅 약속까지",
-    price: "단가 ↑↑",
-    priceSubtitle: "(모델 A 대비 상위)",
-    priceUnit: "/ 미팅 확정 1건",
-    bullets: [
-        "OT 자체 CRM 콜센터에서 직접 1차콜 운영 (외주 실행사 X)",
-        "광고주가 콜 스크립트 제공 또는 핵심 응대 내용 전달",
-        "실수요 검증 + 미팅 일정 확정",
-        "확정된 검증 건만 광고주에게 전달",
-        "1인·소형 사업자 적합",
-    ],
-};
+const models = [
+    {
+        title: "모델 A — 1차콜 미포함",
+        subtitle: "DB 만 전달 · 광고주 인하우스 콜팀 운영",
+        priceLabel: "유효 DB 1건 기준 정산",
+        bullets: [
+            "업종별 자가진단 + 등급·유형 + 연락처 풀 데이터",
+            "구글시트 + 텔레그램 동시 전달",
+            "광고주 콜팀이 직접 1차 응대",
+            "콜팀 운영 가능한 중·대형 사업장 적합",
+        ],
+    },
+    {
+        title: "모델 B — 자체 CRM 콜센터 (1차콜 포함)",
+        subtitle: "OT 자체 콜센터 직접 운영 · 외주 X · 유효 상담 1건 = 미팅 약속까지",
+        priceLabel: "미팅 확정 1건 기준 정산",
+        bullets: [
+            "OT 자체 CRM 콜센터에서 직접 1차콜 운영 (외주 실행사 X)",
+            "광고주가 콜 스크립트 제공 또는 핵심 응대 내용 전달",
+            "실수요 검증 + 미팅 일정 확정",
+            "확정된 검증 건만 광고주에게 전달",
+            "1인·소형 사업자 적합",
+        ],
+    },
+];
 
 export function CpaModel() {
     return (
@@ -43,74 +41,41 @@ export function CpaModel() {
                         CPA 정산 모델 <span className="text-gradient-coral font-semibold">2가지 + 결제 옵션</span>
                     </h2>
                     <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
-                        광고주 운영 자원·콜 인력 상황에 따라 모델 선택.
+                        광고주 비즈니스 모델에 맞는 정산 방식 선택.
                         <br className="hidden md:block" />
                         결제는 세금계산서·코인 모두 가능합니다.
                     </p>
                 </FadeInUp>
 
-                {/* 모델 A vs B */}
+                {/* Model A · B — 동일 디자인 (대등 선상) */}
                 <StaggerContainer
                     stagger={0.12}
                     delayChildren={0.1}
                     className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-10"
                 >
-                    {/* Model A */}
-                    <StaggerItem>
-                        <div className="bg-white border border-[var(--slate-200)] shadow-md rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
-                            <h3 className="text-xl md:text-2xl text-[var(--navy)] font-bold mb-1">
-                                {modelA.title}
-                            </h3>
-                            <p className="text-sm text-[var(--slate-500)] mb-6">{modelA.subtitle}</p>
+                    {models.map((m, idx) => (
+                        <StaggerItem key={idx}>
+                            <div className="bg-white border border-[var(--slate-200)] shadow-md rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl h-full">
+                                <h3 className="text-xl md:text-2xl text-[var(--navy)] font-bold mb-1">
+                                    {m.title}
+                                </h3>
+                                <p className="text-sm text-[var(--slate-500)] mb-6">{m.subtitle}</p>
 
-                            <div className="font-display text-5xl md:text-6xl text-gradient-coral font-semibold leading-none mb-1">
-                                {modelA.price}
+                                <div className="text-base font-bold text-[var(--navy)] mb-6 pb-4 border-b border-[var(--slate-100)]">
+                                    {m.priceLabel}
+                                </div>
+
+                                <ul className="space-y-3">
+                                    {m.bullets.map((b, i) => (
+                                        <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--slate-700)]">
+                                            <Check className="w-4 h-4 text-[var(--coral-500)] flex-shrink-0 mt-0.5" />
+                                            <span>{b}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                            <p className="text-xs text-[var(--slate-500)] mb-6">{modelA.priceUnit}</p>
-
-                            <ul className="space-y-3 pt-4 border-t border-[var(--slate-100)]">
-                                {modelA.bullets.map((b, i) => (
-                                    <li key={i} className="flex items-start gap-2.5 text-sm text-[var(--slate-700)]">
-                                        <Check className="w-4 h-4 text-[var(--coral-500)] flex-shrink-0 mt-0.5" />
-                                        <span>{b}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </StaggerItem>
-
-                    {/* Model B (featured, navy) */}
-                    <StaggerItem>
-                        <div className="relative bg-[var(--navy-900)] text-white shadow-xl rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl h-full overflow-hidden">
-                            {/* 좌측 Coral 강조 라인 */}
-                            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[var(--coral-500)]" />
-
-                            {/* 추천 배지 */}
-                            <div className="absolute -top-3 right-6 bg-[var(--coral-500)] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                                추천
-                            </div>
-
-                            <h3 className="text-xl md:text-2xl text-white font-bold mb-1 pr-16">
-                                {modelB.title}
-                            </h3>
-                            <p className="text-sm text-white/70 mb-6">{modelB.subtitle}</p>
-
-                            <div className="font-display text-5xl md:text-6xl text-gradient-coral font-semibold leading-none mb-1">
-                                {modelB.price}
-                            </div>
-                            <p className="text-xs text-white/60 mb-1">{modelB.priceSubtitle}</p>
-                            <p className="text-xs text-white/60 mb-6">{modelB.priceUnit}</p>
-
-                            <ul className="space-y-3 pt-4 border-t border-white/15">
-                                {modelB.bullets.map((b, i) => (
-                                    <li key={i} className="flex items-start gap-2.5 text-sm text-white/85">
-                                        <Check className="w-4 h-4 text-[var(--coral-400)] flex-shrink-0 mt-0.5" />
-                                        <span>{b}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </StaggerItem>
+                        </StaggerItem>
+                    ))}
                 </StaggerContainer>
 
                 {/* 결제 옵션 */}

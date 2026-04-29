@@ -97,7 +97,7 @@ export function Hero() {
                     {/* 신뢰 시그널 */}
                     <FadeIn delay={1.4}>
                         <div className="mt-14 pt-6 border-t border-white/15 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/65">
-                            <span>✓ 6 업종 실제 작동 페이지 직접 체험 가능</span>
+                            <span>✓ 6 업종 운영 가능</span>
                             <span>✓ 광고주 명의 분리 자동</span>
                             <span>✓ 카톡 오픈채팅 즉시 상담</span>
                         </div>
