@@ -68,6 +68,8 @@ export interface IndustryConfig {
     contact: {
         sheetId: string | null;
         additionalFields: { key: string; label: string; required: boolean }[];
+        telegramBotTokenEnv?: string | null;
+        telegramChatIdEnv?: string | null;
     };
     guardrail: {
         forbidden: string[];

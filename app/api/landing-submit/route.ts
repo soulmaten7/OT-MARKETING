@@ -58,6 +58,47 @@ function buildHeaders(questions: Question[]): string[] {
     return [...base, ...qHeaders, ...tail];
 }
 
+async function sendTelegram(botToken: string, chatId: string, text: string): Promise<void> {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+    });
+}
+
+function buildTelegramMessage(
+    industryName: string,
+    grade: string,
+    personal: Record<string, string>,
+    questions: Question[],
+    answers: Record<string, string | string[]>,
+    submissionId: string,
+    now: string,
+): string {
+    const timeLabel = TIME_LABELS[personal.time ?? ""] ?? personal.time ?? "";
+    const qLines = questions
+        .map((q) => `  <b>${q.label}</b>: ${labelize(answers[q.id], q)}`)
+        .join("\n");
+
+    return [
+        `🆕 <b>새 신청 도착</b>`,
+        ``,
+        `<b>업종</b>: ${industryName}`,
+        `<b>등급</b>: ${grade}`,
+        `<b>성함</b>: ${personal.name ?? ""}`,
+        `<b>연락처</b>: ${normalizePhone(personal.phone ?? "")}`,
+        `<b>통화 시간</b>: ${timeLabel}`,
+        ``,
+        `<b>자가진단</b>`,
+        qLines,
+        ``,
+        `━━━━━━━━━━`,
+        `📅 ${now}`,
+        `🆔 ${submissionId}`,
+    ].join("\n");
+}
+
 function buildPrivateKey(raw: string): string {
     let key = raw;
     if (key.includes("\\n")) key = key.replace(/\\n/g, "\n");
@@ -131,6 +172,28 @@ export async function POST(request: Request) {
         });
 
         await sheet.addRow(row);
+
+        // 텔레그램 알림 (실패해도 시트 입력에 영향 X)
+        try {
+            const tokenEnv = config?.contact.telegramBotTokenEnv;
+            const chatEnv  = config?.contact.telegramChatIdEnv;
+            const botToken = tokenEnv ? process.env[tokenEnv] : null;
+            const chatId   = chatEnv  ? process.env[chatEnv]  : null;
+            if (botToken && chatId) {
+                const msg = buildTelegramMessage(
+                    config?.industryName ?? industryId,
+                    grade,
+                    personal,
+                    questions,
+                    answers,
+                    submissionId,
+                    now,
+                );
+                await sendTelegram(botToken, chatId, msg);
+            }
+        } catch (tgErr) {
+            console.error("[telegram] send failed:", tgErr);
+        }
 
         return NextResponse.json({ success: true, submissionId });
     } catch (error) {

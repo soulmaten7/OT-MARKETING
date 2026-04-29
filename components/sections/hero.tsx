@@ -59,13 +59,13 @@ export function Hero() {
                             href="/#industries"
                             className="w-full sm:w-auto border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)]/10 font-bold px-8 py-4 rounded text-base transition-colors inline-flex items-center justify-center gap-2 group"
                         >
-                            운영 업종 보기
+                            6 업종 실제 페이지 보기
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
 
                     <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/60">
-                        <span>✓ 6 업종 운영 가능</span>
+                        <span>✓ 6 업종 실제 작동 페이지 직접 체험 가능</span>
                         <span>✓ 광고주 명의 분리 자동</span>
                         <span>✓ 카톡 오픈채팅 즉시 상담</span>
                     </div>
