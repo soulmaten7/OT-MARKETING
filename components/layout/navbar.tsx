@@ -104,7 +104,7 @@ export function Navbar() {
                                 <button
                                     onClick={() => handleToggle(group.label)}
                                     className={cn(
-                                        "flex items-center gap-1 px-4 py-2 rounded text-sm font-semibold transition-colors hover:text-[var(--gold)]",
+                                        "flex items-center gap-1 px-4 py-2 rounded text-sm font-semibold transition-colors hover:text-[var(--coral-400)]",
                                         navOnLight ? "text-[var(--navy)]" : "text-white/90"
                                     )}
                                 >
@@ -135,12 +135,12 @@ export function Navbar() {
                     </button>
                 </div>
 
-                {/* Desktop Mega Menu — full-width drop, inside header for click-outside */}
+                {/* Desktop Mega Menu — full-width drop · Navy 톤 통일 (헤더와 같은 배경 + 외곽선 강조) */}
                 {navStructure.map((group) => (
                     <div
                         key={group.label}
                         className={cn(
-                            "absolute left-0 right-0 top-full bg-white shadow-xl border-t border-gray-100 transition-all duration-200",
+                            "absolute left-0 right-0 top-full bg-[var(--navy-900)] shadow-2xl border-t border-white/10 transition-all duration-200",
                             openMega === group.label
                                 ? "opacity-100 translate-y-0 pointer-events-auto"
                                 : "opacity-0 -translate-y-1 pointer-events-none"
@@ -155,7 +155,7 @@ export function Navbar() {
                                         key={item.label}
                                         href={item.href}
                                         onClick={() => setOpenMega(null)}
-                                        className="block px-4 py-4 text-base font-semibold text-[var(--navy)] text-center rounded hover:bg-gray-50 hover:text-[var(--gold)] transition-colors duration-150"
+                                        className="block px-4 py-4 text-base font-semibold text-white/90 text-center rounded hover:bg-white/5 hover:text-[var(--coral-400)] transition-colors duration-150"
                                     >
                                         {item.label}
                                     </Link>
@@ -178,7 +178,7 @@ export function Navbar() {
                                         <Link
                                             key={item.label}
                                             href={item.href}
-                                            className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--gold)]"
+                                            className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--coral-400)] transition-colors"
                                             onClick={() => setIsMenuOpen(false)}
                                         >
                                             {item.label}
