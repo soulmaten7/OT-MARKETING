@@ -1,53 +1,60 @@
 "use client";
-import { Search } from "lucide-react";
 
 export function GoogleDiscoveryMockup() {
     return (
-        <div className="w-full h-full flex flex-col bg-white text-xs overflow-hidden">
-            {/* Google 상단 */}
-            <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-100 flex-shrink-0">
-                <div className="font-bold text-sm">
-                    <span style={{ color: "#4285F4" }}>G</span>
-                    <span style={{ color: "#EA4335" }}>o</span>
-                    <span style={{ color: "#FBBC05" }}>o</span>
-                    <span style={{ color: "#4285F4" }}>g</span>
-                    <span style={{ color: "#34A853" }}>l</span>
-                    <span style={{ color: "#EA4335" }}>e</span>
+        <div className="w-full h-full flex flex-col bg-white">
+            {/* 압축된 Google 헤더 */}
+            <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-100">
+                <div className="flex gap-0.5">
+                    <span className="text-[#4285F4] font-bold text-sm">G</span>
+                    <span className="text-[#EA4335] font-bold text-sm">o</span>
+                    <span className="text-[#FBBC05] font-bold text-sm">o</span>
+                    <span className="text-[#4285F4] font-bold text-sm">g</span>
+                    <span className="text-[#34A853] font-bold text-sm">l</span>
+                    <span className="text-[#EA4335] font-bold text-sm">e</span>
                 </div>
-                <div className="flex-1 flex items-center bg-gray-100 rounded-full px-2 py-1 gap-1">
-                    <Search className="w-3 h-3 text-gray-400" />
-                    <div className="h-2 bg-gray-300 rounded w-16" />
-                </div>
+                <div className="ml-auto text-[10px] text-gray-400">디스커버</div>
             </div>
 
-            {/* 광고 카드 (첫 번째) */}
-            <div className="mx-2 mt-3 bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm flex-shrink-0">
-                {/* 큰 이미지 */}
-                <div className="w-full h-28 bg-gradient-to-br from-[var(--coral-500)] to-[var(--navy)] flex items-center justify-center text-white">
+            {/* 광고 카드 (메인) — 폰의 60% */}
+            <div className="flex-[3] m-2 rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col">
+                {/* 이미지 */}
+                <div className="aspect-[16/10] bg-gradient-to-br from-[var(--coral-500)] via-[var(--coral-600)] to-[var(--navy)] flex items-center justify-center text-white relative">
+                    <div className="absolute top-2 left-2 bg-black/40 text-white text-[8px] px-2 py-0.5 rounded font-bold">
+                        광고
+                    </div>
                     <div className="text-center px-4">
-                        <div className="text-sm font-bold">법률상담 무료</div>
-                        <div className="text-xs opacity-80">회생·파산 검토</div>
+                        <div className="text-[16px] font-bold leading-tight">
+                            법률상담 무료
+                        </div>
+                        <div className="text-[10px] opacity-90 mt-1">회생·파산 검토</div>
                     </div>
                 </div>
-                <div className="px-3 py-2">
-                    <div className="text-[11px] font-bold text-[var(--navy)] leading-tight mb-0.5">
-                        법률상담 무료 — 회생·파산 검토
+                {/* 정보 */}
+                <div className="px-3 py-2 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">
+                            법률상담 무료 — 회생·파산 검토
+                        </div>
+                        <div className="text-[10px] text-gray-600 leading-snug">
+                            본인 상황에 맞는 회생 절차 1분 자가진단
+                        </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                        <span className="text-[9px] text-gray-500">법무법인 OO</span>
-                        <span className="text-[8px] bg-gray-100 text-gray-500 px-1 rounded">광고</span>
+                    <div className="flex items-center gap-2 mt-2">
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[var(--navy)] to-[var(--coral-500)]" />
+                        <div className="text-[9px] text-gray-500">법무법인 OO</div>
                     </div>
                 </div>
             </div>
 
-            {/* 유기 카드 (흐릿) */}
-            <div className="mx-2 mt-2 flex-1 opacity-30">
-                <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-                    <div className="h-16 bg-gray-100" />
-                    <div className="px-3 py-2 space-y-1">
-                        <div className="h-2.5 bg-gray-200 rounded w-4/5" />
-                        <div className="h-2 bg-gray-100 rounded w-3/5" />
+            {/* 유기 카드 (작게) — 디스커버 컨텍스트 */}
+            <div className="m-2 mt-0 rounded-xl overflow-hidden border border-gray-100 flex">
+                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200" />
+                <div className="flex-1 px-2 py-1.5">
+                    <div className="text-[10px] font-bold leading-tight text-gray-700">
+                        가계부채 1,800조, 회생·파산 사상 최고
                     </div>
+                    <div className="text-[9px] text-gray-400 mt-1">DAILY NEWS · 2시간 전</div>
                 </div>
             </div>
         </div>

@@ -14,10 +14,10 @@ export function PhoneFrame({ children, label, accentColor = "var(--coral-400)" }
         <motion.div
             whileHover={{ scale: 1.02, y: -4 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative group"
+            className="relative group pt-7"
         >
             {label && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 bg-[var(--navy)] text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-10 bg-[var(--navy)] text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-md">
                     {label}
                 </div>
             )}

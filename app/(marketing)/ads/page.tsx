@@ -8,6 +8,8 @@ import { FadeIn, FadeInUp } from "@/components/ui/motion";
 
 import { PhoneFrame } from "@/components/sections/ads/PhoneFrame";
 import { ChannelTabs } from "@/components/sections/ads/ChannelTabs";
+import { IndustryTabs, type Industry } from "@/components/sections/ads/IndustryTabs";
+import { IndustryComingSoon } from "@/components/sections/ads/IndustryComingSoon";
 import { AdToLandingFlow } from "@/components/sections/ads/AdToLandingFlow";
 import { MetaFeedMockup } from "@/components/sections/ads/MetaFeedMockup";
 import { KarrotMockup } from "@/components/sections/ads/KarrotMockup";
@@ -17,26 +19,43 @@ import { GoogleGDNMockup } from "@/components/sections/ads/GoogleGDNMockup";
 import { GoogleDiscoveryMockup } from "@/components/sections/ads/GoogleDiscoveryMockup";
 import { PerformanceDataPanel } from "@/components/sections/ads/PerformanceDataPanel";
 
+const industries: (Industry & { legalNote?: string })[] = [
+    { id: "debt-relief", name: "개인회생",  active: true },
+    { id: "rental",      name: "렌탈",      active: false, legalNote: "표시광고법 §3 (할부 조건 명시 의무)" },
+    { id: "broadband",   name: "통신",      active: false, legalNote: "전기통신사업법 (요금 명시 의무)" },
+    { id: "invest",      name: "리딩",      active: false, legalNote: "자본시장법 §174 (수익률 보장 표현 절대 금지)" },
+    { id: "realestate",  name: "부동산",    active: false, legalNote: "공인중개사법 (자격 표기 의무)" },
+    { id: "medical",     name: "병의원",    active: false, legalNote: "의료법 §56 (전문 표기·환자 후기 제한)" },
+];
+
 const channels = [
-    { id: "all", name: "전체" },
-    { id: "meta", name: "Meta" },
+    { id: "all",    name: "전체" },
+    { id: "meta",   name: "Meta" },
     { id: "google", name: "Google" },
     { id: "karrot", name: "당근" },
-    { id: "naver", name: "Naver" },
-    { id: "kakao", name: "카카오 모먼트" },
+    { id: "naver",  name: "Naver" },
+    { id: "kakao",  name: "카카오 모먼트" },
 ];
 
 const mockups = [
-    { id: "meta",   name: "Meta 피드",         color: "#1877F2", component: <MetaFeedMockup /> },
-    { id: "karrot", name: "당근 비즈프로필",   color: "#FF7E36", component: <KarrotMockup /> },
-    { id: "naver",  name: "Naver 검색광고",    color: "#03C75A", component: <NaverSearchMockup /> },
-    { id: "kakao",  name: "카카오 모먼트",     color: "#FEE500", component: <KakaoMomentMockup /> },
-    { id: "google", name: "Google GDN",        color: "#4285F4", component: <GoogleGDNMockup /> },
-    { id: "google", name: "Google Discovery",  color: "#EA4335", component: <GoogleDiscoveryMockup /> },
+    { id: "meta",   name: "Meta 피드",        color: "#1877F2", component: <MetaFeedMockup /> },
+    { id: "karrot", name: "당근 비즈프로필",  color: "#FF7E36", component: <KarrotMockup /> },
+    { id: "naver",  name: "Naver 검색광고",   color: "#03C75A", component: <NaverSearchMockup /> },
+    { id: "kakao",  name: "카카오 모먼트",    color: "#FEE500", component: <KakaoMomentMockup /> },
+    { id: "google", name: "Google GDN",       color: "#4285F4", component: <GoogleGDNMockup /> },
+    { id: "google", name: "Google Discovery", color: "#EA4335", component: <GoogleDiscoveryMockup /> },
 ];
 
 export default function AdsPage() {
+    const [industry, setIndustry] = useState("debt-relief");
     const [active, setActive] = useState("all");
+
+    const currentIndustry = industries.find((i) => i.id === industry)!;
+
+    const handleIndustryChange = (id: string) => {
+        setIndustry(id);
+        setActive("all");
+    };
 
     const visibleMockups =
         active === "all" ? mockups : mockups.filter((m) => m.id === active);
@@ -70,39 +89,82 @@ export default function AdsPage() {
                                 광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.
                             </span>
                         </p>
+                        <p className="mt-6 text-sm md:text-base text-white/60 font-mono tracking-wide">
+                            6 업종 × 6 매체 = 36 시안 매트릭스
+                        </p>
                     </FadeIn>
                 </div>
             </section>
 
-            {/* 2. 매체 탭 */}
-            <section className="py-8 md:py-10 border-b border-gray-100 sticky top-[72px] bg-white z-30 shadow-sm">
-                <div className="ot-container">
-                    <ChannelTabs channels={channels} active={active} onChange={setActive} />
+            {/* 2. 업종 탭 (1차 분류) — sticky 상단 */}
+            <section className="py-6 md:py-8 border-b border-gray-100 sticky top-[72px] bg-white z-30 shadow-sm">
+                <div className="ot-container space-y-3 md:space-y-4">
+                    {/* 1차: 업종 */}
+                    <div>
+                        <div className="text-[10px] md:text-xs text-gray-400 font-bold tracking-widest mb-2 text-center md:text-left max-w-6xl mx-auto">
+                            업종 · INDUSTRY
+                        </div>
+                        <IndustryTabs
+                            industries={industries}
+                            activeId={industry}
+                            onChange={handleIndustryChange}
+                        />
+                    </div>
+
+                    {/* 2차: 매체 — 활성 업종일 때만 표시 */}
+                    {currentIndustry.active && (
+                        <div>
+                            <div className="text-[10px] md:text-xs text-gray-400 font-bold tracking-widest mb-2 text-center md:text-left max-w-6xl mx-auto">
+                                매체 · CHANNEL
+                            </div>
+                            <ChannelTabs channels={channels} active={active} onChange={setActive} />
+                        </div>
+                    )}
                 </div>
             </section>
 
-            {/* 3. Mockup 그리드 */}
+            {/* 3. 분기 렌더 — 활성 업종이면 mockup, 비활성이면 ComingSoon */}
             <section className="py-16 md:py-24">
                 <div className="ot-container">
                     <AnimatePresence mode="wait">
-                        <motion.div
-                            key={active}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.3 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 justify-items-center max-w-6xl mx-auto"
-                        >
-                            {visibleMockups.map((m, idx) => (
-                                <PhoneFrame
-                                    key={`${m.id}-${idx}`}
-                                    label={m.name}
-                                    accentColor={m.color}
-                                >
-                                    {m.component}
-                                </PhoneFrame>
-                            ))}
-                        </motion.div>
+                        {currentIndustry.active ? (
+                            <motion.div
+                                key={`mockups-${industry}-${active}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className={`gap-12 md:gap-16 max-w-6xl mx-auto ${
+                                    visibleMockups.length === 1
+                                        ? "flex justify-center"
+                                        : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center"
+                                }`}>
+                                    {visibleMockups.map((m, idx) => (
+                                        <PhoneFrame
+                                            key={`${m.id}-${idx}`}
+                                            label={m.name}
+                                            accentColor={m.color}
+                                        >
+                                            {m.component}
+                                        </PhoneFrame>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key={`coming-soon-${industry}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <IndustryComingSoon
+                                    industryName={currentIndustry.name}
+                                    legalNote={currentIndustry.legalNote}
+                                />
+                            </motion.div>
+                        )}
                     </AnimatePresence>
                 </div>
             </section>

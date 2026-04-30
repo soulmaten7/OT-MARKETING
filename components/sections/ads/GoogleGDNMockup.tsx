@@ -2,63 +2,53 @@
 
 export function GoogleGDNMockup() {
     return (
-        <div className="w-full h-full flex flex-col bg-white text-xs overflow-hidden">
-            {/* 가짜 뉴스 헤더 */}
-            <div className="flex items-center justify-between px-3 h-8 border-b border-gray-200 flex-shrink-0">
-                <div className="font-bold text-[10px] text-gray-700">DAILY NEWS</div>
-                <div className="flex gap-2 text-[9px] text-gray-400">
-                    <span>사회</span><span>경제</span><span>스포츠</span>
-                </div>
+        <div className="w-full h-full flex flex-col bg-white">
+            {/* 압축된 host 헤더 (1줄) */}
+            <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+                <div className="font-bold text-[11px] text-gray-700">DAILY NEWS</div>
+                <div className="text-[8px] text-gray-400">2026.04.30</div>
             </div>
 
-            {/* 뉴스 콘텐츠 (placeholder lines) */}
-            <div className="px-3 py-2 space-y-1.5 flex-shrink-0 opacity-60">
-                <div className="h-2.5 bg-gray-200 rounded w-full" />
-                <div className="h-2.5 bg-gray-200 rounded w-5/6" />
-                <div className="h-2.5 bg-gray-100 rounded w-4/6" />
-            </div>
-
-            {/* GDN 배너 (중앙 삽입) */}
-            <div className="mx-2 my-2 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
-                <div className="flex h-20">
-                    {/* 이미지 영역 */}
-                    <div className="w-24 bg-gradient-to-br from-[var(--coral-500)] to-[var(--navy)] flex items-center justify-center text-white text-[10px] font-bold text-center px-1">
-                        법무법인<br />OO
-                    </div>
-                    {/* 텍스트 영역 */}
-                    <div className="flex-1 px-2 py-2 flex flex-col justify-between bg-white">
-                        <div>
-                            <div className="text-[11px] font-bold text-[var(--navy)] leading-tight">
-                                변제계획 검토 무료
-                            </div>
-                            <div className="text-[9px] text-gray-500 mt-0.5">
-                                개인회생·파산 법률상담
-                            </div>
-                        </div>
-                        <div className="flex items-end justify-between">
-                            <button className="bg-[#1A73E8] text-white text-[9px] font-bold px-2 py-1 rounded">
-                                확인하기
-                            </button>
-                            <span className="text-[8px] text-gray-400">Ads by Google</span>
-                        </div>
-                    </div>
+            {/* host 컨텐츠 (작게) */}
+            <div className="px-3 pt-3 pb-2">
+                <div className="text-[10px] font-bold text-gray-700 mb-1.5 leading-snug">
+                    [경제] 가계부채 1,800조 돌파, 회생·파산 신청 사상 최고
                 </div>
-                {/* Google 4컬러 dot */}
-                <div className="flex gap-0.5 px-2 py-1 bg-gray-50 border-t border-gray-100">
-                    {["#4285F4","#EA4335","#FBBC05","#34A853"].map((c, i) => (
-                        <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: c }} />
+                <div className="space-y-1">
+                    {[1, 2, 3].map((i) => (
+                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${100 - i * 8}%` }} />
                     ))}
-                    <span className="text-[8px] text-gray-400 ml-1">Google GDN</span>
                 </div>
             </div>
 
-            {/* 이어지는 뉴스 (흐릿) */}
-            <div className="px-3 flex-1 space-y-1.5 opacity-30">
-                <div className="h-2.5 bg-gray-200 rounded w-full" />
-                <div className="h-2.5 bg-gray-200 rounded w-3/4" />
-                <div className="h-16 bg-gray-100 rounded mt-2" />
-                <div className="h-2.5 bg-gray-200 rounded w-5/6" />
-                <div className="h-2.5 bg-gray-200 rounded w-2/3" />
+            {/* GDN 배너 — 폰 중앙, 크게 */}
+            <div className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md">
+                <div className="bg-gradient-to-r from-[var(--coral-500)] to-[var(--navy)] p-4 flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-lg">
+                        법
+                    </div>
+                    <div className="flex-1 text-white">
+                        <div className="text-[12px] font-bold leading-tight mb-1">변제계획 검토 무료</div>
+                        <div className="text-[9px] opacity-90">개인회생·파산 법률상담</div>
+                    </div>
+                    <button className="bg-white text-[var(--navy)] font-bold text-[10px] px-3 py-1.5 rounded">
+                        확인하기
+                    </button>
+                </div>
+                <div className="px-2 py-1 bg-gray-50 flex items-center justify-between">
+                    <div className="text-[8px] text-gray-500">법무법인 OO · 광고</div>
+                    <div className="text-[8px] text-gray-400">Ads by Google</div>
+                </div>
+            </div>
+
+            {/* host 컨텐츠 (계속) */}
+            <div className="flex-1 px-3 py-2">
+                <div className="space-y-1">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${100 - (i % 3) * 10}%` }} />
+                    ))}
+                </div>
+                <div className="mt-3 text-[9px] text-gray-400">관련 기사 · 더 보기</div>
             </div>
         </div>
     );
