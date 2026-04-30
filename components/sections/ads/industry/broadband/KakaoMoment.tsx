@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function KakaoMoment() {
     return (
@@ -11,7 +12,8 @@ export function KakaoMoment() {
                         <div className="absolute w-8 h-8 bg-[#6C63FF]/20 rounded-full" />
                     </div>
                     <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">광고</div>
-                    <div className="relative text-center text-[#3C1E1E]">
+                    <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
+                    <div className="relative z-20 text-center text-[#3C1E1E]">
                         <div className="text-[10px] font-bold tracking-widest mb-2 opacity-70">5G 요금 안내</div>
                         <div className="text-[40px] font-black leading-none mb-1">5G</div>
                         <div className="text-[13px] font-bold">무제한 · 무약정</div>

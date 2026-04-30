@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function KarrotMockup() {
     return (
@@ -8,7 +9,8 @@ export function KarrotMockup() {
                 <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded">
                     광고
                 </div>
-                <div className="relative text-center px-6">
+                <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
+                <div className="relative z-20 text-center px-6">
                     <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">OO동 비즈프로필</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
                         회생·파산<br />법률 상담 무료

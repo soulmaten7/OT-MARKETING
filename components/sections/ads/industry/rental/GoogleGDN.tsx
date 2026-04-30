@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function GoogleGDN() {
     return (
@@ -19,7 +20,9 @@ export function GoogleGDN() {
 
             {/* GDN banner */}
             <div className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md">
-                <div className="bg-gradient-to-r from-[#0099CC] to-[#004E8C] p-4 flex items-center gap-3">
+                <div className="bg-gradient-to-r from-[#0099CC] to-[#004E8C] p-4 relative">
+                    <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 배너 이미지" />
+                    <div className="flex items-center gap-3 relative z-20">
                     <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center text-white">
                         <svg viewBox="0 0 24 30" className="w-6 h-8" fill="white">
                             <path d="M12 1 C12 1 2 10 2 17 C2 22.5 6.5 26 12 26 C17.5 26 22 22.5 22 17 C22 10 12 1 12 1Z" />
@@ -32,6 +35,7 @@ export function GoogleGDN() {
                     <button className="bg-white text-[#004E8C] font-bold text-[10px] px-3 py-1.5 rounded">
                         확인하기
                     </button>
+                    </div>
                 </div>
                 <div className="px-2 py-1 bg-gray-50 flex items-center justify-between">
                     <div className="text-[8px] text-gray-500">정수기 OO · 광고</div>

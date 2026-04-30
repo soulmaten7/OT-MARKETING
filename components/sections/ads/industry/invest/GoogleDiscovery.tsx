@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function GoogleDiscovery() {
     return (
@@ -19,7 +20,8 @@ export function GoogleDiscovery() {
                 <div className="aspect-[16/9] bg-gradient-to-br from-[#1E3A5F] to-[#0A1628] flex items-center justify-center text-white relative">
                     <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)", backgroundSize: "8px 8px" }} />
                     <div className="absolute top-2 left-2 bg-black/40 text-white text-[8px] px-2 py-0.5 rounded font-bold">광고</div>
-                    <div className="text-center px-4">
+                    <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 카드 이미지" />
+                    <div className="relative z-20 text-center px-4">
                         <div className="text-[14px] font-bold leading-tight text-[#F0B429]">투자 정보</div>
                         <div className="text-[10px] opacity-80 mt-1">무료 안내</div>
                     </div>

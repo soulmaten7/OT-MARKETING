@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function GoogleDiscoveryMockup() {
     return (
@@ -21,7 +22,8 @@ export function GoogleDiscoveryMockup() {
                 {/* 이미지 */}
                 <div className="aspect-[16/10] bg-gradient-to-br from-[var(--coral-500)] via-[var(--coral-600)] to-[var(--navy)] flex items-center justify-center text-white relative">
                     <div className="absolute top-2 left-2 bg-black/40 text-white text-[8px] px-2 py-0.5 rounded font-bold">광고</div>
-                    <div className="text-center px-4">
+                    <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 카드 이미지" />
+                    <div className="relative z-20 text-center px-4">
                         <div className="text-[16px] font-bold leading-tight">법률상담 무료</div>
                         <div className="text-[10px] opacity-90 mt-1">회생·파산 검토</div>
                     </div>

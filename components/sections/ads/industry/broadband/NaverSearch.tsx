@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function NaverSearch() {
     return (
@@ -9,7 +10,9 @@ export function NaverSearch() {
                 <div className="text-[#03C75A] text-[10px]">🔍</div>
             </div>
 
-            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#F5F3FF] to-white">
+            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#F5F3FF] to-white relative">
+                <ImagePlaceholder accentColor="rgba(3,199,90,0.4)" label="광고주 로고/이미지" size="sm" />
+                <div className="relative z-20">
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">telecom-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
@@ -25,6 +28,7 @@ export function NaverSearch() {
                 </div>
                 <div className="bg-[#F0EEFF] border-l-4 border-[#6C63FF] px-3 py-2 rounded-r">
                     <div className="text-[10px] font-bold text-[#1F1F1F]">📶 5G 데이터 무제한 · 월 OO원 (요금 명시)</div>
+                </div>
                 </div>
             </div>
 

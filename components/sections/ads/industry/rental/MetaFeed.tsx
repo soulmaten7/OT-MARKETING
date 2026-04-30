@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 import { Heart, MessageSquare, Share2, Bookmark } from "lucide-react";
 
 export function MetaFeed() {
@@ -24,7 +25,8 @@ export function MetaFeed() {
                 </div>
                 {/* color block */}
                 <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-white/10" />
-                <div className="relative text-center px-6">
+                <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
+                <div className="relative z-20 text-center px-6">
                     <div className="text-[10px] font-bold tracking-widest mb-2 opacity-80">무이자 할부</div>
                     <div className="mb-2">
                         <span className="text-[44px] font-black leading-none">36</span>

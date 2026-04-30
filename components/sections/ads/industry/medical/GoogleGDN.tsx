@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function GoogleGDN() {
     return (
@@ -18,13 +19,16 @@ export function GoogleGDN() {
             </div>
 
             <div className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md">
-                <div className="bg-gradient-to-r from-[#0891B2] to-[#0E4F6E] p-4 flex items-center gap-3">
+                <div className="bg-gradient-to-r from-[#0891B2] to-[#0E4F6E] p-4 relative">
+                    <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 배너 이미지" />
+                    <div className="flex items-center gap-3 relative z-20">
                     <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-lg">+</div>
                     <div className="flex-1 text-white">
                         <div className="text-[12px] font-bold leading-tight mb-1">진료 예약 안내</div>
                         <div className="text-[9px] opacity-90">OO 병원 · 진료 시간</div>
                     </div>
                     <button className="bg-white text-[#0E4F6E] font-bold text-[10px] px-3 py-1.5 rounded">확인하기</button>
+                    </div>
                 </div>
                 <div className="px-2 py-1 bg-gray-50 flex items-center justify-between">
                     <div className="text-[8px] text-gray-500">OO 병원 · 광고</div>

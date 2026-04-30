@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function NaverSearchMockup() {
     return (
@@ -13,7 +14,9 @@ export function NaverSearchMockup() {
             </div>
 
             {/* 광고 영역 — 풀스크린, 폰의 65% */}
-            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white">
+            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white relative">
+                <ImagePlaceholder accentColor="rgba(3,199,90,0.4)" label="광고주 로고/이미지" size="sm" />
+                <div className="relative z-20">
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">
                     광고
                 </div>
@@ -35,6 +38,7 @@ export function NaverSearchMockup() {
                 {/* 강조 박스 */}
                 <div className="bg-[#FFF0E0] border-l-4 border-[#FF6F00] px-3 py-2 rounded-r">
                     <div className="text-[10px] font-bold text-[#1F1F1F]">📞 법률상담 무료 · 평일 9~18시</div>
+                </div>
                 </div>
             </div>
 

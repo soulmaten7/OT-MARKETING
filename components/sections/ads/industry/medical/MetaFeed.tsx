@@ -1,4 +1,5 @@
 "use client";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 import { Heart, MessageSquare, Share2, Bookmark } from "lucide-react";
 
 export function MetaFeed() {
@@ -25,7 +26,8 @@ export function MetaFeed() {
                 </div>
                 {/* circle block */}
                 <div className="absolute bottom-4 left-4 w-10 h-10 rounded-full bg-white/10" />
-                <div className="relative text-center px-6">
+                <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
+                <div className="relative z-20 text-center px-6">
                     <div className="text-[10px] font-bold tracking-widest mb-2 opacity-80">진료 예약 안내</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
                         OO 진료<br />예약 안내

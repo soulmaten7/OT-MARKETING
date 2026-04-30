@@ -1,5 +1,6 @@
 "use client";
 import { Heart, MessageSquare, Share2, Bookmark } from "lucide-react";
+import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function MetaFeedMockup() {
     return (
@@ -19,7 +20,8 @@ export function MetaFeedMockup() {
                 <div className="absolute inset-0 opacity-20" style={{
                     background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%)",
                 }} />
-                <div className="relative text-center px-6">
+                <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
+                <div className="relative z-20 text-center px-6">
                     <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">월 변제금 부담?</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
                         채무 독촉에서<br />벗어나는 첫걸음
