@@ -27,18 +27,19 @@ const channels = [
 ];
 
 const mockups = [
-    { key: "meta-feed", channel: "meta", name: "Meta 피드", color: "#1877F2", component: <MetaFeedMockup /> },
-    { key: "karrot", channel: "karrot", name: "당근 비즈프로필", color: "#FF7E36", component: <KarrotMockup /> },
-    { key: "naver", channel: "naver", name: "Naver 검색광고", color: "#03C75A", component: <NaverSearchMockup /> },
-    { key: "kakao", channel: "kakao", name: "카카오 모먼트", color: "#FEE500", component: <KakaoMomentMockup /> },
-    { key: "google-gdn", channel: "google", name: "Google GDN", color: "#4285F4", component: <GoogleGDNMockup /> },
-    { key: "google-discovery", channel: "google", name: "Google Discovery", color: "#EA4335", component: <GoogleDiscoveryMockup /> },
+    { id: "meta",   name: "Meta 피드",         color: "#1877F2", component: <MetaFeedMockup /> },
+    { id: "karrot", name: "당근 비즈프로필",   color: "#FF7E36", component: <KarrotMockup /> },
+    { id: "naver",  name: "Naver 검색광고",    color: "#03C75A", component: <NaverSearchMockup /> },
+    { id: "kakao",  name: "카카오 모먼트",     color: "#FEE500", component: <KakaoMomentMockup /> },
+    { id: "google", name: "Google GDN",        color: "#4285F4", component: <GoogleGDNMockup /> },
+    { id: "google", name: "Google Discovery",  color: "#EA4335", component: <GoogleDiscoveryMockup /> },
 ];
 
 export default function AdsPage() {
     const [active, setActive] = useState("all");
 
-    const visibleMockups = active === "all" ? mockups : mockups.filter((m) => m.channel === active);
+    const visibleMockups =
+        active === "all" ? mockups : mockups.filter((m) => m.id === active);
 
     return (
         <div className="bg-white">
@@ -52,8 +53,8 @@ export default function AdsPage() {
                     </FadeIn>
                     <FadeInUp>
                         <h1
-                            className="font-display text-3xl md:text-5xl mb-6 leading-[1.2]"
-                            style={{ textWrap: "balance" }}
+                            className="font-display text-3xl md:text-5xl mb-6 leading-[1.2] text-white"
+                            style={{ textWrap: "balance" } as React.CSSProperties}
                         >
                             광고 크리에이티브{" "}
                             <span className="text-gradient-coral font-semibold">6 매체</span>
@@ -65,14 +66,16 @@ export default function AdsPage() {
                             <br className="hidden md:block" />
                             매체별 톤·포맷에 맞춘 크리에이티브 + 광고 → 랜딩 일체 설계.
                             <br className="hidden md:block" />
-                            <span className="text-[var(--coral-400)] font-semibold">광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.</span>
+                            <span className="text-[var(--coral-400)] font-semibold">
+                                광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.
+                            </span>
                         </p>
                     </FadeIn>
                 </div>
             </section>
 
             {/* 2. 매체 탭 */}
-            <section className="py-8 md:py-10 border-b border-gray-100 sticky top-[72px] bg-white z-30">
+            <section className="py-8 md:py-10 border-b border-gray-100 sticky top-[72px] bg-white z-30 shadow-sm">
                 <div className="ot-container">
                     <ChannelTabs channels={channels} active={active} onChange={setActive} />
                 </div>
@@ -90,8 +93,12 @@ export default function AdsPage() {
                             transition={{ duration: 0.3 }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 justify-items-center max-w-6xl mx-auto"
                         >
-                            {visibleMockups.map((m) => (
-                                <PhoneFrame key={m.key} label={m.name} accentColor={m.color}>
+                            {visibleMockups.map((m, idx) => (
+                                <PhoneFrame
+                                    key={`${m.id}-${idx}`}
+                                    label={m.name}
+                                    accentColor={m.color}
+                                >
                                     {m.component}
                                 </PhoneFrame>
                             ))}
@@ -101,12 +108,13 @@ export default function AdsPage() {
             </section>
 
             {/* 4. 광고 → 랜딩 흐름 */}
-            <section className="py-20 md:py-28 bg-gray-50 border-y border-gray-100">
+            <section className="py-20 md:py-28 bg-gray-50">
                 <div className="ot-container">
                     <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
                         <div className="eyebrow mb-4">AD-TO-LANDING MATCH</div>
                         <h2 className="font-display text-2xl md:text-4xl text-[var(--navy)] mb-4 leading-[1.3]">
-                            광고와 랜딩은 <span className="text-gradient-coral font-semibold">한 몸</span>입니다
+                            광고와 랜딩은{" "}
+                            <span className="text-gradient-coral font-semibold">한 몸</span>입니다
                         </h2>
                         <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
                             다이나믹한 시각 효과는 광고 화면에. 정확하고 디테일한 정보는 랜딩에.
@@ -115,10 +123,13 @@ export default function AdsPage() {
                         </p>
                     </FadeInUp>
                     <AdToLandingFlow />
+                    <p className="text-center text-sm text-[var(--slate-600)] mt-8">
+                        광고 클릭 → 0.3초 → 랜딩 도착 — 광고와 랜딩이 한 몸으로 굴러갑니다
+                    </p>
                 </div>
             </section>
 
-            {/* 5. 성능 데이터 (placeholder) */}
+            {/* 5. 성능 데이터 */}
             <section className="py-20 md:py-28">
                 <div className="ot-container max-w-5xl mx-auto">
                     <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
@@ -138,7 +149,7 @@ export default function AdsPage() {
             <section className="py-20 md:py-28 hero-gradient-bg text-white">
                 <div className="ot-container text-center max-w-3xl mx-auto">
                     <FadeInUp>
-                        <h2 className="font-display text-2xl md:text-4xl mb-6 leading-[1.3]">
+                        <h2 className="font-display text-2xl md:text-4xl mb-6 leading-[1.3] text-white">
                             6 매체 운영 deck,{" "}
                             <span className="text-gradient-coral font-semibold">미팅에서 공개</span>
                         </h2>

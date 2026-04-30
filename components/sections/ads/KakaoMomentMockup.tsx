@@ -3,48 +3,64 @@
 export function KakaoMomentMockup() {
     return (
         <div className="w-full h-full flex flex-col bg-white text-xs">
-            {/* 상단 바 */}
-            <div className="flex items-center justify-between px-3 h-10 bg-[#FEE500] pt-6">
-                <div className="font-extrabold text-[#3C1E1E] text-sm">kakao</div>
-                <div className="text-[10px] font-bold text-[#3C1E1E]">추천 콘텐츠</div>
+            {/* 상단 */}
+            <div className="flex items-center justify-between px-3 h-10 border-b border-gray-100 flex-shrink-0">
+                <div
+                    className="font-extrabold text-[11px] px-2 py-0.5 rounded"
+                    style={{ background: "#FEE500", color: "#3C1E1E" }}
+                >
+                    kakao
+                </div>
+                <div className="text-[10px] text-gray-500">추천 콘텐츠</div>
             </div>
 
             {/* 광고 카드 */}
-            <div className="p-3 flex-1 flex flex-col">
-                <div className="bg-[#FEE500] rounded-xl overflow-hidden flex-1 flex flex-col relative">
-                    <div className="absolute top-2 right-2 z-10 text-[8px] bg-black/30 text-white px-1.5 py-0.5 rounded font-semibold">광고</div>
-
-                    {/* 일러스트 영역 */}
-                    <div className="aspect-square bg-white flex items-center justify-center p-4 m-3 rounded-lg">
-                        <div className="text-center">
-                            {/* 간단 도형 — 동전 + 화살표 다운 */}
-                            <div className="flex justify-center gap-1 mb-2">
-                                <div className="w-8 h-8 rounded-full bg-[#FEE500] border-2 border-[#3C1E1E] flex items-center justify-center text-[10px] font-bold text-[#3C1E1E]">₩</div>
-                                <div className="text-2xl text-[#3C1E1E] font-bold">↓</div>
-                            </div>
-                            <div className="text-[9px] text-[#3C1E1E] font-semibold">변제계획 검토</div>
-                        </div>
+            <div
+                className="mx-2 mt-3 rounded-xl overflow-hidden flex-shrink-0"
+                style={{ background: "#FEE500" }}
+            >
+                {/* 이미지 영역 */}
+                <div
+                    className="w-full aspect-square flex flex-col items-center justify-center gap-2"
+                    style={{ background: "#FEE500" }}
+                >
+                    {/* 간단 일러스트 (도형) */}
+                    <div className="flex gap-2">
+                        <div className="w-8 h-8 rounded-full bg-white/60" />
+                        <div className="w-8 h-8 rounded-lg" style={{ background: "#3C1E1E", opacity: 0.2 }} />
                     </div>
-
-                    {/* 제목 + 본문 */}
-                    <div className="px-4 pb-2">
-                        <div className="text-[14px] font-extrabold text-[#3C1E1E] leading-tight mb-1.5">
-                            월 100만원 변제금<br />부담되시나요?
-                        </div>
-                        <p className="text-[10px] text-[#3C1E1E]/80 leading-relaxed mb-3">
-                            변제계획 검토 무료. 자가진단 1분 완성.
-                        </p>
-                        <button className="w-full bg-[#3C1E1E] text-white font-bold py-2 rounded-md text-[11px]">
-                            자세히 보기
-                        </button>
+                    <div
+                        className="text-[10px] font-bold text-center px-2"
+                        style={{ color: "#3C1E1E" }}
+                    >
+                        월 100만원<br />변제금 부담되시나요?
                     </div>
+                </div>
+
+                {/* 텍스트 */}
+                <div className="px-3 py-2" style={{ background: "#FEE500" }}>
+                    <div
+                        className="text-[11px] font-bold mb-1 leading-tight"
+                        style={{ color: "#3C1E1E" }}
+                    >
+                        월 100만원 변제금 부담되시나요?
+                    </div>
+                    <div className="text-[10px] mb-2" style={{ color: "#3C1E1E", opacity: 0.8 }}>
+                        변제계획 검토 무료. 자가진단 1분 완성.
+                    </div>
+                    <div className="text-[9px] text-gray-500 mb-2">광고</div>
+                    <button
+                        className="w-full py-2 rounded text-[11px] font-bold text-white"
+                        style={{ background: "#3C1E1E" }}
+                    >
+                        자세히 보기
+                    </button>
                 </div>
             </div>
 
-            <div className="flex items-center justify-around h-8 border-t border-gray-100 flex-shrink-0">
-                <div className="w-2 h-2 bg-[#FEE500] rounded-full" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full" />
-                <div className="w-2 h-2 bg-gray-300 rounded-full" />
+            {/* 다음 카드 (흐릿) */}
+            <div className="mx-2 mt-2 flex-1 opacity-30">
+                <div className="h-24 bg-gray-100 rounded-xl" />
             </div>
         </div>
     );

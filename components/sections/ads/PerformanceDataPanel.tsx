@@ -1,7 +1,4 @@
-"use client";
-
-import { Sparkles } from "lucide-react";
-import { StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
 
 const placeholderData = [
     { label: "평균 CPA", value: "준비 중", subtext: "5/3 R&D 종료 후 공개" },
@@ -14,21 +11,18 @@ export function PerformanceDataPanel() {
         <StaggerContainer
             stagger={0.1}
             delayChildren={0.1}
-            className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-5"
         >
-            {placeholderData.map((d) => (
-                <StaggerItem key={d.label}>
-                    <div className="bg-white border border-[var(--slate-200)] rounded-xl p-7 md:p-8 h-full flex flex-col items-center text-center hover:border-[var(--coral-400)] hover:shadow-lg transition-all duration-300">
-                        <Sparkles className="w-6 h-6 text-[var(--coral-500)] mb-3" />
-                        <div className="text-xs font-bold tracking-widest text-[var(--slate-500)] mb-3">
-                            {d.label}
+            {placeholderData.map((item) => (
+                <StaggerItem key={item.label}>
+                    <div className="bg-white border border-[var(--slate-200)] rounded-xl p-6 md:p-8 text-center hover:shadow-md transition-shadow">
+                        <div className="text-xs font-bold tracking-widest text-[var(--coral-500)] uppercase mb-3">
+                            {item.label}
                         </div>
-                        <div className="font-display text-3xl md:text-4xl text-[var(--navy)] font-semibold mb-3 leading-none">
-                            {d.value}
+                        <div className="text-3xl md:text-4xl font-bold text-[var(--navy)] mb-2">
+                            {item.value}
                         </div>
-                        <div className="text-xs text-[var(--slate-500)] leading-relaxed">
-                            {d.subtext}
-                        </div>
+                        <div className="text-xs text-gray-500">{item.subtext}</div>
                     </div>
                 </StaggerItem>
             ))}
