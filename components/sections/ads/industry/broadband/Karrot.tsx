@@ -16,10 +16,13 @@ export function Karrot() {
                 <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded">광고</div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">OO동 비즈프로필</div>
-                    <div className="text-[22px] font-bold leading-tight mb-1">5G 요금 비교</div>
-                    <div className="text-[12px] font-bold mb-2">월 OO원 · 무약정</div>
-                    <div className="text-[11px] opacity-90">가입비 X · 데이터 무제한</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">5G 무약정 요금</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        5G 요금 비교 안내
+                    </div>
+                    <div className="text-[11px] opacity-95 mb-4">
+                        무약정 · 가입비 없음
+                    </div>
                 </div>
             </div>
 

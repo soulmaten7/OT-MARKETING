@@ -28,8 +28,8 @@ export function GoogleDiscovery() {
                 </div>
                 <div className="px-3 py-2 flex-1 flex flex-col justify-between">
                     <div>
-                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">5G 요금제 비교 — 통신사 OO</div>
-                        <div className="text-[10px] text-gray-600 leading-snug">월 OO원부터 · 데이터 무제한 · 무약정</div>
+                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">5G 요금 정보 안내</div>
+                        <div className="text-[10px] text-gray-600 leading-snug">무약정 선택 가능</div>
                     </div>
                     <div className="flex items-center gap-2 mt-1.5">
                         <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#6C63FF] to-[#2D1FA3]" />

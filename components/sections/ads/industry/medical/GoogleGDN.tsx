@@ -24,8 +24,8 @@ export function GoogleGDN() {
                     <div className="flex items-center gap-3 relative z-20">
                     <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-lg">+</div>
                     <div className="flex-1 text-white">
-                        <div className="text-[12px] font-bold leading-tight mb-1">진료 예약 안내</div>
-                        <div className="text-[9px] opacity-90">OO 병원 · 진료 시간</div>
+                        <div className="text-[12px] font-bold leading-tight mb-1">진료 정보 안내</div>
+                        <div className="text-[9px] opacity-90">예약·진료 시간 확인</div>
                     </div>
                     <button className="bg-white text-[#0E4F6E] font-bold text-[10px] px-3 py-1.5 rounded">확인하기</button>
                     </div>

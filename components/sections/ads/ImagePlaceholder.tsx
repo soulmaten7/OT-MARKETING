@@ -12,19 +12,19 @@ export function ImagePlaceholder({
     label = "광고주 브랜드 이미지 영역",
     size = "md",
 }: ImagePlaceholderProps) {
-    const iconSize = size === "sm" ? "w-4 h-4" : size === "md" ? "w-6 h-6" : "w-8 h-8";
-    const fontSize = size === "sm" ? "text-[8px]" : size === "md" ? "text-[10px]" : "text-xs";
+    const iconSize = size === "sm" ? "w-5 h-5" : size === "md" ? "w-7 h-7" : "w-9 h-9";
+    const fontSize = size === "sm" ? "text-[9px]" : size === "md" ? "text-[11px]" : "text-[13px]";
     return (
         <div
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 pointer-events-none z-10"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-2 pointer-events-none z-10"
             style={{
-                border: `1.5px dashed ${accentColor}`,
+                border: `2px dashed ${accentColor}`,
                 borderRadius: "4px",
                 margin: "8px",
             }}
         >
-            <Camera className={`${iconSize}`} style={{ color: accentColor, opacity: 0.7 }} />
-            <span className={`${fontSize} font-medium tracking-wide`} style={{ color: accentColor, opacity: 0.85 }}>
+            <Camera className={`${iconSize}`} style={{ color: accentColor, opacity: 0.85 }} />
+            <span className={`${fontSize} font-bold tracking-wide`} style={{ color: accentColor, opacity: 0.85 }}>
                 {label}
             </span>
         </div>

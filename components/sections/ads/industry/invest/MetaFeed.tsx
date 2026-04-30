@@ -28,12 +28,13 @@ export function MetaFeed() {
                 <div className="absolute bottom-5 left-4 w-10 h-10 rounded-full bg-[#F0B429]/10 border border-[#F0B429]/20" />
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 text-[#F0B429]">시장 분석 안내</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 text-[#F0B429]">주식 시장 분석</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
-                        투자 정보<br />무료 안내
+                        시장 분석 안내
                     </div>
-                    <div className="text-[11px] opacity-80 mb-1">차트 분석 · 시황 · 종목 정보</div>
-                    <div className="text-[9px] opacity-60 mb-3">(수익률 보장 안내 X)</div>
+                    <div className="text-[11px] opacity-90 mb-4">
+                        차트·시황·종목 정보
+                    </div>
                     <div className="inline-block bg-[#F0B429]/20 border border-[#F0B429]/40 rounded-full px-4 py-1 text-[10px] font-bold text-[#F0B429]">
                         정보 받기
                     </div>

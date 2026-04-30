@@ -16,10 +16,10 @@ export function NaverSearch() {
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">clinic-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    OO 진료 안내<br />— OO 병원
+                    진료 예약 정보 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    예약 상담 · 진료 시간 안내. (효과·치료 결과 보장 표현 없음)
+                    예약 절차 · 진료 시간
                 </div>
                 <div className="grid grid-cols-2 gap-1.5 mb-3">
                     {["예약 안내", "진료 시간", "위치 안내", "비용 안내"].map((s) => (

@@ -30,7 +30,7 @@ export function GoogleGDN() {
                     </div>
                     <div className="flex-1 text-white">
                         <div className="text-[12px] font-bold leading-tight mb-1">무이자 36개월 렌탈</div>
-                        <div className="text-[9px] opacity-90">월 OO원 · 총액 명시</div>
+                        <div className="text-[9px] opacity-90">월 요금 · 총액 명시</div>
                     </div>
                     <button className="bg-white text-[#004E8C] font-bold text-[10px] px-3 py-1.5 rounded">
                         확인하기

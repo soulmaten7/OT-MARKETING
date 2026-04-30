@@ -29,8 +29,8 @@ export function GoogleDiscovery() {
                 </div>
                 <div className="px-3 py-2 flex-1 flex flex-col justify-between">
                     <div>
-                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">정수기 렌탈 비교 — 브랜드 OO</div>
-                        <div className="text-[10px] text-gray-600 leading-snug">월 OO원부터 · 무이자 36개월 (총액 명시)</div>
+                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">무이자 36개월 비교</div>
+                        <div className="text-[10px] text-gray-600 leading-snug">정수기 렌탈 정보</div>
                     </div>
                     <div className="flex items-center gap-2 mt-1.5">
                         <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#0099CC] to-[#004E8C]" />

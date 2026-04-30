@@ -27,12 +27,13 @@ export function MetaFeed() {
                 <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full bg-white/10" />
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-80">무이자 할부</div>
-                    <div className="mb-2">
-                        <span className="text-[44px] font-black leading-none">36</span>
-                        <span className="text-[18px] font-bold ml-1">개월</span>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">정수기 렌탈 비교</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        무이자 36개월 렌탈
                     </div>
-                    <div className="text-[11px] opacity-90 mb-3">월 OO원 · 총액 명시</div>
+                    <div className="text-[11px] opacity-90 mb-4">
+                        월 요금 · 총액 명시
+                    </div>
                     <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-[10px] font-bold">
                         지금 보기
                     </div>

@@ -26,8 +26,8 @@ export function GoogleGDN() {
                         5G
                     </div>
                     <div className="flex-1 text-white">
-                        <div className="text-[12px] font-bold leading-tight mb-1">5G 요금 비교 안내</div>
-                        <div className="text-[9px] opacity-90">데이터 무제한 · 월 OO원</div>
+                        <div className="text-[12px] font-bold leading-tight mb-1">인터넷 요금 안내</div>
+                        <div className="text-[9px] opacity-90">약정 조건 · 요금 비교</div>
                     </div>
                     <button className="bg-white text-[#2D1FA3] font-bold text-[10px] px-3 py-1.5 rounded">확인하기</button>
                     </div>

@@ -28,8 +28,8 @@ export function GoogleDiscovery() {
                 </div>
                 <div className="px-3 py-2 flex-1 flex flex-col justify-between">
                     <div>
-                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">OO 진료 안내 — OO 병원</div>
-                        <div className="text-[10px] text-gray-600 leading-snug">예약 · 진료 시간 (효과 보장 표현 없음)</div>
+                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">진료 예약 안내</div>
+                        <div className="text-[10px] text-gray-600 leading-snug">진료 과목 · 예약 정보</div>
                     </div>
                     <div className="flex items-center gap-2 mt-1.5">
                         <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#0891B2] to-[#0E7490]" />

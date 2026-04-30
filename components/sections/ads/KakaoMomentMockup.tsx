@@ -21,10 +21,10 @@ export function KakaoMomentMockup() {
                             카카오톡 추천 콘텐츠
                         </div>
                         <div className="text-[24px] font-bold leading-tight mb-3">
-                            월 100만원<br />변제금 부담?
+                            변제계획 검토 무료
                         </div>
                         <div className="text-[12px] opacity-80">
-                            변제계획 검토 무료
+                            자가진단 1분
                         </div>
                     </div>
                 </div>

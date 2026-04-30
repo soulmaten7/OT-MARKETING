@@ -13,7 +13,7 @@ export function GoogleGDNMockup() {
             {/* host 컨텐츠 (위) */}
             <div className="px-3 pt-2 pb-1">
                 <div className="text-[10px] font-bold text-gray-700 mb-1.5 leading-snug">
-                    [경제] 가계부채 1,800조 돌파, 회생·파산 신청 사상 최고
+                    [경제] 가계부채 1,800조 돌파, 회생·파산 신청 급증
                 </div>
                 <div className="space-y-1">
                     {[100, 88, 72, 95, 65].map((w, i) => (
@@ -32,7 +32,7 @@ export function GoogleGDNMockup() {
                     </div>
                     <div className="flex-1 text-white">
                         <div className="text-[12px] font-bold leading-tight mb-1">변제계획 검토 무료</div>
-                        <div className="text-[9px] opacity-90">개인회생·파산 법률상담</div>
+                        <div className="text-[9px] opacity-90">회생·파산 법률상담</div>
                     </div>
                     <button className="bg-white text-[var(--navy)] font-bold text-[10px] px-3 py-1.5 rounded">
                         확인하기

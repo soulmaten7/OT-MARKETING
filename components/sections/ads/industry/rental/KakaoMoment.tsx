@@ -20,18 +20,19 @@ export function KakaoMoment() {
                     <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">광고</div>
                     <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
                     <div className="relative z-20 text-center text-[#3C1E1E]">
-                        <div className="text-[10px] font-bold tracking-widest mb-2 opacity-70">정수기 렌탈</div>
-                        <div className="mb-1">
-                            <span className="text-[40px] font-black leading-none">36</span>
-                            <span className="text-[14px] font-bold ml-1">개월</span>
+                        <div className="text-[11px] font-bold tracking-widest mb-3 opacity-70">정수기 렌탈 무이자</div>
+                        <div className="text-[24px] font-bold leading-tight mb-3">
+                            무이자 36개월 렌탈
                         </div>
-                        <div className="text-[12px] font-bold">무이자 할부</div>
+                        <div className="text-[12px] opacity-80">
+                            월 요금 · 총액 명시
+                        </div>
                     </div>
                 </div>
                 <div className="bg-[#0077B6] text-white px-5 py-4">
                     <div className="text-[12px] font-bold mb-1">정수기 브랜드 OO</div>
                     <div className="text-[10px] opacity-80 mb-3 leading-relaxed">
-                        무이자 36개월 · 월 OO원 · 총액 명시.
+                        무이자 36개월 · 월 요금 · 총액 명시 의무.
                     </div>
                     <button className="w-full bg-[#FEE500] text-[#3C1E1E] font-bold py-2 rounded text-[11px]">
                         비교 보기

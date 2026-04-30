@@ -16,10 +16,10 @@ export function NaverSearch() {
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">telecom-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    5G 요금제 비교<br />— 통신사 OO
+                    인터넷 요금 비교 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    데이터 무제한 · 가입비 X · 약정 자유 선택. 월 OO원부터 (요금 명시).
+                    약정·무약정 조건 정리
                 </div>
                 <div className="grid grid-cols-2 gap-1.5 mb-3">
                     {["요금 안내", "결합 할인", "가족 요금", "데이터 비교"].map((s) => (
@@ -27,7 +27,7 @@ export function NaverSearch() {
                     ))}
                 </div>
                 <div className="bg-[#F0EEFF] border-l-4 border-[#6C63FF] px-3 py-2 rounded-r">
-                    <div className="text-[10px] font-bold text-[#1F1F1F]">📶 5G 데이터 무제한 · 월 OO원 (요금 명시)</div>
+                    <div className="text-[10px] font-bold text-[#1F1F1F]">📶 5G 데이터 무제한 · 약정 조건 명시</div>
                 </div>
                 </div>
             </div>

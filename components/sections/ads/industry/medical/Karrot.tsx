@@ -15,10 +15,13 @@ export function Karrot() {
                 <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded">광고</div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">OO동 비즈프로필</div>
-                    <div className="text-[20px] font-bold leading-tight mb-2">OO 진료 안내</div>
-                    <div className="text-[12px] font-bold mb-1">동네 병원</div>
-                    <div className="text-[10px] opacity-90">진료 시간 · 예약 안내</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">동네 병원 예약</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        OO 진료 예약 안내
+                    </div>
+                    <div className="text-[11px] opacity-95 mb-4">
+                        진료 시간 · 위치 안내
+                    </div>
                 </div>
             </div>
 

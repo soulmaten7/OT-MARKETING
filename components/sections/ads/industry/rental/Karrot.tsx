@@ -18,10 +18,13 @@ export function Karrot() {
                 </div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">OO동 비즈프로필</div>
-                    <div className="text-[20px] font-bold leading-tight mb-1">정수기 렌탈</div>
-                    <div className="text-[13px] font-black mb-3">무이자 36개월</div>
-                    <div className="text-[11px] opacity-90">월 OO원 · 총액 명시</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">정수기 렌탈 동네</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        정수기 렌탈 비교
+                    </div>
+                    <div className="text-[11px] opacity-95 mb-4">
+                        무이자 36개월 총액 명시
+                    </div>
                 </div>
             </div>
 

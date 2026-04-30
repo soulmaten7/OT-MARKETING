@@ -28,8 +28,8 @@ export function GoogleDiscovery() {
                 </div>
                 <div className="px-3 py-2 flex-1 flex flex-col justify-between">
                     <div>
-                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">투자 정보 안내 — 차트 분석</div>
-                        <div className="text-[10px] text-gray-600 leading-snug">시황 · 산업 동향 (수익률 보장 X)</div>
+                        <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">종목 분석 안내</div>
+                        <div className="text-[10px] text-gray-600 leading-snug">시황·차트 정보</div>
                     </div>
                     <div className="flex items-center gap-2 mt-1.5">
                         <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#1E3A5F] to-[#F0B429]" />

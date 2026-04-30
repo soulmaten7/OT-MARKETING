@@ -16,10 +16,10 @@ export function NaverSearch() {
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">rental-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    정수기 렌탈 비교<br />— 브랜드 OO
+                    렌탈 요금 비교 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    월 OO원부터 · 무이자 36개월 할부 (총액 명시). 설치비 안내 포함.
+                    무이자 조건 총액 명시
                 </div>
                 <div className="grid grid-cols-2 gap-1.5 mb-3">
                     {["렌탈 요금", "브랜드 비교", "설치 안내", "AS 안내"].map((s) => (

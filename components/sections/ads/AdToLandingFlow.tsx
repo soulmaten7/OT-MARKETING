@@ -26,8 +26,8 @@ function AdMini() {
             </div>
             <div className="flex-1 bg-gradient-to-br from-[var(--coral-500)] to-[var(--navy)] flex items-center justify-center text-white">
                 <div className="text-center">
-                    <div className="font-bold text-[9px]">월 변제금</div>
-                    <div className="font-bold text-[10px]">부담되시나요?</div>
+                    <div className="font-bold text-[9px]">변제계획 검토</div>
+                    <div className="font-bold text-[10px]">무료 안내</div>
                 </div>
             </div>
             <div className="px-2 pb-1.5 flex-shrink-0 mt-1">
@@ -47,10 +47,10 @@ function LandingMini() {
                     ⚖ 개인회생·법률
                 </div>
                 <div className="font-bold text-[9px] leading-tight mb-2">
-                    채무 독촉에서<br />벗어나는 첫걸음
+                    회생·파산 법률 안내<br />변제계획 검토 무료
                 </div>
                 <div className="text-[7px] text-white/70 mb-3 leading-relaxed">
-                    3분 자가진단으로 개인회생<br />가능 여부 먼저 확인하세요.
+                    1분 자가진단으로 개인회생<br />가능 여부 먼저 확인하세요.
                 </div>
                 {/* 진행 바 */}
                 <div className="h-0.5 bg-white/20 rounded-full mb-3">

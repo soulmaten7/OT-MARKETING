@@ -32,10 +32,10 @@ export function GoogleDiscoveryMockup() {
                 <div className="px-3 py-2 flex-1 flex flex-col justify-between">
                     <div>
                         <div className="text-[12px] font-bold text-gray-900 leading-tight mb-1">
-                            법률상담 무료 — 회생·파산 검토
+                            법률상담 무료 안내
                         </div>
                         <div className="text-[10px] text-gray-600 leading-snug">
-                            본인 상황에 맞는 회생 절차 1분 자가진단
+                            회생·파산 검토
                         </div>
                     </div>
                     <div className="flex items-center gap-2 mt-2">
@@ -50,7 +50,7 @@ export function GoogleDiscoveryMockup() {
                 <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 flex-shrink-0" />
                 <div className="flex-1 px-2 py-1.5">
                     <div className="text-[10px] font-bold leading-tight text-gray-700">
-                        가계부채 1,800조, 회생·파산 사상 최고
+                        가계부채 1,800조, 회생·파산 신청 급증
                     </div>
                     <div className="text-[9px] text-gray-400 mt-0.5">DAILY NEWS · 2시간 전</div>
                 </div>

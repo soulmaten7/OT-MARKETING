@@ -11,12 +11,12 @@ export function KarrotMockup() {
                 </div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">OO동 비즈프로필</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-90">동네 법률상담</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
-                        회생·파산<br />법률 상담 무료
+                        회생·파산 무료 상담
                     </div>
                     <div className="text-[11px] opacity-95 mb-4">
-                        변제계획 검토 · 자가진단
+                        변제 검토 안내
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ export function KarrotMockup() {
                     </span>
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed">
-                    동네 이웃을 위한 무료 법률 상담 서비스. 변제계획 검토부터 신용회복위원회 안내까지.
+                    동네 이웃을 위한 회생·파산 법률 상담 안내.
                 </div>
             </div>
         </div>

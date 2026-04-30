@@ -22,10 +22,10 @@ export function NaverSearchMockup() {
                 </div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">lawfirm-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    개인회생 법률상담 무료<br />— 법무법인 OO
+                    개인회생 자격 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    변제계획 검토부터 신용회복위원회 안내까지. 1분 자가진단으로 본인 상황에 맞는 회생 절차 확인.
+                    1분 자가진단
                 </div>
                 {/* 사이트링크 */}
                 <div className="grid grid-cols-2 gap-1.5 mb-3">

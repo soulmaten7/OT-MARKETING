@@ -28,8 +28,8 @@ export function GoogleGDN() {
                         </svg>
                     </div>
                     <div className="flex-1 text-white">
-                        <div className="text-[12px] font-bold leading-tight mb-1">투자 정보 무료 안내</div>
-                        <div className="text-[9px] opacity-90">차트 분석 · 시황 정보</div>
+                        <div className="text-[12px] font-bold leading-tight mb-1">시장 분석 정보</div>
+                        <div className="text-[9px] opacity-90">차트 분석 · 시황 안내</div>
                     </div>
                     <button className="bg-[#F0B429] text-[#1E3A5F] font-bold text-[10px] px-3 py-1.5 rounded">확인하기</button>
                     </div>

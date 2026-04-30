@@ -16,10 +16,10 @@ export function NaverSearch() {
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">realestate-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    OO 지역 매물<br />— 공인중개사 OO
+                    지역 시세 분석 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    지역 시세 분석 · 매물 비교 · 시장 분석. 공인중개사 자격 등록번호 OO###.
+                    공인중개사 자격 등록
                 </div>
                 <div className="grid grid-cols-2 gap-1.5 mb-3">
                     {["매물 안내", "지역 시세", "매물 비교", "시장 분석"].map((s) => (

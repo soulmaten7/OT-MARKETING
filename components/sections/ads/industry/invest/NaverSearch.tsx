@@ -16,10 +16,10 @@ export function NaverSearch() {
                 <div className="inline-block bg-[#FF6F00] text-white text-[9px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                 <div className="text-[10px] text-[#03C75A] font-bold mb-1">invest-info-oo.com</div>
                 <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
-                    투자 정보 안내<br />— 종목 분석
+                    종목 분석 정보 안내
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed mb-3">
-                    차트 분석 · 시황 · 산업 동향 정보 안내. (수익률·보장 표현 없음)
+                    차트·시황 무료 정보
                 </div>
                 <div className="grid grid-cols-2 gap-1.5 mb-3">
                     {["차트 분석", "시황 정보", "산업 동향", "종목 안내"].map((s) => (

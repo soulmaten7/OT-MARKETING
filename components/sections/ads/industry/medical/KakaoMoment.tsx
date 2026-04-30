@@ -21,17 +21,19 @@ export function KakaoMoment() {
                     <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">광고</div>
                     <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
                     <div className="relative z-20 text-center text-[#3C1E1E]">
-                        <div className="text-[10px] font-bold tracking-widest mb-2 opacity-70">진료 예약 안내</div>
-                        <div className="text-[22px] font-bold leading-tight mb-2">
-                            OO 진료<br />예약 안내
+                        <div className="text-[11px] font-bold tracking-widest mb-3 opacity-70">병원 예약 빠르게</div>
+                        <div className="text-[24px] font-bold leading-tight mb-3">
+                            진료 예약 안내
                         </div>
-                        <div className="text-[11px] opacity-80">진료 시간 · 위치</div>
+                        <div className="text-[12px] opacity-80">
+                            당일 예약 · 시간 안내
+                        </div>
                     </div>
                 </div>
                 <div className="bg-[#0E4F6E] text-white px-5 py-4">
                     <div className="text-[12px] font-bold mb-1">OO 병원</div>
                     <div className="text-[10px] opacity-80 mb-3 leading-relaxed">
-                        예약 상담 안내. 효과·치료 결과 보장 표현 없음.
+                        예약 상담 안내. 진료 시간 정보 안내.
                     </div>
                     <button className="w-full bg-[#FEE500] text-[#3C1E1E] font-bold py-2 rounded text-[11px]">
                         예약 안내

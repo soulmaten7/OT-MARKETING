@@ -15,9 +15,13 @@ export function Karrot() {
                 <div className="absolute top-3 right-3 bg-black/40 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded">광고</div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 text-[#F0B429]">OO동 비즈프로필</div>
-                    <div className="text-[20px] font-bold leading-tight mb-2">투자 정보 무료</div>
-                    <div className="text-[11px] opacity-90">차트 · 시황 · 종목 안내</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 text-[#F0B429]">투자 정보 안내</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        투자 정보 무료 안내
+                    </div>
+                    <div className="text-[11px] opacity-95 mb-4">
+                        차트·시황 정보
+                    </div>
                 </div>
             </div>
 
@@ -35,7 +39,7 @@ export function Karrot() {
                     <span className="text-[9px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">무료 정보</span>
                 </div>
                 <div className="text-[10px] text-gray-600 leading-relaxed">
-                    차트 분석, 시황, 산업 동향 안내. 수익률 보장 표현 없음.
+                    차트 분석, 시황, 산업 동향 안내. 정보 중심.
                 </div>
             </div>
         </div>

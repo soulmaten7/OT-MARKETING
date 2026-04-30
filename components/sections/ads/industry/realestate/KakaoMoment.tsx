@@ -20,11 +20,13 @@ export function KakaoMoment() {
                     <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">광고</div>
                     <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
                     <div className="relative z-20 text-center text-[#3C1E1E]">
-                        <div className="text-[10px] font-bold tracking-widest mb-2 opacity-70">지역 매물 안내</div>
-                        <div className="text-[22px] font-bold leading-tight mb-2">
-                            OO 지역<br />매물 안내
+                        <div className="text-[11px] font-bold tracking-widest mb-3 opacity-70">부동산 매물 정보</div>
+                        <div className="text-[24px] font-bold leading-tight mb-3">
+                            매물 정보 안내
                         </div>
-                        <div className="text-[11px] opacity-80">공인중개사 OO###</div>
+                        <div className="text-[12px] opacity-80">
+                            시세 분석 · 등록 중개사
+                        </div>
                     </div>
                 </div>
                 <div className="bg-[#92400E] text-white px-5 py-4">

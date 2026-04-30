@@ -29,12 +29,13 @@ export function MetaFeed() {
                 <div className="absolute top-4 left-4 w-8 h-8 bg-white/10 rotate-45" />
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-80">5G 요금 안내</div>
-                    <div className="mb-1">
-                        <span className="text-[46px] font-black leading-none">5G</span>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">5G 요금제 비교</div>
+                    <div className="text-[22px] font-bold leading-tight mb-2">
+                        5G 요금 안내
                     </div>
-                    <div className="text-[11px] opacity-90 mb-1">데이터 무제한 · 가입비 X</div>
-                    <div className="text-[11px] opacity-90 mb-3">약정 X · 월 OO원</div>
+                    <div className="text-[11px] opacity-90 mb-4">
+                        데이터 무제한 · 가입비 X
+                    </div>
                     <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-[10px] font-bold">
                         요금 보기
                     </div>

@@ -29,7 +29,7 @@ export function GoogleGDN() {
                     </div>
                     <div className="flex-1 text-white">
                         <div className="text-[12px] font-bold leading-tight mb-1">지역 매물 안내</div>
-                        <div className="text-[9px] opacity-90">공인중개사 OO### · 시세 분석</div>
+                        <div className="text-[9px] opacity-90">공인중개사 자격 등록</div>
                     </div>
                     <button className="bg-white text-[#78350F] font-bold text-[10px] px-3 py-1.5 rounded">확인하기</button>
                     </div>

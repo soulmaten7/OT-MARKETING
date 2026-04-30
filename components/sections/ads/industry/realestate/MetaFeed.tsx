@@ -32,12 +32,13 @@ export function MetaFeed() {
                 </div>
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-2 opacity-80">지역 매물 안내</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">부동산 매물 안내</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
-                        OO 지역<br />매물 안내
+                        OO 지역 매물 안내
                     </div>
-                    <div className="text-[11px] opacity-90 mb-1">공인중개사 OO · 자격 등록</div>
-                    <div className="text-[11px] opacity-90 mb-3">지역 시세 분석</div>
+                    <div className="text-[11px] opacity-90 mb-4">
+                        공인중개사 자격 등록
+                    </div>
                     <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-[10px] font-bold">
                         매물 보기
                     </div>

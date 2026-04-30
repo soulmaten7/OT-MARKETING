@@ -22,12 +22,12 @@ export function MetaFeedMockup() {
                 }} />
                 <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 브랜드 이미지" />
                 <div className="relative z-20 text-center px-6">
-                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">월 변제금 부담?</div>
+                    <div className="text-[10px] font-bold tracking-widest mb-3 opacity-80">개인회생 법률상담</div>
                     <div className="text-[22px] font-bold leading-tight mb-2">
-                        채무 독촉에서<br />벗어나는 첫걸음
+                        변제계획 검토 무료
                     </div>
                     <div className="text-[11px] opacity-90 mb-4">
-                        법률 상담 · 자가진단 1분
+                        회생·파산 법률 안내
                     </div>
                     <div className="inline-block bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1 text-[10px] font-bold">
                         무료 상담 받기
