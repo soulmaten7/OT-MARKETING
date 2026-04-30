@@ -10,7 +10,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--sky:#0EA5E9;--green:#10B981;--sky-lt:#f0f9ff;--green-lt:#ecfdf5;--bg:#f8fffe;--text:#0F4C6E;--slate:#64748B}
-body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-weight:400}
+body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);font-weight:400}
 
 /* HERO */
 .hero{background:linear-gradient(160deg,#e0f2fe 0%,#ecfdf5 60%,var(--bg) 100%);padding:48px 24px 40px;border-bottom:1px solid rgba(14,165,233,.15)}
@@ -124,9 +124,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans KR',sans-serif;back
 <script>
 function sel(b){document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));b.classList.add('sel');document.getElementById('nb').disabled=false}
 function nxt(){alert('다음 단계로 이동합니다.\n실제 랜딩페이지는 광고주 계약 후 OT가 맞춤 제작합니다.')}
-var __lastH=0;function rh(){if(window.parent===window)return;var c=document.body.children,m=0,i,r;for(i=0;i<c.length;i++){r=c[i].getBoundingClientRect();var b=r.bottom+window.scrollY;if(b>m)m=b}var h=Math.ceil(m)+40;if(Math.abs(h-__lastH)<5)return;__lastH=h;window.parent.postMessage({type:'samples-resize',height:h},'*')}
-window.addEventListener('load',function(){setTimeout(rh,150)})
-window.addEventListener('resize',function(){setTimeout(rh,100)})
+var __lastH=0,__lastW=0;function rh(){if(window.parent===window)return;var w=document.documentElement.clientWidth;var c=document.body.children,m=0,i,r;for(i=0;i<c.length;i++){r=c[i].getBoundingClientRect();var b=r.bottom+window.scrollY;if(b>m)m=b}var h=Math.ceil(m)+40;if(Math.abs(h-__lastH)<5&&Math.abs(w-__lastW)<2)return;__lastH=h;__lastW=w;window.parent.postMessage({type:'samples-resize',height:h},'*')}
+window.addEventListener('message',function(e){if(e.data&&e.data.type==='force-resize'){__lastH=0;__lastW=0;rh();}});
+window.addEventListener('load',function(){setTimeout(rh,150);});
+window.addEventListener('resize',function(){setTimeout(rh,100);});
 </script>
 </body>
 </html>
