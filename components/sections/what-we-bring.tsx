@@ -18,8 +18,8 @@ const services = [
         title: "업종별 자가진단 + 등급·유형 자동 분기",
         desc: "랜딩페이지에서 신청자가 업종별 자가진단에 답변하면 시스템이 점수·조건을 계산해 등급 또는 가입 유형으로 자동 분류. 광고주·콜팀이 1차콜 직전 시트 1줄만 보고 우선순위 판단 가능.",
         kicker: "개인회생 = A·B·C / 핸드폰 = MNP·신규·기변·MVNO / 그 외 업종도 동일 패턴",
-        linkHref: "/samples",
-        linkText: "디자인 시안 보기",
+        linkHref: "/#industries",
+        linkText: "업종별 패턴 보기",
     },
     {
         num: "03",

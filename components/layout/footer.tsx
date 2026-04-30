@@ -38,7 +38,7 @@ export function Footer() {
                             <li><Link href="/#guardrail" className="hover:text-[var(--coral-400)] transition-colors">법규 가드레일</Link></li>
                             <li><Link href="/#cpa-model" className="hover:text-[var(--coral-400)] transition-colors">CPA 모델</Link></li>
                             <li><Link href="/#industries" className="hover:text-[var(--coral-400)] transition-colors">전문 업종</Link></li>
-                            <li><Link href="/samples" className="hover:text-[var(--coral-400)] transition-colors">CPA 디자인 템플릿 10종</Link></li>
+                            <li><Link href="/ads" className="hover:text-[var(--coral-400)] transition-colors">광고 크리에이티브 6 매체</Link></li>
                             <li><Link href="/#contact" className="hover:text-[var(--coral-400)] transition-colors">광고주 문의</Link></li>
                         </ul>
                     </div>

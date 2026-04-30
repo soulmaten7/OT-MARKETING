@@ -5,6 +5,12 @@ export const metadata: Metadata = {
     title: "CPA 랜딩페이지 디자인 템플릿 10종 | OT MARKETING",
     description:
         "OT MARKETING 의 CPA DB 수집 랜딩페이지 템플릿 갤러리. 10종 중 광고주 업종·고객층에 맞는 디자인 선택. PC·모바일 양쪽 미리보기 + 자가진단 로직 + 명의 + 카피 + 데이터 추적까지 통합 제작.",
+    // 2026-04-30 Session #6: 검색 엔진 색인 차단 (Phase 2 OT Platform 구독형 랜딩페이지 카탈로그 자산으로 보존)
+    // 외부 노출 차단되지만, 직접 URL 입력 시 접근 가능. 외부 링크 (Hero/Footer) 제거됨.
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default function SamplesPage() {

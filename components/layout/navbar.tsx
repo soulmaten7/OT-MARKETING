@@ -16,7 +16,7 @@ const navStructure = [
             { label: "법규 가드레일", href: "/#guardrail" },
             { label: "CPA 모델", href: "/#cpa-model" },
             { label: "업종", href: "/#industries" },
-            { label: "디자인 시안", href: "/samples" },
+            { label: "광고 크리에이티브", href: "/ads" },
         ],
     },
     // 미래: { label: "랜딩 구독", items: [...] },

@@ -85,10 +85,10 @@ export function Hero() {
                                 광고주 상담 신청
                             </Link>
                             <Link
-                                href="/samples"
+                                href="/ads"
                                 className="w-full sm:w-auto border border-white/40 hover:border-white text-white hover:bg-white/10 font-bold px-8 py-4 rounded-md text-base transition-colors inline-flex items-center justify-center gap-2 group"
                             >
-                                CPA 디자인 템플릿 10종 보기
+                                광고 크리에이티브 6 매체 보기
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </div>
