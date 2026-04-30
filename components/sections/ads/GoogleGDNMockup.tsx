@@ -9,20 +9,20 @@ export function GoogleGDNMockup() {
                 <div className="text-[8px] text-gray-400">2026.04.30</div>
             </div>
 
-            {/* host 컨텐츠 (작게) */}
-            <div className="px-3 pt-3 pb-2">
+            {/* host 컨텐츠 (위) */}
+            <div className="px-3 pt-2 pb-1">
                 <div className="text-[10px] font-bold text-gray-700 mb-1.5 leading-snug">
                     [경제] 가계부채 1,800조 돌파, 회생·파산 신청 사상 최고
                 </div>
                 <div className="space-y-1">
-                    {[1, 2, 3].map((i) => (
-                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${100 - i * 8}%` }} />
+                    {[100, 88, 72, 95, 65].map((w, i) => (
+                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${w}%` }} />
                     ))}
                 </div>
             </div>
 
             {/* GDN 배너 — 폰 중앙, 크게 */}
-            <div className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md">
+            <div className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md flex-shrink-0">
                 <div className="bg-gradient-to-r from-[var(--coral-500)] to-[var(--navy)] p-4 flex items-center gap-3">
                     <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center text-white font-bold text-lg">
                         법
@@ -41,14 +41,24 @@ export function GoogleGDNMockup() {
                 </div>
             </div>
 
-            {/* host 컨텐츠 (계속) */}
-            <div className="flex-1 px-3 py-2">
-                <div className="space-y-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${100 - (i % 3) * 10}%` }} />
+            {/* host 컨텐츠 (계속) — 라인 수 증가로 빈 공간 제거 */}
+            <div className="flex-1 px-3 py-1">
+                <div className="space-y-1.5">
+                    {[100, 85, 95, 70, 80, 60, 90, 75, 88, 65].map((w, i) => (
+                        <div key={i} className="h-1.5 bg-gray-100 rounded" style={{ width: `${w}%` }} />
                     ))}
                 </div>
-                <div className="mt-3 text-[9px] text-gray-400">관련 기사 · 더 보기</div>
+                {/* 관련 광고 (작게) */}
+                <div className="mt-2 pt-2 border-t border-gray-100">
+                    <div className="text-[9px] text-gray-400 mb-1 font-bold">관련 광고</div>
+                    <div className="flex items-center gap-2 p-1.5 border border-gray-100 rounded">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[var(--coral-100)] to-orange-100 rounded flex-shrink-0" />
+                        <div>
+                            <div className="text-[9px] font-bold text-gray-700">법률 상담 안내</div>
+                            <div className="text-[8px] text-gray-400">Ads by Google</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

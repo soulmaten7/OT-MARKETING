@@ -17,16 +17,12 @@ export function GoogleDiscoveryMockup() {
             </div>
 
             {/* 광고 카드 (메인) — 폰의 60% */}
-            <div className="flex-[3] m-2 rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col">
+            <div className="flex-[3] m-2 mb-1 rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col">
                 {/* 이미지 */}
                 <div className="aspect-[16/10] bg-gradient-to-br from-[var(--coral-500)] via-[var(--coral-600)] to-[var(--navy)] flex items-center justify-center text-white relative">
-                    <div className="absolute top-2 left-2 bg-black/40 text-white text-[8px] px-2 py-0.5 rounded font-bold">
-                        광고
-                    </div>
+                    <div className="absolute top-2 left-2 bg-black/40 text-white text-[8px] px-2 py-0.5 rounded font-bold">광고</div>
                     <div className="text-center px-4">
-                        <div className="text-[16px] font-bold leading-tight">
-                            법률상담 무료
-                        </div>
+                        <div className="text-[16px] font-bold leading-tight">법률상담 무료</div>
                         <div className="text-[10px] opacity-90 mt-1">회생·파산 검토</div>
                     </div>
                 </div>
@@ -47,14 +43,25 @@ export function GoogleDiscoveryMockup() {
                 </div>
             </div>
 
-            {/* 유기 카드 (작게) — 디스커버 컨텍스트 */}
-            <div className="m-2 mt-0 rounded-xl overflow-hidden border border-gray-100 flex">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200" />
+            {/* 유기 카드 1 */}
+            <div className="mx-2 mb-1 rounded-xl overflow-hidden border border-gray-100 flex">
+                <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 flex-shrink-0" />
                 <div className="flex-1 px-2 py-1.5">
                     <div className="text-[10px] font-bold leading-tight text-gray-700">
                         가계부채 1,800조, 회생·파산 사상 최고
                     </div>
-                    <div className="text-[9px] text-gray-400 mt-1">DAILY NEWS · 2시간 전</div>
+                    <div className="text-[9px] text-gray-400 mt-0.5">DAILY NEWS · 2시간 전</div>
+                </div>
+            </div>
+
+            {/* 유기 카드 2 — 빈 공간 제거 */}
+            <div className="mx-2 mb-2 rounded-xl overflow-hidden border border-gray-100 flex">
+                <div className="w-14 h-14 bg-gradient-to-br from-slate-100 to-slate-200 flex-shrink-0" />
+                <div className="flex-1 px-2 py-1.5">
+                    <div className="text-[10px] font-bold leading-tight text-gray-700">
+                        개인회생 절차, 신청 자격 정리
+                    </div>
+                    <div className="text-[9px] text-gray-400 mt-0.5">법률 정보 · 5시간 전</div>
                 </div>
             </div>
         </div>
