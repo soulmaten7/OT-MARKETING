@@ -1,96 +1,162 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-    title: "광고 크리에이티브 6 매체 | OT MARKETING",
-    description:
-        "OT MARKETING 의 6 매체 광고 크리에이티브 갤러리. Meta · Google · 당근 · Naver · 카카오 모먼트 · GDN. 매체별 광고 크리에이티브 mockup + 광고 → 랜딩 흐름 시각화. 광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.",
-};
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FadeIn, FadeInUp } from "@/components/ui/motion";
+
+import { PhoneFrame } from "@/components/sections/ads/PhoneFrame";
+import { ChannelTabs } from "@/components/sections/ads/ChannelTabs";
+import { AdToLandingFlow } from "@/components/sections/ads/AdToLandingFlow";
+import { MetaFeedMockup } from "@/components/sections/ads/MetaFeedMockup";
+import { KarrotMockup } from "@/components/sections/ads/KarrotMockup";
+import { NaverSearchMockup } from "@/components/sections/ads/NaverSearchMockup";
+import { KakaoMomentMockup } from "@/components/sections/ads/KakaoMomentMockup";
+import { GoogleGDNMockup } from "@/components/sections/ads/GoogleGDNMockup";
+import { GoogleDiscoveryMockup } from "@/components/sections/ads/GoogleDiscoveryMockup";
+import { PerformanceDataPanel } from "@/components/sections/ads/PerformanceDataPanel";
 
 const channels = [
-    { name: "Meta", desc: "피드 · 스토리 · 릴스" },
-    { name: "Google", desc: "GDN · 디스커버리" },
-    { name: "당근", desc: "비즈프로필 광고" },
-    { name: "Naver", desc: "검색광고 · 파워컨텐츠" },
-    { name: "카카오 모먼트", desc: "카드뉴스 · 디스플레이" },
-    { name: "기타", desc: "트위터 · 유튜브 · 틱톡" },
+    { id: "all", name: "전체" },
+    { id: "meta", name: "Meta" },
+    { id: "google", name: "Google" },
+    { id: "karrot", name: "당근" },
+    { id: "naver", name: "Naver" },
+    { id: "kakao", name: "카카오 모먼트" },
+];
+
+const mockups = [
+    { key: "meta-feed", channel: "meta", name: "Meta 피드", color: "#1877F2", component: <MetaFeedMockup /> },
+    { key: "karrot", channel: "karrot", name: "당근 비즈프로필", color: "#FF7E36", component: <KarrotMockup /> },
+    { key: "naver", channel: "naver", name: "Naver 검색광고", color: "#03C75A", component: <NaverSearchMockup /> },
+    { key: "kakao", channel: "kakao", name: "카카오 모먼트", color: "#FEE500", component: <KakaoMomentMockup /> },
+    { key: "google-gdn", channel: "google", name: "Google GDN", color: "#4285F4", component: <GoogleGDNMockup /> },
+    { key: "google-discovery", channel: "google", name: "Google Discovery", color: "#EA4335", component: <GoogleDiscoveryMockup /> },
 ];
 
 export default function AdsPage() {
+    const [active, setActive] = useState("all");
+
+    const visibleMockups = active === "all" ? mockups : mockups.filter((m) => m.channel === active);
+
     return (
         <div className="bg-white">
-            <div className="ot-container py-12 md:py-20 pt-44 md:pt-48">
-                {/* Header */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <div className="eyebrow mb-4">CPA · AD CREATIVES</div>
-                    <h1
-                        className="font-serif text-3xl md:text-5xl text-[var(--navy)] mb-6 leading-[1.3]"
-                        style={{ textWrap: "balance" }}
-                    >
-                        광고 크리에이티브 <span className="text-[var(--gold)]">6 매체</span>
-                    </h1>
-                    <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        OT MARKETING 은 6 매체에 동시 광고를 운영합니다.
-                        <br className="hidden md:block" />
-                        매체별 톤·포맷에 맞춘 크리에이티브 + 광고 → 랜딩 일체 설계.
-                        <br className="hidden md:block" />
-                        광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.
-                    </p>
+            {/* 1. Hero */}
+            <section className="hero-gradient-bg text-white pt-44 md:pt-48 pb-20">
+                <div className="ot-container text-center max-w-3xl mx-auto">
+                    <FadeIn>
+                        <div className="text-[var(--coral-400)] text-xs tracking-widest font-bold mb-4">
+                            CPA · AD CREATIVES
+                        </div>
+                    </FadeIn>
+                    <FadeInUp>
+                        <h1
+                            className="font-display text-3xl md:text-5xl mb-6 leading-[1.2]"
+                            style={{ textWrap: "balance" }}
+                        >
+                            광고 크리에이티브{" "}
+                            <span className="text-gradient-coral font-semibold">6 매체</span>
+                        </h1>
+                    </FadeInUp>
+                    <FadeIn delay={0.3}>
+                        <p className="text-base md:text-lg text-white/80 leading-relaxed">
+                            OT MARKETING 은 6 매체에 동시 광고를 운영합니다.
+                            <br className="hidden md:block" />
+                            매체별 톤·포맷에 맞춘 크리에이티브 + 광고 → 랜딩 일체 설계.
+                            <br className="hidden md:block" />
+                            <span className="text-[var(--coral-400)] font-semibold">광고와 랜딩이 한 몸으로 굴러가는 CPA 인프라.</span>
+                        </p>
+                    </FadeIn>
                 </div>
+            </section>
 
-                {/* Coming Soon Notice */}
-                <div className="max-w-3xl mx-auto mb-16">
-                    <div className="bg-gradient-to-br from-[var(--coral-50)] to-orange-50 border border-[var(--coral-200)] rounded-2xl p-8 md:p-10 text-center">
-                        <Sparkles className="w-10 h-10 text-[var(--coral-500)] mx-auto mb-4" />
-                        <h2 className="font-serif text-2xl md:text-3xl text-[var(--navy)] mb-4">
-                            크리에이티브 갤러리 준비 중
+            {/* 2. 매체 탭 */}
+            <section className="py-8 md:py-10 border-b border-gray-100 sticky top-[72px] bg-white z-30">
+                <div className="ot-container">
+                    <ChannelTabs channels={channels} active={active} onChange={setActive} />
+                </div>
+            </section>
+
+            {/* 3. Mockup 그리드 */}
+            <section className="py-16 md:py-24">
+                <div className="ot-container">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={active}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 justify-items-center max-w-6xl mx-auto"
+                        >
+                            {visibleMockups.map((m) => (
+                                <PhoneFrame key={m.key} label={m.name} accentColor={m.color}>
+                                    {m.component}
+                                </PhoneFrame>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </section>
+
+            {/* 4. 광고 → 랜딩 흐름 */}
+            <section className="py-20 md:py-28 bg-gray-50 border-y border-gray-100">
+                <div className="ot-container">
+                    <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
+                        <div className="eyebrow mb-4">AD-TO-LANDING MATCH</div>
+                        <h2 className="font-display text-2xl md:text-4xl text-[var(--navy)] mb-4 leading-[1.3]">
+                            광고와 랜딩은 <span className="text-gradient-coral font-semibold">한 몸</span>입니다
                         </h2>
-                        <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-6">
-                            현재 6 매체 R&D 광고를 운영 중입니다.
-                            <br />
-                            실제 운영 데이터 기반 크리에이티브 시안을 곧 공개합니다.
+                        <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
+                            다이나믹한 시각 효과는 광고 화면에. 정확하고 디테일한 정보는 랜딩에.
+                            <br className="hidden md:block" />
+                            매체별 톤을 일치시켜 광고주의 브랜드 인식이 끊기지 않도록 설계합니다.
                         </p>
-                        <p className="text-xs text-gray-500">
-                            관심 광고주는 미팅 시 비공개 크리에이티브 deck 으로 별도 안내드립니다.
+                    </FadeInUp>
+                    <AdToLandingFlow />
+                </div>
+            </section>
+
+            {/* 5. 성능 데이터 (placeholder) */}
+            <section className="py-20 md:py-28">
+                <div className="ot-container max-w-5xl mx-auto">
+                    <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
+                        <div className="eyebrow mb-4">PERFORMANCE DATA</div>
+                        <h2 className="font-display text-2xl md:text-4xl text-[var(--navy)] mb-4 leading-[1.3]">
+                            R&D 운영 데이터로 검증
+                        </h2>
+                        <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
+                            현재 6 매체 R&D 광고 운영 중. 실제 운영 결과 기반 CPA·CTR·CVR 데이터를 곧 공개합니다.
                         </p>
-                    </div>
+                    </FadeInUp>
+                    <PerformanceDataPanel />
                 </div>
+            </section>
 
-                {/* 6 Channels Preview Grid */}
-                <div className="max-w-5xl mx-auto mb-16">
-                    <h3 className="text-center font-serif text-xl md:text-2xl text-[var(--navy)] mb-8">
-                        운영 매체
-                    </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {channels.map((c) => (
-                            <div
-                                key={c.name}
-                                className="bg-white border border-gray-200 rounded-xl p-6 text-center hover:border-[var(--coral-400)] hover:shadow-md transition-all"
-                            >
-                                <div className="font-bold text-base md:text-lg text-[var(--navy)] mb-1">
-                                    {c.name}
-                                </div>
-                                <div className="text-xs md:text-sm text-gray-500">{c.desc}</div>
-                            </div>
-                        ))}
-                    </div>
+            {/* 6. CTA */}
+            <section className="py-20 md:py-28 hero-gradient-bg text-white">
+                <div className="ot-container text-center max-w-3xl mx-auto">
+                    <FadeInUp>
+                        <h2 className="font-display text-2xl md:text-4xl mb-6 leading-[1.3]">
+                            6 매체 운영 deck,{" "}
+                            <span className="text-gradient-coral font-semibold">미팅에서 공개</span>
+                        </h2>
+                        <p className="text-base md:text-lg text-white/80 leading-relaxed mb-10">
+                            매체별 best-performer 크리에이티브 + CPA 단가 + DB 품질 데이터.
+                            <br className="hidden md:block" />
+                            광고주 미팅 시 비공개 deck 으로 별도 안내드립니다.
+                        </p>
+                        <Link
+                            href="/#contact"
+                            className="inline-flex items-center gap-2 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white font-bold px-8 py-4 rounded-md text-base transition-all duration-200 hover:scale-105 hover:shadow-lg"
+                        >
+                            광고주 상담 신청
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
+                    </FadeInUp>
                 </div>
-
-                {/* CTA */}
-                <div className="text-center max-w-2xl mx-auto">
-                    <Link
-                        href="/#contact"
-                        className="inline-flex items-center gap-2 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white font-bold px-8 py-4 rounded-md text-base transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                    >
-                        광고주 상담 신청
-                        <ArrowRight className="w-4 h-4" />
-                    </Link>
-                    <p className="text-xs text-gray-500 mt-4">
-                        미팅 시 6 매체 크리에이티브 운영 사례 + CPA 단가 + DB 품질 데이터 공유
-                    </p>
-                </div>
-            </div>
+            </section>
         </div>
     );
 }

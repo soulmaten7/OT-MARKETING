@@ -272,3 +272,7 @@ h1, h2 {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* === Scrollbar Hide Utility === */
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
