@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/verify-copy-preserved.js && bash scripts/verify-safety-zone.sh && node scripts/verify-frame-preserved.js",
     "build": "next build && rm -rf .vercel/output/static/lp && cp -r public/lp .vercel/output/static/ 2>/dev/null || true",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:visual": "node scripts/playwright-verify-visual-change.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

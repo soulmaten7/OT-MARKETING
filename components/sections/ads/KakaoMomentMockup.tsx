@@ -1,43 +1,56 @@
 "use client";
+import { motion } from "framer-motion";
 import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
 
 export function KakaoMomentMockup() {
     return (
-        <div className="w-full h-full flex flex-col bg-[#FEE500]">
-            {/* 광고 카드 — 풀스크린 */}
-            <div className="flex-1 flex flex-col">
-                {/* 이미지 영역 */}
-                <div className="flex-[2] flex items-center justify-center px-6 relative overflow-hidden">
-                    {/* 배경 장식 */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-32 h-32 bg-white/30 rounded-full" />
-                    </div>
-                    <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">
-                        광고
-                    </div>
-                    <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
-                    <div className="relative z-20 text-center text-[#3C1E1E]">
-                        <div className="text-[11px] font-bold tracking-widest mb-3 opacity-70">
-                            카카오톡 추천 콘텐츠
-                        </div>
-                        <div className="text-[24px] font-bold leading-tight mb-3">
-                            변제계획 검토 무료
-                        </div>
-                        <div className="text-[12px] opacity-80">
-                            자가진단 1분
-                        </div>
-                    </div>
-                </div>
+        <div className="w-full h-full flex flex-col bg-[#FEE500]" style={{ fontFamily: 'Pretendard, system-ui, sans-serif' }}>
+            {/* 카카오 톱 */}
+            <div className="flex items-center justify-between px-3 py-2 flex-shrink-0">
+                <div className="text-[#3C1E1E] font-black text-[12px] tracking-tight">kakao</div>
+                <div className="text-[10px] text-[#3C1E1E]/60 font-medium">추천 콘텐츠</div>
+            </div>
 
-                {/* 카피 + CTA — 폰 하단 */}
-                <div className="bg-[#3C1E1E] text-white px-5 py-4">
-                    <div className="text-[12px] font-bold mb-1">법무법인 OO</div>
-                    <div className="text-[10px] opacity-80 mb-3 leading-relaxed">
-                        자가진단 1분 완성. 본인 회생 가능 여부 무료 확인.
+            {/* 광고 카드 */}
+            <div className="px-3 flex-1 flex flex-col">
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.5 }} className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col flex-1">
+                    {/* 이미지 영역 */}
+                    <div className="flex-[3] flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#FEE500] to-[#FFD90A]">
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-32 h-32 bg-white/30 rounded-full" />
+                        </div>
+                        <div className="absolute top-3 right-3 bg-[#3C1E1E]/20 text-[#3C1E1E] text-[9px] px-2 py-0.5 rounded font-bold">광고</div>
+                        <ImagePlaceholder accentColor="rgba(60,30,30,0.4)" label="광고주 카드 이미지" />
+                        <div className="relative z-20 text-center text-[#3C1E1E] px-4">
+                            <div className="text-[10px] font-bold tracking-widest mb-2 opacity-70">채무 독촉 해결</div>
+                            <div className="text-[20px] font-extrabold leading-tight mb-2">
+                                변제계획 검토 무료
+                            </div>
+                            <div className="text-[11px] opacity-80">
+                                자가진단 1분
+                            </div>
+                        </div>
                     </div>
-                    <button className="w-full bg-[#FEE500] text-[#3C1E1E] font-bold py-2 rounded text-[11px]">
-                        자세히 보기
-                    </button>
+
+                    {/* CTA 영역 */}
+                    <div className="bg-[#3C1E1E] text-white px-4 py-3 flex-shrink-0">
+                        <div className="text-[11px] font-bold mb-1">법무법인 OO</div>
+                        <div className="text-[10px] opacity-80 mb-2 leading-relaxed">
+                            본인 회생 가능 여부 무료 확인.
+                        </div>
+                        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full bg-[#FEE500] text-[#3C1E1E] font-bold py-1.5 rounded-full text-[10px]">
+                            자세히 보기
+                        </motion.button>
+                    </div>
+                </motion.div>
+
+                {/* 인디케이터 5점 */}
+                <div className="flex items-center justify-center gap-1 mt-3 mb-2 flex-shrink-0">
+                    <div className="w-6 h-1.5 bg-[#3C1E1E] rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#3C1E1E]/30 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#3C1E1E]/30 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#3C1E1E]/30 rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-[#3C1E1E]/30 rounded-full" />
                 </div>
             </div>
         </div>
