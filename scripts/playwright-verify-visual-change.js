@@ -33,7 +33,7 @@ const CHANNEL_SIGNATURES = {
     meta: {
         name: "Meta 피드",
         colors: ["#1877F2", "#1877f2"], // 페북 블루
-        textHints: ["더 알아보기", "좋아요"],
+        textHints: ["좋아요"],
     },
     karrot: {
         name: "당근 비즈프로필",
