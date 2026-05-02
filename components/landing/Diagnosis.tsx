@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * STEP_37 — OQPS (One Question Per Screen) Diagnosis
+ * STEP_42 — OQPS 가독성 우선 (이미지 제거)
  *
- * 9 화면 1 질문 + 상단 50% 이미지 + 자동 전환.
+ * 9 화면 1 질문 + 자동 전환. 이미지 영역 제거 · 질문·옵션 80% 확장.
  * - radio·select: 클릭 즉시 다음 화면
  * - multi: 다음 버튼 클릭 필요
  * - 진행 바: 9 단계 도트
@@ -119,7 +119,7 @@ export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
                 />
 
                 {/* 슬라이드 영역 */}
-                <div className="relative overflow-hidden" style={{ minHeight: "520px" }}>
+                <div className="relative overflow-hidden" style={{ minHeight: "440px" }}>
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
                             key={currentQuestion.id}
