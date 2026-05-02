@@ -45,8 +45,6 @@ export function LandingTemplate({ slug, brand }: LandingTemplateProps) {
                     <Hero title={config.hero.title} industryName={config.industryName} />
                     <Diagnosis
                         questions={config.diagnosis.questions}
-                        progressSteps={config.diagnosis.progressSteps}
-                        stepLabels={config.diagnosis.stepLabels}
                         onComplete={(a) => setAnswers(a)}
                     />
                 </>

@@ -18,8 +18,6 @@ import { ProgressBar } from "./diagnosis/ProgressBar";
 
 interface DiagnosisProps {
     questions: Question[];
-    progressSteps: number;     // 옛 호환 (사용 X)
-    stepLabels: string[];      // 옛 호환 (사용 X — 자체 라벨 매핑)
     onComplete: (answers: AnswerMap) => void;
 }
 
