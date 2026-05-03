@@ -14,16 +14,16 @@ export function KakaoMomentMockup() {
             {/* 광고 카드 */}
             <div className="px-3 flex-1 flex flex-col">
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.5 }} className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col flex-1">
-                    {/* 이미지 영역 */}
-                    <div className="flex-[3] flex items-center justify-center relative overflow-hidden">
+                    {/* 이미지 영역 — STEP_50: DR-018(1:1) → DR-021(9:16) swap, 양옆 짤림 해결 */}
+                    <div className="flex-[3] flex items-center justify-center relative overflow-hidden bg-[var(--navy)]">
                         <Image
-                            src="/ads-creatives/01-debt-relief/DR-018-A.png"
-                            alt="빛에 둘러싸인 채무 구제"
+                            src="/ads-creatives/01-debt-relief/DR-021-A.png"
+                            alt="9:16 세로 채무 구제 안내 - 카카오 모먼트 적합 비율"
                             fill
-                            sizes="(max-width: 768px) 100vw, 400px"
+                            sizes="(max-width: 768px) 50vw, 260px"
                             className="object-cover z-0"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/45 z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/30 z-10" />
                         <div className="absolute top-3 right-3 bg-[#3C1E1E]/30 text-white text-[9px] px-2 py-0.5 rounded font-bold z-20">광고</div>
                         <div className="relative z-20 text-center text-white px-4 drop-shadow-lg">
                             <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">채무 독촉 해결</div>

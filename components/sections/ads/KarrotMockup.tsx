@@ -21,15 +21,16 @@ export function KarrotMockup() {
 
             {/* 광고 이미지 */}
             <div className="px-3 pt-3 pb-2 flex-shrink-0">
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="aspect-[4/3] rounded-2xl flex items-center justify-center text-white relative overflow-hidden">
+                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="aspect-[4/3] rounded-2xl flex items-center justify-center text-white relative overflow-hidden bg-[#1A1A1A]">
+                    {/* STEP_50: object-contain 으로 1:1 이미지 → 4:3 컨테이너 빈공간 (배경색 채움). 위아래 짤림 해결. */}
                     <Image
                         src="/ads-creatives/01-debt-relief/DR-022-A.png"
                         alt="15분 자가진단 무료 안내"
                         fill
-                        sizes="(max-width: 768px) 100vw, 400px"
-                        className="object-cover z-0"
+                        sizes="(max-width: 768px) 50vw, 260px"
+                        className="object-contain z-0"
                     />
-                    <div className="absolute inset-0 bg-black/30 z-10" />
+                    <div className="absolute inset-0 bg-black/15 z-10" />
                     <div className="absolute top-2 right-2 bg-black/40 text-white text-[9px] px-2 py-0.5 rounded-full font-medium z-20">광고</div>
                     <div className="relative z-20 text-center px-4">
                         <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">동네 법률상담</div>

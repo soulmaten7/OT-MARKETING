@@ -21,16 +21,16 @@ export function GoogleDiscoveryMockup() {
 
             {/* 메인 광고 카드 */}
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.5 }} className="flex-[3] m-2 mb-1 rounded-2xl overflow-hidden border border-gray-200 shadow-md flex flex-col">
-                {/* 이미지 */}
-                <div className="aspect-[16/10] flex items-center justify-center text-white relative overflow-hidden">
+                {/* 이미지 — STEP_50: object-contain 으로 1:1 이미지 → 16:10 컨테이너 빈공간 (navy 배경 채움). 위아래 짤림 해결. */}
+                <div className="aspect-[16/10] flex items-center justify-center text-white relative overflow-hidden bg-[var(--navy)]">
                     <Image
                         src="/ads-creatives/01-debt-relief/DR-019-A.png"
                         alt="가상 결정문 변형 - 회생 결과"
                         fill
-                        sizes="(max-width: 768px) 100vw, 400px"
-                        className="object-cover z-0"
+                        sizes="(max-width: 768px) 50vw, 280px"
+                        className="object-contain z-0"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/55 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/30 z-10" />
                     <div className="absolute top-2 left-2 bg-black/50 text-white text-[8px] px-2 py-0.5 rounded font-bold z-20">광고</div>
                     <div className="relative z-20 text-center px-4 drop-shadow-lg">
                         <div className="text-[16px] font-bold leading-tight">법률상담 무료</div>
