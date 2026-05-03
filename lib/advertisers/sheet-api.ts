@@ -5,11 +5,14 @@ import { type Advertiser, INDUSTRY_NUMBER_MAP, parseAdvertiserSlug } from "./ind
 /**
  * Tier 1 시트 (OT_광고주_관리) 에서 slug 로 광고주 정보 가져오기.
  *
- * Tier 1 시트 컬럼 (Apps Script 가 V/W 컬럼 자동 박음):
+ * Tier 1 시트 컬럼 (Session #4 + STEP_44 v2 갱신):
  *   A 광고주ID / B 회사명 / C 법인 정식명 / D 사업자번호 / E 책임 변호사 ...
  *   F 연락 (전화) / G 연락 (이메일·카톡) / H 업종
  *   ...
- *   V 자동 slug / W 운영 URL
+ *   V otpage 서브경로 (= slug 역할, 옛 "자동 slug" 라벨에서 정정)
+ *   W 운영 URL
+ *   22 광고주 시트 ID (STEP_44 v2 신규 — 광고주 전용 시트 ID)
+ *   23 활성 (STEP_44 v2 신규 — TRUE/FALSE, FALSE 시 광고 차단)
  */
 
 const TIER1_SHEET_ID = "18sfaKSB5KQBemNvc4wOx6FeMtvNVB9kTxyZOSY-ZDkI";
@@ -53,25 +56,34 @@ export async function getAdvertiserBySlug(slug: string): Promise<Advertiser | nu
         const rows = await sheet.getRows();
 
         for (const row of rows) {
-            const rowSlug = row.get("자동 slug");
-            if (rowSlug === slug) {
-                const industry = row.get("업종") || "";
-                const industryNumber = INDUSTRY_NUMBER_MAP[industry] ?? parsed.industryNumber;
-                return {
-                    advertiserId: row.get("광고주ID") || "",
-                    industry,
-                    industryNumber,
-                    seqNumber: parsed.seqNumber,
-                    slug,
-                    operationUrl: row.get("운영 URL") || `https://otpage1.com/${slug}`,
-                    companyName: row.get("회사명") || "",
-                    legalName: row.get("법인 정식명") || undefined,
-                    businessNumber: row.get("사업자번호") || undefined,
-                    contactPerson: row.get("책임 변호사") || undefined,
-                    phone: row.get("연락 (전화)") || undefined,
-                    industryRegistration: row.get("등록 전문분야 키워드") || undefined,
-                };
+            const rowSlug = row.get("otpage 서브경로");
+            if (rowSlug !== slug) continue;
+
+            // STEP_44 v2 — 비활성 광고주 = 광고 송출 차단
+            const isActive = row.get("활성");
+            if (isActive === "FALSE" || isActive === false) {
+                console.warn(`[getAdvertiserBySlug] 비활성 광고주 ${slug} — 광고 차단`);
+                return null;
             }
+
+            const industry = row.get("업종") || "";
+            const industryNumber = INDUSTRY_NUMBER_MAP[industry] ?? parsed.industryNumber;
+            return {
+                advertiserId: row.get("광고주ID") || "",
+                industry,
+                industryNumber,
+                seqNumber: parsed.seqNumber,
+                slug,
+                operationUrl: row.get("운영 URL") || `https://otpage1.com/${slug}`,
+                companyName: row.get("회사명") || "",
+                legalName: row.get("법인 정식명") || undefined,
+                businessNumber: row.get("사업자번호") || undefined,
+                contactPerson: row.get("책임 변호사") || undefined,
+                phone: row.get("연락 (전화)") || undefined,
+                industryRegistration: row.get("등록 전문분야 키워드") || undefined,
+                // STEP_44 v2 — distributeRow 가 광고주 전용 시트에 row 복사 시 사용
+                partnerSheetId: row.get("광고주 시트 ID") || undefined,
+            };
         }
 
         return null;

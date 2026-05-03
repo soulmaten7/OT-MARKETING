@@ -17,6 +17,7 @@ export interface Advertiser {
     contactPerson?: string;
     phone?: string;
     industryRegistration?: string; // 변호사 자격번호·통신판매업 등록번호 등
+    partnerSheetId?: string; // STEP_44 v2 — Tier 1 의 "광고주 시트 ID" 컬럼 read 결과
 }
 
 export const INDUSTRY_NUMBER_MAP: Record<string, number> = {
