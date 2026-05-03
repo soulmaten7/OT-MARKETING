@@ -30,6 +30,13 @@ export function ContactForm({
     const [error, setError] = useState<string | null>(null);
     const [timeValue, setTimeValue] = useState<string>("");
 
+    // STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) state 박힘
+    const [consents, setConsents] = useState({
+        privacy: false,        // 필수 #1 — 수집·이용
+        thirdParty: false,     // 필수 #2 — 제3자 제공
+        marketing: false,      // 선택   — 마케팅 정보
+    });
+
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setError(null);
@@ -42,11 +49,16 @@ export function ContactForm({
                 ? timeValue
                 : ((fd.get(field.key) as string) || "");
         }
-        const privacyOk = fd.get("privacy") === "on";
         const memo = (fd.get("memo") as string) || "";
 
-        if (!privacyOk) {
+        // STEP_44 v2 Phase 3 — 필수 동의 2개 모두 검증
+        if (!consents.privacy) {
             setError("개인정보 수집·이용 동의가 필요합니다.");
+            setSubmitting(false);
+            return;
+        }
+        if (!consents.thirdParty) {
+            setError("변호사·법무법인 등 제3자 정보 제공 동의가 필요합니다.");
             setSubmitting(false);
             return;
         }
@@ -57,6 +69,9 @@ export function ContactForm({
             setSubmitting(false);
             return;
         }
+
+        // STEP_44 v2 Phase 3 — landing_url 캡처 (분배 룰의 slug 추출 source)
+        const landingUrl = typeof window !== "undefined" ? window.location.href : "";
 
         try {
             const res = await fetch("/api/landing-submit", {
@@ -69,6 +84,10 @@ export function ContactForm({
                     answers,
                     personal,
                     memo,
+                    landingUrl,
+                    consentPrivacy:    consents.privacy,
+                    consentThirdParty: consents.thirdParty,
+                    consentMarketing:  consents.marketing,
                 }),
             });
             if (!res.ok) {
@@ -173,12 +192,50 @@ export function ContactForm({
                         />
                     </div>
 
-                    <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
-                        <input type="checkbox" name="privacy" required className="mt-1 w-4 h-4" />
-                        <span>
-                            <span className="text-red-600 font-bold">(필수)</span> 개인정보 수집·이용에 동의합니다. 수집 항목: 성명·연락처·자가진단 결과. 이용 목적: 상담 안내. 보유 기간: 상담 완료 후 3년.
-                        </span>
-                    </label>
+                    {/* STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) */}
+                    <div className="space-y-3 pt-2 border-t border-gray-200">
+                        {/* 동의 #1 — 수집·이용 (필수) */}
+                        <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={consents.privacy}
+                                onChange={(e) => setConsents({ ...consents, privacy: e.target.checked })}
+                                className="mt-1 w-4 h-4"
+                            />
+                            <span>
+                                <span className="text-red-600 font-bold">(필수)</span> 개인정보 수집·이용 동의 · 수집: 성명·연락처·자가진단 결과 · 목적: 상담 안내 · 보유: 3년.
+                                <a href="/legal/privacy-collection" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">[전문 보기]</a>
+                            </span>
+                        </label>
+
+                        {/* 동의 #2 — 제3자 제공 (필수) */}
+                        <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={consents.thirdParty}
+                                onChange={(e) => setConsents({ ...consents, thirdParty: e.target.checked })}
+                                className="mt-1 w-4 h-4"
+                            />
+                            <span>
+                                <span className="text-red-600 font-bold">(필수)</span> 변호사·법무법인 등 제3자 정보 제공 동의 · 등급 A/B 시 매칭 광고주에 제공.
+                                <a href="/legal/privacy-third-party" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">[전문 보기]</a>
+                            </span>
+                        </label>
+
+                        {/* 동의 #3 — 마케팅 (선택) */}
+                        <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={consents.marketing}
+                                onChange={(e) => setConsents({ ...consents, marketing: e.target.checked })}
+                                className="mt-1 w-4 h-4"
+                            />
+                            <span>
+                                <span className="text-gray-500 font-bold">(선택)</span> 마케팅 정보 수신 동의 · 신규 정보·이벤트 안내.
+                                <a href="/legal/marketing" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">[전문 보기]</a>
+                            </span>
+                        </label>
+                    </div>
 
                     {error && (
                         <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded text-sm">
@@ -188,13 +245,11 @@ export function ContactForm({
 
                     <button
                         type="submit"
-                        disabled={submitting}
+                        disabled={submitting || !consents.privacy || !consents.thirdParty}
                         className="w-full bg-[var(--gold)] hover:bg-[var(--gold-dark)] disabled:bg-gray-400 text-[var(--navy)] font-bold py-4 rounded text-lg transition-colors"
                     >
                         {submitting ? "접수 중..." : "상담 신청하기"}
                     </button>
-
-
                 </form>
             </div>
         </section>
