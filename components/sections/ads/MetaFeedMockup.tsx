@@ -1,6 +1,7 @@
 "use client";
 import { ThumbsUp, MessageCircle, Share2, Bookmark, Home, PlaySquare, Store, Bell, Menu } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export function MetaFeedMockup() {
     return (
@@ -85,61 +86,21 @@ export function MetaFeedMockup() {
                         <span>변제계획 검토 무료 · 회생·파산 법률 안내 · 1분 자가진단</span>
                     </div>
 
-                    {/* 광고 크리에이티브 — 다크 네이비 + 93.28% 통계 + SVG 일러스트 */}
+                    {/* 광고 크리에이티브 — STEP_47 실 이미지 (자영업자 컨셉) */}
                     <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.5 }}
                         className="relative overflow-hidden flex-shrink-0"
-                        style={{ aspectRatio: "1 / 1", background: "linear-gradient(180deg, #0F172A 0%, #0A1024 100%)" }}>
-                        {/* 핀 그리드 패턴 */}
-                        <div className="absolute inset-0" style={{
-                            backgroundImage: "linear-gradient(to right, rgba(197,165,114,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(197,165,114,0.06) 1px, transparent 1px)",
-                            backgroundSize: "18px 18px"
-                        }} />
+                        style={{ aspectRatio: "1 / 1" }}>
+                        <Image
+                            src="/ads-creatives/01-debt-relief/DR-011-A.png"
+                            alt="자영업자 회생 안내"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            className="object-cover z-0"
+                        />
                         {/* 광고 태그 */}
-                        <div className="absolute top-2 left-2 bg-black/40 text-white font-bold px-1.5 py-0.5 rounded z-10" style={{ fontSize: "6px", letterSpacing: "0.15em" }}>광고</div>
+                        <div className="absolute top-2 left-2 bg-black/50 text-white font-bold px-1.5 py-0.5 rounded z-10" style={{ fontSize: "6px", letterSpacing: "0.15em" }}>광고</div>
                         {/* 워터마크 */}
-                        <div className="absolute top-2 right-2 z-10" style={{ fontSize: "6px", color: "rgba(255,255,255,0.4)" }}>otpage1.com</div>
-                        {/* 아이브로우 */}
-                        <div className="absolute left-0 right-0 flex justify-center z-10" style={{ top: "22px" }}>
-                            <div className="flex items-center gap-1">
-                                <div className="w-1 h-1 rounded-full bg-[#C5A572]" />
-                                <span style={{ fontFamily: "monospace", fontSize: "6px", fontWeight: 700, color: "#C5A572", letterSpacing: "0.2em", textTransform: "uppercase" }}>2024 회생법원 통계</span>
-                            </div>
-                        </div>
-                        {/* 골드 룰 */}
-                        <div className="absolute left-1/2 -translate-x-1/2 z-10" style={{ top: "34px", width: "20px", height: "1px", background: "rgba(197,165,114,0.55)" }} />
-                        {/* 히어로 스탯 */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center z-10" style={{ paddingBottom: "30%" }}>
-                            <div className="font-bold leading-none text-[#C5A572]" style={{ fontSize: "clamp(22px, 8vw, 34px)", fontFamily: "Georgia, 'Times New Roman', serif", textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>
-                                93.28<span style={{ fontSize: "0.5em", verticalAlign: "top" }}>%</span>
-                            </div>
-                            <div className="text-white font-bold mt-1" style={{ fontSize: "8px" }}>법원 인가율</div>
-                            <div className="border-t border-[rgba(197,165,114,0.3)] pt-1 mt-1" style={{ fontSize: "6px", color: "rgba(255,255,255,0.55)" }}>서울회생법원 · 2024 공개 통계</div>
-                        </div>
-                        {/* 하단 SVG 일러스트 */}
-                        <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 380 140" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYEnd meet" style={{ height: "36%" }}>
-                            <line x1="20" y1="135" x2="360" y2="135" stroke="rgba(197,165,114,0.5)" strokeWidth="1"/>
-                            {/* 법원 */}
-                            <g transform="translate(40 40)">
-                                <path d="M0 30 L 50 4 L 100 30 Z" fill="#1A2540" stroke="#C5A572" strokeWidth="1.2"/>
-                                <rect x="-4" y="30" width="108" height="8" fill="#C5A572"/>
-                                <rect x="6" y="38" width="10" height="56" fill="#E8DDC4"/>
-                                <rect x="26" y="38" width="10" height="56" fill="#E8DDC4"/>
-                                <rect x="46" y="38" width="10" height="56" fill="#E8DDC4"/>
-                                <rect x="66" y="38" width="10" height="56" fill="#E8DDC4"/>
-                                <rect x="86" y="38" width="10" height="56" fill="#E8DDC4"/>
-                                <rect x="-4" y="94" width="108" height="6" fill="#C5A572"/>
-                                <rect x="-10" y="100" width="120" height="3" fill="#1A2540"/>
-                            </g>
-                            {/* 추심 정지 실드 */}
-                            <g transform="translate(240 30)">
-                                <path d="M22 0 L 58 0 L 80 22 L 80 58 L 58 80 L 22 80 L 0 58 L 0 22 Z" fill="#1A2540" stroke="#C5A572" strokeWidth="2"/>
-                                <path d="M22 0 L 58 0 L 80 22 L 80 58 L 58 80 L 22 80 L 0 58 L 0 22 Z" fill="none" stroke="rgba(197,165,114,0.30)" strokeWidth="6"/>
-                                <g transform="translate(40 40)">
-                                    <path d="M-12 -8 L -12 8 L -8 12 L 8 12 L 12 8 L 12 -4 L 10 -4 L 10 -10 L 8 -10 L 8 -4 L 6 -4 L 6 -12 L 4 -12 L 4 -4 L 2 -4 L 2 -14 L 0 -14 L 0 -4 L -2 -4 L -2 -8 L -4 -8 L -4 -4 L -12 -8 Z" fill="#C5A572" stroke="#0F172A" strokeWidth="0.8" strokeLinejoin="round"/>
-                                </g>
-                                <text x="40" y="100" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#C5A572" fontWeight="700" letterSpacing="2">추심 정지</text>
-                            </g>
-                        </svg>
+                        <div className="absolute top-2 right-2 z-10" style={{ fontSize: "6px", color: "rgba(255,255,255,0.7)", textShadow: "0 1px 2px rgba(0,0,0,0.6)" }}>otpage1.com</div>
                     </motion.div>
 
                     {/* CTA 바 */}

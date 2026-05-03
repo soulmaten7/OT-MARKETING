@@ -1,6 +1,6 @@
 "use client";
 import { Mic, Menu } from "lucide-react";
-import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
+import Image from "next/image";
 
 export function NaverSearchMockup() {
     return (
@@ -25,8 +25,14 @@ export function NaverSearchMockup() {
             </div>
 
             {/* 광고 영역 */}
-            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white relative">
-                <ImagePlaceholder accentColor="rgba(3,199,90,0.4)" label="광고주 로고/이미지" size="sm" />
+            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white relative overflow-hidden">
+                <Image
+                    src="/ads-creatives/01-debt-relief/DR-016-A.png"
+                    alt="가상 결정문 - 회생법원 인가 통지"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover opacity-15 z-0"
+                />
                 <div className="relative z-20">
                     <div className="inline-block bg-[#FF6F00] text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
                     <div className="text-[10px] text-[#03C75A] font-semibold mb-1">lawfirm-oo.com</div>

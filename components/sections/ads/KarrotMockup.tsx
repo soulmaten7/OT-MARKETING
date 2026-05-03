@@ -1,7 +1,7 @@
 "use client";
 import { MapPin, Heart, MessageCircle, Search, Home, Heart as HeartTab, Map as MapTab, MessageSquare, User } from "lucide-react";
 import { motion } from "framer-motion";
-import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
+import Image from "next/image";
 
 export function KarrotMockup() {
     return (
@@ -21,9 +21,16 @@ export function KarrotMockup() {
 
             {/* 광고 이미지 */}
             <div className="px-3 pt-3 pb-2 flex-shrink-0">
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#FFE5D0] via-[#FF7E36] to-[#E55A1A] flex items-center justify-center text-white relative overflow-hidden">
-                    <div className="absolute top-2 right-2 bg-black/40 text-white text-[9px] px-2 py-0.5 rounded-full font-medium">광고</div>
-                    <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="광고주 비즈프로필 이미지" />
+                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="aspect-[4/3] rounded-2xl flex items-center justify-center text-white relative overflow-hidden">
+                    <Image
+                        src="/ads-creatives/01-debt-relief/DR-022-A.png"
+                        alt="15분 자가진단 무료 안내"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-cover z-0"
+                    />
+                    <div className="absolute inset-0 bg-black/30 z-10" />
+                    <div className="absolute top-2 right-2 bg-black/40 text-white text-[9px] px-2 py-0.5 rounded-full font-medium z-20">광고</div>
                     <div className="relative z-20 text-center px-4">
                         <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">동네 법률상담</div>
                         <div className="text-[18px] font-bold leading-tight mb-1">

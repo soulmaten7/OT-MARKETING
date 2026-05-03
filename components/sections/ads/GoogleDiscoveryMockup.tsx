@@ -1,7 +1,7 @@
 "use client";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
-import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
+import Image from "next/image";
 
 export function GoogleDiscoveryMockup() {
     return (
@@ -22,12 +22,19 @@ export function GoogleDiscoveryMockup() {
             {/* 메인 광고 카드 */}
             <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.5 }} className="flex-[3] m-2 mb-1 rounded-2xl overflow-hidden border border-gray-200 shadow-md flex flex-col">
                 {/* 이미지 */}
-                <div className="aspect-[16/10] bg-gradient-to-br from-[var(--coral-500)] via-[var(--coral-600)] to-[var(--navy)] flex items-center justify-center text-white relative">
-                    <div className="absolute top-2 left-2 bg-black/50 text-white text-[8px] px-2 py-0.5 rounded font-bold">광고</div>
-                    <ImagePlaceholder accentColor="rgba(255,255,255,0.5)" label="광고주 카드 이미지" />
-                    <div className="relative z-20 text-center px-4">
+                <div className="aspect-[16/10] flex items-center justify-center text-white relative overflow-hidden">
+                    <Image
+                        src="/ads-creatives/01-debt-relief/DR-019-A.png"
+                        alt="가상 결정문 변형 - 회생 결과"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        className="object-cover z-0"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/55 z-10" />
+                    <div className="absolute top-2 left-2 bg-black/50 text-white text-[8px] px-2 py-0.5 rounded font-bold z-20">광고</div>
+                    <div className="relative z-20 text-center px-4 drop-shadow-lg">
                         <div className="text-[16px] font-bold leading-tight">법률상담 무료</div>
-                        <div className="text-[10px] opacity-90 mt-1">회생·파산 검토</div>
+                        <div className="text-[10px] opacity-95 mt-1">회생·파산 검토</div>
                     </div>
                 </div>
                 {/* 정보 */}

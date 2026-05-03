@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ImagePlaceholder } from "@/components/sections/ads/ImagePlaceholder";
+import Image from "next/image";
 
 export function GoogleGDNMockup() {
     return (
@@ -29,9 +29,15 @@ export function GoogleGDNMockup() {
             <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="mx-3 my-2 rounded-lg overflow-hidden border border-gray-200 shadow-md flex-shrink-0">
                 <div className="flex">
                     {/* 좌측 이미지 (1/3) */}
-                    <div className="w-[35%] bg-gradient-to-br from-[var(--coral-500)] to-[var(--navy)] relative aspect-square">
-                        <ImagePlaceholder accentColor="rgba(255,255,255,0.6)" label="배너" size="sm" />
-                        <div className="absolute top-1 left-1 bg-black/50 text-white text-[7px] px-1 py-0.5 rounded font-bold">광고</div>
+                    <div className="w-[35%] relative aspect-square overflow-hidden">
+                        <Image
+                            src="/ads-creatives/01-debt-relief/DR-014-A.png"
+                            alt="월급 압류 구제 안내"
+                            fill
+                            sizes="120px"
+                            className="object-cover z-0"
+                        />
+                        <div className="absolute top-1 left-1 bg-black/50 text-white text-[7px] px-1 py-0.5 rounded font-bold z-10">광고</div>
                     </div>
                     {/* 우측 카피 */}
                     <div className="flex-1 px-2.5 py-2 bg-white flex flex-col justify-between">
