@@ -10,11 +10,12 @@
  * - 슬라이드 애니메이션: Framer Motion
  */
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Question, AnswerMap } from "@/lib/industries";
 import { QuestionScreen } from "./diagnosis/QuestionScreen";
 import { ProgressBar } from "./diagnosis/ProgressBar";
+import { trackCustom } from "@/lib/fbq";
 
 interface DiagnosisProps {
     questions: Question[];
@@ -49,6 +50,30 @@ export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
         () => QUESTION_SHORT_LABELS[currentQuestion?.id ?? ""] ?? "",
         [currentQuestion?.id]
     );
+
+    // STEP_55 — 단계별 Meta Pixel custom events (중복 fire 방지 ref)
+    const firedSteps = useRef<Set<string>>(new Set());
+
+    useEffect(() => {
+        if (!firedSteps.current.has("start")) {
+            trackCustom("DiagnosisStart", { total_questions: totalQuestions });
+            firedSteps.current.add("start");
+        }
+    }, [totalQuestions]);
+
+    useEffect(() => {
+        // 9 화면 = 4 단계 분리
+        // Step 1 = Q1~Q3 (idx 0~2) — DiagnosisStart 가 커버
+        // Step 2 = Q4~Q6 (idx 3~5)
+        // Step 3 = Q7~Q9 (idx 6~8)
+        if (currentIndex === 3 && !firedSteps.current.has("step2")) {
+            trackCustom("DiagnosisStep2", { question_idx: currentIndex });
+            firedSteps.current.add("step2");
+        } else if (currentIndex === 6 && !firedSteps.current.has("step3")) {
+            trackCustom("DiagnosisStep3", { question_idx: currentIndex });
+            firedSteps.current.add("step3");
+        }
+    }, [currentIndex]);
 
     function advanceTo(nextIndex: number, finalAnswers: AnswerMap) {
         if (nextIndex >= totalQuestions) {

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { AnswerMap } from "@/lib/industries";
+import { trackEvent, trackCustom } from "@/lib/fbq";
 
 const TIME_OPTIONS = [
     { value: "morning",   label: "오전 (9~12시)" },
@@ -36,6 +37,12 @@ export function ContactForm({
         thirdParty: false,     // 필수 #2 — 제3자 제공
         marketing: false,      // 선택   — 마케팅 정보
     });
+
+    // STEP_55 — Step 4 (개인정보 입력) 진입 시 fire (mount 1회)
+    useEffect(() => {
+        trackCustom("DiagnosisStep4", { industry_id: industryId, grade });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -94,6 +101,11 @@ export function ContactForm({
                 const data = await res.json().catch(() => ({}));
                 throw new Error(data?.error || "제출 실패");
             }
+            // STEP_55 — Lead event (시트 박힘 = 깔때기 최종 단계)
+            trackEvent("Lead", {
+                content_name: `${industryId} 자가진단 완료`,
+                grade,
+            });
             setSubmitted(true);
         } catch (err) {
             setError(err instanceof Error ? err.message : "제출 중 오류");
@@ -194,7 +206,7 @@ export function ContactForm({
 
                     {/* STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) */}
                     <div className="space-y-3 pt-2 border-t border-gray-200">
-                        {/* 동의 #1 — 수집·이용 (필수) */}
+                        {/* 동의 #1 — 수집·이용 (필수). STEP_55 — 거부감 약화 위해 부드러운 안내 + 디테일은 작게. */}
                         <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
                             <input
                                 type="checkbox"
@@ -203,8 +215,11 @@ export function ContactForm({
                                 className="mt-1 w-4 h-4"
                             />
                             <span>
-                                <span className="text-red-600 font-bold">(필수)</span> 개인정보 수집·이용 동의 · 수집: 성명·연락처·자가진단 결과 · 목적: 상담 안내 · 보유: 3년.
-                                <a href="/legal/privacy-collection" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">[전문 보기]</a>
+                                <span className="text-red-600 font-bold">(필수)</span> 상담 결과 안내를 받기 위해 연락처 사용에 동의합니다.
+                                <span className="block text-xs text-gray-500 mt-1">
+                                    수집 항목 = 성명·연락처·자가진단 결과 / 목적 = 상담 안내 / 보유 = 3년 후 자동 폐기.
+                                    <a href="/legal/privacy-collection" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline ml-1">[자세히]</a>
+                                </span>
                             </span>
                         </label>
 

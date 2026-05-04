@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import MetaPixel from "@/components/MetaPixel";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${notoSerifKr.variable} ${cormorant.variable} font-sans antialiased bg-background text-foreground`}
             >
+                <MetaPixel />
                 {children}
             </body>
         </html>
