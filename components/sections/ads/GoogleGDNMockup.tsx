@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { getAdImageSrc } from "@/lib/adsImageMap";
+import { getMockupCopy } from "@/lib/industry-mockup-copy";
 
 interface GoogleGDNMockupProps {
     industry?: string;
@@ -9,6 +10,7 @@ interface GoogleGDNMockupProps {
 
 export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps = {}) {
     const imageSrc = getAdImageSrc(industry, "gdn");
+    const copy = getMockupCopy(industry);
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'Roboto, system-ui, sans-serif' }}>
             {/* 호스트 사이트 헤더 */}
@@ -21,7 +23,7 @@ export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps =
             <div className="px-3 pt-2 pb-1 flex-shrink-0">
                 <div className="text-[9px] font-bold text-[#EA4335] mb-1">[경제]</div>
                 <div className="text-[10px] font-bold text-gray-900 mb-1.5 leading-snug">
-                    가계부채 1,800조 돌파, 회생·파산 신청 급증
+                    {copy.gdnNewsHead}
                 </div>
                 <div className="text-[8px] text-gray-500 mb-2">김기자 · 2시간 전 · 댓글 24</div>
                 <div className="space-y-1">
@@ -48,8 +50,8 @@ export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps =
                     {/* 우측 카피 */}
                     <div className="flex-1 px-2.5 py-2 bg-white flex flex-col justify-between">
                         <div>
-                            <div className="text-[11px] font-bold text-gray-900 leading-tight mb-1">변제계획 검토 무료</div>
-                            <div className="text-[8px] text-gray-600 leading-snug">회생·파산 법률상담</div>
+                            <div className="text-[11px] font-bold text-gray-900 leading-tight mb-1">{copy.gdnHeadline}</div>
+                            <div className="text-[8px] text-gray-600 leading-snug">{copy.gdnSubcopy}</div>
                         </div>
                         <button className="bg-[#1A73E8] text-white font-bold text-[9px] px-2 py-1 rounded mt-2 self-start">
                             확인하기
@@ -64,7 +66,7 @@ export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps =
                             <span className="w-1 h-1 rounded-full bg-[#FBBC05]" />
                             <span className="w-1 h-1 rounded-full bg-[#34A853]" />
                         </div>
-                        <div className="text-[7px] text-gray-500">법무법인 OO · 광고</div>
+                        <div className="text-[7px] text-gray-500">{copy.advertiserName} · 광고</div>
                     </div>
                     <div className="text-[7px] text-gray-400">Ads by Google</div>
                 </div>
@@ -82,7 +84,7 @@ export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps =
                     <div className="flex items-center gap-2 p-1.5 border border-gray-100 rounded">
                         <div className="w-7 h-7 bg-gradient-to-br from-[var(--coral-100)] to-orange-100 rounded flex-shrink-0" />
                         <div>
-                            <div className="text-[9px] font-bold text-gray-700 leading-tight">개인회생 신청 자격 정리</div>
+                            <div className="text-[9px] font-bold text-gray-700 leading-tight">{copy.gdnRelated}</div>
                             <div className="text-[7px] text-gray-400">DAILY NEWS · 5시간 전</div>
                         </div>
                     </div>

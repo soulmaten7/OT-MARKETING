@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { getAdImageSrc, getKakaoFitMode } from "@/lib/adsImageMap";
+import { getMockupCopy } from "@/lib/industry-mockup-copy";
 
 interface KakaoMomentMockupProps {
     industry?: string;
@@ -10,6 +11,7 @@ interface KakaoMomentMockupProps {
 export function KakaoMomentMockup({ industry = "select1" }: KakaoMomentMockupProps = {}) {
     const imageSrc = getAdImageSrc(industry, "kakao");
     const fitMode = getKakaoFitMode(industry); // 개인회생 = cover (9:16) / 5 업종 = contain (1:1)
+    const copy = getMockupCopy(industry);
     return (
         <div className="w-full h-full flex flex-col bg-[#FEE500]" style={{ fontFamily: 'Pretendard, system-ui, sans-serif' }}>
             {/* 카카오 톱 */}
@@ -33,21 +35,21 @@ export function KakaoMomentMockup({ industry = "select1" }: KakaoMomentMockupPro
                         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/30 z-10" />
                         <div className="absolute top-3 right-3 bg-[#3C1E1E]/30 text-white text-[9px] px-2 py-0.5 rounded font-bold z-20">광고</div>
                         <div className="relative z-20 text-center text-white px-4 drop-shadow-lg">
-                            <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">채무 독촉 해결</div>
+                            <div className="text-[10px] font-bold tracking-widest mb-2 opacity-90">{copy.kakaoEyebrow}</div>
                             <div className="text-[20px] font-extrabold leading-tight mb-2">
-                                변제계획 검토 무료
+                                {copy.kakaoHeadline}
                             </div>
                             <div className="text-[11px] opacity-95">
-                                자가진단 1분
+                                {copy.kakaoSubcopy}
                             </div>
                         </div>
                     </div>
 
                     {/* CTA 영역 */}
                     <div className="bg-[#3C1E1E] text-white px-4 py-3 flex-shrink-0">
-                        <div className="text-[11px] font-bold mb-1">법무법인 OO</div>
+                        <div className="text-[11px] font-bold mb-1">{copy.advertiserName}</div>
                         <div className="text-[10px] opacity-80 mb-2 leading-relaxed">
-                            본인 회생 가능 여부 무료 확인.
+                            {copy.kakaoCardNote}
                         </div>
                         <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full bg-[#FEE500] text-[#3C1E1E] font-bold py-1.5 rounded-full text-[10px]">
                             자세히 보기

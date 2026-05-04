@@ -24,6 +24,12 @@ const CHANNEL_FILE = {
     "google-discovery": "GoogleDiscovery",
 };
 
+// STEP_63: debt-relief 카피가 lib/industry-mockup-copy.ts (select1) 로 이전됨.
+// 6 mockup 파일은 getMockupCopy(industry) 호출로 동적 매핑.
+// 따라서 debt-relief 검증 = (1) lib/industry-mockup-copy.ts 에 headline/body 박힘 + (2) mockup 파일이 getMockupCopy 임포트.
+const INDUSTRY_COPY_LIB = path.join(ROOT, "lib/industry-mockup-copy.ts");
+const industryCopyContent = fs.existsSync(INDUSTRY_COPY_LIB) ? fs.readFileSync(INDUSTRY_COPY_LIB, "utf-8") : "";
+
 // debt-relief uses default mockups (no industry subfolder)
 function getFilePath(industry, channel) {
     const base = CHANNEL_FILE[channel];
@@ -47,6 +53,33 @@ for (const m of log.mappings) {
         continue;
     }
     const content = fs.readFileSync(filePath, "utf-8");
+
+    // STEP_63: debt-relief 는 동적 매핑 — lib/industry-mockup-copy.ts 의 select1 entry 검증
+    if (m.industry === "debt-relief") {
+        const hasHeadline = industryCopyContent.includes(m.headline);
+        const hasBody = industryCopyContent.includes(m.body);
+        const usesGetMockupCopy = content.includes("getMockupCopy") && content.includes("@/lib/industry-mockup-copy");
+
+        if (!hasHeadline || !hasBody || !usesGetMockupCopy) {
+            failures.push({
+                industry: m.industry,
+                channel: m.channel,
+                file: filePath.replace(ROOT, ""),
+                keyword: m.keyword,
+                headline: m.headline,
+                body: m.body,
+                hasHeadline,
+                hasBody,
+                usesGetMockupCopy,
+                note: "STEP_63: debt-relief 카피는 lib/industry-mockup-copy.ts (select1) 에 박혀있고, mockup 파일은 getMockupCopy 호출.",
+            });
+        } else {
+            successes.push({ industry: m.industry, channel: m.channel });
+        }
+        continue;
+    }
+
+    // 5 다른 업종 = 정적 매핑 (industry/<industry>/<Channel>.tsx)
     const hasHeadline = content.includes(m.headline);
     const hasBody = content.includes(m.body);
 

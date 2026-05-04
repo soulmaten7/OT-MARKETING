@@ -3,6 +3,7 @@ import { ThumbsUp, MessageCircle, Share2, Bookmark, Home, PlaySquare, Store, Bel
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { getAdImageSrc } from "@/lib/adsImageMap";
+import { getMockupCopy } from "@/lib/industry-mockup-copy";
 
 interface MetaFeedMockupProps {
     industry?: string; // select1 (개인회생) ~ select6 (병의원)
@@ -10,6 +11,12 @@ interface MetaFeedMockupProps {
 
 export function MetaFeedMockup({ industry = "select1" }: MetaFeedMockupProps = {}) {
     const imageSrc = getAdImageSrc(industry, "meta");
+    const copy = getMockupCopy(industry);
+    // metaHeadline 의 강조 단어 (metaHeadlineEm) 와 그 외 분리
+    const em = copy.metaHeadlineEm ?? "";
+    const headlineParts = em && copy.metaHeadline.includes(em)
+        ? copy.metaHeadline.split(em)
+        : [copy.metaHeadline, ""];
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Helvetica, Arial' }}>
             {/* iOS 상태바 */}
@@ -72,7 +79,7 @@ export function MetaFeedMockup({ industry = "select1" }: MetaFeedMockupProps = {
                             법
                         </div>
                         <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-[10px] text-[#050505] leading-tight">법무법인 OO</div>
+                            <div className="font-semibold text-[10px] text-[#050505] leading-tight">{copy.advertiserName}</div>
                             <div className="flex items-center gap-1 mt-0.5" style={{ fontSize: "7px", color: "#65676B" }}>
                                 <span>광고 · 후원</span>
                                 <span className="w-1 h-1 rounded-full bg-[#65676B]" />
@@ -86,10 +93,17 @@ export function MetaFeedMockup({ industry = "select1" }: MetaFeedMockupProps = {
                         </svg>
                     </div>
 
-                    {/* 본문 카피 (Tier 5 카피 보존: 변제계획 검토 무료 / 회생·파산 법률 안내) */}
+                    {/* 본문 카피 — STEP_63 industry 동적 매핑 (안전 zone) */}
                     <div className="px-2.5 pb-1.5 text-[8px] text-[#050505] leading-snug">
-                        <span className="font-semibold">추심 정지</span> 가능한지, 먼저 확인해 보세요.{" "}
-                        <span>변제계획 검토 무료 · 회생·파산 법률 안내 · 1분 자가진단</span>
+                        {em ? (
+                            <>
+                                <span className="font-semibold">{em}</span>{headlineParts[1]}
+                            </>
+                        ) : (
+                            copy.metaHeadline
+                        )}
+                        {" "}
+                        <span>{copy.metaSubcopy}</span>
                     </div>
 
                     {/* 광고 크리에이티브 — STEP_47 실 이미지 (자영업자 컨셉) */}
@@ -113,7 +127,7 @@ export function MetaFeedMockup({ industry = "select1" }: MetaFeedMockupProps = {
                     <div className="flex items-center justify-between gap-2 px-2.5 py-1.5 bg-[#F0F2F5]">
                         <div className="flex-1 min-w-0">
                             <div style={{ fontSize: "7px", textTransform: "uppercase", letterSpacing: "0.04em", color: "#65676B", fontWeight: 500 }}>otpage1.com</div>
-                            <div style={{ fontSize: "9px", fontWeight: 700, color: "#050505", lineHeight: 1.25 }}>개인회생 자가진단 — 9문항 · 무료</div>
+                            <div style={{ fontSize: "9px", fontWeight: 700, color: "#050505", lineHeight: 1.25 }}>{copy.metaCtaTitle}</div>
                         </div>
                         <button className="flex-shrink-0 bg-[#1877F2] text-white font-bold rounded-[6px]" style={{ fontSize: "8px", padding: "6px 10px" }}>
                             지금 무료 진단
