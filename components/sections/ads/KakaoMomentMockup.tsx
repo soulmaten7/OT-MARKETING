@@ -1,8 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getAdImageSrc, getKakaoFitMode } from "@/lib/adsImageMap";
 
-export function KakaoMomentMockup() {
+interface KakaoMomentMockupProps {
+    industry?: string;
+}
+
+export function KakaoMomentMockup({ industry = "select1" }: KakaoMomentMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "kakao");
+    const fitMode = getKakaoFitMode(industry); // 개인회생 = cover (9:16) / 5 업종 = contain (1:1)
     return (
         <div className="w-full h-full flex flex-col bg-[#FEE500]" style={{ fontFamily: 'Pretendard, system-ui, sans-serif' }}>
             {/* 카카오 톱 */}
@@ -17,11 +24,11 @@ export function KakaoMomentMockup() {
                     {/* 이미지 영역 — STEP_50: DR-018(1:1) → DR-021(9:16) swap, 양옆 짤림 해결 */}
                     <div className="flex-[3] flex items-center justify-center relative overflow-hidden bg-[var(--navy)]">
                         <Image
-                            src="/ads-creatives/01-debt-relief/DR-021-A.png"
+                            src={imageSrc}
                             alt="9:16 세로 채무 구제 안내 - 카카오 모먼트 적합 비율"
                             fill
                             sizes="(max-width: 768px) 50vw, 260px"
-                            className="object-cover z-0"
+                            className={`${fitMode === "cover" ? "object-cover" : "object-contain"} z-0`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/30 z-10" />
                         <div className="absolute top-3 right-3 bg-[#3C1E1E]/30 text-white text-[9px] px-2 py-0.5 rounded font-bold z-20">광고</div>

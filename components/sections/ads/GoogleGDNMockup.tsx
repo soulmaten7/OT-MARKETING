@@ -1,8 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
 
-export function GoogleGDNMockup() {
+interface GoogleGDNMockupProps {
+    industry?: string;
+}
+
+export function GoogleGDNMockup({ industry = "select1" }: GoogleGDNMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "gdn");
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'Roboto, system-ui, sans-serif' }}>
             {/* 호스트 사이트 헤더 */}
@@ -31,7 +37,7 @@ export function GoogleGDNMockup() {
                     {/* 좌측 이미지 (1/3) */}
                     <div className="w-[35%] relative aspect-square overflow-hidden">
                         <Image
-                            src="/ads-creatives/01-debt-relief/DR-014-A.png"
+                            src={imageSrc}
                             alt="월급 압류 구제 안내"
                             fill
                             sizes="120px"

@@ -2,8 +2,14 @@
 import { ThumbsUp, MessageCircle, Share2, Bookmark, Home, PlaySquare, Store, Bell, Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
 
-export function MetaFeedMockup() {
+interface MetaFeedMockupProps {
+    industry?: string; // select1 (개인회생) ~ select6 (병의원)
+}
+
+export function MetaFeedMockup({ industry = "select1" }: MetaFeedMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "meta");
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", Helvetica, Arial' }}>
             {/* iOS 상태바 */}
@@ -91,7 +97,7 @@ export function MetaFeedMockup() {
                         className="relative overflow-hidden flex-shrink-0"
                         style={{ aspectRatio: "1 / 1" }}>
                         <Image
-                            src="/ads-creatives/01-debt-relief/DR-011-A.png"
+                            src={imageSrc}
                             alt="자영업자 회생 안내"
                             fill
                             sizes="(max-width: 768px) 100vw, 400px"

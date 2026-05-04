@@ -2,8 +2,14 @@
 import { MapPin, Heart, MessageCircle, Search, Home, Heart as HeartTab, Map as MapTab, MessageSquare, User } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
 
-export function KarrotMockup() {
+interface KarrotMockupProps {
+    industry?: string;
+}
+
+export function KarrotMockup({ industry = "select1" }: KarrotMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "karrot");
     return (
         <div className="w-full h-full flex flex-col bg-[#FAF7F2]" style={{ fontFamily: 'Pretendard, system-ui, sans-serif' }}>
             {/* 당근 헤더 */}
@@ -24,7 +30,7 @@ export function KarrotMockup() {
                 <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.5 }} className="aspect-[4/3] rounded-2xl flex items-center justify-center text-white relative overflow-hidden bg-[#1A1A1A]">
                     {/* STEP_50: object-contain 으로 1:1 이미지 → 4:3 컨테이너 빈공간 (배경색 채움). 위아래 짤림 해결. */}
                     <Image
-                        src="/ads-creatives/01-debt-relief/DR-022-A.png"
+                        src={imageSrc}
                         alt="15분 자가진단 무료 안내"
                         fill
                         sizes="(max-width: 768px) 50vw, 260px"

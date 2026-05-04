@@ -1,8 +1,14 @@
 "use client";
 import { Mic, Menu } from "lucide-react";
 import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
 
-export function NaverSearchMockup() {
+interface NaverSearchMockupProps {
+    industry?: string;
+}
+
+export function NaverSearchMockup({ industry = "select1" }: NaverSearchMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "naver");
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'Pretendard, system-ui, "Apple SD Gothic Neo", sans-serif' }}>
             {/* 검색바 */}
@@ -27,7 +33,7 @@ export function NaverSearchMockup() {
             {/* 광고 영역 */}
             <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white relative overflow-hidden">
                 <Image
-                    src="/ads-creatives/01-debt-relief/DR-016-A.png"
+                    src={imageSrc}
                     alt="가상 결정문 - 회생법원 인가 통지"
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"

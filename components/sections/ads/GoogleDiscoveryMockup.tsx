@@ -2,8 +2,14 @@
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
 
-export function GoogleDiscoveryMockup() {
+interface GoogleDiscoveryMockupProps {
+    industry?: string;
+}
+
+export function GoogleDiscoveryMockup({ industry = "select1" }: GoogleDiscoveryMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "discovery");
     return (
         <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'Roboto, system-ui, sans-serif' }}>
             {/* 헤더 — 4컬러 G 로고 */}
@@ -24,7 +30,7 @@ export function GoogleDiscoveryMockup() {
                 {/* 이미지 — STEP_50: object-contain 으로 1:1 이미지 → 16:10 컨테이너 빈공간 (navy 배경 채움). 위아래 짤림 해결. */}
                 <div className="aspect-[16/10] flex items-center justify-center text-white relative overflow-hidden bg-[var(--navy)]">
                     <Image
-                        src="/ads-creatives/01-debt-relief/DR-019-A.png"
+                        src={imageSrc}
                         alt="가상 결정문 변형 - 회생 결과"
                         fill
                         sizes="(max-width: 768px) 50vw, 280px"
