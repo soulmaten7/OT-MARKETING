@@ -24,6 +24,7 @@ import type { Question, AnswerMap } from "@/lib/industries";
 import { MultiQuestionScreen } from "./diagnosis/MultiQuestionScreen";
 import { ProgressBar } from "./diagnosis/ProgressBar";
 import { trackCustom } from "@/lib/fbq";
+import { trackGoogleAdsEvent } from "@/lib/gtag";
 
 interface DiagnosisProps {
     questions: Question[];
@@ -58,12 +59,15 @@ export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
     useEffect(() => {
         if (currentStep === 0 && !firedSteps.current.has("start")) {
             trackCustom("DiagnosisStart", { total_steps: totalSteps });
+            trackGoogleAdsEvent("diagnosis_start", { total_steps: totalSteps });
             firedSteps.current.add("start");
         } else if (currentStep === 1 && !firedSteps.current.has("step2")) {
             trackCustom("DiagnosisStep2", { step: currentStep });
+            trackGoogleAdsEvent("diagnosis_step2", { step: currentStep });
             firedSteps.current.add("step2");
         } else if (currentStep === 2 && !firedSteps.current.has("step3")) {
             trackCustom("DiagnosisStep3", { step: currentStep });
+            trackGoogleAdsEvent("diagnosis_step3", { step: currentStep });
             firedSteps.current.add("step3");
         }
     }, [currentStep, totalSteps]);

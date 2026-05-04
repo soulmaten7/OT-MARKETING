@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { AnswerMap } from "@/lib/industries";
 import { trackEvent, trackCustom } from "@/lib/fbq";
+import { trackGoogleAdsConversion, trackGoogleAdsEvent } from "@/lib/gtag";
 
 const TIME_OPTIONS = [
     { value: "morning",   label: "오전 (9~12시)" },
@@ -38,9 +39,10 @@ export function ContactForm({
         marketing: false,      // 선택   — 마케팅 정보
     });
 
-    // STEP_55 — Step 4 (개인정보 입력) 진입 시 fire (mount 1회)
+    // STEP_55 — Step 4 (개인정보 입력) 진입 시 fire (mount 1회). STEP_58 — Google Ads 도 동시.
     useEffect(() => {
         trackCustom("DiagnosisStep4", { industry_id: industryId, grade });
+        trackGoogleAdsEvent("diagnosis_step4", { industry_id: industryId, grade });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -101,11 +103,12 @@ export function ContactForm({
                 const data = await res.json().catch(() => ({}));
                 throw new Error(data?.error || "제출 실패");
             }
-            // STEP_55 — Lead event (시트 박힘 = 깔때기 최종 단계)
+            // STEP_55 — Lead event (Meta) + STEP_58 — Google Ads Conversion (₩30,000 가치)
             trackEvent("Lead", {
                 content_name: `${industryId} 자가진단 완료`,
                 grade,
             });
+            trackGoogleAdsConversion(30000, "KRW");
             setSubmitted(true);
         } catch (err) {
             setError(err instanceof Error ? err.message : "제출 중 오류");
