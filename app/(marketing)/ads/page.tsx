@@ -11,7 +11,6 @@ import { ChannelTabs }          from "@/components/sections/ads/ChannelTabs";
 import { IndustryTabs }         from "@/components/sections/ads/IndustryTabs";
 import type { Industry }        from "@/components/sections/ads/IndustryTabs";
 import { AdToLandingFlow }      from "@/components/sections/ads/AdToLandingFlow";
-import { PerformanceDataPanel } from "@/components/sections/ads/PerformanceDataPanel";
 import { LegalGuardrailSection } from "@/components/sections/ads/LegalGuardrailSection";
 import { industryMockups }      from "@/components/sections/ads/industry/index";
 
@@ -156,21 +155,7 @@ export default function AdsPage() {
                 </div>
             </section>
 
-            {/* 5. 성능 데이터 */}
-            <section className="py-20 md:py-28">
-                <div className="ot-container max-w-5xl mx-auto">
-                    <FadeInUp className="text-center max-w-3xl mx-auto mb-12">
-                        <div className="eyebrow mb-4">PERFORMANCE DATA</div>
-                        <h2 className="font-display text-2xl md:text-4xl text-[var(--navy)] mb-4 leading-[1.3]">
-                            R&D 운영 데이터로 검증
-                        </h2>
-                        <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
-                            현재 6 매체 R&D 광고 운영 중. 실제 운영 결과 기반 CPA·CTR·CVR 데이터를 곧 공개합니다.
-                        </p>
-                    </FadeInUp>
-                    <PerformanceDataPanel />
-                </div>
-            </section>
+            {/* 5. 성능 데이터 = STEP_64 제거 (NDA 후 공개) */}
 
             {/* 6. 법규 가드레일 */}
             <LegalGuardrailSection />
