@@ -204,8 +204,34 @@ export function ContactForm({
                         />
                     </div>
 
-                    {/* STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) */}
+                    {/* STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1). STEP_57 — 상단 "전체 동의" 추가 (한국 표준 패턴). */}
                     <div className="space-y-3 pt-2 border-t border-gray-200">
+                        {/* STEP_57 — 전체 동의 (개별 동의 3개 일괄 토글, 개보법 §22 명확한 의사 확인 의무 충족 위해 개별 동의 박스 모두 유지) */}
+                        <label
+                            data-testid="consent-all"
+                            className="flex items-start gap-3 text-sm text-[var(--navy)] leading-relaxed cursor-pointer bg-[var(--gold)]/10 border border-[var(--gold)]/40 rounded-lg p-3"
+                        >
+                            <input
+                                type="checkbox"
+                                checked={consents.privacy && consents.thirdParty && consents.marketing}
+                                onChange={(e) => {
+                                    const checked = e.target.checked;
+                                    setConsents({
+                                        privacy: checked,
+                                        thirdParty: checked,
+                                        marketing: checked,
+                                    });
+                                }}
+                                className="mt-1 w-4 h-4"
+                            />
+                            <span>
+                                <span className="font-bold">전체 동의 (선택 동의 포함)</span>
+                                <span className="block text-xs text-gray-600 mt-1">
+                                    아래 3개 동의를 한 번에 체크합니다. 개별 선택도 가능합니다.
+                                </span>
+                            </span>
+                        </label>
+
                         {/* 동의 #1 — 수집·이용 (필수). STEP_55 — 거부감 약화 위해 부드러운 안내 + 디테일은 작게. */}
                         <label className="flex items-start gap-3 text-sm text-gray-700 leading-relaxed cursor-pointer">
                             <input

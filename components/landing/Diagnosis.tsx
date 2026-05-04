@@ -1,19 +1,27 @@
 "use client";
 
 /**
- * STEP_42 — OQPS 가독성 우선 (이미지 제거)
+ * STEP_57 — 1 화면 3 문항 (옛 STEP_42 1 화면 1 문항 → 3 step)
  *
- * 9 화면 1 질문 + 자동 전환. 이미지 영역 제거 · 질문·옵션 80% 확장.
- * - radio·select: 클릭 즉시 다음 화면
- * - multi: 다음 버튼 클릭 필요
- * - 진행 바: 9 단계 도트
- * - 슬라이드 애니메이션: Framer Motion
+ * 9 문항 = 3 step 으로 분할:
+ *   Step 1 = Q1·Q2·Q3 (채무 상황)
+ *   Step 2 = Q4·Q5·Q6 (소득·직업·가족)
+ *   Step 3 = Q7·Q8·Q9 (추심·자산·이력)
+ *   Step 4 = ContactForm (개인정보 = onComplete 콜백 후 부모가 렌더링)
+ *
+ * 사용자 = "끝 3 단계만" 인식 → 완료율 ↑
+ *
+ * Custom events 매핑 (STEP_55 합치):
+ *   - currentStep === 0 (mount) = DiagnosisStart
+ *   - currentStep === 1 = DiagnosisStep2
+ *   - currentStep === 2 = DiagnosisStep3
+ *   - DiagnosisStep4 = ContactForm.tsx (부모) 가 fire
  */
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Question, AnswerMap } from "@/lib/industries";
-import { QuestionScreen } from "./diagnosis/QuestionScreen";
+import { MultiQuestionScreen } from "./diagnosis/MultiQuestionScreen";
 import { ProgressBar } from "./diagnosis/ProgressBar";
 import { trackCustom } from "@/lib/fbq";
 
@@ -22,142 +30,119 @@ interface DiagnosisProps {
     onComplete: (answers: AnswerMap) => void;
 }
 
-// 9 질문 short 라벨 (진행 바 우측)
-const QUESTION_SHORT_LABELS: Record<string, string> = {
-    debt: "채무 총액",
-    debt_types: "채무 종류",
-    overdue: "연체 기간",
-    income: "소득 형태",
-    job: "직업 형태",
-    family: "부양 가족",
-    collection: "추심 진행",
-    assets: "보유 자산",
-    history: "이력",
-};
-
-const TRANSITION_MS = 300;
+const STEP_LABELS = ["채무 상황", "소득·직업·가족", "추심·자산·이력"];
+const TRANSITION_MS = 280;
 
 export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentStep, setCurrentStep] = useState(0);
     const [answers, setAnswers] = useState<AnswerMap>({});
     const [direction, setDirection] = useState<"next" | "prev">("next");
     const [isCompleting, setIsCompleting] = useState(false);
 
-    const totalQuestions = questions.length;
-    const currentQuestion = questions[currentIndex];
-
-    const shortLabel = useMemo(
-        () => QUESTION_SHORT_LABELS[currentQuestion?.id ?? ""] ?? "",
-        [currentQuestion?.id]
+    // 9 문항 → 3 step 분할 (각 3 문항)
+    const stepQuestions = useMemo(
+        () => [
+            questions.slice(0, 3),
+            questions.slice(3, 6),
+            questions.slice(6, 9),
+        ],
+        [questions]
     );
+
+    const totalSteps = stepQuestions.length;
+    const currentQuestions = stepQuestions[currentStep] ?? [];
 
     // STEP_55 — 단계별 Meta Pixel custom events (중복 fire 방지 ref)
     const firedSteps = useRef<Set<string>>(new Set());
 
     useEffect(() => {
-        if (!firedSteps.current.has("start")) {
-            trackCustom("DiagnosisStart", { total_questions: totalQuestions });
+        if (currentStep === 0 && !firedSteps.current.has("start")) {
+            trackCustom("DiagnosisStart", { total_steps: totalSteps });
             firedSteps.current.add("start");
-        }
-    }, [totalQuestions]);
-
-    useEffect(() => {
-        // 9 화면 = 4 단계 분리
-        // Step 1 = Q1~Q3 (idx 0~2) — DiagnosisStart 가 커버
-        // Step 2 = Q4~Q6 (idx 3~5)
-        // Step 3 = Q7~Q9 (idx 6~8)
-        if (currentIndex === 3 && !firedSteps.current.has("step2")) {
-            trackCustom("DiagnosisStep2", { question_idx: currentIndex });
+        } else if (currentStep === 1 && !firedSteps.current.has("step2")) {
+            trackCustom("DiagnosisStep2", { step: currentStep });
             firedSteps.current.add("step2");
-        } else if (currentIndex === 6 && !firedSteps.current.has("step3")) {
-            trackCustom("DiagnosisStep3", { question_idx: currentIndex });
+        } else if (currentStep === 2 && !firedSteps.current.has("step3")) {
+            trackCustom("DiagnosisStep3", { step: currentStep });
             firedSteps.current.add("step3");
         }
-    }, [currentIndex]);
+    }, [currentStep, totalSteps]);
 
-    function advanceTo(nextIndex: number, finalAnswers: AnswerMap) {
-        if (nextIndex >= totalQuestions) {
-            // 완료
-            setIsCompleting(true);
-            setTimeout(() => {
-                onComplete(finalAnswers);
-            }, 600);
-            return;
-        }
-        setCurrentIndex(nextIndex);
+    function handleSingleSelect(questionId: string, value: string) {
+        setAnswers((prev) => ({ ...prev, [questionId]: value }));
     }
 
-    function handleSingleSelect(value: string) {
-        if (!currentQuestion) return;
-        const next: AnswerMap = { ...answers, [currentQuestion.id]: value };
-        setAnswers(next);
-        setDirection("next");
-        // 짧은 딜레이로 사용자가 선택을 인지한 후 전환
-        setTimeout(() => advanceTo(currentIndex + 1, next), TRANSITION_MS);
-    }
-
-    function handleMultiToggle(value: string) {
-        if (!currentQuestion) return;
+    function handleMultiToggle(questionId: string, value: string) {
         setAnswers((prev) => {
-            const cur = (prev[currentQuestion.id] as string[]) || [];
-            const next = cur.includes(value) ? cur.filter((v) => v !== value) : [...cur, value];
-            return { ...prev, [currentQuestion.id]: next };
+            const cur = (prev[questionId] as string[]) || [];
+            const next = cur.includes(value)
+                ? cur.filter((v) => v !== value)
+                : [...cur, value];
+            return { ...prev, [questionId]: next };
         });
-        // multi: 자동 전환 X — 다음 버튼 필요
     }
 
-    function canNext(): boolean {
-        if (!currentQuestion?.required) return true;
-        const val = answers[currentQuestion.id];
-        if (currentQuestion.type === "multi") {
-            return Array.isArray(val) && val.length > 0;
-        }
-        return !!val;
+    // 현재 step 의 3 문항 모두 답변 됐는지 검증
+    function isStepValid(): boolean {
+        return currentQuestions.every((q) => {
+            if (!q.required) return true;
+            const val = answers[q.id];
+            if (q.type === "multi") {
+                return Array.isArray(val) && val.length > 0;
+            }
+            return val !== undefined && val !== "";
+        });
     }
 
     function handleNext() {
-        if (!canNext()) return;
+        if (!isStepValid()) return;
+        const nextStep = currentStep + 1;
+        if (nextStep >= totalSteps) {
+            // 마지막 step 완료 → ContactForm (Step 4) 으로 진행
+            setIsCompleting(true);
+            setTimeout(() => onComplete(answers), 600);
+            return;
+        }
         setDirection("next");
-        advanceTo(currentIndex + 1, answers);
+        setCurrentStep(nextStep);
     }
 
     function handlePrev() {
-        if (currentIndex === 0) return;
+        if (currentStep === 0) return;
         setDirection("prev");
-        setCurrentIndex(currentIndex - 1);
+        setCurrentStep(currentStep - 1);
     }
 
-    if (!currentQuestion) {
-        return null;
-    }
-
-    const isMulti = currentQuestion.type === "multi";
+    if (currentQuestions.length === 0) return null;
 
     return (
-        <section className="bg-[var(--navy)] py-4 md:py-6 min-h-[600px]" data-testid="diagnosis-oqps">
+        <section
+            className="bg-[var(--navy)] py-4 md:py-6 min-h-[600px]"
+            data-testid="diagnosis-oqps"
+        >
             <div className="ot-container max-w-[465px] mx-auto">
-                {/* 진행 바 */}
+                {/* 진행 바 — STEP_57 = 3 step 기준 */}
                 <ProgressBar
-                    currentIndex={currentIndex}
-                    total={totalQuestions}
-                    label={shortLabel}
+                    currentIndex={currentStep}
+                    total={totalSteps}
+                    label={STEP_LABELS[currentStep]}
                 />
 
                 {/* 슬라이드 영역 */}
                 <div className="relative overflow-hidden" style={{ minHeight: "440px" }}>
                     <AnimatePresence mode="wait" custom={direction}>
                         <motion.div
-                            key={currentQuestion.id}
+                            key={`step-${currentStep}`}
                             custom={direction}
-                            initial={{ x: direction === "next" ? 80 : -80, opacity: 0 }}
+                            initial={{ x: direction === "next" ? 60 : -60, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: direction === "next" ? -80 : 80, opacity: 0 }}
+                            exit={{ x: direction === "next" ? -60 : 60, opacity: 0 }}
                             transition={{ duration: TRANSITION_MS / 1000, ease: "easeOut" }}
-                            data-testid={`question-screen-${currentQuestion.id}`}
+                            data-testid={`step-screen-${currentStep + 1}`}
                         >
-                            <QuestionScreen
-                                question={currentQuestion}
-                                answer={answers[currentQuestion.id]}
+                            <MultiQuestionScreen
+                                questions={currentQuestions}
+                                answers={answers}
                                 onSelect={handleSingleSelect}
                                 onMultiToggle={handleMultiToggle}
                             />
@@ -165,31 +150,31 @@ export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
                     </AnimatePresence>
                 </div>
 
-                {/* 하단 네비 — multi 만 다음 버튼 */}
-                <div className="px-4 mt-2 pb-2">
+                {/* 하단 네비 — 항상 다음 버튼 박힘 (3 문항 검증 통과 시 enable) */}
+                <div className="px-4 mt-3 pb-4">
                     <div className="flex items-center gap-2">
-                        {currentIndex > 0 && (
+                        {currentStep > 0 && (
                             <button
                                 type="button"
                                 onClick={handlePrev}
-                                aria-label="이전 질문으로"
-                                className="px-4 py-2.5 border border-white/30 hover:border-white/60 text-white/80 hover:text-white rounded-lg text-sm font-medium transition-colors"
+                                aria-label="이전 단계로"
+                                className="px-4 py-3 border border-white/30 hover:border-white/60 text-white/80 hover:text-white rounded-lg text-sm font-medium transition-colors"
                             >
                                 ← 이전
                             </button>
                         )}
-                        {isMulti && (
-                            <button
-                                type="button"
-                                onClick={handleNext}
-                                disabled={!canNext()}
-                                aria-label={currentIndex === totalQuestions - 1 ? "결과 확인" : "다음 질문으로"}
-                                data-testid="next-button"
-                                className="flex-1 bg-[var(--gold)] hover:bg-[var(--gold-dark)] disabled:bg-white/20 disabled:text-white/40 text-[var(--navy)] font-bold py-3 rounded-lg transition-colors"
-                            >
-                                {currentIndex === totalQuestions - 1 ? "결과 확인하기" : "다음"}
-                            </button>
-                        )}
+                        <button
+                            type="button"
+                            onClick={handleNext}
+                            disabled={!isStepValid()}
+                            aria-label={
+                                currentStep === totalSteps - 1 ? "결과 확인" : "다음 단계로"
+                            }
+                            data-testid="next-button"
+                            className="flex-1 bg-[var(--gold)] hover:bg-[var(--gold-dark)] disabled:bg-white/20 disabled:text-white/40 text-[var(--navy)] font-bold py-3.5 rounded-lg transition-colors"
+                        >
+                            {currentStep === totalSteps - 1 ? "결과 확인하기" : "다음 단계"}
+                        </button>
                     </div>
                 </div>
 
