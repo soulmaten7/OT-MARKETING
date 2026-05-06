@@ -126,7 +126,7 @@ export function Navbar() {
                                 <button
                                     onClick={() => handleToggle(group.label)}
                                     className={cn(
-                                        "flex items-center gap-1 px-5 py-2.5 rounded text-base lg:text-lg font-semibold tracking-wide transition-colors hover:text-[var(--coral-400)]",
+                                        "flex items-center gap-1 px-3 lg:px-4 py-2.5 rounded text-sm lg:text-base font-semibold tracking-tight whitespace-nowrap transition-colors hover:text-[var(--coral-400)]",
                                         navOnLight ? "text-[var(--navy)]" : "text-white/90"
                                     )}
                                 >
@@ -157,12 +157,12 @@ export function Navbar() {
                     </button>
                 </div>
 
-                {/* Desktop Mega Menu — full-width drop · Navy 톤 통일 (헤더와 같은 배경 + 외곽선 강조) */}
+                {/* Desktop Mega Menu — full-width drop · 투명 배경 + 텍스트 강조 (사장 5/6 진단 반영) */}
                 {navStructure.map((group) => (
                     <div
                         key={group.label}
                         className={cn(
-                            "absolute left-0 right-0 top-full bg-[var(--navy-900)]/90 backdrop-blur-xl shadow-2xl border-t border-white/15 transition-all duration-200",
+                            "absolute left-0 right-0 top-full bg-transparent transition-all duration-200",
                             openMega === group.label
                                 ? "opacity-100 translate-y-0 pointer-events-auto"
                                 : "opacity-0 -translate-y-1 pointer-events-none"
@@ -170,14 +170,19 @@ export function Navbar() {
                         onMouseEnter={() => handleMouseEnter(group.label)}
                         onMouseLeave={handleMouseLeave}
                     >
-                        <div className="max-w-7xl mx-auto px-6 py-6 hidden md:block">
+                        <div className="max-w-7xl mx-auto px-6 py-5 hidden md:block">
                             <div className="grid grid-cols-6 gap-0">
                                 {group.items.map((item) => (
                                     <Link
                                         key={item.label}
                                         href={item.href}
                                         onClick={() => setOpenMega(null)}
-                                        className="block px-4 py-4 text-base font-semibold text-white/90 text-center rounded hover:bg-white/10 hover:text-[var(--coral-400)] transition-colors duration-150"
+                                        className={cn(
+                                            "block px-4 py-3 text-base font-semibold text-center transition-colors duration-150 hover:text-[var(--coral-500)]",
+                                            navOnLight
+                                                ? "text-[var(--navy-900)]/85"
+                                                : "text-white/90 drop-shadow-sm"
+                                        )}
                                     >
                                         {item.label}
                                     </Link>
