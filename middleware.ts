@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { updateSession } from "@/lib/supabase/middleware";
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const host = req.headers.get("host") || "";
+
+  // /blog-sms 또는 /auth 경로 = Supabase 세션 자동 refresh
+  if (pathname.startsWith("/blog-sms") || pathname.startsWith("/auth")) {
+    return updateSession(req);
+  }
 
   // otpage1.com root → /select1 (개인회생 랜딩, URL 변경 X)
   if (
@@ -59,8 +65,10 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/",              // otpage1.com root rewrite
-    "/select(.*)",    // ot-marketing.kr select* → root redirect
-    "/admin/:path*",  // admin Basic Auth
+    "/",                  // otpage1.com root rewrite
+    "/select(.*)",        // ot-marketing.kr select* → root redirect
+    "/admin/:path*",      // admin Basic Auth
+    "/blog-sms/:path*",   // Supabase Auth session refresh (블로그문자 SaaS)
+    "/auth/:path*",       // OAuth callback
   ],
 };

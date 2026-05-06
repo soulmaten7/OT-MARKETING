@@ -202,6 +202,26 @@ h1, h2 {
     }
 }
 
+/* === blog-sms 입력창 === */
+.ot-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--slate-300);
+    border-radius: 0.75rem;
+    background: white;
+    font-size: 1rem;
+    color: var(--slate-900);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.ot-input:focus {
+    outline: none;
+    border-color: var(--coral-500);
+    box-shadow: 0 0 0 3px rgb(249 115 22 / 0.15);
+}
+.ot-input::placeholder {
+    color: var(--slate-500);
+}
+
 /* === Eyebrow 라벨 (Coral 으로 변경, 차분 영역만 Gold 유지) === */
 .eyebrow {
     font-size: 12px;

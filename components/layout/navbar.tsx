@@ -19,8 +19,24 @@ const navStructure = [
             { label: "광고 크리에이티브", href: "/ads" },
         ],
     },
-    // 미래: { label: "랜딩 구독", items: [...] },
-    // 미래: { label: "통합 마케팅", items: [...] },
+    {
+        label: "블로그문자",
+        items: [
+            { label: "소개", href: "/blog-sms" },
+            { label: "활용 가이드", href: "/blog-sms/guide" },
+            { label: "Q&A", href: "/blog-sms/faq" },
+            { label: "회원가입", href: "/blog-sms/signup" },
+            { label: "로그인", href: "/blog-sms/login" },
+            { label: "내 페이지", href: "/blog-sms/dashboard" },
+        ],
+    },
+    {
+        label: "셀프 랜딩페이지",
+        items: [
+            { label: "곧 출시", href: "/blog-sms/landing-pre-register" },
+            { label: "사전 등록", href: "/blog-sms/landing-pre-register" },
+        ],
+    },
 ];
 
 export function Navbar() {
