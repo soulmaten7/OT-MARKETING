@@ -73,7 +73,7 @@ export default async function GuideDetailPage({ params }: Props) {
                             블로그문자가 답신을 만들면, 셀프 랜딩페이지는 매출을 만듭니다. 사전 등록자에게 1순위 알림.
                         </p>
                         <Link
-                            href="/blog-sms/landing-pre-register"
+                            href="/landing-pages"
                             className="inline-flex items-center justify-center px-6 py-3 bg-white text-[var(--navy-900)] font-bold rounded-full hover:bg-[var(--gold-50)]"
                         >
                             사전 등록하기 →

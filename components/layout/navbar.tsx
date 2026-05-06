@@ -33,8 +33,8 @@ const navStructure = [
     {
         label: "셀프 랜딩페이지",
         items: [
-            { label: "곧 출시", href: "/blog-sms/landing-pre-register" },
-            { label: "사전 등록", href: "/blog-sms/landing-pre-register" },
+            { label: "소개 (곧 출시)", href: "/landing-pages" },
+            { label: "1순위 알림 신청", href: "/landing-pages#pre-register" },
         ],
     },
 ];

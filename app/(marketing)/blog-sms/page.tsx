@@ -132,24 +132,6 @@ export default function BlogSmsLanding() {
                 </div>
             </section>
 
-            {/* Upsell — Phase 3 사전 등록 */}
-            <section className="py-16 md:py-20 bg-gradient-to-r from-[var(--navy-900)] to-[var(--gold-600)] text-white">
-                <div className="ot-container text-center">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                        곧 출시 — 셀프 랜딩페이지
-                    </h2>
-                    <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
-                        블로그문자보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요. 사전 등록자에게 출시 시 1순위 알림.
-                    </p>
-                    <Link
-                        href="/blog-sms/landing-pre-register"
-                        className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--navy-900)] font-bold rounded-full hover:bg-[var(--gold-50)] transition-colors"
-                    >
-                        사전 등록하기 →
-                    </Link>
-                </div>
-            </section>
-
             {/* Final CTA */}
             <section className="py-16 md:py-24 bg-white">
                 <div className="ot-container text-center">

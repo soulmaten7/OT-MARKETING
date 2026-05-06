@@ -14,7 +14,7 @@ export function UpsellBanner() {
                     </p>
                 </div>
                 <Link
-                    href="/blog-sms/landing-pre-register"
+                    href="/landing-pages"
                     className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-[var(--navy-900)] text-sm font-bold rounded-full whitespace-nowrap hover:bg-[var(--gold-50)]"
                 >
                     사전 등록 →
