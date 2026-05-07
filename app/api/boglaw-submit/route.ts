@@ -23,6 +23,7 @@ const submitSchema = z.object({
     utmSource: z.string().optional().default("기타"),
     consentPrivacy: z.boolean(),
     consentMarketing: z.boolean().optional().default(false),
+    consentCaseUse: z.boolean().optional().default(false),  // STEP_71 — 상담 사례 익명 활용 동의 (선택)
 });
 
 function buildPrivateKey(raw: string): string {
@@ -187,6 +188,7 @@ export async function POST(request: Request) {
                     `<b>문의사항</b>: ${data.user_story || "(없음)"}`,
                     `<b>플랫폼</b>: ${platform}`,
                     `<b>마케팅 동의</b>: ${data.consentMarketing ? "Y" : "N"}`,
+                    `<b>사례 활용 동의</b>: ${data.consentCaseUse ? "Y" : "N"}`,
                     `<b>제출 시각</b>: ${nowSeoul}`,
                     ``,
                     `🆔 ${submissionId}`,

@@ -109,28 +109,29 @@ function getOgInfoByIndustry(industryNumber: number) {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
 
-    // STEP_70 — select11 = 법률사무소 보광 (AD001) 전용 OG meta
+    // STEP_71 — select11 = 채무회복 탕감센터 (보광 AD001) OG meta
     if (slug === "select11") {
         const url = `https://otpage1.com/select11`;
-        const title = "법률사무소 보광 — 채무 탕감 무료 분석";
-        const description = "1분 자가진단으로 받을 수 있는 탕감액을 확인하세요. 법률사무소 보광 1:1 비밀 상담.";
+        const title = "채무회복 탕감센터 — 1분 무료 자가진단";
+        const description = "최대 95% 탕감 가능액 1분 자가진단으로 확인. 가족·직장 모르게 안내.";
+        const ogDescription = "최대 95% 탕감 가능액 1분 자가진단으로 확인.";
         const ogImage = "https://otpage1.com/ads-creatives/01-debt-relief/DR-022-A.png";
         return {
             title,
             description,
             openGraph: {
                 title,
-                description,
+                description: ogDescription,
                 url,
-                siteName: "법률사무소 보광 | 채무 탕감 안내",
-                images: [{ url: ogImage, width: 1254, height: 1254, alt: "법률사무소 보광 채무 탕감 무료 분석" }],
+                siteName: "채무회복 탕감센터",
+                images: [{ url: ogImage, width: 1254, height: 1254, alt: "채무회복 탕감센터 1분 무료 자가진단" }],
                 type: "website",
                 locale: "ko_KR",
             },
             twitter: {
                 card: "summary_large_image",
                 title,
-                description,
+                description: ogDescription,
                 images: [ogImage],
             },
         };

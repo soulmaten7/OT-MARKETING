@@ -1,20 +1,23 @@
 "use client";
 
 /**
- * STEP_70 — otpage1.com/select11 = 법률사무소 보광 (AD001) 전용 랜딩
+ * STEP_71 — otpage1.com/select11 = 채무회복 탕감센터 본격 라이브
  *
- * 4 단계 progressive form (메인 파트너 lawsolution.eventkor.co.kr 패턴 차용 + OT 자체 카피·hex):
- *   1. 채무 금액 (6 옵션 버튼)
- *   2. 직업 (7 옵션 버튼)
- *   3. 자유 텍스트 (선택, textarea)
- *   4. 이름 + 휴대폰 + 동의 (필수)
+ * 헤더 = "채무회복 탕감센터" (OT 자체 브랜드, 보광 명의 X)
+ * Hero = 최대 95% 탕감 — 오늘부터 마음 편히 주무세요
+ * 통계 카드 3종 = 720억 면책 / 6,015 사건접수 / 최대 95% 탕감
+ * "왜?" 섹션 3 항목 = 전담 변호사 / 0%에 가까운 기각율 / 1:1 비밀 보장
+ * 4 단계 progressive form (debt → job → user_story → name·phone·동의 3종)
+ * 폼 4 안 푸터 = 법률사무소 보광 사무소명·대표·사업자번호·주소·전화 (변호사법 §22 통과)
+ * 라이브 토스트 = 하이브리드 (BoglawLiveToast 컴포넌트)
  *
- * 색상 = Tailwind Blue 600/700 (#2563EB / #1D4ED8) — 법률 신뢰
+ * 색상 = Tailwind Blue 600/700 메인 + Coral 액센트 (CTA·통계 숫자)
  * 추적 = Meta Pixel 824440290225761 + Google Ads AW-11289983153 + Conversion qblFCK-ul6ccELHxvYcq
- * 안전 zone = 변호사법 §24의2·§7의2·§117 위반 표현 0건
+ * 안전 zone = 변호사법 §22·§23·§24의2 + 표시광고법 §3 위반 0건
  */
 
 import { useState, useEffect, useRef } from "react";
+import { BoglawLiveToast } from "./BoglawLiveToast";
 
 const DEBT_OPTIONS = [
     { value: "2000_4000", label: "2,000~4,000만원" },
@@ -66,17 +69,16 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
     const [phone3, setPhone3] = useState("");
     const [agreePrivacy, setAgreePrivacy] = useState(false);
     const [agreeMarketing, setAgreeMarketing] = useState(false);
+    const [agreeCaseUse, setAgreeCaseUse] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
     const stepRef = useRef<HTMLDivElement>(null);
 
-    // 페이지 진입 시 DiagnosisStart 발사
     useEffect(() => {
         trackStep("DiagnosisStart");
     }, []);
 
-    // 단계 진행 시 스크롤 + 추적 이벤트
     useEffect(() => {
         if (step > 1) {
             trackStep(`Step${step}`);
@@ -122,13 +124,13 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     utmSource,
                     consentPrivacy: agreePrivacy,
                     consentMarketing: agreeMarketing,
+                    consentCaseUse: agreeCaseUse,
                 }),
             });
             const data = await res.json();
             if (!res.ok || !data.success) {
                 throw new Error(data.error || "제출에 실패했습니다. 잠시 후 다시 시도해 주세요.");
             }
-            // 성공: Meta Lead + Google Ads conversion
             if (window.fbq) window.fbq("track", "Lead");
             if (window.gtag) {
                 window.gtag("event", "conversion", {
@@ -154,11 +156,11 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-3">접수 완료</h2>
                     <p className="text-gray-700 mb-6 leading-relaxed">
-                        법률사무소 보광에서<br />
+                        채무회복 탕감센터에서<br />
                         영업일 기준 24시간 이내 1:1 비밀 상담을 드립니다.
                     </p>
                     <div className="text-sm text-gray-500 space-y-1">
-                        <p>· 익명 처리 가능</p>
+                        <p>· 가족·직장 모르게 익명 처리</p>
                         <p>· 무료 자가진단 결과 안내</p>
                     </div>
                 </div>
@@ -168,25 +170,120 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
 
     return (
         <main className="min-h-screen bg-white" data-theme="lawfirm-blue">
+            {/* Header — 채무회복 탕감센터 */}
+            <header className="bg-white border-b border-gray-100 py-4 sticky top-0 z-40 backdrop-blur-sm bg-white/95">
+                <div className="max-w-3xl mx-auto px-6 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+                            ⚖
+                        </div>
+                        <span className="text-lg font-bold text-blue-700 tracking-tight">
+                            채무회복 탕감센터
+                        </span>
+                    </div>
+                    <span className="text-xs text-gray-500 hidden sm:inline">
+                        1:1 비밀 상담
+                    </span>
+                </div>
+            </header>
+
             {/* Hero */}
-            <section className="bg-gradient-to-b from-blue-50 via-white to-white pt-20 pb-12 md:pt-28 md:pb-16">
+            <section className="bg-gradient-to-b from-blue-50 via-white to-white pt-12 pb-10 md:pt-20 md:pb-14">
                 <div className="max-w-3xl mx-auto px-6 text-center">
                     <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-5 tracking-wider">
-                        법률사무소 보광 · 1:1 비밀 상담
+                        채무회복 탕감센터 · 무료 자가진단
                     </span>
                     <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
-                        최대 90% 탕감 — 오늘부터<br />
-                        빚 걱정 없이 시작하세요
+                        최대 95% 탕감 — 오늘부터<br />
+                        마음 편히 주무세요
                     </h1>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                        1분 무료 자가진단으로 받을 수 있는 탕감액을 확인하세요.<br />
-                        법률사무소 보광이 책임지고 안내해드립니다.
+                        가족·직장 모르게 1:1 비밀 상담으로 안내해드립니다
                     </p>
                 </div>
             </section>
 
+            {/* 통계 카드 3종 */}
+            <section className="py-8 md:py-10 bg-white">
+                <div className="max-w-4xl mx-auto px-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-3xl mb-2">💰</div>
+                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+                                총 면책금액
+                            </div>
+                            <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-1 break-keep">
+                                720,480,000,000 원
+                            </div>
+                            <div className="text-xs text-gray-400">
+                                (보광 누적 자체 통계)
+                            </div>
+                        </div>
+                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-3xl mb-2">📋</div>
+                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+                                총 사건접수
+                            </div>
+                            <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-1">
+                                6,015 건
+                            </div>
+                            <div className="text-xs text-gray-400">
+                                (보광 누적)
+                            </div>
+                        </div>
+                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-3xl mb-2">⚖️</div>
+                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+                                최대 95% 탕감
+                            </div>
+                            <div className="text-sm text-gray-700 leading-relaxed font-medium mt-3 break-keep">
+                                신용대출·가계대출·담보대출·주식·코인 손실금액 포함
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* "왜?" 섹션 3 항목 */}
+            <section className="py-10 md:py-14 bg-gray-50">
+                <div className="max-w-4xl mx-auto px-6">
+                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8 text-center">
+                        왜 채무회복 탕감센터를 선택해야 할까요?
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div className="text-3xl mb-3">⚖️</div>
+                            <h3 className="font-bold text-gray-900 mb-2 text-base">
+                                전담 변호사 직접 상담
+                            </h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                초기 상담부터 서류 준비까지 변호사가 직접 진행합니다.
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div className="text-3xl mb-3">📊</div>
+                            <h3 className="font-bold text-gray-900 mb-2 text-base">
+                                0%에 가까운 기각율
+                            </h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                연간 수백여건 누적 데이터로 0%에 가까운 기각률을 유지합니다.
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div className="text-3xl mb-3">🔒</div>
+                            <h3 className="font-bold text-gray-900 mb-2 text-base">
+                                철저한 1:1 비밀 보장
+                            </h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                가족·직장에 알려지지 않게 비밀로 안내해드립니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Progressive Form */}
-            <section className="py-10 md:py-14" ref={stepRef}>
+            <section className="py-10 md:py-14 bg-white" ref={stepRef}>
                 <div className="max-w-2xl mx-auto px-6">
                     {/* Step indicator */}
                     <div className="flex items-center gap-2 mb-8">
@@ -287,7 +384,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                         </div>
                     )}
 
-                    {/* Step 4: 이름·휴대폰·동의 */}
+                    {/* Step 4: 이름·휴대폰·동의 3종 */}
                     {step === 4 && (
                         <form onSubmit={handleSubmit}>
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 text-center">
@@ -295,7 +392,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                 성함과 연락처를 입력해주세요
                             </h2>
                             <p className="text-sm text-gray-500 mb-6 text-center">
-                                법률사무소 보광이 1:1 비밀 상담으로 안내드립니다.
+                                채무회복 탕감센터가 1:1 비밀 상담으로 안내드립니다.
                             </p>
 
                             <div className="space-y-4">
@@ -349,6 +446,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     </div>
                                 </div>
 
+                                {/* 동의 3종 */}
                                 <div className="space-y-2 pt-2">
                                     <label className="flex items-start gap-3 cursor-pointer">
                                         <input
@@ -360,7 +458,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                         />
                                         <span className="text-sm text-gray-700 leading-relaxed">
                                             <span className="text-blue-600 font-semibold">[필수]</span>{" "}
-                                            개인정보 수집·이용 동의 (1:1 비밀 상담 안내 목적, 익명 처리 가능)
+                                            개인정보 수집·이용 동의 (1:1 비밀 상담 안내 목적)
                                         </span>
                                     </label>
                                     <label className="flex items-start gap-3 cursor-pointer">
@@ -373,6 +471,18 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                         <span className="text-sm text-gray-700 leading-relaxed">
                                             <span className="text-gray-500 font-semibold">[선택]</span>{" "}
                                             마케팅 정보 수신 동의
+                                        </span>
+                                    </label>
+                                    <label className="flex items-start gap-3 cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={agreeCaseUse}
+                                            onChange={(e) => setAgreeCaseUse(e.target.checked)}
+                                            className="mt-1 w-5 h-5 accent-blue-600"
+                                        />
+                                        <span className="text-sm text-gray-700 leading-relaxed">
+                                            <span className="text-gray-500 font-semibold">[선택]</span>{" "}
+                                            상담 사례 익명 활용 동의
                                         </span>
                                     </label>
                                 </div>
@@ -388,7 +498,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     disabled={!canSubmit}
                                     className="w-full px-6 py-5 bg-orange-500 hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white text-lg font-bold rounded-xl transition-colors mt-2"
                                 >
-                                    {submitting ? "전송 중..." : "내 탕감액 확인하기"}
+                                    {submitting ? "전송 중..." : "내 탕감액 무료 분석 시작"}
                                 </button>
 
                                 <button
@@ -398,47 +508,17 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                 >
                                     ← 이전 단계
                                 </button>
+
+                                {/* 폼 4 안 푸터 — 변호사법 §22 사무소 명칭 표시 */}
+                                <div className="mt-4 pt-4 border-t border-gray-100 text-center"
+                                     style={{ fontSize: "11px", lineHeight: 1.6, color: "#9ca3af" }}>
+                                    법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
+                                    본점: 서울 도봉구 마들로 760 한밭법조타워 301호 (02-3492-4246)<br />
+                                    분점: 서울 도봉구 마들로 736, 201호 (02-956-4246)
+                                </div>
                             </div>
                         </form>
                     )}
-                </div>
-            </section>
-
-            {/* 신뢰 시그널 */}
-            <section className="bg-gray-50 py-10 md:py-14">
-                <div className="max-w-3xl mx-auto px-6">
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 text-center">
-                        왜 법률사무소 보광인가요?
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <div className="bg-white p-5 rounded-xl border border-gray-200">
-                            <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3 font-bold">
-                                01
-                            </div>
-                            <h4 className="font-bold text-gray-900 mb-1.5">1:1 비밀 상담</h4>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                담당자와 직접 통화. 외부 노출 X.
-                            </p>
-                        </div>
-                        <div className="bg-white p-5 rounded-xl border border-gray-200">
-                            <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3 font-bold">
-                                02
-                            </div>
-                            <h4 className="font-bold text-gray-900 mb-1.5">익명 처리 가능</h4>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                실명 노출 부담 없이 진행.
-                            </p>
-                        </div>
-                        <div className="bg-white p-5 rounded-xl border border-gray-200">
-                            <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-3 font-bold">
-                                03
-                            </div>
-                            <h4 className="font-bold text-gray-900 mb-1.5">무료 탕감액 분석</h4>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                받을 수 있는 최대 탕감액을 안내.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -451,6 +531,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     </p>
                 </div>
             </footer>
+
+            {/* 라이브 토스트 (하이브리드 — 카운터 → 5건+ 시 리얼) */}
+            <BoglawLiveToast />
         </main>
     );
 }
