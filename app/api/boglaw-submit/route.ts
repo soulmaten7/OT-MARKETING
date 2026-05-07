@@ -3,7 +3,7 @@
  *
  * BoglawLandingTemplate (4 단계 progressive form) → POST /api/boglaw-submit
  *
- * 시트 = process.env.BOGLAW_SHEET_ID (1xX7qJX56qJX56Nj0zrFfAAA-i69oEyaQlvhnIxXRgDQm1Mjc)
+ * 시트 = process.env.BOGLAW_SHEET_ID (1xX7qJX56Nj0zrFfAAA-i69oEyaQlvhnIxXRgDQm1Mjc)
  * 16 컬럼 형식 9 컬럼 입력 (J~P = 광고주 측 입력 = 빈 칸)
  */
 
