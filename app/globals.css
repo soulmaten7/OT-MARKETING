@@ -129,7 +129,8 @@
     --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1), 0 8px 10px -6px rgb(15 23 42 / 0.1);
 
     /* === Gradient (시그니처) === */
-    --gradient-hero: linear-gradient(135deg, var(--navy-900) 0%, #1E3A8A 50%, var(--coral-600) 100%);
+    --gradient-hero: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 40%, #FFF5F0 100%);
+    --gradient-hero-dark: linear-gradient(135deg, var(--navy-900) 0%, #1E3A8A 50%, var(--coral-600) 100%);
     --gradient-text: linear-gradient(90deg, var(--navy-900) 0%, var(--coral-500) 100%);
     --gradient-card: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
 }
@@ -243,9 +244,15 @@ h1, h2 {
     animation: gradient-shift 12s ease infinite;
 }
 
-/* === Dot Pattern Overlay === */
+/* === Dot Pattern Overlay (다크 톤 Hero 용 — 흰 도트) === */
 .dot-pattern {
     background-image: radial-gradient(circle, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* === Dot Pattern Overlay (화이트 톤 Hero 용 — 옅은 Navy 도트) === */
+.dot-pattern-light {
+    background-image: radial-gradient(circle, rgb(15 30 61 / 0.06) 1px, transparent 1px);
     background-size: 24px 24px;
 }
 
