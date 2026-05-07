@@ -1,8 +1,26 @@
 import { notFound } from "next/navigation";
 import { LandingTemplate } from "@/components/landing/LandingTemplate";
+import { BoglawLandingTemplate } from "@/components/landing/BoglawLandingTemplate";
 import { getIndustryConfig, getIndustryConfigByNumber, industrySlugs } from "@/lib/industries";
 import { isSampleSlug, parseAdvertiserSlug, getAdvertiserBySlug } from "@/lib/advertisers";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+// STEP_70 — select11 (보광) viewport user-scalable=no (모바일 폼 UX 강제)
+export async function generateViewport({ params }: PageProps): Promise<Viewport> {
+    const { slug } = await params;
+    if (slug === "select11") {
+        return {
+            width: "device-width",
+            initialScale: 1,
+            maximumScale: 1,
+            userScalable: false,
+        };
+    }
+    return {
+        width: "device-width",
+        initialScale: 1,
+    };
+}
 
 // STEP_27 — sample (select1~6) + 광고주별 (select{N}{n}) 모두 처리
 // dynamicParams=true → generateStaticParams 외 slug 도 SSR 시도
@@ -91,6 +109,33 @@ function getOgInfoByIndustry(industryNumber: number) {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
 
+    // STEP_70 — select11 = 법률사무소 보광 (AD001) 전용 OG meta
+    if (slug === "select11") {
+        const url = `https://otpage1.com/select11`;
+        const title = "법률사무소 보광 — 채무 탕감 무료 분석";
+        const description = "1분 자가진단으로 받을 수 있는 탕감액을 확인하세요. 법률사무소 보광 1:1 비밀 상담.";
+        const ogImage = "https://otpage1.com/ads-creatives/01-debt-relief/DR-022-A.png";
+        return {
+            title,
+            description,
+            openGraph: {
+                title,
+                description,
+                url,
+                siteName: "법률사무소 보광 | 채무 탕감 안내",
+                images: [{ url: ogImage, width: 1254, height: 1254, alt: "법률사무소 보광 채무 탕감 무료 분석" }],
+                type: "website",
+                locale: "ko_KR",
+            },
+            twitter: {
+                card: "summary_large_image",
+                title,
+                description,
+                images: [ogImage],
+            },
+        };
+    }
+
     // 샘플 slug (select1~6) — 사용자 친화 메타
     if (isSampleSlug(slug)) {
         const config = getIndustryConfig(slug);
@@ -170,6 +215,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function OperationSlugPage({ params }: PageProps) {
     const { slug } = await params;
+
+    // STEP_70 — select11 = 법률사무소 보광 (AD001) 전용 4 단계 progressive form
+    if (slug === "select11") {
+        return <BoglawLandingTemplate slug={slug} />;
+    }
 
     // 샘플 슬러그 (select1~6)
     if (isSampleSlug(slug)) {
