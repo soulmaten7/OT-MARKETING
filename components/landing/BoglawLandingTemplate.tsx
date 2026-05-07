@@ -187,56 +187,54 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </header>
 
-            {/* Hero — STEP_75 측정값 (lawsolution 30px 고정 + text-left) */}
-            <section className="bg-gradient-to-b from-blue-50 via-white to-white py-10 md:py-14">
+            {/* Hero — STEP_75 v2 (페이지 길이 ↓ 추가) */}
+            <section className="bg-gradient-to-b from-blue-50 via-white to-white py-6 md:py-10">
                 <div className="max-w-3xl mx-auto px-6">
-                    <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-4 tracking-wider">
+                    <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-3 tracking-wider">
                         채무회복 탕감센터 · 무료 자가진단
                     </span>
-                    <h1 className="text-3xl font-black leading-tight text-left text-gray-900 mb-4">
+                    <h1 className="text-3xl font-black leading-tight text-left text-gray-900 mb-3">
                         <span className="text-blue-600">최대 95% 탕감</span><br />
                         오늘부터 마음 편히<br />
                         주무세요.
                     </h1>
-                    <p className="text-lg text-gray-500 leading-relaxed">
+                    <p className="text-base text-gray-500 leading-relaxed">
                         가족·직장 모르게 1:1 비밀 상담으로 안내해드립니다
                     </p>
                 </div>
             </section>
 
-            {/* 통계 카드 — STEP_75 Coral 제거 + Blue 통일 + padding ↓ */}
-            <section className="py-8 md:py-10 bg-white">
-                <div className="max-w-4xl mx-auto px-6 space-y-3">
-                    {/* 큰 카드 — 총 면책금액 (Blue) */}
-                    <div className="bg-white py-8 px-6 rounded-2xl border border-blue-100 shadow-sm text-center">
-                        <div className="text-2xl mb-2">💰</div>
-                        <div className="text-sm text-gray-500 mb-2">
+            {/* 통계 카드 — STEP_75 v2 padding ↓↓ */}
+            <section className="py-5 md:py-7 bg-white">
+                <div className="max-w-4xl mx-auto px-6 space-y-2">
+                    <div className="bg-white py-5 px-5 rounded-2xl border border-blue-100 shadow-sm text-center">
+                        <div className="text-xl mb-1">💰</div>
+                        <div className="text-xs text-gray-500 mb-1">
                             총 면책금액
                         </div>
-                        <div className="text-4xl md:text-5xl font-extrabold text-blue-600 break-keep tracking-tight">
+                        <div className="text-3xl md:text-4xl font-extrabold text-blue-600 break-keep tracking-tight">
                             7,204억 8,000만+
                         </div>
-                        <div className="text-xs text-gray-400 mt-2">
+                        <div className="text-xs text-gray-400 mt-1">
                             (보광 누적 자체 통계)
                         </div>
                     </div>
-                    {/* 작은 카드 2 — Blue 통일 (Coral 제거) */}
-                    <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-white py-5 px-5 rounded-2xl border border-blue-100 shadow-sm text-center">
-                            <div className="text-xl mb-1">📋</div>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div className="bg-white py-4 px-4 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-base mb-1">📋</div>
                             <div className="text-xs text-gray-500 mb-1">
                                 총 사건접수
                             </div>
-                            <div className="text-xl md:text-2xl font-bold text-blue-600">
+                            <div className="text-lg md:text-xl font-bold text-blue-600">
                                 6,015 건+
                             </div>
                         </div>
-                        <div className="bg-white py-5 px-5 rounded-2xl border border-blue-100 shadow-sm text-center">
-                            <div className="text-xl mb-1">⚖️</div>
+                        <div className="bg-white py-4 px-4 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-base mb-1">⚖️</div>
                             <div className="text-xs text-gray-500 mb-1">
                                 최대 탕감률
                             </div>
-                            <div className="text-xl md:text-2xl font-bold text-blue-600 break-keep">
+                            <div className="text-lg md:text-xl font-bold text-blue-600 break-keep">
                                 최대 95% 탕감
                             </div>
                         </div>
@@ -244,17 +242,17 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </section>
 
-            {/* "왜?" 섹션 — STEP_75 padding ↓ + 색 정리 + 버튼 측정값 */}
-            <section className="py-10 md:py-14 bg-gray-50">
+            {/* "왜?" 섹션 — STEP_75 v2 padding ↓↓ */}
+            <section className="py-6 md:py-10 bg-gray-50">
                 <div className="max-w-3xl mx-auto px-6">
-                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
                         왜 채무회복 탕감센터를 선택해야 할까요?
                     </h2>
-                    <div className="space-y-5">
+                    <div className="space-y-3">
                         <div className="flex items-start gap-3">
-                            <div className="text-2xl flex-shrink-0 leading-none">⚖️</div>
+                            <div className="text-xl flex-shrink-0 leading-none">⚖️</div>
                             <div>
-                                <h3 className="font-bold text-base md:text-lg mb-1 text-gray-900">
+                                <h3 className="font-bold text-base mb-1 text-gray-900">
                                     전담 변호사 직접 상담
                                 </h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
@@ -263,9 +261,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <div className="text-2xl flex-shrink-0 leading-none">📊</div>
+                            <div className="text-xl flex-shrink-0 leading-none">📊</div>
                             <div>
-                                <h3 className="font-bold text-base md:text-lg mb-1 text-gray-900">
+                                <h3 className="font-bold text-base mb-1 text-gray-900">
                                     0%에 가까운 기각율
                                 </h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
@@ -274,9 +272,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
-                            <div className="text-2xl flex-shrink-0 leading-none">🔒</div>
+                            <div className="text-xl flex-shrink-0 leading-none">🔒</div>
                             <div>
-                                <h3 className="font-bold text-base md:text-lg mb-1 text-gray-900">
+                                <h3 className="font-bold text-base mb-1 text-gray-900">
                                     철저한 1:1 비밀 보장
                                 </h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">
@@ -285,8 +283,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             </div>
                         </div>
                     </div>
-                    {/* CTA 큰 파란 버튼 — STEP_75 측정값 (py-3 px-5 rounded-2xl) */}
-                    <div className="mt-8 text-center">
+                    <div className="mt-5 text-center">
                         <button
                             type="button"
                             onClick={() =>
@@ -302,8 +299,8 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </section>
 
-            {/* Progressive Form — STEP_75 padding ↓ + form-step-1 id */}
-            <section id="form-step-1" className="py-8 md:py-10 bg-white" ref={stepRef}>
+            {/* Progressive Form — STEP_75 v2 padding ↓ + form-step-1 id */}
+            <section id="form-step-1" className="py-5 md:py-7 bg-white" ref={stepRef}>
                 <div className="max-w-2xl mx-auto px-6">
                     {/* Step indicator */}
                     <div className="flex items-center gap-2 mb-8">
