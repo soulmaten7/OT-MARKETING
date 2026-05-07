@@ -522,11 +522,16 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </section>
 
-            {/* 안전 zone footer */}
+            {/* 안전 zone footer — 변호사법 §22 사무소 명칭 표시 + §24의2 의무 표시 */}
             <footer className="bg-gray-100 border-t border-gray-200 py-6">
-                <div className="max-w-3xl mx-auto px-6 text-center">
-                    <p className="text-xs text-gray-500 leading-relaxed">
-                        법률사무소 보광 · 광고책임 변호사 별도 표기 · 변호사법 §24의2 ② 의무 표시<br />
+                <div className="max-w-3xl mx-auto px-6 text-center space-y-2">
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                        법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
+                        본점: 서울 도봉구 마들로 760 한밭법조타워 301호 (02-3492-4246)<br />
+                        분점: 서울 도봉구 마들로 736, 201호 (02-956-4246)
+                    </p>
+                    <p className="text-xs text-gray-400 leading-relaxed">
+                        광고책임 변호사 별도 표기 · 변호사법 §24의2 ② 의무 표시<br />
                         본 광고는 법률 상담 안내이며, 결과는 사안에 따라 달라질 수 있습니다.
                     </p>
                 </div>
