@@ -59,7 +59,8 @@ function trackStep(stepName: string) {
 }
 
 export function BoglawLandingTemplate({ slug }: { slug: string }) {
-    const [step, setStep] = useState(1);
+    // STEP_76 — step state 0 = CTA 클릭 전 (Hero·통계·왜·CTA 노출, 폼 X) / 1~4 = 폼 단계
+    const [step, setStep] = useState(0);
     const [debtAmount, setDebtAmount] = useState("");
     const [jobType, setJobType] = useState("");
     const [userStory, setUserStory] = useState("");
@@ -85,6 +86,14 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
             stepRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     }, [step]);
+
+    // STEP_76 — CTA 클릭 = step 0 → 1 + 페이지 상단 스크롤 + DiagnosisStart 추적 (옛 자동 발사 보존)
+    const handleCtaStart = () => {
+        setStep(1);
+        if (typeof window !== "undefined") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    };
 
     const handleDebtSelect = (value: string) => {
         setDebtAmount(value);
@@ -187,6 +196,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </header>
 
+            {/* STEP_76 — step === 0 (CTA 클릭 전) Hero·통계·왜·CTA 노출 */}
+            {step === 0 && (
+            <>
             {/* Hero — STEP_75 v2 (페이지 길이 ↓ 추가) */}
             <section className="bg-gradient-to-b from-blue-50 via-white to-white py-6 md:py-10">
                 <div className="max-w-3xl mx-auto px-6">
@@ -286,11 +298,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     <div className="mt-5 text-center">
                         <button
                             type="button"
-                            onClick={() =>
-                                document
-                                    .getElementById("form-step-1")
-                                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                            }
+                            onClick={handleCtaStart}
                             className="w-full md:w-3/4 lg:w-2/3 mx-auto block py-3 px-5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-2xl transition-colors"
                         >
                             내 탕감액 무료 분석 시작
@@ -298,8 +306,11 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     </div>
                 </div>
             </section>
+            </>
+            )}
 
-            {/* Progressive Form — STEP_75 v2 padding ↓ + form-step-1 id */}
+            {/* STEP_76 — 폼 단계 1~4 = step >= 1 조건부 렌더 */}
+            {step >= 1 && step <= 4 && (
             <section id="form-step-1" className="py-5 md:py-7 bg-white" ref={stepRef}>
                 <div className="max-w-2xl mx-auto px-6">
                     {/* Step indicator */}
@@ -526,33 +537,26 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     ← 이전 단계
                                 </button>
 
-                                {/* 폼 4 안 푸터 — 변호사법 §22 사무소 명칭 표시 */}
-                                <div className="mt-4 pt-4 border-t border-gray-100 text-center"
+                                {/* STEP_76 — 폼 4 안 footer (페이지 끝 footer 통합 = 변호사법 §22 + §24의2) */}
+                                <div className="mt-4 pt-4 border-t border-gray-100 text-center space-y-2"
                                      style={{ fontSize: "11px", lineHeight: 1.6, color: "#9ca3af" }}>
-                                    법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
-                                    본점: 서울 도봉구 마들로 760 한밭법조타워 301호 (02-3492-4246)<br />
-                                    분점: 서울 도봉구 마들로 736, 201호 (02-956-4246)
+                                    <p>
+                                        법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
+                                        본점: 서울 도봉구 마들로 760 한밭법조타워 301호 (02-3492-4246)<br />
+                                        분점: 서울 도봉구 마들로 736, 201호 (02-956-4246)
+                                    </p>
+                                    <p>
+                                        광고책임 변호사 별도 표기 · 변호사법 §24의2 ② 의무 표시<br />
+                                        본 광고는 법률 상담 안내이며, 결과는 사안에 따라 달라질 수 있습니다.
+                                    </p>
                                 </div>
                             </div>
                         </form>
                     )}
                 </div>
             </section>
-
-            {/* 안전 zone footer — 변호사법 §22 사무소 명칭 표시 + §24의2 의무 표시 */}
-            <footer className="bg-gray-100 border-t border-gray-200 py-4">
-                <div className="max-w-3xl mx-auto px-6 text-center space-y-2">
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                        법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
-                        본점: 서울 도봉구 마들로 760 한밭법조타워 301호 (02-3492-4246)<br />
-                        분점: 서울 도봉구 마들로 736, 201호 (02-956-4246)
-                    </p>
-                    <p className="text-xs text-gray-400 leading-relaxed">
-                        광고책임 변호사 별도 표기 · 변호사법 §24의2 ② 의무 표시<br />
-                        본 광고는 법률 상담 안내이며, 결과는 사안에 따라 달라질 수 있습니다.
-                    </p>
-                </div>
-            </footer>
+            )}
+            {/* STEP_76 — 페이지 끝 footer 제거 (단계 4 안으로 이동, line 532 부근 박힘 그대로) */}
 
             {/* 라이브 토스트 (하이브리드 — 카운터 → 5건+ 시 리얼) */}
             <BoglawLiveToast />
