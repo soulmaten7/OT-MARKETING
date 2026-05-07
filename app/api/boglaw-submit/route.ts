@@ -107,15 +107,70 @@ export async function POST(request: Request) {
         const meta = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
         const firstSheetTitle = meta.data.sheets?.[0]?.properties?.title || "Sheet1";
 
-        await sheets.spreadsheets.values.append({
+        // OVERWRITE 모드 = 미리 박힌 흰 배경 보존 (INSERT_ROWS = 헤더 노란 형식 상속 버그 fix)
+        const appendRes = await sheets.spreadsheets.values.append({
             spreadsheetId: sheetId,
             range: `${firstSheetTitle}!A:P`,
             valueInputOption: "USER_ENTERED",
-            insertDataOption: "INSERT_ROWS",
+            insertDataOption: "OVERWRITE",
             requestBody: {
                 values: [row],
             },
         });
+
+        // append 후 = 그 행 명시적 흰 배경 + 검정 글자 박기 (defense in depth, 만약 흰 미리 박힌 형식이 무효화되더라도 보장)
+        try {
+            const updatedRange = appendRes.data.updates?.updatedRange || "";
+            // updatedRange = "DB!A2:P2" 형식 → row number 추출
+            const rowMatch = updatedRange.match(/A(\d+):/);
+            const rowNum = rowMatch ? parseInt(rowMatch[1], 10) : 0;
+            if (rowNum >= 2) {
+                const sheetMeta = await sheets.spreadsheets.get({ spreadsheetId: sheetId });
+                const dbSheetId = sheetMeta.data.sheets?.find(
+                    (s) => s.properties?.title === firstSheetTitle
+                )?.properties?.sheetId ?? 0;
+
+                const formatRequests = [];
+                // 좌측 wrap (G·L·M·N·O·P)
+                for (const colIdx of [6, 11, 12, 13, 14, 15]) {
+                    formatRequests.push({
+                        repeatCell: {
+                            range: { sheetId: dbSheetId, startRowIndex: rowNum - 1, endRowIndex: rowNum, startColumnIndex: colIdx, endColumnIndex: colIdx + 1 },
+                            cell: { userEnteredFormat: {
+                                backgroundColor: { red: 1, green: 1, blue: 1 },
+                                horizontalAlignment: "LEFT",
+                                verticalAlignment: "MIDDLE",
+                                wrapStrategy: "WRAP",
+                                textFormat: { fontSize: 10, bold: false, foregroundColor: { red: 0, green: 0, blue: 0 } },
+                            }},
+                            fields: "userEnteredFormat(backgroundColor,horizontalAlignment,verticalAlignment,wrapStrategy,textFormat)",
+                        }
+                    });
+                }
+                // 가운데 (나머지)
+                for (const colIdx of [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]) {
+                    formatRequests.push({
+                        repeatCell: {
+                            range: { sheetId: dbSheetId, startRowIndex: rowNum - 1, endRowIndex: rowNum, startColumnIndex: colIdx, endColumnIndex: colIdx + 1 },
+                            cell: { userEnteredFormat: {
+                                backgroundColor: { red: 1, green: 1, blue: 1 },
+                                horizontalAlignment: "CENTER",
+                                verticalAlignment: "MIDDLE",
+                                wrapStrategy: "WRAP",
+                                textFormat: { fontSize: 10, bold: false, foregroundColor: { red: 0, green: 0, blue: 0 } },
+                            }},
+                            fields: "userEnteredFormat(backgroundColor,horizontalAlignment,verticalAlignment,wrapStrategy,textFormat)",
+                        }
+                    });
+                }
+                await sheets.spreadsheets.batchUpdate({
+                    spreadsheetId: sheetId,
+                    requestBody: { requests: formatRequests },
+                });
+            }
+        } catch (fmtErr) {
+            console.error("[boglaw-submit] 형식 박기 실패 (alarm 보다 데이터 우선):", fmtErr);
+        }
 
         // 사장 본인 모니터링 (보광 전용 텔레그램 봇 BoGwang_bot, 5/7 발급)
         try {
