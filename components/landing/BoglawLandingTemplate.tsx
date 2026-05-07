@@ -303,7 +303,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
             <section id="form-step-1" className="py-5 md:py-7 bg-white" ref={stepRef}>
                 <div className="max-w-2xl mx-auto px-6">
                     {/* Step indicator */}
-                    <div className="flex items-center gap-2 mb-8">
+                    <div className="flex items-center gap-2 mb-4">
                         {[1, 2, 3, 4].map((s) => (
                             <div
                                 key={s}
@@ -313,23 +313,23 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             />
                         ))}
                     </div>
-                    <p className="text-sm text-gray-500 mb-6 text-center">
+                    <p className="text-xs text-gray-500 mb-3 text-center">
                         {step}/4 단계 진행 중
                     </p>
 
-                    {/* Step 1: 채무 금액 */}
+                    {/* Step 1: 채무 금액 — STEP_75 v2 padding ↓ */}
                     {step === 1 && (
                         <div>
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">
+                            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
                                 01. 현재 채무 금액은 얼마정도 되시나요?
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 {DEBT_OPTIONS.map((o) => (
                                     <button
                                         key={o.value}
                                         type="button"
                                         onClick={() => handleDebtSelect(o.value)}
-                                        className="px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-base font-semibold text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
+                                        className="px-5 py-3 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
                                     >
                                         {o.label}
                                     </button>
@@ -338,19 +338,19 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                         </div>
                     )}
 
-                    {/* Step 2: 직업 */}
+                    {/* Step 2: 직업 — STEP_75 v2 padding ↓ */}
                     {step === 2 && (
                         <div>
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">
+                            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
                                 02. 현재 직업은 어떻게 되시나요?
                             </h2>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                                 {JOB_OPTIONS.map((o) => (
                                     <button
                                         key={o.value}
                                         type="button"
                                         onClick={() => handleJobSelect(o.value)}
-                                        className="px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-base font-semibold text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
+                                        className="px-4 py-3 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
                                     >
                                         {o.label}
                                     </button>
@@ -540,7 +540,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
             </section>
 
             {/* 안전 zone footer — 변호사법 §22 사무소 명칭 표시 + §24의2 의무 표시 */}
-            <footer className="bg-gray-100 border-t border-gray-200 py-6">
+            <footer className="bg-gray-100 border-t border-gray-200 py-4">
                 <div className="max-w-3xl mx-auto px-6 text-center space-y-2">
                     <p className="text-xs text-gray-600 leading-relaxed">
                         법률사무소 보광 | 대표 정충원 | 사업자등록번호 471-20-01174<br />
