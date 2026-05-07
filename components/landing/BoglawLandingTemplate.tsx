@@ -187,15 +187,16 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </header>
 
-            {/* Hero */}
-            <section className="bg-gradient-to-b from-blue-50 via-white to-white pt-12 pb-10 md:pt-20 md:pb-14">
+            {/* Hero — 여백 비율 ↑ */}
+            <section className="bg-gradient-to-b from-blue-50 via-white to-white py-16 md:py-24">
                 <div className="max-w-3xl mx-auto px-6 text-center">
                     <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-5 tracking-wider">
                         채무회복 탕감센터 · 무료 자가진단
                     </span>
-                    <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
-                        최대 95% 탕감 — 오늘부터<br />
-                        마음 편히 주무세요
+                    <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
+                        <span className="text-blue-600">최대 95% 탕감</span><br />
+                        오늘부터 마음 편히<br />
+                        주무세요.
                     </h1>
                     <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                         가족·직장 모르게 1:1 비밀 상담으로 안내해드립니다
@@ -203,87 +204,106 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                 </div>
             </section>
 
-            {/* 통계 카드 3종 */}
-            <section className="py-8 md:py-10 bg-white">
-                <div className="max-w-4xl mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
-                            <div className="text-3xl mb-2">💰</div>
-                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                                총 면책금액
-                            </div>
-                            <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-1 break-keep">
-                                720,480,000,000 원
-                            </div>
-                            <div className="text-xs text-gray-400">
-                                (보광 누적 자체 통계)
-                            </div>
+            {/* 통계 카드 — 위계 (큰 1 + 작은 2) + 한국 표기 */}
+            <section className="py-12 md:py-16 bg-white">
+                <div className="max-w-4xl mx-auto px-6 space-y-6">
+                    {/* 큰 카드 — 총 면책금액 */}
+                    <div className="bg-gradient-to-br from-blue-50 to-white py-12 px-8 rounded-2xl border border-blue-100 shadow-md text-center">
+                        <div className="text-3xl mb-3">💰</div>
+                        <div className="text-sm font-semibold text-gray-500 mb-3 tracking-wider">
+                            총 면책금액
                         </div>
-                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
-                            <div className="text-3xl mb-2">📋</div>
-                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+                        <div className="text-4xl md:text-6xl font-extrabold text-blue-600 mb-2 break-keep tracking-tight">
+                            7,204억 8,000만+
+                        </div>
+                        <div className="text-xs text-gray-400 mt-2">
+                            (보광 누적 자체 통계)
+                        </div>
+                    </div>
+                    {/* 작은 카드 2 — 사건접수 + 탕감률 */}
+                    <div className="grid grid-cols-2 gap-4 md:gap-6">
+                        <div className="bg-white py-6 px-6 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-2xl md:text-3xl mb-2">📋</div>
+                            <div className="text-xs font-semibold text-gray-500 mb-2 tracking-wider">
                                 총 사건접수
                             </div>
-                            <div className="text-2xl md:text-3xl font-bold text-orange-500 mb-1">
-                                6,015 건
-                            </div>
-                            <div className="text-xs text-gray-400">
-                                (보광 누적)
+                            <div className="text-2xl md:text-4xl font-bold text-orange-500">
+                                6,015 건+
                             </div>
                         </div>
-                        <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl border border-blue-100 shadow-sm text-center">
-                            <div className="text-3xl mb-2">⚖️</div>
-                            <div className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+                        <div className="bg-white py-6 px-6 rounded-2xl border border-blue-100 shadow-sm text-center">
+                            <div className="text-2xl md:text-3xl mb-2">⚖️</div>
+                            <div className="text-xs font-semibold text-gray-500 mb-2 tracking-wider">
+                                최대 탕감률
+                            </div>
+                            <div className="text-2xl md:text-4xl font-bold text-orange-500 break-keep">
                                 최대 95% 탕감
                             </div>
-                            <div className="text-sm text-gray-700 leading-relaxed font-medium mt-3 break-keep">
-                                신용대출·가계대출·담보대출·주식·코인 손실금액 포함
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* "왜?" 섹션 — 리스트 형태 (박스 X) + CTA 큰 파란 버튼 */}
+            <section className="py-16 md:py-20 bg-gray-50">
+                <div className="max-w-3xl mx-auto px-6">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">
+                        왜 채무회복 탕감센터를 선택해야 할까요?
+                    </h2>
+                    <div className="space-y-8">
+                        <div className="flex items-start gap-4">
+                            <div className="text-3xl md:text-4xl flex-shrink-0 leading-none">⚖️</div>
+                            <div>
+                                <h3 className="font-bold text-lg md:text-xl mb-2 text-gray-900">
+                                    전담 변호사 직접 상담
+                                </h3>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                                    초기 상담부터 서류 준비까지 변호사가 직접 진행합니다.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="text-3xl md:text-4xl flex-shrink-0 leading-none">📊</div>
+                            <div>
+                                <h3 className="font-bold text-lg md:text-xl mb-2 text-gray-900">
+                                    0%에 가까운 기각율
+                                </h3>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                                    연간 수백여건 누적 데이터로 0%에 가까운 기각률을 유지합니다.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-4">
+                            <div className="text-3xl md:text-4xl flex-shrink-0 leading-none">🔒</div>
+                            <div>
+                                <h3 className="font-bold text-lg md:text-xl mb-2 text-gray-900">
+                                    철저한 1:1 비밀 보장
+                                </h3>
+                                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                                    가족·직장에 알려지지 않게 비밀로 안내해드립니다.
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* "왜?" 섹션 3 항목 */}
-            <section className="py-10 md:py-14 bg-gray-50">
-                <div className="max-w-4xl mx-auto px-6">
-                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-8 text-center">
-                        왜 채무회복 탕감센터를 선택해야 할까요?
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                            <div className="text-3xl mb-3">⚖️</div>
-                            <h3 className="font-bold text-gray-900 mb-2 text-base">
-                                전담 변호사 직접 상담
-                            </h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                초기 상담부터 서류 준비까지 변호사가 직접 진행합니다.
-                            </p>
-                        </div>
-                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                            <div className="text-3xl mb-3">📊</div>
-                            <h3 className="font-bold text-gray-900 mb-2 text-base">
-                                0%에 가까운 기각율
-                            </h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                연간 수백여건 누적 데이터로 0%에 가까운 기각률을 유지합니다.
-                            </p>
-                        </div>
-                        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                            <div className="text-3xl mb-3">🔒</div>
-                            <h3 className="font-bold text-gray-900 mb-2 text-base">
-                                철저한 1:1 비밀 보장
-                            </h3>
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                                가족·직장에 알려지지 않게 비밀로 안내해드립니다.
-                            </p>
-                        </div>
+                    {/* CTA 큰 파란 버튼 — 폼 단계 1 영역으로 부드러운 스크롤 */}
+                    <div className="mt-12 text-center">
+                        <button
+                            type="button"
+                            onClick={() =>
+                                document
+                                    .getElementById("form-step-1")
+                                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                            }
+                            className="w-full md:w-3/4 lg:w-2/3 mx-auto block py-4 px-8 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-xl shadow-lg transition-colors"
+                        >
+                            내 탕감액 무료 분석 시작
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Progressive Form */}
-            <section className="py-10 md:py-14 bg-white" ref={stepRef}>
+            {/* Progressive Form — 여백 ↑ + form-step-1 id (CTA 스크롤 타겟) */}
+            <section id="form-step-1" className="py-12 md:py-16 bg-white" ref={stepRef}>
                 <div className="max-w-2xl mx-auto px-6">
                     {/* Step indicator */}
                     <div className="flex items-center gap-2 mb-8">
