@@ -109,10 +109,10 @@ function getOgInfoByIndustry(industryNumber: number) {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
 
-    // STEP_71 — select11 = 채무회복 탕감센터 (보광 AD001) OG meta
+    // STEP_71 — select11 = 채무회복센터 (보광 AD001) OG meta
     if (slug === "select11") {
         const url = `https://otpage1.com/select11`;
-        const title = "채무회복 탕감센터 — 1분 무료 자가진단";
+        const title = "채무회복센터 — 1분 무료 자가진단";
         const description = "최대 95% 탕감 가능액 1분 자가진단으로 확인. 가족·직장 모르게 안내.";
         const ogDescription = "최대 95% 탕감 가능액 1분 자가진단으로 확인.";
         const ogImage = "https://otpage1.com/ads-creatives/01-debt-relief/DR-022-A.png";
@@ -123,8 +123,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
                 title,
                 description: ogDescription,
                 url,
-                siteName: "채무회복 탕감센터",
-                images: [{ url: ogImage, width: 1254, height: 1254, alt: "채무회복 탕감센터 1분 무료 자가진단" }],
+                siteName: "채무회복센터",
+                images: [{ url: ogImage, width: 1254, height: 1254, alt: "채무회복센터 1분 무료 자가진단" }],
                 type: "website",
                 locale: "ko_KR",
             },
