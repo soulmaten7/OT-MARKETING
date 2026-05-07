@@ -53,35 +53,28 @@ export function BoglawLiveToast() {
 
     if (!data) return null;
 
-    let key = "init";
-    let content: React.ReactNode;
-    if (data.phase === "counter") {
-        key = `counter-${data.total}`;
-        content = (
-            <>
-                <span style={{ marginRight: 6 }}>📊</span>
-                <span>지금까지 <b>{data.total}명</b>이 무료 자가진단 완료</span>
-            </>
-        );
-    } else {
-        const item = data.recent[currentIdx % data.recent.length];
-        if (!item) return null;
-        key = `live-${currentIdx}-${item.name}`;
-        content = (
-            <>
-                <span style={{
-                    display: "inline-block",
-                    width: 8, height: 8, borderRadius: 9999,
-                    background: "#10B981",
-                    marginRight: 8,
-                    animation: "pulse 2s ease-in-out infinite",
-                }} />
-                <span>
-                    <b>{item.name}</b> 님이 {item.elapsed} {item.action}했습니다
-                </span>
-            </>
-        );
-    }
+    // STEP_80 — Phase A 카운터 ("지금까지 N명") 영구 제거.
+    //   사장 의도 = 모든 페이지에서 카운터 X / 미래 DB 5건+ 누적 후 Phase B 익명 회전만 노출.
+    if (data.phase !== "live") return null;
+
+    const item = data.recent[currentIdx % data.recent.length];
+    if (!item) return null;
+
+    const key = `live-${currentIdx}-${item.name}`;
+    const content = (
+        <>
+            <span style={{
+                display: "inline-block",
+                width: 8, height: 8, borderRadius: 9999,
+                background: "#10B981",
+                marginRight: 8,
+                animation: "pulse 2s ease-in-out infinite",
+            }} />
+            <span>
+                <b>{item.name}</b> 님이 {item.elapsed} {item.action}했습니다
+            </span>
+        </>
+    );
 
     return (
         <>

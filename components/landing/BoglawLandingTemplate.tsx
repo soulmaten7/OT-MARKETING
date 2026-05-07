@@ -70,8 +70,8 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
     const [phone2, setPhone2] = useState("");
     const [phone3, setPhone3] = useState("");
     const [agreePrivacy, setAgreePrivacy] = useState(false);
-    const [agreeMarketing, setAgreeMarketing] = useState(false);
-    const [agreeCaseUse, setAgreeCaseUse] = useState(false);
+    // STEP_80 — 선택 동의 2개 → 1개 통합 (마케팅 + 상담 사례 익명 활용)
+    const [agreeOptional, setAgreeOptional] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState("");
@@ -133,8 +133,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                     landingUrl: window.location.href,
                     utmSource,
                     consentPrivacy: agreePrivacy,
-                    consentMarketing: agreeMarketing,
-                    consentCaseUse: agreeCaseUse,
+                    // STEP_80 — 선택 동의 통합 후 서버 호환성 유지 (텔레그램·route.ts 손 X)
+                    consentMarketing: agreeOptional,
+                    consentCaseUse: agreeOptional,
                 }),
             });
             const data = await res.json();
@@ -477,25 +478,13 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     <label className="flex items-start gap-3 cursor-pointer">
                                         <input
                                             type="checkbox"
-                                            checked={agreeMarketing}
-                                            onChange={(e) => setAgreeMarketing(e.target.checked)}
+                                            checked={agreeOptional}
+                                            onChange={(e) => setAgreeOptional(e.target.checked)}
                                             className="mt-1 w-5 h-5 accent-blue-600"
                                         />
                                         <span className="text-sm text-gray-700 leading-relaxed">
                                             <span className="text-gray-500 font-semibold">[선택]</span>{" "}
-                                            마케팅 정보 수신 동의
-                                        </span>
-                                    </label>
-                                    <label className="flex items-start gap-3 cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            checked={agreeCaseUse}
-                                            onChange={(e) => setAgreeCaseUse(e.target.checked)}
-                                            className="mt-1 w-5 h-5 accent-blue-600"
-                                        />
-                                        <span className="text-sm text-gray-700 leading-relaxed">
-                                            <span className="text-gray-500 font-semibold">[선택]</span>{" "}
-                                            상담 사례 익명 활용 동의
+                                            마케팅 정보 수신 + 상담 사례 익명 활용 동의
                                         </span>
                                     </label>
                                 </div>
