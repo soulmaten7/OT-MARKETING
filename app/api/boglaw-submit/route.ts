@@ -117,10 +117,10 @@ export async function POST(request: Request) {
             },
         });
 
-        // 사장 본인 모니터링 (텔레그램 봇 — TELEGRAM_BOT_TOKEN_DEBT_RELIEF 재사용)
+        // 사장 본인 모니터링 (보광 전용 텔레그램 봇 BoGwang_bot, 5/7 발급)
         try {
-            const tgToken = process.env.TELEGRAM_BOT_TOKEN_DEBT_RELIEF;
-            const tgChat = process.env.TELEGRAM_CHAT_ID_DEBT_RELIEF;
+            const tgToken = process.env.TELEGRAM_BOT_TOKEN_BOGWANG;
+            const tgChat = process.env.TELEGRAM_CHAT_ID_BOGWANG;
             if (tgToken && tgChat) {
                 const text = [
                     `🆕 <b>보광 (AD001) 새 DB</b>`,
