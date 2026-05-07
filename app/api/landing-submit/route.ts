@@ -341,6 +341,23 @@ export async function POST(request: Request) {
             consentThirdParty = false,
             consentMarketing = false,
         } = parsed.data;
+
+        // STEP_70 — 보광 (AD001 / select11) 차단 — 옛 시트 OT-landing-debt-relief-2026 입력 X.
+        // 보광 데이터 = /api/boglaw-submit 전담. defense in depth (만약 어떤 경로로든 호출돼도 옛 시트 X).
+        if (
+            landingUrl?.includes("select11") ||
+            landingUrl?.includes("/AD001") ||
+            industryId === "AD001" ||
+            industryId === "boglaw" ||
+            industryId === "law-debt-relief-boglaw"
+        ) {
+            console.log(`[landing-submit] 보광 차단 (옛 시트 입력 X) — landingUrl=${landingUrl}, industryId=${industryId}`);
+            return NextResponse.json({
+                success: false,
+                blocked: "boglaw_routes_via_boglaw_submit_only",
+            }, { status: 200 });
+        }
+
         const config = getIndustryConfig(industryId);
 
         if (!sheetId || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
