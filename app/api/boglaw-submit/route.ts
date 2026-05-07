@@ -81,10 +81,11 @@ export async function POST(request: Request) {
         const submissionId = `BL-${Date.now()}`;
         const platform = classifySource(data.utmSource, data.landingUrl);
 
-        // 16 컬럼 형식 — 9 컬럼 입력 (A~I), J~P 빈 칸 (광고주 입력)
+        // 16 컬럼 형식 — OT 측 입력 = A~I 9 컬럼만. J~P 7 컬럼 = 광고주 입력란 (수임료·수당·메모1~5) = 빈 칸 박힘.
+        // 마케팅 동의 = 시트 입력 X (광고주 입력란 보호) → 텔레그램 알림에만 박힘 (사장 모니터링)
         const row = [
-            submissionId,           // A 신청ID
-            nowSeoul,               // B 신청일시
+            submissionId,           // A 번호
+            nowSeoul,               // B 날짜
             data.name,              // C 이름
             data.phone,             // D 연락처
             data.debt_amount,       // E 채무액
@@ -92,13 +93,13 @@ export async function POST(request: Request) {
             data.user_story,        // G 문의사항
             ip,                     // H IP
             platform,               // I 플랫폼
-            "",                     // J 메모 (광고주)
-            "",                     // K 수임 여부
-            "",                     // L 수임료
-            "",                     // M 수당
-            "",                     // N 1차콜 결과
-            "",                     // O 비고
-            data.consentMarketing ? "Y" : "N",  // P 마케팅동의
+            "",                     // J 수임료 (광고주 입력)
+            "",                     // K 수당 (광고주 입력)
+            "",                     // L 메모1 (광고주 입력)
+            "",                     // M 메모2 (광고주 입력)
+            "",                     // N 메모3 (광고주 입력)
+            "",                     // O 메모4 (광고주 입력)
+            "",                     // P 메모5 (광고주 입력)
         ];
 
         // 시트의 첫 탭에 append
@@ -130,6 +131,7 @@ export async function POST(request: Request) {
                     `<b>직업</b>: ${data.job_type}`,
                     `<b>문의사항</b>: ${data.user_story || "(없음)"}`,
                     `<b>플랫폼</b>: ${platform}`,
+                    `<b>마케팅 동의</b>: ${data.consentMarketing ? "Y" : "N"}`,
                     `<b>제출 시각</b>: ${nowSeoul}`,
                     ``,
                     `🆔 ${submissionId}`,
