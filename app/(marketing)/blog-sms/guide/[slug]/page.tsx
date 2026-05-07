@@ -68,9 +68,9 @@ export default async function GuideDetailPage({ params }: Props) {
                 {/* Phase 11 — 22번 (마지막) 가이드는 upsell 강화 */}
                 {guide.slug === "to-landing" && (
                     <div className="mt-12 rounded-2xl bg-gradient-to-r from-[var(--navy-900)] to-[var(--gold-600)] p-7 text-white">
-                        <h3 className="font-bold text-2xl mb-2">곧 출시 — 셀프 랜딩페이지</h3>
+                        <h3 className="font-bold text-2xl mb-2">곧 출시 — 구독형 랜딩페이지</h3>
                         <p className="mb-5 text-white/85">
-                            블로그문자가 답신을 만들면, 셀프 랜딩페이지는 매출을 만듭니다. 사전 등록자에게 1순위 알림.
+                            블로그문자가 답신을 만들면, 구독형 랜딩페이지는 매출을 만듭니다. 사전 등록자에게 1순위 알림.
                         </p>
                         <Link
                             href="/landing-pages"

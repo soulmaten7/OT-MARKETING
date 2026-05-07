@@ -24,19 +24,21 @@ const navStructure = [
         items: [
             { label: "소개", href: "/blog-sms" },
             { label: "활용 가이드", href: "/blog-sms/guide" },
-            { label: "Q&A", href: "/blog-sms/faq" },
-            { label: "회원가입", href: "/blog-sms/signup" },
-            { label: "로그인", href: "/blog-sms/login" },
-            { label: "내 페이지", href: "/blog-sms/dashboard" },
         ],
     },
     {
-        label: "셀프 랜딩페이지",
+        label: "구독형 랜딩페이지",
         items: [
             { label: "소개 (곧 출시)", href: "/landing-pages" },
             { label: "1순위 알림 신청", href: "/landing-pages#pre-register" },
         ],
     },
+];
+
+// 우측 상단 회원 영역 (블로그문자 + 구독형 랜딩페이지 공유)
+const accountLinks = [
+    { label: "내 페이지", href: "/blog-sms/dashboard" },
+    { label: "로그인", href: "/blog-sms/login" },
 ];
 
 export function Navbar() {
@@ -142,9 +144,26 @@ export function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Right — empty placeholder (lg: grid-col 3, 미래 로그인 자리) */}
-                    <div className="hidden md:block w-[120px] lg:justify-self-end">
-                        {/* TODO: Phase 2 SaaS 출시 시 로그인·회원가입 버튼 위치 */}
+                    {/* Right — 회원 영역 (블로그문자 + 구독형 랜딩페이지 공유) */}
+                    <div className="hidden md:flex items-center gap-1 lg:justify-self-end">
+                        {accountLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors hover:text-[var(--coral-500)]",
+                                    navOnLight ? "text-[var(--navy-900)]/85" : "text-white/85"
+                                )}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/blog-sms/signup"
+                            className="ml-1 inline-flex items-center px-4 py-2 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white text-sm font-semibold rounded-full whitespace-nowrap transition-colors"
+                        >
+                            회원가입
+                        </Link>
                     </div>
 
                     {/* Mobile Toggle */}
@@ -171,7 +190,7 @@ export function Navbar() {
                         onMouseLeave={handleMouseLeave}
                     >
                         <div className="max-w-7xl mx-auto px-6 py-5 hidden md:block">
-                            <div className="grid grid-cols-6 gap-0">
+                            <div className="flex flex-wrap justify-center gap-0">
                                 {group.items.map((item) => (
                                     <Link
                                         key={item.label}
@@ -214,6 +233,29 @@ export function Navbar() {
                                 </div>
                             </div>
                         ))}
+                        {/* 회원 영역 — 모바일 */}
+                        <div className="mt-2 mb-8 pt-4 border-t border-white/15">
+                            <p className="font-bold text-xl text-white mb-3">계정</p>
+                            <div className="flex flex-col pl-4 space-y-1">
+                                {accountLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--coral-400)] transition-colors"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                                <Link
+                                    href="/blog-sms/signup"
+                                    className="mt-3 inline-flex items-center justify-center px-5 py-3 bg-[var(--coral-500)] text-white font-semibold rounded-full"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    무료 회원가입
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

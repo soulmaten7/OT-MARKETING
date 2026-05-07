@@ -411,7 +411,7 @@ export const GUIDES: Guide[] = [
             {
                 heading: "다음 단계",
                 body: [
-                    "OTMarketing 셀프 랜딩페이지 출시 시 1순위 알림을 받기 위해 사전 등록을 남겨주세요.",
+                    "OTMarketing 구독형 랜딩페이지 출시 시 1순위 알림을 받기 위해 사전 등록을 남겨주세요.",
                 ],
             },
         ],

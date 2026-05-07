@@ -64,27 +64,27 @@ const USE_CASES = [
 export default function BlogSmsLanding() {
     return (
         <div className="bg-white text-[var(--slate-900)]">
-            {/* Hero */}
-            <section className="bg-gradient-to-br from-[var(--navy-900)] via-[var(--navy-800)] to-[var(--navy-900)] text-white pt-32 pb-20 md:pt-40 md:pb-28">
+            {/* Hero — 화이트 배경 + 텍스트 포인트 (사장 5/6 진단 = 가독성 우선) */}
+            <section className="bg-white text-[var(--navy-900)] pt-32 pb-20 md:pt-40 md:pb-28">
                 <div className="ot-container">
                     <div className="max-w-3xl">
-                        {/* 평생 100% 무료 강조 배너 — blogsms.net 패턴 응용, 결제 X 본질 박기 */}
-                        <div className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 px-5 py-3 bg-black/40 backdrop-blur-sm rounded-2xl mb-8 ring-1 ring-white/10">
-                            <span className="inline-flex items-center gap-2 text-[var(--coral-400)] font-bold text-sm tracking-wide">
+                        {/* 평생 100% 무료 강조 배너 — 화이트 톤 카드 */}
+                        <div className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 px-5 py-3 bg-[var(--coral-50)] rounded-2xl mb-8 ring-1 ring-[var(--coral-500)]/20">
+                            <span className="inline-flex items-center gap-2 text-[var(--coral-600)] font-bold text-sm tracking-wide">
                                 <span className="text-base">🎁</span>
                                 평생 100% 무료
                             </span>
-                            <span className="hidden sm:inline-block w-px h-4 bg-white/20" />
-                            <span className="text-white/85 text-sm">
+                            <span className="hidden sm:inline-block w-px h-4 bg-[var(--coral-500)]/30" />
+                            <span className="text-[var(--slate-700)] text-sm">
                                 결제 정보 입력 X · 카드 등록 X · 한도 X · 광고 X
                             </span>
                         </div>
 
-                        <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mb-6">
-                            글에 <span className="text-[var(--coral-400)]">문자 버튼</span> 박는<br />
+                        <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mb-6 text-[var(--navy-900)]">
+                            글에 <span className="text-[var(--coral-500)]">문자 버튼</span> 박는<br />
                             가장 빠른 방법.
                         </h1>
-                        <p className="text-lg md:text-xl text-white/85 leading-relaxed mb-10 max-w-2xl">
+                        <p className="text-lg md:text-xl text-[var(--slate-700)] leading-relaxed mb-10 max-w-2xl">
                             블로그·인스타·명함에 링크 한 줄 붙이면 끝.<br />
                             방문자는 본인 휴대폰 SMS 앱으로 미리채워진 메시지를 곧바로 보냅니다.
                         </p>
@@ -97,7 +97,7 @@ export default function BlogSmsLanding() {
                             </Link>
                             <Link
                                 href="/blog-sms/guide"
-                                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-full ring-1 ring-white/30 transition-colors"
+                                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--navy-900)] font-semibold rounded-full ring-1 ring-slate-300 hover:ring-[var(--navy-900)] hover:bg-slate-50 transition-colors"
                             >
                                 활용 가이드 22 가지
                             </Link>
@@ -279,13 +279,13 @@ export default function BlogSmsLanding() {
                 </div>
             </section>
 
-            {/* Final CTA */}
-            <section className="py-16 md:py-24 bg-gradient-to-br from-[var(--navy-900)] to-[var(--navy-800)] text-white">
+            {/* Final CTA — 화이트 배경 통일 (사장 5/6 가독성 진단) */}
+            <section className="py-16 md:py-24 bg-white border-t border-slate-100">
                 <div className="ot-container text-center">
-                    <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                        지금 무료로 시작
+                    <h2 className="font-display text-3xl md:text-4xl font-bold text-[var(--navy-900)] mb-4">
+                        지금 <span className="text-[var(--coral-500)]">무료</span>로 시작
                     </h2>
-                    <p className="text-base md:text-lg text-white/85 mb-10 max-w-xl mx-auto">
+                    <p className="text-base md:text-lg text-[var(--slate-700)] mb-10 max-w-xl mx-auto">
                         결제 정보 X · 카드 등록 X · 한도 X · 광고 X.<br />
                         1분이면 내 페이지가 발급됩니다.
                     </p>
@@ -298,7 +298,7 @@ export default function BlogSmsLanding() {
                         </Link>
                         <Link
                             href="/blog-sms/login"
-                            className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/15 text-white font-semibold rounded-full ring-1 ring-white/30 transition-colors"
+                            className="inline-flex items-center justify-center px-8 py-4 bg-white text-[var(--navy-900)] font-semibold rounded-full ring-1 ring-slate-300 hover:ring-[var(--navy-900)] transition-colors"
                         >
                             🔑 로그인
                         </Link>

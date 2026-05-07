@@ -7,7 +7,7 @@ export function UpsellBanner() {
                 <div>
                     <p className="text-white text-sm font-semibold mb-1 flex items-center gap-2">
                         <span>🎨</span>
-                        곧 출시 — 셀프 랜딩페이지
+                        곧 출시 — 구독형 랜딩페이지
                     </p>
                     <p className="text-white/85 text-sm">
                         블로그문자보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요.
