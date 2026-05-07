@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 // SaaS 영역 (블로그문자·구독형 랜딩페이지·회원가입·로그인·내 페이지) 표시 토글
@@ -59,18 +58,10 @@ const accountLinks = [
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [openMega, setOpenMega] = useState<string | null>(null);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const pathname = usePathname();
-    const isHome = pathname === "/";
-    const navOnLight = !isHome || isScrolled;
+    // Hero 화이트 미니멀 톤과 일관 — 헤더는 항상 흰 배경 + 진한 navy 글씨
+    const navOnLight = true;
     const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
     const headerRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
