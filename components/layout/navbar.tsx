@@ -7,7 +7,15 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const navStructure = [
+// SaaS 영역 (블로그문자·구독형 랜딩페이지·회원가입·로그인·내 페이지) 표시 토글
+// - 로컬 개발 (npm run dev) = NODE_ENV 'development' = 자동으로 보임
+// - Production (Vercel) = env 안 박힘 = 안 보임
+// - 추후 출시 시 Vercel env 에 NEXT_PUBLIC_SHOW_SAAS_NAV='true' 추가하면 즉시 활성
+const SHOW_SAAS_NAV =
+    process.env.NEXT_PUBLIC_SHOW_SAAS_NAV === "true" ||
+    process.env.NODE_ENV === "development";
+
+const baseNavStructure = [
     {
         label: "CPA 광고",
         items: [
@@ -19,6 +27,9 @@ const navStructure = [
             { label: "광고 크리에이티브", href: "/ads" },
         ],
     },
+];
+
+const saasNavStructure = [
     {
         label: "블로그문자",
         items: [
@@ -34,6 +45,10 @@ const navStructure = [
         ],
     },
 ];
+
+const navStructure = SHOW_SAAS_NAV
+    ? [...baseNavStructure, ...saasNavStructure]
+    : baseNavStructure;
 
 // 우측 상단 회원 영역 (블로그문자 + 구독형 랜딩페이지 공유)
 const accountLinks = [
@@ -145,26 +160,31 @@ export function Navbar() {
                     </nav>
 
                     {/* Right — 회원 영역 (블로그문자 + 구독형 랜딩페이지 공유) */}
-                    <div className="hidden md:flex items-center gap-1 lg:justify-self-end">
-                        {accountLinks.map((link) => (
+                    {SHOW_SAAS_NAV ? (
+                        <div className="hidden md:flex items-center gap-1 lg:justify-self-end">
+                            {accountLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={cn(
+                                        "px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors hover:text-[var(--coral-500)]",
+                                        navOnLight ? "text-[var(--navy-900)]/85" : "text-white/85"
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
                             <Link
-                                key={link.href}
-                                href={link.href}
-                                className={cn(
-                                    "px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors hover:text-[var(--coral-500)]",
-                                    navOnLight ? "text-[var(--navy-900)]/85" : "text-white/85"
-                                )}
+                                href="/blog-sms/signup"
+                                className="ml-1 inline-flex items-center px-4 py-2 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white text-sm font-semibold rounded-full whitespace-nowrap transition-colors"
                             >
-                                {link.label}
+                                회원가입
                             </Link>
-                        ))}
-                        <Link
-                            href="/blog-sms/signup"
-                            className="ml-1 inline-flex items-center px-4 py-2 bg-[var(--coral-500)] hover:bg-[var(--coral-600)] text-white text-sm font-semibold rounded-full whitespace-nowrap transition-colors"
-                        >
-                            회원가입
-                        </Link>
-                    </div>
+                        </div>
+                    ) : (
+                        // SaaS 영역 숨김 시 grid-cols-3 보존용 빈 div
+                        <div className="hidden lg:block lg:justify-self-end" aria-hidden />
+                    )}
 
                     {/* Mobile Toggle */}
                     <button
@@ -233,29 +253,31 @@ export function Navbar() {
                                 </div>
                             </div>
                         ))}
-                        {/* 회원 영역 — 모바일 */}
-                        <div className="mt-2 mb-8 pt-4 border-t border-white/15">
-                            <p className="font-bold text-xl text-white mb-3">계정</p>
-                            <div className="flex flex-col pl-4 space-y-1">
-                                {accountLinks.map((link) => (
+                        {/* 회원 영역 — 모바일 (SaaS 영역 표시 시에만) */}
+                        {SHOW_SAAS_NAV && (
+                            <div className="mt-2 mb-8 pt-4 border-t border-white/15">
+                                <p className="font-bold text-xl text-white mb-3">계정</p>
+                                <div className="flex flex-col pl-4 space-y-1">
+                                    {accountLinks.map((link) => (
+                                        <Link
+                                            key={link.href}
+                                            href={link.href}
+                                            className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--coral-400)] transition-colors"
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    ))}
                                     <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className="text-white/80 text-lg py-2 border-b border-white/10 hover:text-[var(--coral-400)] transition-colors"
+                                        href="/blog-sms/signup"
+                                        className="mt-3 inline-flex items-center justify-center px-5 py-3 bg-[var(--coral-500)] text-white font-semibold rounded-full"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
-                                        {link.label}
+                                        무료 회원가입
                                     </Link>
-                                ))}
-                                <Link
-                                    href="/blog-sms/signup"
-                                    className="mt-3 inline-flex items-center justify-center px-5 py-3 bg-[var(--coral-500)] text-white font-semibold rounded-full"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    무료 회원가입
-                                </Link>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             )}
