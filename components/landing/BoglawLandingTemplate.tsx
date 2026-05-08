@@ -357,13 +357,15 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     </button>
                                 ))}
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => setStep(1)}
-                                className="mt-6 text-sm text-gray-500 hover:text-gray-700 underline"
-                            >
-                                ← 이전 단계
-                            </button>
+                            <div className="text-center mt-6">
+                                <button
+                                    type="button"
+                                    onClick={() => setStep(1)}
+                                    className="text-sm text-gray-500 hover:text-gray-700 underline"
+                                >
+                                    ← 이전 단계
+                                </button>
+                            </div>
                         </div>
                     )}
 
@@ -383,20 +385,20 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                 className="w-full p-4 border-2 border-gray-200 rounded-xl text-base text-gray-900 focus:border-blue-600 focus:outline-none resize-none"
                             />
                             <p className="text-xs text-gray-400 text-right mt-1">{userStory.length} / 500</p>
-                            <div className="flex gap-3 mt-4">
+                            <button
+                                type="button"
+                                onClick={handleStoryNext}
+                                className="w-full mt-4 px-5 py-4 bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold rounded-xl transition-colors"
+                            >
+                                다음으로
+                            </button>
+                            <div className="text-center mt-4">
                                 <button
                                     type="button"
                                     onClick={() => setStep(2)}
-                                    className="px-5 py-3 text-sm text-gray-500 hover:text-gray-700"
+                                    className="text-sm text-gray-500 hover:text-gray-700 underline"
                                 >
-                                    ← 이전
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={handleStoryNext}
-                                    className="flex-1 px-5 py-4 bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold rounded-xl transition-colors"
-                                >
-                                    다음으로
+                                    ← 이전 단계
                                 </button>
                             </div>
                         </div>
@@ -507,13 +509,15 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     {submitting ? "전송 중..." : "내 탕감액 무료 분석 시작"}
                                 </button>
 
-                                <button
-                                    type="button"
-                                    onClick={() => setStep(3)}
-                                    className="w-full text-sm text-gray-500 hover:text-gray-700"
-                                >
-                                    ← 이전 단계
-                                </button>
+                                <div className="text-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => setStep(3)}
+                                        className="text-sm text-gray-500 hover:text-gray-700 underline"
+                                    >
+                                        ← 이전 단계
+                                    </button>
+                                </div>
 
                                 {/* STEP_76 — 폼 4 안 footer (페이지 끝 footer 통합 = 변호사법 §22 + §24의2) */}
                                 <div className="mt-4 pt-4 border-t border-gray-100 text-center space-y-2"
