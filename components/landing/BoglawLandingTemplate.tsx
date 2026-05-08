@@ -223,7 +223,6 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                         <div className="text-2xl md:text-3xl font-extrabold text-blue-600 break-keep tracking-tight">
                             7,204억 8,000만+
                         </div>
-                        <div className="text-[10px] text-gray-400 mt-1">(보광 누적 자체 통계)</div>
                     </div>
                     {/* 작은 카드 2 — 아이콘 + 라벨 1줄 통일 */}
                     <div className="grid grid-cols-2 gap-3">
