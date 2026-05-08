@@ -10,12 +10,14 @@ export async function middleware(req: NextRequest) {
     return updateSession(req);
   }
 
-  // otpage1.com root → /select1 (개인회생 랜딩, URL 변경 X)
+  // STEP_85.5 — otpage1.com root → /home (빈 페이지, OG metadata 0건)
+  // 사장 본질: otpage1.com = 여러 업종 LP 박을 도메인 인프라
+  // path X = 단순 URL 텍스트 링크 (카톡 미리보기 X)
   if (
     (host === "otpage1.com" || host === "www.otpage1.com") &&
     pathname === "/"
   ) {
-    return NextResponse.rewrite(new URL("/select1", req.url));
+    return NextResponse.rewrite(new URL("/home", req.url));
   }
 
   // ot-marketing.kr 에서 /select* 진입 → 회사 메인으로 silent redirect (흔적 제거)
