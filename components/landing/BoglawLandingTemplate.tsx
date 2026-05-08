@@ -201,10 +201,9 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
             {/* Hero — STEP_77 (max-w-xl + 여백 축소 + 배지 제거) */}
             <section className="bg-gradient-to-b from-blue-50 via-white to-white pt-4 pb-3 md:pt-6 md:pb-4">
                 <div className="max-w-xl mx-auto px-6">
-                    <h1 className="text-3xl font-black leading-tight text-left text-gray-900 mb-3">
+                    <h1 className="text-2xl md:text-3xl font-black leading-tight text-left text-gray-900 mb-3 break-keep">
                         <span className="text-blue-600">최대 95% 탕감</span><br />
-                        오늘부터 마음 편히<br />
-                        주무세요.
+                        오늘부터 마음 편히 주무세요.
                     </h1>
                     <p className="text-base text-gray-500 leading-relaxed">
                         가족·직장 모르게 1:1 비밀 상담으로 안내해드립니다
@@ -215,25 +214,31 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
             {/* 통계 카드 — STEP_79 컴팩트 + 색상 위계 */}
             <section className="py-3 md:py-4 bg-white">
                 <div className="max-w-xl mx-auto px-6 space-y-3">
-                    {/* 큰 카드 (full width, min-h 110, padding 축소, 메인 파랑) */}
-                    <div className="bg-white py-3 px-4 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
-                        <div className="text-lg mb-0.5">💰</div>
-                        <div className="text-xs text-gray-500 mb-0.5">총 면책금액</div>
+                    {/* 큰 카드 — 아이콘 + 라벨 1줄 (모바일 통일) */}
+                    <div className="bg-white py-4 px-4 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
+                        <div className="flex items-center justify-center gap-1.5 mb-1.5">
+                            <span className="text-base">💰</span>
+                            <span className="text-xs text-gray-500">총 면책금액</span>
+                        </div>
                         <div className="text-2xl md:text-3xl font-extrabold text-blue-600 break-keep tracking-tight">
                             7,204억 8,000만+
                         </div>
-                        <div className="text-[10px] text-gray-400 mt-0.5">(보광 누적 자체 통계)</div>
+                        <div className="text-[10px] text-gray-400 mt-1">(보광 누적 자체 통계)</div>
                     </div>
-                    {/* 작은 카드 2 (50/50 grid, gap-3, min-h 110, 검정·빨강 차별화) */}
+                    {/* 작은 카드 2 — 아이콘 + 라벨 1줄 통일 */}
                     <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-white py-3 px-3 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
-                            <div className="text-base mb-0.5">📋</div>
-                            <div className="text-xs text-gray-500 mb-0.5">총 사건접수</div>
+                        <div className="bg-white py-4 px-3 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
+                            <div className="flex items-center justify-center gap-1.5 mb-1.5">
+                                <span className="text-sm">📋</span>
+                                <span className="text-xs text-gray-500">총 사건접수</span>
+                            </div>
                             <div className="text-lg md:text-xl font-bold text-gray-900">6,015 건+</div>
                         </div>
-                        <div className="bg-white py-3 px-3 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
-                            <div className="text-base mb-0.5">⚖️</div>
-                            <div className="text-xs text-gray-500 mb-0.5">최대 탕감률</div>
+                        <div className="bg-white py-4 px-3 rounded-2xl border border-blue-100 shadow-sm text-center min-h-[125px] flex flex-col justify-center items-center">
+                            <div className="flex items-center justify-center gap-1.5 mb-1.5">
+                                <span className="text-sm">⚖️</span>
+                                <span className="text-xs text-gray-500">최대 탕감률</span>
+                            </div>
                             <div className="text-lg md:text-xl font-bold text-red-500 break-keep">최대 95% 탕감</div>
                         </div>
                     </div>
@@ -433,12 +438,13 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">
                                         휴대폰 <span className="text-blue-600">*</span>
                                     </label>
-                                    <div className="flex items-center gap-2">
+                                    {/* 모바일 특화: w-full grid 3 분할 (overflow X) */}
+                                    <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-1.5">
                                         <input
                                             type="tel"
                                             value={phone1}
                                             onChange={(e) => setPhone1(e.target.value.replace(/\D/g, "").slice(0, 3))}
-                                            className="w-20 px-3 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
+                                            className="w-full min-w-0 px-2 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
                                             inputMode="numeric"
                                             maxLength={3}
                                             required
@@ -448,7 +454,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                             type="tel"
                                             value={phone2}
                                             onChange={(e) => setPhone2(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                                            className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
+                                            className="w-full min-w-0 px-2 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
                                             inputMode="numeric"
                                             maxLength={4}
                                             required
@@ -458,7 +464,7 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                             type="tel"
                                             value={phone3}
                                             onChange={(e) => setPhone3(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                                            className="flex-1 px-3 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
+                                            className="w-full min-w-0 px-2 py-3 border-2 border-gray-200 rounded-xl text-base text-center text-gray-900 focus:border-blue-600 focus:outline-none"
                                             inputMode="numeric"
                                             maxLength={4}
                                             required
