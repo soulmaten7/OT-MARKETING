@@ -285,17 +285,33 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-7 text-center">
-                        <button
-                            type="button"
-                            onClick={handleCtaStart}
-                            className="w-full md:w-3/4 lg:w-2/3 mx-auto block py-3 px-5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-2xl transition-colors"
-                        >
-                            내 탕감액 무료 분석 시작
-                        </button>
-                    </div>
                 </div>
             </section>
+
+            {/* STEP_86 — CTA 화면 하단 고정 (모바일 sticky bottom, 토스트와 같은 위치 = 통일감) */}
+            <div
+                style={{
+                    position: "fixed",
+                    bottom: 24,
+                    left: 0,
+                    right: 0,
+                    zIndex: 50,
+                    pointerEvents: "none",
+                }}
+                className="px-4"
+            >
+                <div className="max-w-xl mx-auto" style={{ pointerEvents: "auto" }}>
+                    <button
+                        type="button"
+                        onClick={handleCtaStart}
+                        className="w-full block py-4 px-5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg rounded-2xl transition-colors shadow-lg"
+                    >
+                        내 탕감액 무료 분석 시작
+                    </button>
+                </div>
+            </div>
+            {/* CTA 가 본문 가리지 않도록 spacer */}
+            <div aria-hidden style={{ height: 96 }} />
             </>
             )}
 
