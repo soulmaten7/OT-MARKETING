@@ -45,9 +45,10 @@ export function BoglawLiveToast() {
     // Phase B 회전 (5초 간격)
     useEffect(() => {
         if (!data || data.phase !== "live" || data.recent.length === 0) return;
+        // STEP_84 — 회전 간격 5초 → 8초 (사장 진단: 너무 빠름)
         const interval = setInterval(() => {
             setCurrentIdx((i) => (i + 1) % data.recent.length);
-        }, 5000);
+        }, 8000);
         return () => clearInterval(interval);
     }, [data]);
 
@@ -114,8 +115,11 @@ export function BoglawLiveToast() {
                             boxShadow: "0 8px 24px rgba(0, 0, 0, 0.18)",
                             display: "inline-flex",
                             alignItems: "center",
-                            whiteSpace: "nowrap",
+                            justifyContent: "center",
+                            // STEP_84 — 박스 크기 고정 (콘텐츠만 바뀌고 박스 동일 = 통일감)
+                            width: 320,
                             maxWidth: "calc(100vw - 32px)",
+                            whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                         }}
