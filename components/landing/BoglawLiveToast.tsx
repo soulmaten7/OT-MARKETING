@@ -101,20 +101,17 @@ export function BoglawLiveToast() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={key}
-                        initial={{ opacity: 0, y: 16 }}
+                        initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.3 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
                         style={{
-                            background: "rgba(255, 255, 255, 0.96)",
-                            backdropFilter: "blur(12px)",
-                            WebkitBackdropFilter: "blur(12px)",
-                            border: "1px solid #e5e7eb",
+                            background: "#1F2937",
                             borderRadius: 9999,
-                            padding: "8px 16px",
+                            padding: "10px 20px",
                             fontSize: 13,
-                            color: "#374151",
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
+                            color: "#FFFFFF",
+                            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.18)",
                             display: "inline-flex",
                             alignItems: "center",
                             whiteSpace: "nowrap",

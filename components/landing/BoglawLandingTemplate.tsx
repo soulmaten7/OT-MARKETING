@@ -332,6 +332,10 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                                     </button>
                                 ))}
                             </div>
+                            {/* STEP_81 — 채무 금액 안내 (광고주 자체 기준, 사용자 이탈 방지) */}
+                            <p className="text-xs text-gray-500 mt-3 text-center">
+                                * 1,000만원 미만은 법적 절차 진행이 어렵습니다.
+                            </p>
                         </div>
                     )}
 

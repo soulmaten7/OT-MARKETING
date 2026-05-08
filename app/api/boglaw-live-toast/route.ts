@@ -33,10 +33,12 @@ function anonymizeName(name: string): string {
     return name[0] + "*" + name[name.length - 1];
 }
 
+// STEP_81 — 라이브 토스트 액션 4종 (사장 의도)
 const ACTIONS = [
-    "무료 자가진단을 신청",
+    "무료 상담을 신청",
     "1:1 비밀 상담을 신청",
-    "면책 가능액을 확인",
+    "접수를 완료",
+    "면책 성공 여부를 확인",
 ];
 
 function pickAction(seed: number): string {
