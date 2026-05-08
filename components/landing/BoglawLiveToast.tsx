@@ -117,8 +117,9 @@ export function BoglawLiveToast() {
                             alignItems: "center",
                             justifyContent: "center",
                             // STEP_84 — 박스 크기 고정 (콘텐츠만 바뀌고 박스 동일 = 통일감)
-                            width: 320,
-                            maxWidth: "calc(100vw - 32px)",
+                            // 380px = 가장 긴 콘텐츠 ("이*현 님이 1분 전 1:1 비밀 상담을 신청했습니다") 안 잘림
+                            width: 380,
+                            maxWidth: "calc(100vw - 24px)",
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis",
