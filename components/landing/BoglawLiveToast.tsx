@@ -89,7 +89,7 @@ export function BoglawLiveToast() {
                 aria-live="polite"
                 style={{
                     position: "fixed",
-                    bottom: 16,
+                    bottom: 80,
                     left: "50%",
                     transform: "translateX(-50%)",
                     zIndex: 50,
@@ -108,8 +108,8 @@ export function BoglawLiveToast() {
                         style={{
                             background: "#1F2937",
                             borderRadius: 9999,
-                            padding: "10px 20px",
-                            fontSize: 13,
+                            padding: "14px 24px",
+                            fontSize: 14,
                             color: "#FFFFFF",
                             boxShadow: "0 8px 24px rgba(0, 0, 0, 0.18)",
                             display: "inline-flex",

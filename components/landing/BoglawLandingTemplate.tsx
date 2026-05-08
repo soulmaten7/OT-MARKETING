@@ -320,13 +320,13 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
                                 01. 현재 채무 금액은 얼마정도 되시나요?
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="grid grid-cols-1 gap-3">
                                 {DEBT_OPTIONS.map((o) => (
                                     <button
                                         key={o.value}
                                         type="button"
                                         onClick={() => handleDebtSelect(o.value)}
-                                        className="px-5 py-3 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
+                                        className="px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors text-left"
                                     >
                                         {o.label}
                                     </button>
@@ -345,13 +345,13 @@ export function BoglawLandingTemplate({ slug }: { slug: string }) {
                             <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
                                 02. 현재 직업은 어떻게 되시나요?
                             </h2>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                            <div className="grid grid-cols-1 gap-3">
                                 {JOB_OPTIONS.map((o) => (
                                     <button
                                         key={o.value}
                                         type="button"
                                         onClick={() => handleJobSelect(o.value)}
-                                        className="px-4 py-3 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors"
+                                        className="px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors text-left"
                                     >
                                         {o.label}
                                     </button>
