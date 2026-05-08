@@ -1,8 +1,8 @@
 /**
- * STEP_71 — 보광 라이브 토스트 데이터 endpoint (하이브리드)
+ * STEP_82 — 보광 라이브 토스트 데이터 endpoint
  *
- * - DB 탭 데이터 5건 미만 = { phase: "counter", total: N }
- * - DB 탭 데이터 5건+ = { phase: "live", recent: [{name·action·elapsed}, ...] }
+ * - DB 5건 미만 = fake fixture 10명 즉시 회전 (사장 의도, 첫날부터 라이브 체감)
+ * - DB 5건+ = 실제 데이터 최근 10 행 익명화 (자동 전환)
  * - 30초 캐싱 (Sheets API quota 보호)
  * - 익명화 = 이름 첫글자 + "*" + 마지막글자
  */
@@ -45,6 +45,20 @@ function pickAction(seed: number): string {
     return ACTIONS[seed % ACTIONS.length];
 }
 
+// STEP_82 — fake fixture 10명 (DB 5건 미만 시 즉시 회전, 사장 의도)
+const FAKE_FIXTURE = [
+    { name: "김*윤", action: ACTIONS[0], elapsed: "방금" },
+    { name: "이*현", action: ACTIONS[1], elapsed: "1분 전" },
+    { name: "박*혁", action: ACTIONS[2], elapsed: "방금" },
+    { name: "최*영", action: ACTIONS[3], elapsed: "3분 전" },
+    { name: "서*우", action: ACTIONS[0], elapsed: "방금" },
+    { name: "정*아", action: ACTIONS[1], elapsed: "5분 전" },
+    { name: "강*호", action: ACTIONS[2], elapsed: "방금" },
+    { name: "윤*진", action: ACTIONS[3], elapsed: "2분 전" },
+    { name: "임*수", action: ACTIONS[0], elapsed: "방금" },
+    { name: "한*경", action: ACTIONS[1], elapsed: "4분 전" },
+];
+
 export async function GET() {
     // 캐시 hit
     if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
@@ -53,8 +67,8 @@ export async function GET() {
 
     const sheetId = process.env.BOGLAW_SHEET_ID;
     if (!sheetId || !process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || !process.env.GOOGLE_PRIVATE_KEY) {
-        // env 미설정 = 카운터 0 (안전 fallback)
-        const fallback = { phase: "counter", total: 0 };
+        // STEP_82 — env 미설정 = fake fixture 10명 (사용자 이탈 방지)
+        const fallback = { phase: "live", recent: FAKE_FIXTURE };
         cache = { data: fallback, timestamp: Date.now() };
         return NextResponse.json(fallback);
     }
@@ -77,9 +91,10 @@ export async function GET() {
 
         let response: unknown;
         if (totalCount < 5) {
-            response = { phase: "counter", total: totalCount };
+            // STEP_82 — DB 5건 미만 = fake fixture 10명 (첫날부터 라이브 체감)
+            response = { phase: "live", recent: FAKE_FIXTURE };
         } else {
-            // 최근 10 행 익명화 → 회전 데이터
+            // DB 5건+ = 최근 10 행 익명화 회전 (자동 전환)
             const recent = rows.slice(-10).reverse().map((row, idx) => {
                 const name = (row[2] as string) || "";
                 return {
@@ -95,8 +110,8 @@ export async function GET() {
         return NextResponse.json(response);
     } catch (error) {
         console.error("[boglaw-live-toast] error:", error);
-        // 에러 시 안전 fallback (사용자 이탈 방지)
-        const fallback = { phase: "counter", total: 0 };
+        // STEP_82 — 에러 시 fake fixture 10명 fallback (사용자 이탈 방지)
+        const fallback = { phase: "live", recent: FAKE_FIXTURE };
         cache = { data: fallback, timestamp: Date.now() };
         return NextResponse.json(fallback);
     }
