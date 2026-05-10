@@ -1,10 +1,17 @@
 /**
  * STEP_70 — 법률사무소 보광 (AD001) 전용 시트 입력 endpoint
+ * STEP_87 — 공통 시트 (DB 분배 인프라) 추가 박힘 + R~U 컬럼 (UTM 추적)
  *
  * BoglawLandingTemplate (4 단계 progressive form) → POST /api/boglaw-submit
  *
- * 시트 = process.env.BOGLAW_SHEET_ID (1xX7qJX56Nj0zrFfAAA-i69oEyaQlvhnIxXRgDQm1Mjc)
- * 16 컬럼 형식 9 컬럼 입력 (J~P = 광고주 측 입력 = 빈 칸)
+ * 시트 박힘 (이중):
+ *   1. 보광 시트 (BOGLAW_SHEET_ID = 1xX7qJX56Nj0zrFfAAA-i69oEyaQlvhnIxXRgDQm1Mjc)
+ *      - 16 컬럼 (A~P) — 광고주 직접 보는 곳, 옛 형식 보존
+ *   2. 공통 시트 (COMMON_SHEET_ID = 1THuTtpdZiRB0yI7jxWal5RU-SOHifDUYIGOXbP-g2AY)
+ *      - 21 컬럼 (A~U) — OT 측 통합 분석 + Apps Script 자동 분배
+ *      - Q = 광고주 (자동 = "보광") / R = 유입 URL / S = 매체 / T = 캠페인 / U = 키워드
+ *
+ * Apps Script (사장 손 박기) = 공통 시트 Q열 변경 → 광고주 시트 자동 복사
  */
 
 import { NextResponse } from "next/server";
@@ -171,6 +178,75 @@ export async function POST(request: Request) {
             }
         } catch (fmtErr) {
             console.error("[boglaw-submit] 형식 박기 실패 (alarm 보다 데이터 우선):", fmtErr);
+        }
+
+        // STEP_87 — 공통 시트 박기 (DB 분배 인프라, 21 컬럼)
+        try {
+            const commonSheetId = process.env.COMMON_SHEET_ID;
+            if (commonSheetId) {
+                // 유입 URL parse (UTM 추출)
+                let pathname = "/select11";
+                let utmSource = "";
+                let utmMedium = "";
+                let utmCampaign = "";
+                let utmTerm = "";
+                try {
+                    if (data.landingUrl) {
+                        const lu = new URL(data.landingUrl);
+                        pathname = lu.pathname || "/select11";
+                        utmSource = lu.searchParams.get("utm_source") || "";
+                        utmMedium = lu.searchParams.get("utm_medium") || "";
+                        utmCampaign = lu.searchParams.get("utm_campaign") || "";
+                        utmTerm = lu.searchParams.get("utm_term") || "";
+                    }
+                } catch {
+                    // landingUrl parse 실패 시 = slug 박힘
+                    pathname = `/${data.slug}`;
+                }
+
+                // Q열 자동 = /select11 (광고 사용자) = "보광" / /select1 (직접 트래픽) = 빈칸
+                const advertiser = pathname === "/select11" ? "보광" : "";
+
+                // 21 컬럼 (A~U)
+                const commonRow = [
+                    submissionId,                       // A 번호
+                    nowSeoul,                           // B 날짜
+                    data.name,                          // C 이름
+                    data.phone,                         // D 연락처
+                    data.debt_amount,                   // E 채무액
+                    data.job_type,                      // F 직업
+                    data.user_story,                    // G 문의사항
+                    ip,                                 // H IP
+                    platform,                           // I 플랫폼
+                    "",                                 // J 수임료
+                    "",                                 // K 수당
+                    "",                                 // L 메모1
+                    "",                                 // M 메모2
+                    "",                                 // N 메모3
+                    "",                                 // O 메모4
+                    "",                                 // P 메모5
+                    advertiser,                         // Q 광고주 (자동)
+                    pathname,                           // R 유입 URL
+                    utmSource || "direct",              // S 광고 매체
+                    utmCampaign,                        // T 광고 캠페인
+                    utmTerm,                            // U 광고 키워드
+                ];
+
+                const commonMeta = await sheets.spreadsheets.get({ spreadsheetId: commonSheetId });
+                const commonFirstTab = commonMeta.data.sheets?.[0]?.properties?.title || "Sheet1";
+
+                await sheets.spreadsheets.values.append({
+                    spreadsheetId: commonSheetId,
+                    range: `${commonFirstTab}!A:U`,
+                    valueInputOption: "USER_ENTERED",
+                    insertDataOption: "INSERT_ROWS",
+                    requestBody: { values: [commonRow] },
+                });
+            } else {
+                console.log(`[boglaw-submit] COMMON_SHEET_ID 미설정 — 공통 시트 박기 skip. ${submissionId}`);
+            }
+        } catch (commonErr) {
+            console.error("[boglaw-submit] 공통 시트 박기 실패 (보광 시트 박힘 보장 우선):", commonErr);
         }
 
         // 사장 본인 모니터링 (보광 전용 텔레그램 봇 BoGwang_bot, 5/7 발급)

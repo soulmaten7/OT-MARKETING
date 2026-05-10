@@ -218,11 +218,18 @@ export default async function OperationSlugPage({ params }: PageProps) {
     const { slug } = await params;
 
     // STEP_70 — select11 = 법률사무소 보광 (AD001) 전용 4 단계 progressive form
+    // STEP_87 — /select11 = 광고 사용자 = 인트로 skip = 즉시 진단 (initialStep=1)
     if (slug === "select11") {
-        return <BoglawLandingTemplate slug={slug} />;
+        return <BoglawLandingTemplate slug={slug} initialStep={1} />;
     }
 
-    // 샘플 슬러그 (select1~6)
+    // STEP_87 — /select1 = 기본 LP (DB 수급용, 직접 트래픽) = 인트로 + 진단 (initialStep=0)
+    // 옛 select1 일반 LandingTemplate 대신 보광 풀 LP (사장 결정 = 사장이 광고 외 DB 박을 때 박는 URL)
+    if (slug === "select1") {
+        return <BoglawLandingTemplate slug={slug} initialStep={0} />;
+    }
+
+    // 샘플 슬러그 (select2~6) — select1 은 STEP_87 분기에서 박힘
     if (isSampleSlug(slug)) {
         const config = getIndustryConfig(slug);
         if (!config) notFound();

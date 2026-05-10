@@ -59,9 +59,10 @@ function trackStep(stepName: string) {
     }
 }
 
-export function BoglawLandingTemplate({ slug }: { slug: string }) {
+export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string; initialStep?: number }) {
     // STEP_76 — step state 0 = CTA 클릭 전 (Hero·통계·왜·CTA 노출, 폼 X) / 1~4 = 폼 단계
-    const [step, setStep] = useState(0);
+    // STEP_87 — initialStep prop 박힘 = /select11 (광고 사용자, 인트로 X = 1) / /select1 (기본 LP, 인트로 박힘 = 0)
+    const [step, setStep] = useState(initialStep);
     const [debtAmount, setDebtAmount] = useState("");
     const [jobType, setJobType] = useState("");
     const [userStory, setUserStory] = useState("");
