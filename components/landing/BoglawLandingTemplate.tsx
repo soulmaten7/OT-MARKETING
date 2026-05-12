@@ -29,14 +29,14 @@ const DEBT_OPTIONS = [
     { value: "over_50000", label: "5억원 이상" },
 ];
 
+// STEP_92 — 7→6 축소 (3 cols × 2 rows 깔끔 그리드 / "기타" 제거)
 const JOB_OPTIONS = [
     { value: "self", label: "사업자" },
     { value: "employed", label: "직장인" },
     { value: "freelance", label: "프리랜서" },
-    { value: "parttime", label: "아르바이트생" },
+    { value: "parttime", label: "아르바이트" },
     { value: "homemaker", label: "주부" },
     { value: "unemployed", label: "무직" },
-    { value: "etc", label: "기타" },
 ];
 
 declare global {
@@ -97,16 +97,17 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
         }
     };
 
+    // STEP_92 — 4→2 step 통합 = 옵션 선택만, 페이지 이동 X
     const handleDebtSelect = (value: string) => {
         setDebtAmount(value);
-        setStep(2);
     };
     const handleJobSelect = (value: string) => {
         setJobType(value);
-        setStep(3);
     };
-    const handleStoryNext = () => {
-        setStep(4);
+    // step 1 (통합) → step 2 (이름·연락처) 이동
+    const handlePage1Next = () => {
+        if (!debtAmount || !jobType) return;
+        setStep(2);
     };
 
     const phoneFull = `${phone1}-${phone2}-${phone3}`;
@@ -316,13 +317,13 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
             </>
             )}
 
-            {/* STEP_76 — 폼 단계 1~4 = step >= 1 조건부 렌더 */}
-            {step >= 1 && step <= 4 && (
+            {/* STEP_92 — 4 step → 2 page 통합 (Page 1 = 채무·직업·상황 한 화면 / Page 2 = 이름·연락처·동의·제출) */}
+            {step >= 1 && step <= 2 && (
             <section id="form-step-1" className="py-5 md:py-7 bg-white" ref={stepRef}>
                 <div className="max-w-xl mx-auto px-6">
-                    {/* Step indicator */}
-                    <div className="flex items-center gap-2 mb-4">
-                        {[1, 2, 3, 4].map((s) => (
+                    {/* STEP_92 — 진행률 바 (max=2, 텍스트 제거) */}
+                    <div className="flex items-center gap-2 mb-5">
+                        {[1, 2].map((s) => (
                             <div
                                 key={s}
                                 className={`h-1.5 flex-1 rounded-full transition-colors ${
@@ -331,110 +332,95 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
                             />
                         ))}
                     </div>
-                    <p className="text-xs text-gray-500 mb-3 text-center">
-                        {step}/4 단계 진행 중
-                    </p>
 
-                    {/* Step 1: 채무 금액 — STEP_75 v2 padding ↓ */}
+                    {/* Page 1: 채무 금액 + 직업 + 상황 통합 (3 섹션 한 화면) */}
                     {step === 1 && (
-                        <div>
-                            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
-                                01. 현재 채무 금액은 얼마정도 되시나요?
-                            </h2>
-                            <div className="grid grid-cols-1 gap-3">
-                                {DEBT_OPTIONS.map((o) => (
-                                    <button
-                                        key={o.value}
-                                        type="button"
-                                        onClick={() => handleDebtSelect(o.value)}
-                                        className="px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors text-left"
-                                    >
-                                        {o.label}
-                                    </button>
-                                ))}
+                        <div className="space-y-7">
+                            {/* 01. 채무 금액 (3열 2행 컴팩트) */}
+                            <div>
+                                <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
+                                    01. 현재 채무 금액은 얼마정도 되시나요?
+                                </h2>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {DEBT_OPTIONS.map((o) => (
+                                        <button
+                                            key={o.value}
+                                            type="button"
+                                            onClick={() => handleDebtSelect(o.value)}
+                                            className={`py-2.5 px-2 border-2 rounded-xl text-sm font-medium transition-colors ${
+                                                debtAmount === o.value
+                                                    ? "border-blue-600 bg-blue-50 text-blue-700 font-semibold"
+                                                    : "border-gray-200 text-gray-700 hover:border-blue-400"
+                                            }`}
+                                        >
+                                            {o.label}
+                                        </button>
+                                    ))}
+                                </div>
+                                <p className="text-xs text-gray-500 mt-2 text-center">
+                                    * 1,000만원 미만은 법적 절차 진행이 어렵습니다.
+                                </p>
                             </div>
-                            {/* STEP_81 — 채무 금액 안내 (광고주 자체 기준, 사용자 이탈 방지) */}
-                            <p className="text-xs text-gray-500 mt-3 text-center">
-                                * 1,000만원 미만은 법적 절차 진행이 어렵습니다.
-                            </p>
-                        </div>
-                    )}
 
-                    {/* Step 2: 직업 — STEP_75 v2 padding ↓ */}
-                    {step === 2 && (
-                        <div>
-                            <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 text-center">
-                                02. 현재 직업은 어떻게 되시나요?
-                            </h2>
-                            <div className="grid grid-cols-1 gap-3">
-                                {JOB_OPTIONS.map((o) => (
-                                    <button
-                                        key={o.value}
-                                        type="button"
-                                        onClick={() => handleJobSelect(o.value)}
-                                        className="px-6 py-4 bg-white border-2 border-gray-200 rounded-2xl text-base font-medium text-gray-900 hover:border-blue-600 hover:bg-blue-50 transition-colors text-left"
-                                    >
-                                        {o.label}
-                                    </button>
-                                ))}
+                            {/* 02. 직업 (3열 2행 컴팩트, 7→6 축소) */}
+                            <div>
+                                <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
+                                    02. 현재 직업은 어떻게 되시나요?
+                                </h2>
+                                <div className="grid grid-cols-3 gap-2">
+                                    {JOB_OPTIONS.map((o) => (
+                                        <button
+                                            key={o.value}
+                                            type="button"
+                                            onClick={() => handleJobSelect(o.value)}
+                                            className={`py-2.5 px-2 border-2 rounded-xl text-sm font-medium transition-colors ${
+                                                jobType === o.value
+                                                    ? "border-blue-600 bg-blue-50 text-blue-700 font-semibold"
+                                                    : "border-gray-200 text-gray-700 hover:border-blue-400"
+                                            }`}
+                                        >
+                                            {o.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="text-center mt-6">
-                                <button
-                                    type="button"
-                                    onClick={() => setStep(1)}
-                                    className="text-sm text-gray-500 hover:text-gray-700 underline"
-                                >
-                                    ← 이전 단계
-                                </button>
-                            </div>
-                        </div>
-                    )}
 
-                    {/* Step 3: 자유 텍스트 */}
-                    {step === 3 && (
-                        <div>
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 text-center">
-                                03. 현재 상황을 자세히 남겨주세요
-                            </h2>
-                            <p className="text-sm text-gray-500 mb-6 text-center">선택 입력 — 비워두셔도 됩니다.</p>
-                            <textarea
-                                value={userStory}
-                                onChange={(e) => setUserStory(e.target.value.slice(0, 500))}
-                                rows={5}
-                                maxLength={500}
-                                placeholder="예: 신용카드 연체 6개월째, 추심 전화 받고 있어요..."
-                                className="w-full p-4 border-2 border-gray-200 rounded-xl text-base text-gray-900 focus:border-blue-600 focus:outline-none resize-none"
-                            />
-                            <p className="text-xs text-gray-400 text-right mt-1">{userStory.length} / 500</p>
+                            {/* 03. 자유 텍스트 (선택 입력) */}
+                            <div>
+                                <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 text-center">
+                                    03. 현재 상황을 자세히 남겨주세요
+                                </h2>
+                                <p className="text-xs text-gray-500 mb-3 text-center">선택 입력 — 비워두셔도 됩니다.</p>
+                                <textarea
+                                    value={userStory}
+                                    onChange={(e) => setUserStory(e.target.value.slice(0, 500))}
+                                    rows={4}
+                                    maxLength={500}
+                                    placeholder="예: 신용카드 연체 6개월째, 추심 전화 받고 있어요..."
+                                    className="w-full p-3 border-2 border-gray-200 rounded-xl text-sm text-gray-900 focus:border-blue-600 focus:outline-none resize-none"
+                                />
+                                <p className="text-xs text-gray-400 text-right mt-1">{userStory.length} / 500</p>
+                            </div>
+
+                            {/* 다음으로 버튼 */}
                             <button
                                 type="button"
-                                onClick={handleStoryNext}
-                                className="w-full mt-4 px-5 py-4 bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold rounded-xl transition-colors"
+                                onClick={handlePage1Next}
+                                disabled={!debtAmount || !jobType}
+                                className="w-full px-5 py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white text-base font-semibold rounded-xl transition-colors"
                             >
                                 다음으로
                             </button>
-                            <div className="text-center mt-4">
-                                <button
-                                    type="button"
-                                    onClick={() => setStep(2)}
-                                    className="text-sm text-gray-500 hover:text-gray-700 underline"
-                                >
-                                    ← 이전 단계
-                                </button>
-                            </div>
                         </div>
                     )}
 
-                    {/* Step 4: 이름·휴대폰·동의 3종 */}
-                    {step === 4 && (
+                    {/* Page 2: 이름·휴대폰·동의 3종 + 제출 (옛 step 4) */}
+                    {step === 2 && (
                         <form onSubmit={handleSubmit}>
-                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 text-center">
-                                04. 무료 탕감액 분석을 위해<br />
+                            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">
+                                02. 무료 탕감액 1:1 상담을 위해<br />
                                 성함과 연락처를 입력해주세요
                             </h2>
-                            <p className="text-sm text-gray-500 mb-6 text-center">
-                                채무회복센터가 1:1 비밀 상담으로 안내드립니다.
-                            </p>
 
                             <div className="space-y-4">
                                 <div>
@@ -534,7 +520,7 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
                                 <div className="text-center">
                                     <button
                                         type="button"
-                                        onClick={() => setStep(3)}
+                                        onClick={() => setStep(1)}
                                         className="text-sm text-gray-500 hover:text-gray-700 underline"
                                     >
                                         ← 이전 단계
