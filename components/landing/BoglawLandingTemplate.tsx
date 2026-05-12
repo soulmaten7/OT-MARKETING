@@ -18,7 +18,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Scale } from "lucide-react";
-import { BoglawLiveToast } from "./BoglawLiveToast";
+// STEP_92.3 — 라이브 토스트 비활성화 (사장 결정, 5/12)
+// import { BoglawLiveToast } from "./BoglawLiveToast";
 
 // STEP_92.1 — 라벨 축약 (사장 진단 = 모바일 3열 안 박스행 늘어남 fix)
 const DEBT_OPTIONS = [
@@ -550,12 +551,14 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
             )}
             {/* STEP_76 — 페이지 끝 footer 제거 (단계 4 안으로 이동, line 532 부근 박힘 그대로) */}
 
-            {/* STEP_78 — step >= 1 (자가진단 진행 중) 만 노출 / step === 0 (첫 페이지) X */}
-            {step >= 1 && (
+            {/* STEP_92.3 — 라이브 토스트 비활성화 (사장 결정, 5/12)
+                옛 STEP_78 = step >= 1 시 BoglawLiveToast mount
+                재활성화 시 = 본 블록 주석 해제 박힘 */}
+            {/* {step >= 1 && (
                 <div data-testid="live-toast-mount">
                     <BoglawLiveToast />
                 </div>
-            )}
+            )} */}
         </main>
     );
 }
