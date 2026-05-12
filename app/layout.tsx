@@ -3,6 +3,7 @@ import { Inter, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import MetaPixel from "@/components/MetaPixel";
 import GoogleAdsTag from "@/components/GoogleAdsTag";
+import Clarity from "@/components/Clarity";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function RootLayout({
             >
                 <MetaPixel />
                 <GoogleAdsTag />
+                <Clarity />
                 {children}
             </body>
         </html>
