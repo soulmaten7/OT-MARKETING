@@ -40,6 +40,11 @@ export const metadata: Metadata = {
         locale: "ko_KR",
     },
     robots: { index: true, follow: true },
+    // STEP_93 — Meta 도메인 인증 메타 태그 (otpage1.com)
+    // 환경변수 박힐 때만 활성 = 미박힘 시 noop (안전 deploy)
+    other: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION
+        ? { "facebook-domain-verification": process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION }
+        : {},
 };
 
 export default function RootLayout({
