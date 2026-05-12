@@ -31,11 +31,12 @@ const DEBT_OPTIONS = [
 ];
 
 // STEP_92 — 7→6 축소 (3 cols × 2 rows 깔끔 그리드 / "기타" 제거)
+// STEP_92.2 — 라벨 swap (사업자 → 자영업/사업자 / 아르바이트 → 알바)
 const JOB_OPTIONS = [
-    { value: "self", label: "사업자" },
+    { value: "self", label: "자영업/사업자" },
     { value: "employed", label: "직장인" },
     { value: "freelance", label: "프리랜서" },
-    { value: "parttime", label: "아르바이트" },
+    { value: "parttime", label: "알바" },
     { value: "homemaker", label: "주부" },
     { value: "unemployed", label: "무직" },
 ];
