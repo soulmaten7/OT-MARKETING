@@ -20,11 +20,12 @@ import { useState, useEffect, useRef } from "react";
 import { Scale } from "lucide-react";
 import { BoglawLiveToast } from "./BoglawLiveToast";
 
+// STEP_92.1 — 라벨 축약 (사장 진단 = 모바일 3열 안 박스행 늘어남 fix)
 const DEBT_OPTIONS = [
-    { value: "2000_4000", label: "2,000~4,000만원" },
-    { value: "4000_6000", label: "4,000~6,000만원" },
-    { value: "6000_8000", label: "6,000~8,000만원" },
-    { value: "8000_10000", label: "8,000만원~1억원" },
+    { value: "2000_4000", label: "2천~4천만원" },
+    { value: "4000_6000", label: "4천~6천만원" },
+    { value: "6000_8000", label: "6천~8천만원" },
+    { value: "8000_10000", label: "8천~1억원" },
     { value: "10000_50000", label: "1억원 이상" },
     { value: "over_50000", label: "5억원 이상" },
 ];
