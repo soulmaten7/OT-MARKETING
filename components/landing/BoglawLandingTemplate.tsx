@@ -64,7 +64,7 @@ function trackStep(stepName: string) {
 
 export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string; initialStep?: number }) {
     // STEP_76 — step state 0 = CTA 클릭 전 (Hero·통계·왜·CTA 노출, 폼 X) / 1~4 = 폼 단계
-    // STEP_87 — initialStep prop 박힘 = /select11 (광고 사용자, 인트로 X = 1) / /select1 (기본 LP, 인트로 박힘 = 0)
+    // STEP_87 — initialStep prop 적용 = /select11 (광고 사용자, 인트로 X = 1) / /select1 (기본 LP, 인트로 적용 = 0)
     const [step, setStep] = useState(initialStep);
     const [debtAmount, setDebtAmount] = useState("");
     const [jobType, setJobType] = useState("");
@@ -549,11 +549,11 @@ export function BoglawLandingTemplate({ slug, initialStep = 0 }: { slug: string;
                 </div>
             </section>
             )}
-            {/* STEP_76 — 페이지 끝 footer 제거 (단계 4 안으로 이동, line 532 부근 박힘 그대로) */}
+            {/* STEP_76 — 페이지 끝 footer 제거 (단계 4 안으로 이동, line 532 부근 그대로) */}
 
             {/* STEP_92.3 — 라이브 토스트 비활성화 (사장 결정, 5/12)
                 옛 STEP_78 = step >= 1 시 BoglawLiveToast mount
-                재활성화 시 = 본 블록 주석 해제 박힘 */}
+                재활성화 시 = 본 블록 주석 해제하면 복구 */}
             {/* {step >= 1 && (
                 <div data-testid="live-toast-mount">
                     <BoglawLiveToast />

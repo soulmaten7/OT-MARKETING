@@ -229,7 +229,7 @@ export default async function OperationSlugPage({ params }: PageProps) {
         return <BoglawLandingTemplate slug={slug} initialStep={0} />;
     }
 
-    // 샘플 슬러그 (select2~6) — select1 은 STEP_87 분기에서 박힘
+    // 샘플 슬러그 (select2~6) — select1 은 STEP_87 분기에서 처리
     if (isSampleSlug(slug)) {
         const config = getIndustryConfig(slug);
         if (!config) notFound();

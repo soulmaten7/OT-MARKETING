@@ -32,7 +32,7 @@ export function ContactForm({
     const [error, setError] = useState<string | null>(null);
     const [timeValue, setTimeValue] = useState<string>("");
 
-    // STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) state 박힘
+    // STEP_44 v2 Phase 3 — 동의 3개 (필수 2 + 선택 1) state 완료
     const [consents, setConsents] = useState({
         privacy: false,        // 필수 #1 — 수집·이용
         thirdParty: false,     // 필수 #2 — 제3자 제공

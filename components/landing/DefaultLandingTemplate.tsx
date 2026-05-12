@@ -5,7 +5,7 @@ import { useState } from "react";
 /**
  * DefaultLandingTemplate — otpage1.com/ default 베이스 LP
  *
- * ⚠️ 이 컴포넌트는 placeholder 박힌 default 베이스입니다.
+ * ⚠️ 이 컴포넌트는 placeholder 들어있는 default 베이스입니다.
  * 새 광고주 LP 만들 때 = 이 파일 복사 → placeholder ([브랜드명], [질문], [옵션] 등) 만 swap → 라우트 신규
  *
  * 검증된 LP 패턴 (STEP_92 + STEP_92.2 + STEP_92.3 + STEP_92.4 + STEP_93):
@@ -14,8 +14,8 @@ import { useState } from "react";
  * - 진행률 바 헤더 1자 붙임
  * - Page 2 카피 단순화
  * - 라이브 토스트 비활성
- * - Microsoft Clarity 데이터 수집 (layout 박힘)
- * - Meta 도메인 인증 메타 태그 (layout 박힘)
+ * - Microsoft Clarity 데이터 수집 (layout 안 적용)
+ * - Meta 도메인 인증 메타 태그 (layout 안 적용)
  *
  * 새 광고주 LP 만들 절차 = docs/HOW_TO_ADD_NEW_ADVERTISER.md 참고
  */
@@ -37,7 +37,7 @@ export function DefaultLandingTemplate() {
 
     return (
         <main className="min-h-screen bg-white" data-theme="default-placeholder">
-            {/* Header — 진행률 바 헤더 1자 박힘 */}
+            {/* Header — 진행률 바 헤더 1자 */}
             <header className="sticky top-0 z-40 bg-white">
                 <div className="border-b border-gray-100">
                     <div className="max-w-xl mx-auto px-6 py-4 flex items-center gap-2">
@@ -45,7 +45,7 @@ export function DefaultLandingTemplate() {
                             [🎯]
                         </div>
                         <span className="text-lg font-bold text-gray-700 tracking-tight">
-                            [브랜드명을 여기에 박을 거]
+                            [브랜드명 입력]
                         </span>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ export function DefaultLandingTemplate() {
                             {/* 01. 옵션 1 (3열 2행) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
-                                    01. [첫 번째 질문을 여기에 박을 거]
+                                    01. [첫 번째 질문 입력]
                                 </h2>
                                 <div className="grid grid-cols-3 gap-2">
                                     {STEP1_OPTIONS.map((o) => (
@@ -85,14 +85,14 @@ export function DefaultLandingTemplate() {
                                     ))}
                                 </div>
                                 <p className="text-xs text-gray-500 mt-2 text-center">
-                                    * [필수 안내 사항 박을 차례]
+                                    * [필수 안내 사항 입력]
                                 </p>
                             </div>
 
                             {/* 02. 옵션 2 (3열 2행) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
-                                    02. [두 번째 질문을 여기에 박을 거]
+                                    02. [두 번째 질문 입력]
                                 </h2>
                                 <div className="grid grid-cols-3 gap-2">
                                     {STEP2_OPTIONS.map((o) => (
@@ -115,7 +115,7 @@ export function DefaultLandingTemplate() {
                             {/* 03. 자유 텍스트 (선택 입력) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 text-center">
-                                    03. [자세한 상황을 여기에 박을 거]
+                                    03. [자세한 상황 입력]
                                 </h2>
                                 <p className="text-xs text-gray-500 mb-3 text-center">선택 입력 — 비워두셔도 됩니다.</p>
                                 <textarea
@@ -123,7 +123,7 @@ export function DefaultLandingTemplate() {
                                     onChange={(e) => setOption3(e.target.value.slice(0, 500))}
                                     rows={4}
                                     maxLength={500}
-                                    placeholder="예: [사용자 상황 예시를 여기에 박을 거]"
+                                    placeholder="예: [사용자 상황 예시 입력]"
                                     className="w-full p-3 border-2 border-gray-200 rounded-xl text-sm text-gray-900 focus:border-gray-600 focus:outline-none resize-none"
                                 />
                                 <p className="text-xs text-gray-400 text-right mt-1">{option3.length} / 500</p>
@@ -256,7 +256,7 @@ export function DefaultLandingTemplate() {
                                     <p>
                                         [회사명] | 대표 [대표자명] | 사업자등록번호 [000-00-00000]
                                         <br />
-                                        본점: [본점 주소 박을 차례]
+                                        본점: [본점 주소 입력]
                                     </p>
                                     <p>
                                         광고책임 [업종별 — 변호사/CP/약사/공인중개사 등] 별도 표기 · [업종별 법규 §00의0 ⓘ] 의무 표시

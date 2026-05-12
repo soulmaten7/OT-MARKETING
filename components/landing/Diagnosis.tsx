@@ -154,7 +154,7 @@ export function Diagnosis({ questions, onComplete }: DiagnosisProps) {
                     </AnimatePresence>
                 </div>
 
-                {/* 하단 네비 — 항상 다음 버튼 박힘 (3 문항 검증 통과 시 enable) */}
+                {/* 하단 네비 — 항상 다음 버튼 노출 (3 문항 검증 통과 시 enable) */}
                 <div className="px-4 mt-3 pb-4">
                     <div className="flex items-center gap-2">
                         {currentStep > 0 && (
