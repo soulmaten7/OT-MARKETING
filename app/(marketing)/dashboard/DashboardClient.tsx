@@ -119,8 +119,8 @@ export function DashboardClient({ userEmail, profile }: Props) {
                             landingStatus === "past_due" ? "error" :
                             landingStatus === "canceled" ? "neutral" : "neutral"
                         }
-                        ctaText={landingStatus === "active" ? "내 랜딩페이지 관리" : "구독하고 시작하기"}
-                        ctaHref={landingStatus === "active" ? "/landing-pages/manage" : "/landing-pages"}
+                        ctaText={landingStatus === "active" ? "내 랜딩페이지 관리" : landingStatus === "past_due" ? "결제 정보 확인" : "구독하고 시작하기"}
+                        ctaHref={landingStatus === "active" ? "/landing-pages/manage" : "/subscribe"}
                     />
 
                     {/* 블로그문자 */}

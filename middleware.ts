@@ -3,7 +3,7 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { createServerClient } from "@supabase/ssr";
 
 // 인증이 필요한 라우트
-const AUTH_REQUIRED_ROUTES = ["/dashboard", "/landing-pages/manage"];
+const AUTH_REQUIRED_ROUTES = ["/dashboard", "/landing-pages/manage", "/subscribe"];
 
 // 구독이 필요한 라우트 (landing_subscription_status === 'active' 요구)
 const SUBSCRIPTION_REQUIRED_ROUTES = ["/landing-pages/manage"];
@@ -134,6 +134,8 @@ export const config = {
         "/dashboard",               // STEP_96 — 인증 보호
         "/landing-pages/manage/:path*", // STEP_96 — 구독 보호
         "/landing-pages/manage",    // STEP_96 — 구독 보호
+        "/subscribe/:path*",        // STEP_103 — 결제 페이지 인증 보호
+        "/subscribe",               // STEP_103 — 결제 페이지 인증 보호
         "/signup",                  // STEP_96 — 이미 로그인 시 대시보드로
         "/login",                   // STEP_96 — 이미 로그인 시 대시보드로
     ],

@@ -41,6 +41,33 @@ export type IndustryTemplate = {
     display_order: number;
 };
 
+export type Subscription = {
+    id: string;
+    user_id: string;
+    billing_key: string;
+    customer_key: string;
+    status: "active" | "past_due" | "canceled";
+    plan_name: string;
+    amount: number;
+    started_at: string;
+    next_billing_date: string | null;
+    canceled_at: string | null;
+    created_at: string;
+    updated_at: string;
+};
+
+export type PaymentLog = {
+    id: string;
+    user_id: string;
+    subscription_id: string | null;
+    order_id: string;
+    order_name: string;
+    amount: number;
+    status: "pending" | "success" | "failed";
+    toss_payment_key: string | null;
+    created_at: string;
+};
+
 export type LandingPreRegistrant = {
     id: string;
     email: string;
