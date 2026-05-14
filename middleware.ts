@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 import { createServerClient } from "@supabase/ssr";
 
+// STEP_105 — 개발 모드 인증·구독 게이트 우회 플래그
+const DEV_BYPASS_AUTH = process.env.NEXT_PUBLIC_DEV_BYPASS_AUTH === 'true'
+
 // 인증이 필요한 라우트
 const AUTH_REQUIRED_ROUTES = ["/dashboard", "/landing-pages/manage", "/subscribe"];
 
@@ -30,6 +33,11 @@ async function checkAuth(req: NextRequest) {
 }
 
 export async function middleware(req: NextRequest) {
+    // STEP_105 — 개발 모드 = 인증·구독 게이트 전부 우회
+    if (DEV_BYPASS_AUTH) {
+        return NextResponse.next()
+    }
+
     const { pathname } = req.nextUrl;
     const host = req.headers.get("host") || "";
 
