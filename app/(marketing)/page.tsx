@@ -74,7 +74,7 @@ export default function Home() {
                                     fill
                                     className="object-cover"
                                     sizes="(max-width: 768px) 100vw, 33vw"
-                                    priority={feature.id === "landing"}
+                                    priority
                                 />
                             </div>
 
