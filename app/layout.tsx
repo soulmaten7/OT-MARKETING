@@ -28,14 +28,14 @@ const cormorant = Cormorant_Garamond({
 // Pretendard Variable: head 의 <link> 로 CDN 로드 (next/font 미지원). var(--font-pretendard) 는 globals.css 에서 수동 매핑.
 
 export const metadata: Metadata = {
-    title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA 인프라",
+    title: "OT MARKETING — 마케팅에 필요한 도구, 한 곳에",
     description:
-        "DB 단순 전달이 아닌 업종별 자가진단 + 등급·유형 분기 + 1차콜까지. 6 업종 법규 가드레일 · 광고주 명의 100% 분리 운영. Meta · Google · 당근 · Naver · 카카오 모먼트 다매체 운영.",
+        "구독형 랜딩페이지·CPA 광고·블로그문자. 마케팅 도구를 한 곳에서. 코딩 없이 5분 만에 시작하세요.",
     keywords:
-        "CPA 광고대행, 다업종 CPA, 개인회생 CPA, 핸드폰 CPA, 인터넷 통신 CPA, 정수기 렌탈 CPA, 부동산 분양 CPA, 병의원 CPA, 자가진단 분기, 6 업종 가드레일, 다매체 운영",
+        "구독형 랜딩페이지, CPA 광고대행, 블로그문자, 마케팅 자동화, 랜딩페이지 구독, 블로그 문자 자동화, 개인회생 CPA, 다업종 CPA",
     openGraph: {
-        title: "OT MARKETING — 광고가 끝나는 자리까지 책임지는 CPA",
-        description: "업종별 자가진단 + 등급·유형 분기 + 1차콜까지 풀 처리. 6 업종 법규 가드레일 · 광고주 명의 분리.",
+        title: "OT MARKETING — 마케팅에 필요한 도구, 한 곳에",
+        description: "구독형 랜딩페이지·CPA 광고·블로그문자. 마케팅 도구를 한 곳에서.",
         type: "website",
         locale: "ko_KR",
     },

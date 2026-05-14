@@ -7,8 +7,8 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-    { label: "CPA 광고", href: "/cpa" },
     { label: "랜딩페이지", href: "/landing-pages" },
+    { label: "CPA 광고", href: "/cpa" },
     { label: "블로그문자", href: "/blog-sms" },
 ];
 
