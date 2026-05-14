@@ -35,6 +35,7 @@ export default async function DashboardPage() {
             <DashboardClient
                 userEmail="dev@ot-marketing.kr"
                 profile={DEV_MOCK_PROFILE}
+                landingPageCount={2}
             />
         );
     }
@@ -51,16 +52,16 @@ export default async function DashboardPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) redirect("/login");
 
-    const { data: profile } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .maybeSingle();
+    const [{ data: profile }, { count: landingPageCount }] = await Promise.all([
+        supabase.from("profiles").select("*").eq("id", user.id).maybeSingle(),
+        supabase.from("landing_pages").select("*", { count: "exact", head: true }).eq("user_id", user.id),
+    ]);
 
     return (
         <DashboardClient
             userEmail={user.email ?? ""}
             profile={profile as Profile | null}
+            landingPageCount={landingPageCount ?? 0}
         />
     );
 }

@@ -2,11 +2,6 @@
 
 import type { Profile } from "@/lib/supabase/types";
 
-interface Props {
-    userEmail: string;
-    profile: Profile | null;
-}
-
 type BadgeVariant = "primary" | "success" | "warning" | "neutral" | "error";
 
 function Badge({ variant, children }: { variant: BadgeVariant; children: React.ReactNode }) {
@@ -64,7 +59,13 @@ function FeatureCard({
     );
 }
 
-export function DashboardClient({ userEmail, profile }: Props) {
+interface Props {
+    userEmail: string;
+    profile: Profile | null;
+    landingPageCount?: number;
+}
+
+export function DashboardClient({ userEmail, profile, landingPageCount }: Props) {
     const landingStatus = profile?.landing_subscription_status ?? "none";
     const cpaStatus = profile?.cpa_inquiry_status ?? "none";
     const displayName = profile?.display_name ?? userEmail.split("@")[0];
@@ -105,7 +106,9 @@ export function DashboardClient({ userEmail, profile }: Props) {
                     <FeatureCard
                         title="구독형 랜딩페이지"
                         description={
-                            landingStatus === "active"
+                            landingStatus === "active" && landingPageCount !== undefined && landingPageCount > 0
+                                ? `랜딩페이지 ${landingPageCount}개 운영 중. 관리하고 전환율을 확인하세요.`
+                                : landingStatus === "active"
                                 ? "내 랜딩페이지를 관리하고 전환율을 확인하세요."
                                 : "월 구독으로 전문 랜딩페이지를 운영하세요. 광고 효율이 2배 올라갑니다."
                         }

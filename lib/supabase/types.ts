@@ -41,6 +41,21 @@ export type IndustryTemplate = {
     display_order: number;
 };
 
+// STEP_106 — 구독형 랜딩페이지 테이블 타입
+export type LandingPage = {
+    id: string;
+    user_id: string;
+    slug: string;
+    industry: string;
+    title: string;
+    status: "draft" | "published" | "paused";
+    config: Record<string, unknown>;
+    submission_count: number;
+    published_at: string | null;
+    created_at: string;
+    updated_at: string;
+};
+
 export type Subscription = {
     id: string;
     user_id: string;
