@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-// STEP_105 — 개발 모드 인증 우회 플래그
-const DEV_BYPASS_AUTH = process.env.NEXT_PUBLIC_DEV_BYPASS_AUTH === 'true'
+// STEP_105 — 개발 모드 인증 우회 플래그 (next.config.mjs env 통해 정적 주입)
+const DEV_BYPASS_AUTH = process.env.BYPASS_AUTH_DEV === 'true'
 
 const DEV_MOCK_PROFILE: Profile = {
     id: 'dev-mock',
