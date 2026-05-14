@@ -8,6 +8,12 @@ export type Profile = {
     phone: string | null;
     phone_private: boolean;
     created_at: string;
+    // STEP_96 — 3 기능 구독 상태 (step96_profiles_extend.sql)
+    landing_subscription_status: "none" | "active" | "past_due" | "canceled";
+    landing_subscription_plan: string | null;
+    landing_subscription_started_at: string | null;
+    blog_sms_enabled: boolean;
+    cpa_inquiry_status: "none" | "inquired" | "contracted";
 };
 
 export type SmsPage = {
