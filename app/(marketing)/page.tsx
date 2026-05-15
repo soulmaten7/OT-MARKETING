@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Link2, BadgeCheck, ShieldCheck } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Badge } from "@/components/ui/Badge";
@@ -75,17 +75,17 @@ const FEATURES: Feature[] = [
 
 const WHY_ITEMS = [
     {
-        icon: "🔗",
+        Icon: Link2,
         title: "한 계정에서 전부",
         body: "문자문의 → 구독형 랜딩페이지 → CPA 광고. 마케팅 도구를 따로따로 쓰지 마세요.",
     },
     {
-        icon: "✅",
+        Icon: BadgeCheck,
         title: "업종별 검증된 패턴",
         body: "개인회생·정수기·인터넷·주식·부동산·병의원. 6 업종 전환 데이터 기반 설계.",
     },
     {
-        icon: "🏷️",
+        Icon: ShieldCheck,
         title: "광고주 명의 100%",
         body: "OT 브랜드 노출 0%. 모든 랜딩과 광고는 광고주 명의·번호로 운영됩니다.",
     },
@@ -94,6 +94,7 @@ const WHY_ITEMS = [
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
 function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
+    const immediate = index === 0;
     const imgRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const imgInView = useInView(imgRef, { once: true, margin: "-80px" });
@@ -111,7 +112,7 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
                         ref={imgRef}
                         className="w-full md:w-1/2 relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 shadow-lg"
                         initial={{ opacity: 0, x: feature.reverse ? 48 : -48 }}
-                        animate={imgInView ? { opacity: 1, x: 0 } : {}}
+                        animate={immediate || imgInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.7, ease }}
                     >
                         <Image
@@ -129,7 +130,7 @@ function FeatureRow({ feature, index }: { feature: Feature; index: number }) {
                         ref={textRef}
                         className="w-full md:w-1/2"
                         initial={{ opacity: 0, x: feature.reverse ? -48 : 48 }}
-                        animate={textInView ? { opacity: 1, x: 0 } : {}}
+                        animate={immediate || textInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.7, delay: 0.12, ease }}
                     >
                         {feature.badge && (
@@ -175,7 +176,9 @@ function WhyCard({ item, index }: { item: (typeof WHY_ITEMS)[0]; index: number }
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: index * 0.12, ease }}
         >
-            <div className="text-3xl mb-4">{item.icon}</div>
+            <div className="mb-4">
+                <item.Icon className="w-6 h-6 text-primary-500" />
+            </div>
             <h3 className="text-lg font-bold text-neutral-900 mb-2">{item.title}</h3>
             <p className="text-sm text-neutral-500 leading-relaxed">{item.body}</p>
         </motion.div>
