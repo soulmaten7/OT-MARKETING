@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+// STEP_108 — 사이트 모드 플래그
+const SITE_MODE = process.env.NEXT_PUBLIC_SITE_MODE || 'full'
+const IS_CPA_ONLY = SITE_MODE === 'cpa_only'
+
 export function Footer() {
     return (
         <footer className="bg-neutral-50 border-t border-neutral-200">
@@ -7,7 +11,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
                     {/* Brand */}
                     <div className="md:col-span-1">
-                        <Link href="/" className="text-lg font-bold text-neutral-900">
+                        <Link href={IS_CPA_ONLY ? "/cpa" : "/"} className="text-lg font-bold text-neutral-900">
                             OT MARKETING
                         </Link>
                         <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
@@ -33,9 +37,13 @@ export function Footer() {
                         <h4 className="text-xs font-semibold text-neutral-400 tracking-widest uppercase mb-4">서비스</h4>
                         <ul className="space-y-2.5 text-sm text-neutral-600">
                             <li><Link href="/cpa" className="hover:text-neutral-900 transition-colors">CPA 광고 신청</Link></li>
-                            <li><Link href="/landing-pages" className="hover:text-neutral-900 transition-colors">구독형 랜딩페이지</Link></li>
-                            <li><Link href="/blog-sms" className="hover:text-neutral-900 transition-colors">블로그문자</Link></li>
                             <li><Link href="/ads" className="hover:text-neutral-900 transition-colors">광고 크리에이티브</Link></li>
+                            {!IS_CPA_ONLY && (
+                                <>
+                                    <li><Link href="/landing-pages" className="hover:text-neutral-900 transition-colors">구독형 랜딩페이지</Link></li>
+                                    <li><Link href="/blog-sms" className="hover:text-neutral-900 transition-colors">블로그문자</Link></li>
+                                </>
+                            )}
                         </ul>
                     </div>
 
@@ -67,8 +75,12 @@ export function Footer() {
                                     문의하기
                                 </a>
                             </li>
-                            <li><Link href="/blog-sms/guide" className="hover:text-neutral-900 transition-colors">블로그문자 가이드</Link></li>
-                            <li><Link href="/blog-sms/faq" className="hover:text-neutral-900 transition-colors">FAQ</Link></li>
+                            {!IS_CPA_ONLY && (
+                                <>
+                                    <li><Link href="/blog-sms/guide" className="hover:text-neutral-900 transition-colors">블로그문자 가이드</Link></li>
+                                    <li><Link href="/blog-sms/faq" className="hover:text-neutral-900 transition-colors">FAQ</Link></li>
+                                </>
+                            )}
                         </ul>
                     </div>
                 </div>
