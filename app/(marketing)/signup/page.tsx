@@ -3,7 +3,7 @@ import { SignupClientForm } from "./SignupClientForm";
 
 export const metadata: Metadata = {
     title: "회원가입 — OT MARKETING",
-    description: "블로그문자는 무료로 바로 사용할 수 있어요. 1분이면 시작됩니다.",
+    description: "문자문의 만들기는 무료로 바로 사용할 수 있어요. 1분이면 시작됩니다.",
     robots: { index: false, follow: false },
 };
 
@@ -22,7 +22,7 @@ export default function SignupPage() {
                 <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 p-8">
                     <h1 className="text-2xl font-bold text-neutral-900 mb-1">OT MARKETING 시작하기</h1>
                     <p className="text-sm text-neutral-500 mb-8">
-                        블로그문자는 무료로 바로 사용할 수 있어요
+                        문자문의 만들기는 무료로 바로 사용할 수 있어요
                     </p>
 
                     <SignupClientForm />

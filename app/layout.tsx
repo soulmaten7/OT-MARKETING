@@ -30,12 +30,12 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
     title: "OT MARKETING — 마케팅에 필요한 도구, 한 곳에",
     description:
-        "구독형 랜딩페이지·CPA 광고·블로그문자. 마케팅 도구를 한 곳에서. 코딩 없이 5분 만에 시작하세요.",
+        "구독형 랜딩페이지·CPA 광고·문자문의 만들기. 마케팅 도구를 한 곳에서. 코딩 없이 5분 만에 시작하세요.",
     keywords:
-        "구독형 랜딩페이지, CPA 광고대행, 블로그문자, 마케팅 자동화, 랜딩페이지 구독, 블로그 문자 자동화, 개인회생 CPA, 다업종 CPA",
+        "구독형 랜딩페이지, CPA 광고대행, 문자문의 만들기, 마케팅 자동화, 랜딩페이지 구독, SMS 문의 버튼, 개인회생 CPA, 다업종 CPA",
     openGraph: {
         title: "OT MARKETING — 마케팅에 필요한 도구, 한 곳에",
-        description: "구독형 랜딩페이지·CPA 광고·블로그문자. 마케팅 도구를 한 곳에서.",
+        description: "구독형 랜딩페이지·CPA 광고·문자문의 만들기. 마케팅 도구를 한 곳에서.",
         type: "website",
         locale: "ko_KR",
     },

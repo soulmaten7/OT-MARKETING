@@ -6,11 +6,11 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-    title: "블로그문자 — OT MARKETING (완전 무료)",
+    title: "문자문의 만들기 — OT MARKETING (완전 무료)",
     description:
         "블로그·인스타·명함에 문자 버튼 연결하는 가장 빠른 방법. 회원가입 1분, 평생 100% 무료, 결제 정보 0건. 14 업종 템플릿 즉시 사용.",
     openGraph: {
-        title: "블로그문자 — OT MARKETING (완전 무료)",
+        title: "문자문의 만들기 — OT MARKETING (완전 무료)",
         description: "블로그·인스타·명함에 문자 버튼 연결하는 가장 빠른 방법. 평생 100% 무료. 결제 정보 0건.",
         type: "website",
     },
@@ -234,7 +234,7 @@ export default function BlogSmsLanding() {
                                 <Badge variant="primary" className="mb-3">더 강력한 DB 수집</Badge>
                                 <h3 className="text-xl font-bold text-neutral-900 mb-2">구독형 랜딩페이지</h3>
                                 <p className="text-sm text-neutral-600 leading-relaxed">
-                                    블로그문자보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요.<br />
+                                    문자문의 만들기보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요.<br />
                                     업종별 검증된 전환 패턴 + DB 자동 수집.
                                 </p>
                             </div>

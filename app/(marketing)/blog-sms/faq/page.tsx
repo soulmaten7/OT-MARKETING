@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Q&A — OTMarketing 블로그문자",
+    title: "Q&A — OTMarketing 문자문의 만들기",
     description: "자주 묻는 질문 12 가지. 무료 여부·비용·번호·결제·데이터 보안 등.",
 };
 
@@ -12,7 +12,7 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
         a: (
             <>
                 네. 회원가입·페이지 발급·SMS 링크·OG 이미지 자동 생성 모두 평생 무료입니다.
-                향후 출시할 구독형 랜딩페이지는 별도 Pro 티어로 운영될 예정이지만, 블로그문자 자체는
+                향후 출시할 구독형 랜딩페이지는 별도 Pro 티어로 운영될 예정이지만, 문자문의 만들기 자체는
                 계속 무료로 유지됩니다.
             </>
         ),
@@ -109,7 +109,7 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
         q: "결제 기능은 있나요?",
         a: (
             <>
-                현재 X. 블로그문자는 평생 무료이며 결제 정보를 입력 받지 않습니다. 향후 구독형
+                현재 X. 문자문의 만들기는 평생 무료이며 결제 정보를 입력 받지 않습니다. 향후 구독형
                 랜딩페이지 출시 시 카카오페이·토스 등 결제 연동을 검토 예정입니다.
             </>
         ),

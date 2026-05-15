@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { GUIDES } from "@/lib/blog-sms/guides";
 
 export const metadata: Metadata = {
-    title: "활용 가이드 22선 — OTMarketing 블로그문자",
+    title: "활용 가이드 22선 — OTMarketing 문자문의 만들기",
     description: "블로그·인스타·명함·QR·070 자동화·법규 안전 zone 까지 22 가지 실전 가이드.",
 };
 
@@ -14,7 +14,7 @@ export default function GuideIndexPage() {
                 <header className="text-center mb-14">
                     <span className="eyebrow">22 가지 실전 가이드</span>
                     <h1 className="font-display text-4xl md:text-5xl font-bold text-[var(--navy-900)] mt-3 mb-4">
-                        블로그문자 활용 가이드
+                        문자문의 만들기 활용 가이드
                     </h1>
                     <p className="text-lg text-[var(--slate-700)] max-w-2xl mx-auto">
                         블로그 본문 끝 박기 · 인스타 프로필 · 명함 QR · 070 자동화 · 법규 안전 zone 까지.

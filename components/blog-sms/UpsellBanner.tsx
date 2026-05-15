@@ -9,7 +9,7 @@ export function UpsellBanner() {
                         더 강력한 DB 수집이 필요하세요?
                     </p>
                     <p className="text-primary-600 text-sm">
-                        블로그문자보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요.
+                        문자문의 만들기보다 더 강력한 풀 사이즈 랜딩페이지로 진짜 고객을 모으세요.
                     </p>
                 </div>
                 <Link

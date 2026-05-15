@@ -12,9 +12,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const guide = getGuide(slug);
-    if (!guide) return { title: "가이드 — OTMarketing 블로그문자" };
+    if (!guide) return { title: "가이드 — OTMarketing 문자문의 만들기" };
     return {
-        title: `${guide.title} — OTMarketing 블로그문자`,
+        title: `${guide.title} — OTMarketing 문자문의 만들기`,
         description: guide.summary,
     };
 }
@@ -70,7 +70,7 @@ export default async function GuideDetailPage({ params }: Props) {
                     <div className="mt-12 rounded-2xl bg-gradient-to-r from-[var(--navy-900)] to-[var(--gold-600)] p-7 text-white">
                         <h3 className="font-bold text-2xl mb-2">곧 출시 — 구독형 랜딩페이지</h3>
                         <p className="mb-5 text-white/85">
-                            블로그문자가 답신을 만들면, 구독형 랜딩페이지는 매출을 만듭니다. 사전 등록자에게 1순위 알림.
+                            문자문의 만들기가 답신을 만들면, 구독형 랜딩페이지는 매출을 만듭니다. 사전 등록자에게 1순위 알림.
                         </p>
                         <Link
                             href="/landing-pages"

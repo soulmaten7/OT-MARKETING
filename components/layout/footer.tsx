@@ -41,7 +41,7 @@ export function Footer() {
                             {!IS_CPA_ONLY && (
                                 <>
                                     <li><Link href="/landing-pages" className="hover:text-neutral-900 transition-colors">구독형 랜딩페이지</Link></li>
-                                    <li><Link href="/blog-sms" className="hover:text-neutral-900 transition-colors">블로그문자</Link></li>
+                                    <li><Link href="/blog-sms" className="hover:text-neutral-900 transition-colors">문자문의 만들기</Link></li>
                                 </>
                             )}
                         </ul>
@@ -77,7 +77,7 @@ export function Footer() {
                             </li>
                             {!IS_CPA_ONLY && (
                                 <>
-                                    <li><Link href="/blog-sms/guide" className="hover:text-neutral-900 transition-colors">블로그문자 가이드</Link></li>
+                                    <li><Link href="/blog-sms/guide" className="hover:text-neutral-900 transition-colors">문자문의 만들기 가이드</Link></li>
                                     <li><Link href="/blog-sms/faq" className="hover:text-neutral-900 transition-colors">FAQ</Link></li>
                                 </>
                             )}

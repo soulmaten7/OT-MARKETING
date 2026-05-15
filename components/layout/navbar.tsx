@@ -16,9 +16,9 @@ const DEV_BYPASS_AUTH = process.env.NEXT_PUBLIC_DEV_BYPASS_AUTH === "true";
 const NAV_ITEMS = IS_CPA_ONLY
     ? [{ label: "CPA 광고", href: "/cpa" }]
     : [
-        { label: "랜딩페이지", href: "/landing-pages" },
+        { label: "구독형 랜딩페이지", href: "/landing-pages" },
         { label: "CPA 광고", href: "/cpa" },
-        { label: "블로그문자", href: "/blog-sms" },
+        { label: "문자문의 만들기", href: "/blog-sms" },
     ]
 
 export function Navbar() {

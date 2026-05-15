@@ -8,10 +8,10 @@ import { Badge } from "@/components/ui/Badge";
 export const metadata: Metadata = {
     title: "요금제 — OT MARKETING",
     description:
-        "구독형 랜딩페이지 단일 플랜 + 블로그문자 무료 + CPA 광고 건당 정산. 필요한 만큼만 사용하세요.",
+        "구독형 랜딩페이지 단일 플랜 + 문자문의 만들기 무료 + CPA 광고 건당 정산. 필요한 만큼만 사용하세요.",
     openGraph: {
         title: "요금제 — OT MARKETING",
-        description: "구독형 랜딩페이지 단일 플랜. 블로그문자는 완전 무료로 시작하세요.",
+        description: "구독형 랜딩페이지 단일 플랜. 문자문의 만들기는 완전 무료로 시작하세요.",
         type: "website",
     },
 };
@@ -41,7 +41,7 @@ const FAQ_ITEMS = [
         a: "[답변 입력]",
     },
     {
-        q: "블로그문자는 정말 무료인가요?",
+        q: "문자문의 만들기는 정말 무료인가요?",
         a: "네, 신용카드 등록 없이 가입만 하면 됩니다. 결제 정보 불필요.",
     },
     {
@@ -65,7 +65,7 @@ export default function PricingPage() {
                     </h1>
                     <p className="mt-6 text-lg text-neutral-500 leading-relaxed">
                         필요한 만큼만. 구독형 랜딩페이지는 단일 플랜으로,<br />
-                        블로그문자는 완전 무료로 시작하세요.
+                        문자문의 만들기는 완전 무료로 시작하세요.
                     </p>
                 </div>
             </Section>
@@ -111,16 +111,16 @@ export default function PricingPage() {
                 </div>
             </Section>
 
-            {/* 보조 카드 — 블로그문자 + CPA */}
+            {/* 보조 카드 — 문자문의 만들기 + CPA */}
             <Section variant="white" size="lg">
                 <SectionHeader>
                     <SectionTitle>다른 서비스</SectionTitle>
                 </SectionHeader>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    {/* 블로그문자 — 무료 */}
+                    {/* 문자문의 만들기 — 무료 */}
                     <Card className="p-6">
                         <Badge variant="success">무료</Badge>
-                        <h3 className="text-xl font-bold text-neutral-900 mt-3">블로그문자</h3>
+                        <h3 className="text-xl font-bold text-neutral-900 mt-3">문자문의 만들기</h3>
                         <p className="text-sm text-neutral-500 mt-2 leading-relaxed">
                             블로그 콘텐츠 + 문자 자동화.<br />가입만 하면 바로 사용.
                         </p>
@@ -187,7 +187,7 @@ export default function PricingPage() {
                         지금 무료로 시작하고,<br />필요할 때 구독하세요
                     </h2>
                     <p className="mt-4 text-base text-primary-700">
-                        블로그문자는 무료. 구독형 랜딩페이지는 언제든 시작할 수 있어요.
+                        문자문의 만들기는 무료. 구독형 랜딩페이지는 언제든 시작할 수 있어요.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                         <Link

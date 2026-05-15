@@ -126,13 +126,13 @@ export function DashboardClient({ userEmail, profile, landingPageCount }: Props)
                         ctaHref={landingStatus === "active" ? "/landing-pages/manage" : "/subscribe"}
                     />
 
-                    {/* 블로그문자 */}
+                    {/* 문자문의 만들기 */}
                     <FeatureCard
-                        title="블로그문자"
+                        title="문자문의 만들기"
                         description="블로그 링크를 SMS로 보내세요. 고객이 클릭하면 내용을 바로 확인합니다. 무료로 즉시 사용 가능."
                         badge="무료"
                         badgeVariant="success"
-                        ctaText="블로그문자 만들기"
+                        ctaText="문자문의 만들기 만들기"
                         ctaHref="/blog-sms/dashboard"
                     />
 
@@ -166,7 +166,7 @@ export function DashboardClient({ userEmail, profile, landingPageCount }: Props)
                 {/* 안내 문구 */}
                 <div className="mt-8 bg-primary-50 border border-primary-100 rounded-xl px-5 py-4">
                     <p className="text-sm text-primary-700">
-                        <strong>블로그문자는 무료</strong>로 지금 바로 사용할 수 있어요.
+                        <strong>문자문의 만들기는 무료</strong>로 지금 바로 사용할 수 있어요.
                         랜딩페이지 구독이나 CPA 광고 신청은 언제든지 업그레이드할 수 있습니다.
                     </p>
                 </div>
