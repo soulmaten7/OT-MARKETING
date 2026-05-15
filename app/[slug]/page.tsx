@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
 import { LandingTemplate } from "@/components/landing/LandingTemplate";
 import { BoglawLandingTemplate } from "@/components/landing/BoglawLandingTemplate";
+import { DefaultLandingTemplate } from "@/components/landing/DefaultLandingTemplate";
 import { getIndustryConfig, getIndustryConfigByNumber, industrySlugs } from "@/lib/industries";
 import { isSampleSlug, parseAdvertiserSlug, getAdvertiserBySlug } from "@/lib/advertisers";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
+import type { LandingConfig } from "@/lib/supabase/types";
 import type { Metadata, Viewport } from "next";
 
 // STEP_70 — select11 (보광) viewport user-scalable=no (모바일 폼 UX 강제)
@@ -238,26 +241,53 @@ export default async function OperationSlugPage({ params }: PageProps) {
 
     // 광고주별 슬러그 (select{N}{n})
     const parsed = parseAdvertiserSlug(slug);
-    if (!parsed) notFound();
+    if (parsed) {
+        const sampleSlug = `select${parsed.industryNumber}`;
+        if (!getIndustryConfig(sampleSlug)) notFound();
 
-    const sampleSlug = `select${parsed.industryNumber}`;
-    if (!getIndustryConfig(sampleSlug)) notFound();
+        const advertiser = await getAdvertiserBySlug(slug);
+        if (!advertiser) notFound();
 
-    const advertiser = await getAdvertiserBySlug(slug);
-    if (!advertiser) notFound();
+        return (
+            <LandingTemplate
+                slug={sampleSlug}
+                brand={{
+                    companyName: advertiser.companyName,
+                    businessNumber: advertiser.businessNumber,
+                    contactPerson: advertiser.contactPerson,
+                    phone: advertiser.phone,
+                    mandatoryNote: advertiser.industryRegistration
+                        ? `등록 전문분야: ${advertiser.industryRegistration}`
+                        : undefined,
+                }}
+            />
+        );
+    }
 
-    return (
-        <LandingTemplate
-            slug={sampleSlug}
-            brand={{
-                companyName: advertiser.companyName,
-                businessNumber: advertiser.businessNumber,
-                contactPerson: advertiser.contactPerson,
-                phone: advertiser.phone,
-                mandatoryNote: advertiser.industryRegistration
-                    ? `등록 전문분야: ${advertiser.industryRegistration}`
-                    : undefined,
-            }}
-        />
-    );
+    // STEP_107 — 구독형 LP (landing_pages 테이블) 동적 발행 라우트
+    // select1·select11·select{N}·select{N}{n} 처리 후 여기에 도달 = 커스텀 slug
+    if (isSupabaseConfigured()) {
+        try {
+            const supabase = await createClient();
+            const { data: lp } = await supabase
+                .from("landing_pages")
+                .select("config, industry")
+                .eq("slug", slug)
+                .eq("status", "published")
+                .maybeSingle();
+
+            if (lp) {
+                return (
+                    <DefaultLandingTemplate
+                        config={lp.config as Partial<LandingConfig>}
+                        slug={slug}
+                    />
+                );
+            }
+        } catch {
+            // Supabase 오류 시 fallthrough → notFound()
+        }
+    }
+
+    notFound();
 }

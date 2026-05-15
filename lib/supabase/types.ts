@@ -41,6 +41,29 @@ export type IndustryTemplate = {
     display_order: number;
 };
 
+// STEP_107 — DefaultLandingTemplate placeholder 14 영역 config 타입
+export type LandingConfig = {
+    brandName: string;
+    brandColor: string;
+    brandIcon: string;
+    step1Question: string;
+    step1Options: string[];
+    step1Note: string;
+    step2Question: string;
+    step2Options: string[];
+    step3Question: string;
+    step3Placeholder: string;
+    page2Copy: string;
+    consentRequired: string;
+    consentOptional: string;
+    companyName: string;
+    companyRep: string;
+    companyBizNum: string;
+    companyAddress: string;
+    legalNote: string;
+    ctaText: string;
+};
+
 // STEP_106 — 구독형 랜딩페이지 테이블 타입
 export type LandingPage = {
     id: string;
@@ -49,7 +72,7 @@ export type LandingPage = {
     industry: string;
     title: string;
     status: "draft" | "published" | "paused";
-    config: Record<string, unknown>;
+    config: Partial<LandingConfig>;
     submission_count: number;
     published_at: string | null;
     created_at: string;

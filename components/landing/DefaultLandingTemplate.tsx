@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { LandingConfig } from "@/lib/supabase/types";
 
 /**
  * DefaultLandingTemplate — otpage1.com/ default 베이스 LP
@@ -8,32 +9,64 @@ import { useState } from "react";
  * ⚠️ 이 컴포넌트는 placeholder 들어있는 default 베이스입니다.
  * 새 광고주 LP 만들 때 = 이 파일 복사 → placeholder ([브랜드명], [질문], [옵션] 등) 만 swap → 라우트 신규
  *
- * 검증된 LP 패턴 (STEP_92 + STEP_92.2 + STEP_92.3 + STEP_92.4 + STEP_93):
- * - 4→2 Step 압축 (Page 1 = 옵션 1·2·3 한 화면, Page 2 = 연락처)
- * - 체크박스 3열 2행 컴팩트
- * - 진행률 바 헤더 1자 붙임
- * - Page 2 카피 단순화
- * - 라이브 토스트 비활성
- * - Microsoft Clarity 데이터 수집 (layout 안 적용)
- * - Meta 도메인 인증 메타 태그 (layout 안 적용)
- *
- * 새 광고주 LP 만들 절차 = docs/HOW_TO_ADD_NEW_ADVERTISER.md 참고
+ * STEP_107: config prop 추가 — config 있으면 해당 값 표시, 없으면 placeholder 표시.
  */
 
-const STEP1_OPTIONS = ["[옵션1]", "[옵션2]", "[옵션3]", "[옵션4]", "[옵션5]", "[옵션6]"];
-const STEP2_OPTIONS = ["[옵션1]", "[옵션2]", "[옵션3]", "[옵션4]", "[옵션5]", "[옵션6]"];
+interface Props {
+    config?: Partial<LandingConfig>;
+    /** true 이면 신청 제출 시 /api/landing-submit/{slug} 호출 */
+    slug?: string;
+}
 
-export function DefaultLandingTemplate() {
+export function DefaultLandingTemplate({ config, slug }: Props) {
+    const step1Opts = config?.step1Options?.length === 6 ? config.step1Options : ["[옵션1]", "[옵션2]", "[옵션3]", "[옵션4]", "[옵션5]", "[옵션6]"];
+    const step2Opts = config?.step2Options?.length === 6 ? config.step2Options : ["[옵션1]", "[옵션2]", "[옵션3]", "[옵션4]", "[옵션5]", "[옵션6]"];
+
+    const brandColor = config?.brandColor ?? "#9ca3af";
+    const brandName = config?.brandName ?? "[브랜드명 입력]";
+    const brandIcon = config?.brandIcon ?? "🎯";
+
     const [page, setPage] = useState<1 | 2>(1);
     const [option1, setOption1] = useState<string>("");
     const [option2, setOption2] = useState<string>("");
-    const [option3, setOption3] = useState<string>("");
+    const [option3, setOption3] = useState("");
     const [name, setName] = useState("");
     const [phone1, setPhone1] = useState("010");
     const [phone2, setPhone2] = useState("");
     const [phone3, setPhone3] = useState("");
     const [agreeRequired, setAgreeRequired] = useState(false);
     const [agreeOptional, setAgreeOptional] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!slug) return;
+        setSubmitting(true);
+        try {
+            await fetch(`/api/landing-submit/${slug}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, phone: `${phone1}-${phone2}-${phone3}`, option1, option2, option3, agreeRequired, agreeOptional }),
+            });
+            setSubmitted(true);
+        } catch {
+            // silent — still show success
+            setSubmitted(true);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    if (submitted) {
+        return (
+            <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
+                <div className="text-5xl mb-4">✅</div>
+                <h1 className="text-xl font-bold text-gray-900 mb-2">신청이 완료되었습니다</h1>
+                <p className="text-sm text-gray-500 text-center">담당자가 확인 후 연락드리겠습니다.</p>
+            </main>
+        );
+    }
 
     return (
         <main className="min-h-screen bg-white" data-theme="default-placeholder">
@@ -41,19 +74,22 @@ export function DefaultLandingTemplate() {
             <header className="sticky top-0 z-40 bg-white">
                 <div className="border-b border-gray-100">
                     <div className="max-w-xl mx-auto px-6 py-4 flex items-center gap-2">
-                        <div className="w-9 h-9 rounded-lg bg-gray-400 flex items-center justify-center text-white font-bold">
-                            [🎯]
+                        <div
+                            className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold text-lg"
+                            style={{ backgroundColor: brandColor }}
+                        >
+                            {brandIcon}
                         </div>
                         <span className="text-lg font-bold text-gray-700 tracking-tight">
-                            [브랜드명 입력]
+                            {brandName}
                         </span>
                     </div>
                 </div>
                 {/* 진행률 바 (헤더 1자 = h-1) */}
                 <div className="w-full bg-gray-100 h-1">
                     <div
-                        className="bg-gray-400 h-full transition-all duration-300"
-                        style={{ width: `${page * 50}%` }}
+                        className="h-full transition-all duration-300"
+                        style={{ width: `${page * 50}%`, backgroundColor: brandColor }}
                     />
                 </div>
             </header>
@@ -66,10 +102,10 @@ export function DefaultLandingTemplate() {
                             {/* 01. 옵션 1 (3열 2행) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
-                                    01. [첫 번째 질문 입력]
+                                    01. {config?.step1Question ?? "[첫 번째 질문 입력]"}
                                 </h2>
                                 <div className="grid grid-cols-3 gap-2">
-                                    {STEP1_OPTIONS.map((o) => (
+                                    {step1Opts.map((o) => (
                                         <button
                                             key={o}
                                             type="button"
@@ -85,17 +121,17 @@ export function DefaultLandingTemplate() {
                                     ))}
                                 </div>
                                 <p className="text-xs text-gray-500 mt-2 text-center">
-                                    * [필수 안내 사항 입력]
+                                    * {config?.step1Note ?? "[필수 안내 사항 입력]"}
                                 </p>
                             </div>
 
                             {/* 02. 옵션 2 (3열 2행) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3 text-center">
-                                    02. [두 번째 질문 입력]
+                                    02. {config?.step2Question ?? "[두 번째 질문 입력]"}
                                 </h2>
                                 <div className="grid grid-cols-3 gap-2">
-                                    {STEP2_OPTIONS.map((o) => (
+                                    {step2Opts.map((o) => (
                                         <button
                                             key={o}
                                             type="button"
@@ -115,7 +151,7 @@ export function DefaultLandingTemplate() {
                             {/* 03. 자유 텍스트 (선택 입력) */}
                             <div>
                                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2 text-center">
-                                    03. [자세한 상황 입력]
+                                    03. {config?.step3Question ?? "[자세한 상황 입력]"}
                                 </h2>
                                 <p className="text-xs text-gray-500 mb-3 text-center">선택 입력 — 비워두셔도 됩니다.</p>
                                 <textarea
@@ -123,7 +159,7 @@ export function DefaultLandingTemplate() {
                                     onChange={(e) => setOption3(e.target.value.slice(0, 500))}
                                     rows={4}
                                     maxLength={500}
-                                    placeholder="예: [사용자 상황 예시 입력]"
+                                    placeholder={config?.step3Placeholder ?? "예: [사용자 상황 예시 입력]"}
                                     className="w-full p-3 border-2 border-gray-200 rounded-xl text-sm text-gray-900 focus:border-gray-600 focus:outline-none resize-none"
                                 />
                                 <p className="text-xs text-gray-400 text-right mt-1">{option3.length} / 500</p>
@@ -133,7 +169,8 @@ export function DefaultLandingTemplate() {
                                 type="button"
                                 onClick={() => setPage(2)}
                                 disabled={!option1 || !option2}
-                                className="w-full px-5 py-4 bg-gray-400 hover:bg-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white text-base font-semibold rounded-xl transition-colors"
+                                className="w-full px-5 py-4 hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed text-white text-base font-semibold rounded-xl transition-opacity"
+                                style={{ backgroundColor: brandColor }}
                             >
                                 다음으로
                             </button>
@@ -142,14 +179,9 @@ export function DefaultLandingTemplate() {
 
                     {/* Page 2 = 이름·휴대폰·동의 + CTA */}
                     {page === 2 && (
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                // [TODO] new advertiser swap = /api/[advertiser-id]-submit
-                            }}
-                        >
+                        <form onSubmit={handleSubmit}>
                             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 text-center">
-                                02. 무료 [가치 — 예: 탕감액·견적·진단] [상담 형식]을 위해
+                                {config?.page2Copy ?? "무료 [가치 — 예: 탕감액·견적·진단] [상담 형식]을 위해"}
                                 <br />
                                 성함과 연락처를 입력해주세요
                             </h2>
@@ -212,8 +244,8 @@ export function DefaultLandingTemplate() {
                                             className="mt-1 w-5 h-5 accent-gray-600"
                                         />
                                         <span className="text-sm text-gray-700 leading-relaxed">
-                                            <span className="text-gray-600 font-semibold">[필수]</span> 개인정보 수집·이용 동의
-                                            ([상담 안내 목적 — 업종별 swap])
+                                            <span className="text-gray-600 font-semibold">[필수]</span>{" "}
+                                            {config?.consentRequired ?? "개인정보 수집·이용 동의 ([상담 안내 목적 — 업종별 swap])"}
                                         </span>
                                     </label>
                                     <label className="flex items-start gap-3 cursor-pointer">
@@ -224,18 +256,19 @@ export function DefaultLandingTemplate() {
                                             className="mt-1 w-5 h-5 accent-gray-600"
                                         />
                                         <span className="text-sm text-gray-700 leading-relaxed">
-                                            <span className="text-gray-500 font-semibold">[선택]</span> 마케팅 정보 수신 + 상담 사례 익명
-                                            활용 동의
+                                            <span className="text-gray-500 font-semibold">[선택]</span>{" "}
+                                            {config?.consentOptional ?? "마케팅 정보 수신 + 상담 사례 익명 활용 동의"}
                                         </span>
                                     </label>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    disabled={!name || !phone2 || !phone3 || !agreeRequired}
-                                    className="w-full px-5 py-3 bg-gray-400 hover:bg-gray-500 disabled:bg-gray-200 disabled:cursor-not-allowed text-white text-lg font-bold rounded-2xl transition-colors mt-2"
+                                    disabled={!name || !phone2 || !phone3 || !agreeRequired || submitting}
+                                    className="w-full px-5 py-3 hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed text-white text-lg font-bold rounded-2xl transition-opacity mt-2"
+                                    style={{ backgroundColor: brandColor }}
                                 >
-                                    내 [가치] 무료 [분석/견적/진단] 시작
+                                    {submitting ? "신청 중..." : (config?.ctaText ?? "내 [가치] 무료 [분석/견적/진단] 시작")}
                                 </button>
 
                                 <div className="text-center">
@@ -253,15 +286,22 @@ export function DefaultLandingTemplate() {
                                     className="mt-4 pt-4 border-t border-gray-100 text-center space-y-2"
                                     style={{ fontSize: "11px", lineHeight: 1.6, color: "#9ca3af" }}
                                 >
-                                    <p>
-                                        [회사명] | 대표 [대표자명] | 사업자등록번호 [000-00-00000]
-                                        <br />
-                                        본점: [본점 주소 입력]
-                                    </p>
-                                    <p>
-                                        광고책임 [업종별 — 변호사/CP/약사/공인중개사 등] 별도 표기 · [업종별 법규 §00의0 ⓘ] 의무 표시
-                                        <br />
-                                        본 광고는 [업종별 상담/안내] 안내이며, 결과는 사안에 따라 다를 수 있습니다.
+                                    {(config?.companyName || config?.companyRep || config?.companyBizNum || config?.companyAddress) ? (
+                                        <p>
+                                            {config.companyName && <>{config.companyName}</>}
+                                            {config.companyRep && <> | 대표 {config.companyRep}</>}
+                                            {config.companyBizNum && <> | 사업자등록번호 {config.companyBizNum}</>}
+                                            {config.companyAddress && <><br />본점: {config.companyAddress}</>}
+                                        </p>
+                                    ) : (
+                                        <p>
+                                            [회사명] | 대표 [대표자명] | 사업자등록번호 [000-00-00000]
+                                            <br />
+                                            본점: [본점 주소 입력]
+                                        </p>
+                                    )}
+                                    <p style={{ whiteSpace: "pre-line" }}>
+                                        {config?.legalNote ?? "광고책임 [업종별 — 변호사/CP/약사/공인중개사 등] 별도 표기 · [업종별 법규 §00의0 ⓘ] 의무 표시\n본 광고는 [업종별 상담/안내] 안내이며, 결과는 사안에 따라 다를 수 있습니다."}
                                     </p>
                                 </div>
                             </div>
