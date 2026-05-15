@@ -12,6 +12,9 @@ const NAV_ITEMS = [
     { label: "블로그문자", href: "/blog-sms" },
 ];
 
+// STEP_105 — 개발 모드 = 로그인·회원가입 버튼 대신 대시보드 바로가기
+const DEV_BYPASS_AUTH = process.env.NEXT_PUBLIC_DEV_BYPASS_AUTH === "true";
+
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -44,20 +47,31 @@ export function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Desktop Right — 로그인 + 무료 시작하기 */}
+                    {/* Desktop Right — 개발 모드 = 대시보드 / 실제 = 로그인 + 무료 시작하기 */}
                     <div className="hidden md:flex items-center gap-2">
-                        <Link
-                            href="/login"
-                            className="px-4 py-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
-                        >
-                            로그인
-                        </Link>
-                        <Link
-                            href="/signup"
-                            className="px-5 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold rounded-full transition-colors"
-                        >
-                            무료 시작하기
-                        </Link>
+                        {DEV_BYPASS_AUTH ? (
+                            <Link
+                                href="/dashboard"
+                                className="px-5 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold rounded-full transition-colors"
+                            >
+                                대시보드
+                            </Link>
+                        ) : (
+                            <>
+                                <Link
+                                    href="/login"
+                                    className="px-4 py-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
+                                >
+                                    로그인
+                                </Link>
+                                <Link
+                                    href="/signup"
+                                    className="px-5 py-2 bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold rounded-full transition-colors"
+                                >
+                                    무료 시작하기
+                                </Link>
+                            </>
+                        )}
                     </div>
 
                     {/* Mobile Toggle */}
@@ -86,20 +100,32 @@ export function Navbar() {
                             </Link>
                         ))}
                         <div className="mt-4 pt-4 border-t border-neutral-100 flex flex-col gap-2">
-                            <Link
-                                href="/login"
-                                className="px-4 py-3 text-base font-semibold text-neutral-600 hover:bg-neutral-50 rounded-xl transition-colors text-center"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                로그인
-                            </Link>
-                            <Link
-                                href="/signup"
-                                className="px-4 py-3 bg-primary-500 hover:bg-primary-600 text-white text-base font-semibold rounded-xl transition-colors text-center"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                무료 시작하기
-                            </Link>
+                            {DEV_BYPASS_AUTH ? (
+                                <Link
+                                    href="/dashboard"
+                                    className="px-4 py-3 bg-primary-500 hover:bg-primary-600 text-white text-base font-semibold rounded-xl transition-colors text-center"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    대시보드
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link
+                                        href="/login"
+                                        className="px-4 py-3 text-base font-semibold text-neutral-600 hover:bg-neutral-50 rounded-xl transition-colors text-center"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        로그인
+                                    </Link>
+                                    <Link
+                                        href="/signup"
+                                        className="px-4 py-3 bg-primary-500 hover:bg-primary-600 text-white text-base font-semibold rounded-xl transition-colors text-center"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        무료 시작하기
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
