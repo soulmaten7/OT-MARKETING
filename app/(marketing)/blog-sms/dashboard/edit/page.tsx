@@ -7,7 +7,7 @@ import { UpsellBanner } from "@/components/blog-sms/UpsellBanner";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "페이지 편집 — OTMarketing 문자문의 만들기",
+    title: "페이지 편집 — One Trillion 문자문의 만들기",
 };
 
 export const dynamic = "force-dynamic";

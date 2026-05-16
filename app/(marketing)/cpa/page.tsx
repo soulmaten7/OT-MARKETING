@@ -7,11 +7,11 @@ import { Badge } from "@/components/ui/Badge";
 import { CpaInquiryForm } from "@/components/cpa/CpaInquiryForm";
 
 export const metadata: Metadata = {
-    title: "CPA 광고 — OT MARKETING",
+    title: "CPA 광고 — One Trillion",
     description:
         "광고 소재 제작부터 랜딩페이지·DB 수집·정산까지. 성과가 나온 만큼만 정산하는 CPA 모델. 건당 정산·검증된 인프라·업종별 맞춤.",
     openGraph: {
-        title: "CPA 광고 — OT MARKETING",
+        title: "CPA 광고 — One Trillion",
         description: "검증된 광고 인프라로 실제 DB를. 건당 정산 CPA 모델.",
         type: "website",
     },

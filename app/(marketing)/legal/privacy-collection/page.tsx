@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "개인정보 수집·이용 동의 (시안)",
-    description: "OT MARKETING 개인정보 수집·이용 동의 약관 시안 (KISA 표준 양식 기반).",
+    description: "One Trillion 개인정보 수집·이용 동의 약관 시안 (KISA 표준 양식 기반).",
 };
 
 export default function PrivacyCollectionPage() {
@@ -53,7 +53,7 @@ export default function PrivacyCollectionPage() {
 
             <section className="text-xs text-gray-500 mt-12 pt-6 border-t border-gray-200">
                 <p>제정일: 2026-05-03 · 시안 v1 (STEP_44 v2 Phase 3)</p>
-                <p className="mt-1">사업자: OT MARKETING (사업자등록 진행 중)</p>
+                <p className="mt-1">사업자: OTMarketing (사업자등록 진행 중)</p>
             </section>
         </main>
     );

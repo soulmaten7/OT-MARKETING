@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Q&A — OTMarketing 문자문의 만들기",
+    title: "Q&A — One Trillion 문자문의 만들기",
     description: "자주 묻는 질문 12 가지. 무료 여부·비용·번호·결제·데이터 보안 등.",
 };
 

@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { BillingAuthButton } from "@/components/payment/BillingAuthButton";
 
 export const metadata: Metadata = {
-    title: "구독 시작 — OT MARKETING",
+    title: "구독 시작 — One Trillion",
     description: "구독형 랜딩페이지 정기결제 등록",
 };
 

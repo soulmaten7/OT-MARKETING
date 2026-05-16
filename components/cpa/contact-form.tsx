@@ -147,7 +147,7 @@ export function ContactForm() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1.5">
                                         <label htmlFor="companyName" className="text-sm font-medium">회사명 <span className="text-destructive">*</span></label>
-                                        <Input id="companyName" placeholder="OT MARKETING" className="h-11" {...form.register("companyName")} />
+                                        <Input id="companyName" placeholder="One Trillion" className="h-11" {...form.register("companyName")} />
                                         {form.formState.errors.companyName && <p className="text-xs text-destructive">{form.formState.errors.companyName.message}</p>}
                                     </div>
                                     <div className="space-y-1.5">

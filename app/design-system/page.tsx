@@ -23,7 +23,7 @@ export default function DesignSystemPage() {
 
         {/* 헤더 */}
         <div>
-          <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">OT MARKETING 디자인 시스템 v1</h1>
+          <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">One Trillion 디자인 시스템 v1</h1>
           <p className="mt-2 text-neutral-500">토스 스타일 · 뉴트럴 베이스 · 토스 블루 포인트</p>
           <div className="mt-4 flex gap-2">
             <Badge variant="primary">v1.0.0</Badge>
@@ -293,7 +293,7 @@ export default function DesignSystemPage() {
         </section>
 
         <footer className="text-center text-xs text-neutral-400 pb-8">
-          OT MARKETING Design System v1 · 토스 블루 #3182F6 · Pretendard Variable
+          One Trillion Design System v1 · 토스 블루 #3182F6 · Pretendard Variable
         </footer>
       </div>
     </main>

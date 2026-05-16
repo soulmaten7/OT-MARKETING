@@ -6,11 +6,11 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-    title: "문자문의 만들기 — OT MARKETING (완전 무료)",
+    title: "문자문의 만들기 — One Trillion (완전 무료)",
     description:
         "블로그·인스타·명함에 문자 버튼 연결하는 가장 빠른 방법. 회원가입 1분, 평생 100% 무료, 결제 정보 0건. 14 업종 템플릿 즉시 사용.",
     openGraph: {
-        title: "문자문의 만들기 — OT MARKETING (완전 무료)",
+        title: "문자문의 만들기 — One Trillion (완전 무료)",
         description: "블로그·인스타·명함에 문자 버튼 연결하는 가장 빠른 방법. 평생 100% 무료. 결제 정보 0건.",
         type: "website",
     },

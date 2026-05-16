@@ -5,7 +5,7 @@ import { DashboardClient } from "./DashboardClient";
 import type { Profile } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
-    title: "대시보드 — OT MARKETING",
+    title: "대시보드 — One Trillion",
     robots: { index: false, follow: false },
 };
 

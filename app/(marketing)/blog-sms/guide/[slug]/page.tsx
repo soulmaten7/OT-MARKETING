@@ -12,9 +12,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const guide = getGuide(slug);
-    if (!guide) return { title: "가이드 — OTMarketing 문자문의 만들기" };
+    if (!guide) return { title: "가이드 — One Trillion 문자문의 만들기" };
     return {
-        title: `${guide.title} — OTMarketing 문자문의 만들기`,
+        title: `${guide.title} — One Trillion 문자문의 만들기`,
         description: guide.summary,
     };
 }

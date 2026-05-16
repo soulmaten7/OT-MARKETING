@@ -42,10 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { username } = await params;
     const data = await loadPage(username);
     if (!data?.page) {
-        return { title: `@${username} — OTMarketing 문자문의 만들기` };
+        return { title: `@${username} — One Trillion 문자문의 만들기` };
     }
     const title = `${data.page.title} — @${username}`;
-    const description = data.page.description ?? "OTMarketing 문자문의 만들기로 만든 SMS 페이지";
+    const description = data.page.description ?? "One Trillion 문자문의 만들기로 만든 SMS 페이지";
     const images = data.page.preview_image_url
         ? [{ url: data.page.preview_image_url }]
         : undefined;
@@ -116,7 +116,7 @@ export default async function PublicUserPage({ params }: Props) {
                             href="/blog-sms"
                             className="font-semibold text-[var(--navy-900)] hover:underline"
                         >
-                            OTMarketing 문자문의 만들기
+                            One Trillion 문자문의 만들기
                         </Link>{" "}
                         — 평생 무료
                     </p>

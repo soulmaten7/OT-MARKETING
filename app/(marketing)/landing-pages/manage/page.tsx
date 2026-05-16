@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import type { LandingPage } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
-    title: "내 랜딩페이지 — OT MARKETING",
+    title: "내 랜딩페이지 — One Trillion",
     robots: { index: false, follow: false },
 };
 

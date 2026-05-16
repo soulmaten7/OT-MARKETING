@@ -65,7 +65,7 @@ export default function AdsPage() {
                     </FadeInUp>
                     <FadeIn delay={0.3}>
                         <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                            OT MARKETING 은 6 매체에 동시 광고를 운영합니다.
+                            One Trillion 은 6 매체에 동시 광고를 운영합니다.
                             <br className="hidden md:block" />
                             매체별 톤·포맷에 맞춘 크리에이티브 + 광고 → 랜딩 일체 설계.
                             <br className="hidden md:block" />

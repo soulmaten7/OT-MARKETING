@@ -6,11 +6,11 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-    title: "구독형 랜딩페이지 — OT MARKETING",
+    title: "구독형 랜딩페이지 — One Trillion",
     description:
         "코딩 없이 5분, 업종별 검증된 랜딩페이지. DB 수집에 최적화된 랜딩페이지를 월 구독으로. 개인회생·정수기·인터넷·주식·부동산·의료 6 업종.",
     openGraph: {
-        title: "구독형 랜딩페이지 — OT MARKETING",
+        title: "구독형 랜딩페이지 — One Trillion",
         description: "코딩 없이 5분, 업종별 검증된 랜딩페이지를 월 구독으로.",
         type: "website",
     },
@@ -97,7 +97,7 @@ const FAQ_ITEMS = [
     },
     {
         q: "내 도메인을 연결할 수 있나요?",
-        a: "기본은 OT MARKETING 제공 도메인 사용. 커스텀 도메인 연결은 추후 지원 예정.",
+        a: "기본은 One Trillion 제공 도메인 사용. 커스텀 도메인 연결은 추후 지원 예정.",
     },
     {
         q: "DB는 어디에 저장되나요?",

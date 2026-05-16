@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LoginClientForm } from "./LoginClientForm";
 
 export const metadata: Metadata = {
-    title: "로그인 — OT MARKETING",
+    title: "로그인 — One Trillion",
     robots: { index: false, follow: false },
 };
 
@@ -13,7 +13,7 @@ export default function LoginPage() {
                 {/* 로고 */}
                 <div className="text-center mb-8">
                     <a href="/" className="inline-block">
-                        <span className="text-2xl font-bold text-neutral-900">OT MARKETING</span>
+                        <span className="text-2xl font-bold text-neutral-900">One Trillion</span>
                     </a>
                 </div>
 

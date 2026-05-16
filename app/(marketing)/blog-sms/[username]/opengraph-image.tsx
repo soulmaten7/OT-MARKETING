@@ -4,7 +4,7 @@ import { getTemplate } from "@/lib/blog-sms/templates";
 import type { Profile, SmsPage } from "@/lib/supabase/types";
 
 export const runtime = "nodejs";
-export const alt = "OTMarketing 문자문의 만들기 페이지";
+export const alt = "One Trillion 문자문의 만들기 페이지";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,7 +16,7 @@ export default async function OgImage({
     const { username } = await params;
 
     let title = `@${username}`;
-    let description = "OTMarketing 문자문의 만들기 — 무료 SMS 답신 페이지";
+    let description = "One Trillion 문자문의 만들기 — 무료 SMS 답신 페이지";
     let industryName = "";
 
     if (isSupabaseConfigured()) {
@@ -73,7 +73,7 @@ export default async function OgImage({
                             letterSpacing: 1,
                         }}
                     >
-                        OTMarketing 문자문의 만들기
+                        One Trillion 문자문의 만들기
                     </div>
                     {industryName && (
                         <div

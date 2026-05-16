@@ -29,10 +29,10 @@ export function Navbar() {
             <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
                 <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                     {/* Logo */}
-                    <Link href={IS_CPA_ONLY ? "/cpa" : "/"} aria-label="OT MARKETING" className="flex items-center">
+                    <Link href={IS_CPA_ONLY ? "/cpa" : "/"} aria-label="One Trillion" className="flex items-center">
                         <Image
-                            src="/logo-ot-marketing-dark.png"
-                            alt="OT MARKETING"
+                            src="/logo-one-trillion.png"
+                            alt="One Trillion"
                             width={160}
                             height={40}
                             priority

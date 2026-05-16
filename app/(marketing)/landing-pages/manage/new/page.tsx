@@ -4,7 +4,7 @@ import { ArrowLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-    title: "새 랜딩페이지 만들기 — OT MARKETING",
+    title: "새 랜딩페이지 만들기 — One Trillion",
     robots: { index: false, follow: false },
 };
 

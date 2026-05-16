@@ -75,7 +75,7 @@ export function DashboardClient({ userEmail, profile, landingPageCount }: Props)
             {/* 헤더 */}
             <header className="bg-white border-b border-neutral-100 sticky top-0 z-30">
                 <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-                    <a href="/" className="text-lg font-bold text-neutral-900">OT MARKETING</a>
+                    <a href="/" className="text-lg font-bold text-neutral-900">One Trillion</a>
                     <div className="flex items-center gap-4">
                         <span className="text-sm text-neutral-500 hidden sm:block">{userEmail}</span>
                         <a
@@ -96,7 +96,7 @@ export function DashboardClient({ userEmail, profile, landingPageCount }: Props)
                         {displayName}님, 안녕하세요 👋
                     </h1>
                     <p className="mt-1 text-sm text-neutral-500">
-                        OT MARKETING 플랫폼에서 3가지 서비스를 관리하세요.
+                        One Trillion 플랫폼에서 3가지 서비스를 관리하세요.
                     </p>
                 </div>
 

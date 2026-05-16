@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { GUIDES } from "@/lib/blog-sms/guides";
 
 export const metadata: Metadata = {
-    title: "활용 가이드 22선 — OTMarketing 문자문의 만들기",
+    title: "활용 가이드 22선 — One Trillion 문자문의 만들기",
     description: "블로그·인스타·명함·QR·070 자동화·법규 안전 zone 까지 22 가지 실전 가이드.",
 };
 

@@ -24,7 +24,7 @@ export function IndustryComingSoon({ industryName, legalNote }: IndustryComingSo
                     진입 광고주와 함께 공개됩니다
                 </h3>
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-2">
-                    OT MARKETING 은 업종별 법규 가드레일을 먼저 정리한 뒤 광고를 굴립니다.
+                    One Trillion 은 업종별 법규 가드레일을 먼저 정리한 뒤 광고를 굴립니다.
                     <br />
                     {industryName} 진입 광고주와 함께 법규·금지표현·등급 분기까지 통합 정리 후 공개.
                 </p>

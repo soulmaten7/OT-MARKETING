@@ -6,7 +6,7 @@ import { UpsellBanner } from "@/components/blog-sms/UpsellBanner";
 import { getTemplate } from "@/lib/blog-sms/templates";
 
 export const metadata: Metadata = {
-    title: "내 페이지 — OTMarketing 문자문의 만들기",
+    title: "내 페이지 — One Trillion 문자문의 만들기",
 };
 
 export const dynamic = "force-dynamic";

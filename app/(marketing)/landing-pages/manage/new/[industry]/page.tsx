@@ -5,7 +5,7 @@ import { getIndustryDefault, INDUSTRY_LABELS } from "@/lib/landing/industry-defa
 import type { IndustryKey } from "@/lib/landing/industry-defaults";
 
 export const metadata: Metadata = {
-    title: "랜딩페이지 빌더 — OT MARKETING",
+    title: "랜딩페이지 빌더 — One Trillion",
     robots: { index: false, follow: false },
 };
 

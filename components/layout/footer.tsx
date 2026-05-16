@@ -12,7 +12,7 @@ export function Footer() {
                     {/* Brand */}
                     <div className="md:col-span-1">
                         <Link href={IS_CPA_ONLY ? "/cpa" : "/"} className="text-lg font-bold text-neutral-900">
-                            OT MARKETING
+                            One Trillion
                         </Link>
                         <p className="mt-3 text-sm text-neutral-500 leading-relaxed">
                             광고주가 직접 운영하는<br />마케팅 인프라.
@@ -86,8 +86,9 @@ export function Footer() {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-neutral-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs text-neutral-400">
-                    <p>© {new Date().getFullYear()} OT MARKETING. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} One Trillion. All rights reserved.</p>
                     <div className="flex flex-wrap gap-x-4 gap-y-1">
+                        <span>OTMarketing</span>
                         <span>사업자등록번호: 141-39-01329</span>
                         <span>대표: 장은태</span>
                     </div>

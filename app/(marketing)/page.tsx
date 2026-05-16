@@ -275,7 +275,7 @@ function WhySectionHeader() {
                 마케팅 도구, 따로따로 쓰지 마세요
             </h2>
             <p className="mt-3 text-base text-neutral-500">
-                OT MARKETING 하나로 콘텐츠 → 랜딩 → DB 수집까지
+                One Trillion 하나로 콘텐츠 → 랜딩 → DB 수집까지
             </p>
         </motion.div>
     );

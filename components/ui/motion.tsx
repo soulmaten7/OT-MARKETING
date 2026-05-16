@@ -5,7 +5,7 @@ import { useRef, type ReactNode } from "react";
 import CountUp from "react-countup";
 
 /**
- * OT MARKETING — Framer Motion 재사용 헬퍼
+ * One Trillion — Framer Motion 재사용 헬퍼
  * (viewport 진입 once 트리거, prefers-reduced-motion 자동 대응)
  */
 

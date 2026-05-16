@@ -24,7 +24,7 @@ export function LegalGuardrailSection() {
                         <span className="text-gradient-coral font-semibold"> 먼저 정리</span>
                     </h2>
                     <p className="text-base md:text-lg text-white/70 leading-relaxed">
-                        OT MARKETING 은 광고를 굴리기 전에 업종별 법규부터 정리합니다.
+                        One Trillion 은 광고를 굴리기 전에 업종별 법규부터 정리합니다.
                         <br className="hidden md:block" />
                         사용 가능 표현 / 금지 표현 / 등록 자격 / 의무 표기 모두 시트화 후 광고 카피 자동 검증.
                     </p>

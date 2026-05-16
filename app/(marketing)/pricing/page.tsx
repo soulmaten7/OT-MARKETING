@@ -6,11 +6,11 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-    title: "요금제 — OT MARKETING",
+    title: "요금제 — One Trillion",
     description:
         "구독형 랜딩페이지 단일 플랜 + 문자문의 만들기 무료 + CPA 광고 건당 정산. 필요한 만큼만 사용하세요.",
     openGraph: {
-        title: "요금제 — OT MARKETING",
+        title: "요금제 — One Trillion",
         description: "구독형 랜딩페이지 단일 플랜. 문자문의 만들기는 완전 무료로 시작하세요.",
         type: "website",
     },
