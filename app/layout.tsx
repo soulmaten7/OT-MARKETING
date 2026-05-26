@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import MetaPixel from "@/components/MetaPixel";
-import GoogleAdsTag from "@/components/GoogleAdsTag";
-import Clarity from "@/components/Clarity";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -25,36 +22,20 @@ const cormorant = Cormorant_Garamond({
     display: "swap",
 });
 
-// Pretendard Variable: head 의 <link> 로 CDN 로드 (next/font 미지원). var(--font-pretendard) 는 globals.css 에서 수동 매핑.
-
 export const metadata: Metadata = {
-    title: "One Trillion — 마케팅에 필요한 도구, 한 곳에",
-    description:
-        "구독형 랜딩페이지·CPA 광고·문자문의 만들기. 마케팅 도구를 한 곳에서. 코딩 없이 5분 만에 시작하세요.",
-    keywords:
-        "구독형 랜딩페이지, CPA 광고대행, 문자문의 만들기, 마케팅 자동화, 랜딩페이지 구독, SMS 문의 버튼, 개인회생 CPA, 다업종 CPA",
+    title: "OT MARKETING — CPA 광고 의뢰",
+    description: "CPA 광고 의뢰를 받습니다. 검토 후 회신 드립니다.",
     openGraph: {
-        title: "One Trillion — 마케팅에 필요한 도구, 한 곳에",
-        description: "구독형 랜딩페이지·CPA 광고·문자문의 만들기. 마케팅 도구를 한 곳에서.",
+        title: "OT MARKETING — CPA 광고 의뢰",
+        description: "CPA 광고 의뢰를 받습니다. 검토 후 회신 드립니다.",
+        url: "https://ot-marketing.kr",
+        siteName: "OT MARKETING",
         type: "website",
-        locale: "ko_KR",
-        siteName: "One Trillion",
     },
     icons: {
-        icon: [
-            { url: "/favicon.ico" },
-            { url: "/favicon-16.png", sizes: "16x16" },
-            { url: "/favicon-32.png", sizes: "32x32" },
-        ],
-        apple: "/apple-touch-icon.png",
+        icon: "/favicon.ico",
     },
-    manifest: "/manifest.json",
     robots: { index: true, follow: true },
-    // STEP_93 — Meta 도메인 인증 메타 태그 (otpage1.com)
-    // 환경변수 박힐 때만 활성 = 미박힘 시 noop (안전 deploy)
-    other: process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION
-        ? { "facebook-domain-verification": process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION }
-        : {},
 };
 
 export default function RootLayout({
@@ -74,9 +55,6 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${notoSerifKr.variable} ${cormorant.variable} font-sans antialiased bg-background text-foreground`}
             >
-                <MetaPixel />
-                <GoogleAdsTag />
-                <Clarity />
                 {children}
             </body>
         </html>

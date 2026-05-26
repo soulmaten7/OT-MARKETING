@@ -8,9 +8,13 @@ from pathlib import Path
 import numpy as np
 
 HOME = Path.home()
-INPUT_DIR = HOME / "OTMarketing/Image/01_debt_relief/광고주_법률사무소보광"
+# ⭐ 영구 자산 = Default/ 박힘 (모든 광고주 공통)
+DEFAULT_DIR = HOME / "OTMarketing/Image/01_debt_relief/Default"
+BASE_DIR = DEFAULT_DIR / "base"
+BADGE_PNG = DEFAULT_DIR / "_assets/변호사_뱃지_filled.png"
+# 광고주별 = 양산 박힌 출력 자리
+INPUT_DIR = HOME / "OTMarketing/Image/01_debt_relief/광고주_법률사무소보광"  # AD001
 FONT_DIR = HOME / "OTMarketing/ot-marketing-source/scripts/fonts"
-BADGE_PNG = INPUT_DIR / "_assets/변호사_뱃지_filled.png"
 
 # 폰트
 FONT_HEAD = ImageFont.truetype(str(FONT_DIR / "Pretendard-ExtraBold.otf"), 92)
@@ -111,7 +115,7 @@ def draw_lawyer_badge_with_text(img, anchor_y):
 
 
 def generate_one(base_id, base_filename, line1_parts, line2_text, campaign_id, region_name):
-    base_path = INPUT_DIR / base_filename
+    base_path = BASE_DIR / base_filename  # ⭐ Default/base/ 박힘 박힘
     if not base_path.exists():
         return False
 

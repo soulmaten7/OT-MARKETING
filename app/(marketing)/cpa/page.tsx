@@ -1,18 +1,17 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { Section, SectionHeader, SectionTitle, SectionDescription } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { CpaInquiryForm } from "@/components/cpa/CpaInquiryForm";
 
 export const metadata: Metadata = {
-    title: "CPA 광고 — One Trillion",
+    title: "CPA 광고 의뢰 — OT MARKETING",
     description:
         "광고 소재 제작부터 랜딩페이지·DB 수집·정산까지. 성과가 나온 만큼만 정산하는 CPA 모델. 건당 정산·검증된 인프라·업종별 맞춤.",
     openGraph: {
-        title: "CPA 광고 — One Trillion",
-        description: "검증된 광고 인프라로 실제 DB를. 건당 정산 CPA 모델.",
+        title: "CPA 광고 의뢰 — OT MARKETING",
+        description: "검증된 광고 인프라로 실제 DB를. 건당 정산 CPA 모델. 의뢰 후 검토·회신.",
         type: "website",
     },
 };
@@ -39,13 +38,13 @@ const VALUE_PROPS = [
 const HOW_IT_WORKS = [
     {
         step: "01",
-        title: "광고 문의·상담",
-        body: "업종·사업장 규모·예상 물량 검토 후 모델 A (자체 콜팀) / 모델 B (OT 콜센터 1차콜 포함) 선택. 단가·정산 주기·결제 조건 협의.",
+        title: "광고 의뢰 접수",
+        body: "업종·사업장 규모·예상 물량 검토. 모델 A (자체 콜팀) / 모델 B (OT 콜센터 1차콜 포함) 선택. 단가·정산 주기·결제 조건 협의.",
     },
     {
         step: "02",
-        title: "셋업·소재 제작",
-        body: "광고주 정보 6 항목 수령 → 광고주 명의 랜딩페이지·소재·시트 자동 셋업. 광고주가 추가로 할 일 없음.",
+        title: "검토 후 회신",
+        body: "의뢰 내용 확인 후 영업일 기준 24시간 이내 회신. 광고주 정보 6 항목 수령 → 랜딩페이지·소재·시트 자동 셋업.",
     },
     {
         step: "03",
@@ -81,8 +80,8 @@ const INFRA_ITEMS = [
         body: "신청 발생 즉시 광고주·OT 폰에 동시 발송. 골든타임(5분 이내) 콜 가능.",
     },
     {
-        title: "Meta Pixel + Google 전환 추적",
-        body: "이벤트 6개 + 도메인 인증 + Clarity 추적. 전 구간 데이터 기반 운영.",
+        title: "구글 시트 공유",
+        body: "광고주에게 시트 공유 → 실시간 DB 현황 확인 가능. 전 구간 데이터 기반 운영.",
     },
 ];
 
@@ -92,27 +91,21 @@ export default function CpaPage() {
             {/* Hero */}
             <Section variant="white" size="xl" className="pt-24 md:pt-32">
                 <div className="max-w-3xl mx-auto text-center">
-                    <Badge variant="neutral" className="mb-4">CPA 광고 · 건당 정산</Badge>
+                    <Badge variant="neutral" className="mb-4">CPA 광고 의뢰 · 건당 정산</Badge>
                     <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight leading-tight mt-3">
                         검증된 광고 인프라로<br />실제 DB를 받으세요
                     </h1>
                     <p className="mt-6 text-lg text-neutral-500 leading-relaxed">
                         광고 소재 제작부터 랜딩페이지·DB 수집·정산까지.<br />
-                        성과가 나온 만큼만 정산하는 CPA 모델.
+                        의뢰 후 검토·회신 드립니다.
                     </p>
                     <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
                         <a
                             href="#contact"
                             className="inline-flex items-center justify-center px-8 py-3.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-full text-base transition-colors"
                         >
-                            광고 문의하기
+                            광고 의뢰하기
                         </a>
-                        <Link
-                            href="/ads"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-neutral-300 text-neutral-700 hover:bg-neutral-50 font-semibold rounded-full text-base transition-colors"
-                        >
-                            광고 크리에이티브 예시 <ArrowRight className="w-4 h-4" />
-                        </Link>
                     </div>
                 </div>
             </Section>
@@ -138,7 +131,7 @@ export default function CpaPage() {
             <Section variant="white" size="lg">
                 <SectionHeader>
                     <SectionTitle>작동 방식</SectionTitle>
-                    <SectionDescription>광고 문의부터 DB 수집·정산까지 4단계.</SectionDescription>
+                    <SectionDescription>광고 의뢰부터 DB 수집·정산까지 4단계.</SectionDescription>
                 </SectionHeader>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {HOW_IT_WORKS.map((item) => (
@@ -156,7 +149,7 @@ export default function CpaPage() {
                 <SectionHeader>
                     <SectionTitle>검증된 인프라</SectionTitle>
                     <SectionDescription>
-                        사장이 직접 운영하며 검증한 시스템. 광고주는 계약만 하면 됩니다.
+                        직접 운영하며 검증한 시스템. 광고주는 의뢰만 하면 됩니다.
                     </SectionDescription>
                 </SectionHeader>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -169,33 +162,13 @@ export default function CpaPage() {
                 </div>
             </Section>
 
-            {/* 광고 크리에이티브 갤러리 링크 (Case A) */}
-            <Section variant="white" size="md">
-                <div className="max-w-2xl mx-auto text-center">
-                    <Badge variant="primary" className="mb-4">6 업종 × 6 매체 = 36 크리에이티브</Badge>
-                    <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mt-3">
-                        광고 크리에이티브 예시
-                    </h2>
-                    <p className="mt-4 text-neutral-500 text-base leading-relaxed">
-                        개인회생·정수기·인터넷·주식·부동산·의료 — 6 업종 × Meta·Google·당근·Naver·카카오·OG 6 매체.<br />
-                        실제 운영 중인 크리에이티브 36개를 직접 확인하세요.
-                    </p>
-                    <Link
-                        href="/ads"
-                        className="inline-flex items-center justify-center gap-2 mt-8 px-8 py-3.5 border border-neutral-300 text-neutral-700 hover:bg-neutral-50 font-semibold rounded-full text-base transition-colors"
-                    >
-                        광고 크리에이티브 전체 보기 <ArrowRight className="w-4 h-4" />
-                    </Link>
-                </div>
-            </Section>
-
             {/* 광고 문의 폼 */}
-            <Section variant="muted" size="lg" id="contact">
+            <Section variant="white" size="lg" id="contact">
                 <div className="max-w-2xl mx-auto">
                     <SectionHeader>
-                        <SectionTitle>광고 문의</SectionTitle>
+                        <SectionTitle>광고 의뢰</SectionTitle>
                         <SectionDescription>
-                            담당자가 내용 확인 후 영업일 기준 24시간 이내 회신드립니다.
+                            내용 확인 후 영업일 기준 24시간 이내 회신 드립니다.
                         </SectionDescription>
                     </SectionHeader>
                     <Card className="p-8">

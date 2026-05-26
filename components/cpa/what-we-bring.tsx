@@ -54,7 +54,7 @@ export function WhatWeBring() {
                         다른 CPA 대행과의 <span className="text-gradient-coral font-semibold">4가지 차이</span>
                     </h2>
                     <p className="text-base md:text-lg text-[var(--slate-600)] leading-relaxed">
-                        One Trillion 의 운영 시스템은 광고주가 안심하고 본업에만 집중할 수 있도록
+                        OT MARKETING 의 운영 시스템은 광고주가 안심하고 본업에만 집중할 수 있도록
                         <br className="hidden md:block" />
                         법규·등급 분기·명의 분리·데이터 추적까지 자동화되어 있습니다.
                     </p>

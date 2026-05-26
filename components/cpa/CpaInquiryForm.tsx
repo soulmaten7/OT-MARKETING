@@ -118,7 +118,7 @@ export function CpaInquiryForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label className={labelCls}>회사명 <span className="text-red-500">*</span></label>
-                    <input className={inputCls} placeholder="One Trillion" value={form.companyName}
+                    <input className={inputCls} placeholder="OT MARKETING" value={form.companyName}
                         onChange={(e) => set("companyName", e.target.value)} />
                     {errors.companyName && <p className={errCls}>{errors.companyName}</p>}
                 </div>
