@@ -1,0 +1,75 @@
+"use client";
+import { Mic, Menu } from "lucide-react";
+import Image from "next/image";
+import { getAdImageSrc } from "@/lib/adsImageMap";
+import { getMockupCopy } from "@/lib/industry-mockup-copy";
+
+interface NaverSearchMockupProps {
+    industry?: string;
+}
+
+export function NaverSearchMockup({ industry = "select1" }: NaverSearchMockupProps = {}) {
+    const imageSrc = getAdImageSrc(industry, "naver");
+    const copy = getMockupCopy(industry);
+    return (
+        <div className="w-full h-full flex flex-col bg-white" style={{ fontFamily: 'Pretendard, system-ui, "Apple SD Gothic Neo", sans-serif' }}>
+            {/* 검색바 */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-white border-b border-gray-200">
+                <div className="w-7 h-7 bg-[#03C75A] text-white font-black text-[12px] flex items-center justify-center rounded">N</div>
+                <div className="flex-1 flex items-center gap-1.5 bg-gray-50 px-2 py-1 rounded-md">
+                    <span className="text-[12px] text-[#1F1F1F] font-semibold flex-1">{copy.naverKeyword}</span>
+                    <Mic className="w-3.5 h-3.5 text-[#03C75A]" />
+                </div>
+                <Menu className="w-4 h-4 text-gray-700" />
+            </div>
+
+            {/* 카테고리 탭 */}
+            <div className="flex items-center gap-3 px-3 py-1.5 border-b border-gray-100 overflow-x-auto flex-shrink-0">
+                <span className="text-[11px] font-bold text-[#03C75A] border-b-2 border-[#03C75A] pb-1">VIEW</span>
+                <span className="text-[11px] text-gray-600">통합</span>
+                <span className="text-[11px] text-gray-600">이미지</span>
+                <span className="text-[11px] text-gray-600">지식iN</span>
+                <span className="text-[11px] text-gray-600">동영상</span>
+            </div>
+
+            {/* 광고 영역 */}
+            <div className="flex-1 px-3 py-3 bg-gradient-to-b from-[#FFF8F0] to-white relative overflow-hidden">
+                <Image
+                    src={imageSrc}
+                    alt="가상 결정문 - 회생법원 인가 통지"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover opacity-15 z-0"
+                />
+                <div className="relative z-20">
+                    <div className="inline-block bg-[#FF6F00] text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2">광고</div>
+                    <div className="text-[10px] text-[#03C75A] font-semibold mb-1">{copy.naverDomain}</div>
+                    <div className="text-[15px] font-bold text-[#1F1F1F] leading-snug mb-2">
+                        {copy.naverTitle}
+                    </div>
+                    <div className="text-[10px] text-gray-700 leading-relaxed mb-3">
+                        {copy.naverDesc}
+                    </div>
+                    {/* 사이트링크 */}
+                    <div className="grid grid-cols-2 gap-1.5 mb-3">
+                        {copy.naverSitelinks.map((s) => (
+                            <div key={s} className="text-[10px] text-[#03C75A] border border-[#03C75A]/30 px-2 py-1 rounded text-center">
+                                {s}
+                            </div>
+                        ))}
+                    </div>
+                    {/* 강조 박스 */}
+                    <div className="bg-[#FFF0E0] border-l-4 border-[#FF6F00] px-3 py-2 rounded-r mb-3">
+                        <div className="text-[10px] font-bold text-[#1F1F1F]">{copy.naverHighlight}</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 유기 결과 */}
+            <div className="px-3 py-2 border-t border-gray-100 bg-gray-50 flex-shrink-0">
+                <div className="text-[9px] text-gray-400 font-bold mb-1">관련 검색</div>
+                <div className="text-[10px] text-gray-600">{copy.naverRelated}</div>
+            </div>
+        </div>
+    );
+}
