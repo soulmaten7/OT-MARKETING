@@ -203,30 +203,6 @@ export default function HomePage() {
             {/* 7. 법규 가드레일 */}
             <LegalGuardrailSection />
 
-            {/* 8. FAQ */}
-            <Section variant="muted" size="lg">
-                <SectionHeader>
-                    <FadeInUp>
-                        <SectionTitle>광고주가 자주 묻는 질문</SectionTitle>
-                        <SectionDescription>의뢰 전 궁금한 6 가지.</SectionDescription>
-                    </FadeInUp>
-                </SectionHeader>
-                <StaggerContainer
-                    stagger={0.06}
-                    delayChildren={0.1}
-                    className="max-w-3xl mx-auto space-y-4"
-                >
-                    {FAQ_ITEMS.map((item) => (
-                        <StaggerItem key={item.q}>
-                            <Card className="p-6">
-                                <h3 className="font-bold text-neutral-900 mb-2">Q. {item.q}</h3>
-                                <p className="text-sm text-neutral-600 leading-relaxed">A. {item.a}</p>
-                            </Card>
-                        </StaggerItem>
-                    ))}
-                </StaggerContainer>
-            </Section>
-
             {/* 9. 광고 의뢰 폼 */}
             <Section variant="white" size="lg" id="contact">
                 <div className="max-w-2xl mx-auto">
